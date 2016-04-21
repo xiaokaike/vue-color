@@ -8,7 +8,7 @@
   ],
   "main": "src/app.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --quiet",
+    "dev": "webpack-dev-server --port 3004 --inline --hot --quiet",
     "build": "NODE_ENV=production webpack --progress --hide-modules",
     "dist": "webpack --progress --hide-modules --config  webpack.build.js && NODE_ENV=production webpack --progress --hide-modules --config  webpack.build.min.js"                              
   },
@@ -17,6 +17,9 @@
     "url": ""
   },
   "author": "xiaokaike",
+  "dependencies": {
+    "tinycolor2": "^1.1.2"
+  },
   "devDependencies": {
     "vue": "^1.0.12",
     "babel-core": "^6.1.21",
