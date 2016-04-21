@@ -9,8 +9,19 @@ new Vue({
     color,
     material
   },
-  data () {
-    return {
+  data: {
+    hex: '#333',
+    rgba: {
+      r: 51,
+      g: 51,
+      b: 51,
+      a: 1,
+    },
+    hsl: {
+      h: 0,
+      s: 0,
+      l: .20,
+      a: 1,
     }
   }
 })

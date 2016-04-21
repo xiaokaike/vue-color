@@ -4,7 +4,7 @@ import tinycolor from 'tinycolor2'
 
 export default {
 
-  simpleCheckForValidColor: function(data: any): any {
+  simpleCheckForValidColor (data) {
     var keysToCheck = ['r', 'g', 'b', 'a', 'h', 's', 'a', 'v']
     var checked = 0
     var passed = 0
@@ -23,7 +23,7 @@ export default {
     }
   },
 
-  toState: function(data: any, oldHue: number): any {
+  toState (data, oldHue) {
     var color = data.hex ? tinycolor(data.hex) : tinycolor(data)
     var hsl = color.toHsl()
     var hsv = color.toHsv()
@@ -42,7 +42,7 @@ export default {
     }
   },
 
-  isValidHex: function(hex: string): boolean {
+  isValidHex (hex) {
     return tinycolor(hex).isValid()
   },
 

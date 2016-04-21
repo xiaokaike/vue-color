@@ -1,23 +1,23 @@
 <template>
   
   <div class="material">
-    <editable-input class="c-hex" label="hex" :val="hex"
+    <editable-input class="c-hex" label="hex" :val.sync="hex"
     :style="{ borderColor: hex }"
     @change="handleChange">
     </editable-input>
     <div class="split" className="flexbox-fix">
       <div class="third">
-        <editable-input class="c-input" label="r" :val="rgb.r" 
+        <editable-input class="c-input" label="r" :val.sync="rgba.r" 
         @change="handleChange">
         </editable-input>
       </div>
       <div class="third">
-        <editable-input class="c-input" label="g" :val="rgb.g" 
+        <editable-input class="c-input" label="g" :val.sync="rgba.g" 
         @change="handleChange">
         </editable-input>
       </div>
       <div class="third">
-        <editable-input class="c-input" label="b" :val="rgb.b" 
+        <editable-input class="c-input" label="b" :val.sync="rgba.b" 
         @change="handleChange">
         </editable-input>
       </div>
@@ -27,32 +27,28 @@
 </template>
 
 <script>
+import color from '../helpers/color'
 import editableInput from './EditableInput.vue'
 
 export default {
   name: 'Material',
   props: {
-    color: Object
+    hex: String,
+    rgba: Object,
+    hsl: Object,
   },
   data () {
     return {
-      hex: '#333',
-      rgb: {
-        r: 51,
-        g: 51,
-        b: 51,
-        a: 1,
-      },
-      hsl: {
-        h: 0,
-        s: 0,
-        l: .20,
-        a: 1,
-      },
     }
   },
   components: {
     editableInput
+  },
+  ready () {
+    var c = color.toState({
+      hex: '#333'
+    }, 0)
+    console.log(c)
   },
   methods: {
     handleChange (data) {

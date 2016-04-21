@@ -7,8 +7,8 @@
   </head>
   <body>
     <div id="app">
-      <color></color>
-      <material></material>
+      <div>{{hex}} {{rgba.r}} {{rgba.g}} {{rgba.b}} {{rgba.a}} {{hsl.h}} {{hsl.s}} {{hsl.l}}</div>
+      <material :hex.sync="hex" :rgba.sync="rgba" :hsl.sync="hsl"></material>
     </div>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="build/bundle.js"></script>
