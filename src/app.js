@@ -1,12 +1,13 @@
-import Color from './Color.vue'
-
+import color from './Color.vue'
+import material from './components/Material.vue'
 
 Vue.config.debug = true
 
 new Vue({
 	el: '#app',
 	components: {
-    Color
+    color,
+    material
   },
   data () {
     return {
