@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <style type="text/css">
       .components-wrap{
-
+        margin-bottom: 10px;
       }
       .components-wrap h6{
         margin: 0;
@@ -36,6 +36,12 @@
       
       <div class="components-wrap">
         <compact :hex.sync="hex" :rgba.sync="rgba" :hsl.sync="hsl"></compact>
+        <h6>Compact</h6>
+      </div>
+
+      <div class="components-wrap">
+        <swatches :hex.sync="hex" :rgba.sync="rgba" :hsl.sync="hsl"></swatches>
+        <h6>Swatches</h6>
       </div>
 
     </div>
