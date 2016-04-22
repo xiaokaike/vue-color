@@ -26,7 +26,14 @@ module.exports = {
         exclude: /node_modules|vue\/src|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
         loader: 'babel'
       },
-      { test: /\.css$/, loader: cssLoader }
+      { 
+        test: /\.css$/, 
+        loader: cssLoader 
+      },
+      {
+        test: /\.styl$/,
+        loader: ExtractTextPlugin.extract("style-loader","css-loader!stylus-loader")/
+      }
     ]
   },
   // vue: {
