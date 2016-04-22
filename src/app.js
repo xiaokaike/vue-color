@@ -1,5 +1,6 @@
 import color from './Color.vue'
 import material from './components/Material.vue'
+import compact from './components/Compact.vue'
 
 Vue.config.debug = true
 
@@ -7,7 +8,8 @@ new Vue({
 	el: '#app',
 	components: {
     color,
-    material
+    material,
+    compact
   },
   data: {
     hex: '#333',
