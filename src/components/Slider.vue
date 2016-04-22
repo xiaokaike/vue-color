@@ -2,9 +2,11 @@
   <div class="c-slider">
     <dir class="hue-warp">
       <div class="hue">
-        <div class="container" 
+        <div class="container" v-el:container
           @mousedown="handleMouseDown">
-          <div class="pointer"><i class="picker"></i></div>  
+          <div class="pointer" :style="{left: (this.colors.hsl.h * 100) / 360 + '%'}">
+            <i class="picker"></i>
+          </div>  
         </div>
       </div>
     </dir>
@@ -20,6 +22,7 @@ export default {
   name: 'Slider',
   mixins: [colorMixin],
   props: {
+    direction: String
   },
   computed: {
     pick () {
@@ -28,7 +31,7 @@ export default {
   },
   data () {
     return {
-      direction: '' 
+      
     }
   },
   ready () {
@@ -37,9 +40,8 @@ export default {
   methods: {
     handleChange (e, skip) {
       !skip && e.preventDefault()
-      console.log(e)
-
-      var container = e.target
+      
+      var container = this.$els.container
       var containerWidth = container.clientWidth
       var containerHeight = container.clientHeight
       var left = (e.pageX || e.touches[0].pageX) - (container.getBoundingClientRect().left + window.pageXOffset)
@@ -56,12 +58,12 @@ export default {
           h = (360 * percent / 100)
         }
 
-        if (this.hsl.h !== h) {
-          this.onChange({
+        if (this.colors.hsl.h !== h) {
+          this.colorChange({
             h: h,
-            s: this.hsl.s,
-            l: this.hsl.l,
-            a: this.hsl.a,
+            s: this.colors.hsl.s,
+            l: this.colors.hsl.l,
+            a: this.colors.hsl.a,
             source: 'rgb',
           })
         }
@@ -76,12 +78,12 @@ export default {
           h = (360 * percent / 100)
         }
 
-        if (this.hsl.h !== h) {
-          this.onChange({
+        if (this.colors.hsl.h !== h) {
+          this.colorChange({
             h: h,
-            s: this.hsl.s,
-            l: this.hsl.l,
-            a: this.hsl.a,
+            s: this.colors.hsl.s,
+            l: this.colors.hsl.l,
+            a: this.colors.hsl.a,
             source: 'rgb',
           })
         }
@@ -130,7 +132,6 @@ export default {
   .pointer
     z-index 2
     position absolute
-    left 41.666666666666664%
   .picker
     display block
     width 14px
