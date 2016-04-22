@@ -1,0 +1,156 @@
+<template>
+  <div class="c-slider">
+    <dir class="hue-warp">
+      <div class="hue">
+        <div class="container" 
+          @mousedown="handleMouseDown">
+          <div class="pointer"><i class="picker"></i></div>  
+        </div>
+      </div>
+    </dir>
+    
+  </div>
+</template>
+
+<script>
+import colorMixin from '../mixin/color'
+var util = Vue.util
+
+export default {
+  name: 'Slider',
+  mixins: [colorMixin],
+  props: {
+  },
+  computed: {
+    pick () {
+      return this.colors.hex
+    }
+  },
+  data () {
+    return {
+      direction: '' 
+    }
+  },
+  ready () {
+    
+  },
+  methods: {
+    handleChange (e, skip) {
+      !skip && e.preventDefault()
+      console.log(e)
+
+      var container = e.target
+      var containerWidth = container.clientWidth
+      var containerHeight = container.clientHeight
+      var left = (e.pageX || e.touches[0].pageX) - (container.getBoundingClientRect().left + window.pageXOffset)
+      var top = (e.pageY || e.touches[0].pageY) - (container.getBoundingClientRect().top + window.pageYOffset)
+
+      if (this.direction === 'vertical') {
+        var h
+        if (top < 0) {
+          h = 359
+        } else if (top > containerHeight) {
+          h = 0
+        } else {
+          var percent = -(top * 100 / containerHeight) + 100
+          h = (360 * percent / 100)
+        }
+
+        if (this.hsl.h !== h) {
+          this.onChange({
+            h: h,
+            s: this.hsl.s,
+            l: this.hsl.l,
+            a: this.hsl.a,
+            source: 'rgb',
+          })
+        }
+      } else {
+        var h
+        if (left < 0) {
+          h = 0
+        } else if (left > containerWidth) {
+          h = 359
+        } else {
+          var percent = left * 100 / containerWidth
+          h = (360 * percent / 100)
+        }
+
+        if (this.hsl.h !== h) {
+          this.onChange({
+            h: h,
+            s: this.hsl.s,
+            l: this.hsl.l,
+            a: this.hsl.a,
+            source: 'rgb',
+          })
+        }
+      }
+    },
+    handleMouseDown (e) {
+      this.handleChange(e, true)
+      window.addEventListener('mousemove', this.handleChange)
+      window.addEventListener('mouseup', this.handleMouseUp)
+    },
+    handleMouseUp (e) {
+      this.unbindEventListeners()
+    },
+    unbindEventListeners() {
+      window.removeEventListener('mousemove', this.handleChange)
+      window.removeEventListener('mouseup', this.handleMouseUp)
+    }
+  }
+
+}
+</script>
+
+<style lang="stylus">
+.c-slider
+  border 1px solid #000
+  position relative
+  .hue-warp
+    height 12px
+    position relative
+  .hue
+    position absolute
+    top 0px
+    right 0px
+    bottom 0px
+    left 0px
+    background linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)
+    -ms-border-radius 2px
+    -moz-border-radius 2px
+    -o-border-radius 2px
+    -webkit-border-radius 2px
+    border-radius 2px
+  .container
+    margin 0 2px
+    position relative
+    height 100%
+  .pointer
+    z-index 2
+    position absolute
+    left 41.666666666666664%
+  .picker
+    display block
+    width 14px
+    height 14px
+    -ms-border-radius 6px
+    -moz-border-radius 6px
+    -o-border-radius 6px
+    -webkit-border-radius 6px
+    border-radius 6px
+    -ms-transform translate(-7px, -1px)
+    -moz-transform translate(-7px, -1px)
+    -o-transform translate(-7px, -1px)
+    -webkit-transform translate(-7px, -1px)
+    transform translate(-7px, -1px)
+    background-color rgb(248, 248, 248)
+    -ms-box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)
+    -moz-box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)
+    -o-box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)
+    -webkit-box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)
+    box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)
+
+
+</style>
