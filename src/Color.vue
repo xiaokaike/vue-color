@@ -8,23 +8,23 @@
     </div>
 
     <div class="components-wrap">
-      <material :colors.sync="colors"></material>
+      <material-picker :colors.sync="colors"></material-picker>
       <h6>Material</h6>
     </div>
     
     <div class="components-wrap">
-      <compact :colors.sync="colors"></compact>
+      <compact-picker :colors.sync="colors"></compact-picker>
       <h6>Compact</h6>
     </div>
 
     <div class="components-wrap">
-      <swatches :colors.sync="colors"></swatches>
+      <swatches-picker :colors.sync="colors"></swatches-picker>
       <h6>Swatches</h6>
     </div>
 
     <div class="components-wrap">
-      <slider :colors.sync="colors"></slider>
-      <h6>Swatches</h6>
+      <slider-picker :colors.sync="colors"></slider-picker>
+      <h6>Slider</h6>
     </div>
     
   </div>
@@ -61,10 +61,10 @@ let defaultProps = {
 export default {
   name: 'Color',
   components:{
-    material,
-    compact,
-    swatches,
-    slider
+    'material-picker': material,
+    'compact-picker': compact,
+    'swatches-picker': swatches,
+    'slider-picker': slider
   },
   props: {
   },
@@ -77,19 +77,15 @@ export default {
 }
 </script>
 
-<style>
-.components-wrap{
-  margin-bottom: 10px;
-}
-.components-wrap h6{
-  margin: 0;
-  padding: 5px 0;
-  color: #666;
-}
-.test-wrap {
-  margin-bottom: 10px;
-}
-.test-wrap p{
-  margin: 0;
-}
+<style lang="stylus">
+.components-wrap
+  margin-bottom 10px
+  h6
+    margin 0
+    padding 5px 0
+    color #666    
+.test-wrap
+  margin-bottom 10px
+  p
+    margin 0
 </style>
