@@ -34,6 +34,8 @@ export default {
         this.hex = c.toHexString()
         this.rgba = c.toRgb()
       }
+
+      this.onChange && this.onChange();
     },
     isValidHex (hex) {
       return tinycolor(hex).isValid()
