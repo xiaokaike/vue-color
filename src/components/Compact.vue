@@ -1,7 +1,7 @@
 <template>
   <div class="c-compact">
     <ul class="colors">
-      <li class="color-item" v-for="c in colors" 
+      <li class="color-item" v-for="c in defaultColors" 
         @click="handlerClick(c)"
         :class="{white: c === '#FFFFFF' }"
         :style="{background: c}">
@@ -15,7 +15,7 @@
 <script>
 import colorMixin from '../mixin/color'
 
-var colors = [
+var defaultColors = [
   '#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FCDC00',
   '#DBDF00', '#A4DD00', '#68CCCA', '#73D8FF', '#AEA1FF', '#FDA1FF',
   '#333333', '#808080', '#CCCCCC', '#D33115', '#E27300', '#FCC400',
@@ -28,24 +28,24 @@ export default {
   name: 'Compact',
   mixins: [colorMixin],
   props: {
-    hex: String,
-    rgba: Object,
-    hsl: Object,
   },
   computed: {
     pick () {
-      return this.hex.toUpperCase()
+      return this.colors.hex.toUpperCase()
     }
   },
   data () {
     return {
-      colors: colors,
+      defaultColors: defaultColors,
       pick: ''
     }
   },
   methods: {
     handlerClick (c) {
-      this.colorChange(c, 'hex')
+      this.colorChange({
+        hex: c,
+        source: 'hex'
+      })
     },
     onChange () {
     }

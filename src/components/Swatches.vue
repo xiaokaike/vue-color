@@ -1,7 +1,7 @@
 <template>
   <div class="c-swatches" data-pick="{{pick}}">
     <div class="box">
-      <div class="color-group" v-for="group in defaultProp.colors">
+      <div class="color-group" v-for="group in defaultColors.colors">
         <div class="color-it" v-for="c in group"
           @click="handlerClick(c)"
           :style="{background: c}">
@@ -20,7 +20,7 @@
 import material from 'material-colors'
 import colorMixin from '../mixin/color'
 
-var defaultProp = {
+var defaultColors = {
   width: 320,
   height: 240,
   colors: [
@@ -49,19 +49,15 @@ export default {
   name: 'Swatches',
   mixins: [colorMixin],
   props: {
-    hex: String,
-    rgba: Object,
-    hsl: Object,
   },
   computed: {
     pick () {
-      return this.hex
+      return this.colors.hex
     }
   },
   data () {
     return {
-      defaultProp: defaultProp,
-      pick: ''
+      defaultColors: defaultColors
     }
   },
   ready () {
@@ -69,7 +65,10 @@ export default {
   },
   methods: {
     handlerClick (c) {
-      this.colorChange(c, 'hex')
+      this.colorChange({
+        hex: c,
+        source: 'hex'
+      })
     },
     onChange () {      
     }

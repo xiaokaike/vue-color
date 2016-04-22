@@ -2,37 +2,32 @@ import tinycolor from 'tinycolor2'
 
 var rgbaRE = /r|g|b|a/i
 var hslRE = /h|s|l/i
+var hsvRE = /h|s|v/i
 
 export default {
+  props: {
+    colors: Object
+  },
+  created (){
+    console.log(this.colors)
+  },
   methods: {
-    colorChange (data, type) {
-      console.log(data, type)
-
-      if(type === 'hex'){
-        if(!this.isValidHex(data)){
-          return
-        }
-        var c = tinycolor(data)
-        this.hsl = c.toHsl()
-        this.rgba = c.toRgb()
+    colorChange (data, oldHue) {
+      var color = data.hex ? tinycolor(data.hex) : tinycolor(data)
+      var hsl = color.toHsl()
+      var hsv = color.toHsv()
+      if (hsl.s === 0) {
+        hsl.h = oldHue || 0
+        hsv.h = oldHue || 0
       }
 
-      if(rgbaRE.test(type)){
-        if(!this.simpleCheckForValidColor(this.rgba)){
-          return
-        }
-        var c = tinycolor(this.rgba)
-        this.hex = c.toHexString()
-        this.hsl = c.toHsl()
-      }
-
-      if(hslRE.test(type)){
-        if(!this.simpleCheckForValidColor(this.hsl)){
-          return
-        }
-        var c = tinycolor(this.hsl)
-        this.hex = c.toHexString()
-        this.rgba = c.toRgb()
+      this.colors = {
+        hsl: hsl,
+        hex: color.toHexString(),
+        rgba: color.toRgb(),
+        hsv: hsv,
+        oldHue: data.h || oldHue || hsl.h,
+        source: data.source,
       }
 
       this.onChange && this.onChange();

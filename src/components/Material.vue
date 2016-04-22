@@ -1,24 +1,28 @@
 <template>
   
   <div class="material">
-    <editable-input class="hex" label="hex" :val.sync="hex"
-    :style="{ borderColor: hex }"
-    :on-change="colorChange">
+    <editable-input class="hex" label="hex" cid="hex"
+    :val.sync="colors.hex"
+    :style="{ borderColor: colors.hex }"
+    :on-change="onChange">
     </editable-input>
     <div class="split flexbox-fix">
       <div class="third">
-        <editable-input label="r" :val.sync="rgba.r" 
-        :on-change="colorChange">
+        <editable-input label="r" cid="rgba"
+        :val.sync="colors.rgba.r" 
+        :on-change="onChange">
         </editable-input>
       </div>
       <div class="third">
-        <editable-input label="g" :val.sync="rgba.g" 
-        :on-change="colorChange">
+        <editable-input label="g" cid="rgba"
+        :val.sync="colors.rgba.g" 
+        :on-change="onChange">
         </editable-input>
       </div>
       <div class="third">
-        <editable-input label="b" :val.sync="rgba.b" 
-        :on-change="colorChange">
+        <editable-input label="b" cid="rgba"
+        :val.sync="colors.rgba.b"
+        :on-change="onChange">
         </editable-input>
       </div>
     </div>  
@@ -27,7 +31,6 @@
 </template>
 
 <script>
-import color from '../helpers/color'
 import editableInput from './EditableInput.vue'
 import colorMixin from '../mixin/color'
 
@@ -35,9 +38,6 @@ export default {
   name: 'Material',
   mixins: [colorMixin],
   props: {
-    hex: String,
-    rgba: Object,
-    hsl: Object,
   },
   data () {
     return {
@@ -47,14 +47,23 @@ export default {
     editableInput
   },
   ready () {
-    var c = color.toState({
-      hex: this.hex
-    }, 0)
-    console.log(c)
   },
   methods: {
-    cc (e) {
-      console.log(e)
+    onChange (data) {
+      if (data.hex) {
+        this.isValidHex(data.hex) && this.colorChange({
+          hex: data.hex,
+          source: 'hex',
+        })
+      } else if (data.r || data.g || data.b) {
+        this.colorChange({
+          r: data.r || this.colors.rgb.r,
+          g: data.g || this.colors.rgb.g,
+          b: data.b || this.colors.rgb.b,
+          a: data.a || this.colors.rgb.a,
+          source: 'rgba',
+        })
+      }
     }
   }
 }

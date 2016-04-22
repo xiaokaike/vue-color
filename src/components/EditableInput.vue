@@ -1,5 +1,5 @@
 <template>
-  <div class="editable-input">
+  <div class="editable-input" data-cid="{{cid}}">
     <input class="input" 
       v-model="val"
       @keydown="handleKeyDown"
@@ -12,8 +12,9 @@
 export default {
   name: 'editableInput',
   props: {
+    cid: String,
     label: String,
-    val: [String, Number],
+    val: [String|Number],
     onChange: Function
   },
   data () {
@@ -23,15 +24,15 @@ export default {
   },
   methods: {
     handleChange (e) {
-      console.log('change', e)
-      this.onChange(this.val, this.label)
+      var data = {}
+      data[this.label] = this.val;
+      this.onChange(data)
     },
     handleBlur (e) {
       
     },
     handleKeyDown (e) {
       var val = this.val
-      var label = this.label
       var number = Number(val)
 
       if (number) {
@@ -41,16 +42,15 @@ export default {
         if (e.keyCode === 38) {
           this.val = number + amount
           e.preventDefault()
-          this.onChange(val, label)
         }
 
         // Down
         if (e.keyCode === 40) {
           this.val = number - amount
           e.preventDefault()
-          this.onChange(val, label)
         }
 
+        this.handleChange()
       }
     },
     handleDrag (e) {
