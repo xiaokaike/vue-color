@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrap">
     <div class="test-wrap">
       <p>{{colors.hex}}</p>
       <p>{{colors.rgba.r}} {{colors.rgba.g}} {{colors.rgba.b}} {{colors.rgba.a}}</p>
@@ -78,6 +78,9 @@ export default {
 </script>
 
 <style lang="stylus">
+.wrap
+  width 600px
+  margin 0 auto
 .components-wrap
   margin-bottom 10px
   h6
