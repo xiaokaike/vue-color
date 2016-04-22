@@ -10,7 +10,15 @@
         </div>
       </div>
     </dir>
-    
+    <div class="swatches">
+      <div class="swatch" v-for="sw in swatches" data-index="{{$index}}"
+        @click="handleSwClick($index, sw.offset)">
+        <div class="swatch-picker"
+        :class="{active: sw.offset == activeOffset}"
+        :style="{background: 'hsl(' + colors.hsl.h + ', 50%, ' + (sw.offset * 100) + '%)'}"
+        ></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -25,13 +33,28 @@ export default {
     direction: String
   },
   computed: {
-    pick () {
-      return this.colors.hex
+    activeOffset () {
+      if(Math.round(this.colors.hsl.s * 100) / 100 == .50){
+        return Math.round(this.colors.hsl.l * 100) / 100
+      }
+      return 0
     }
+  },
+  filters: {
   },
   data () {
     return {
-      
+      swatches: [{
+        offset: '.80',
+      }, {
+        offset: '.65',
+      }, {
+        offset: '.50',
+      }, {
+        offset: '.35',
+      }, {
+        offset: '.20',
+      }]
     }
   },
   ready () {
@@ -64,7 +87,7 @@ export default {
             s: this.colors.hsl.s,
             l: this.colors.hsl.l,
             a: this.colors.hsl.a,
-            source: 'rgb',
+            source: 'hsl',
           })
         }
       } else {
@@ -84,7 +107,7 @@ export default {
             s: this.colors.hsl.s,
             l: this.colors.hsl.l,
             a: this.colors.hsl.a,
-            source: 'rgb',
+            source: 'hsl',
           })
         }
       }
@@ -100,6 +123,14 @@ export default {
     unbindEventListeners() {
       window.removeEventListener('mousemove', this.handleChange)
       window.removeEventListener('mouseup', this.handleMouseUp)
+    },
+    handleSwClick (index, offset){
+      this.colorChange({
+        h: this.colors.hsl.h,
+        s: .5,
+        l: offset,
+        source: 'hsl',
+      })
     }
   }
 
@@ -108,7 +139,6 @@ export default {
 
 <style lang="stylus">
 .c-slider
-  border 1px solid #000
   position relative
   .hue-warp
     height 12px
@@ -152,6 +182,27 @@ export default {
     -o-box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)
     -webkit-box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)
     box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)
+  .swatches
+    display -webkit-box
+    margin-top 20px
+    .swatch
+      margin-right 1px
+      -webkit-box-flex 1
+      width 20%
+      &:first-child
+        .swatch-picker
+          border-radius 2px 0px 0px 2px        
+      &:last-child
+        margin-right 0
+        .swatch-picker
+          border-radius 0px 2px 2px 0px
+    .swatch-picker
+      height 12px
+      cursor pointer
+      &.active
+        transform scaleY(1.8)
+        border-radius: 3.6px/2px
+      
 
 
 </style>
