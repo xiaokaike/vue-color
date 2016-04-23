@@ -1,6 +1,6 @@
 <template>
   
-  <div class="material">
+  <div class="c-material">
     <editable-input class="hex" label="hex" cid="hex"
     :val.sync="colors.hex"
     :style="{ borderColor: colors.hex }"
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import editableInput from './EditableInput.vue'
+import editableInput from './common/EditableInput.vue'
 import colorMixin from '../mixin/color'
 
 export default {
@@ -69,26 +69,22 @@ export default {
 }
 </script>
 
-<style>
-.material {
-  width: 98px;
-  height: 98px;
-  padding: 16px;
-  font-family: "Roboto";
-  position: relative;
-  border-radius: 2px;
-  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
-}
-.material .hex {
-  border-width: 2px;
-}
-.split {
-  display: flex;
-  margin-right: -10px;
-  padding-top: 11px;
-}
-.third {
-  flex: 1;
-  padding-right: 10px;
-}
+<style lang="stylus">
+.c-material
+  width 98px
+  height 98px
+  padding 16px
+  font-family "Roboto"
+  position relative
+  border-radius 2px
+  box-shadow 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)
+  .hex
+    border-width 2px
+  .split
+    display flex
+    margin-right -10px
+    padding-top 11px
+  .third
+    flex 1
+    padding-right 10px
 </style>
