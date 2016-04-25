@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import color from './Color.vue'
 
 Vue.config.debug = true
