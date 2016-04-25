@@ -10,6 +10,7 @@ export default {
   },
   created (){
     console.log(this.colors)
+    this.colors.hex = this.colors.hex.toUpperCase()
   },
   methods: {
     colorChange (data, oldHue) {
@@ -23,7 +24,7 @@ export default {
 
       this.colors = {
         hsl: hsl,
-        hex: color.toHexString(),
+        hex: color.toHexString().toUpperCase(),
         rgba: color.toRgb(),
         hsv: hsv,
         oldHue: data.h || oldHue || hsl.h,

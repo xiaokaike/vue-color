@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     pick () {
-      return this.colors.hex.toUpperCase()
+      return this.colors.hex
     }
   },
   data () {
