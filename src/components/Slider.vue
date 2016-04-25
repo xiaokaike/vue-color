@@ -24,7 +24,6 @@
 
 <script>
 import colorMixin from '../mixin/color'
-var util = Vue.util
 
 export default {
   name: 'Slider',
