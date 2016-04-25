@@ -54,46 +54,37 @@ export default {
 }
 </script>
 
-<style>
-.c-compact {
-  padding-top: 5px;
-  padding-left: 5px;
-  width: 240px;
-  border-radius: 2px;
-  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
-}
-.c-compact .colors {
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-}
-
-.c-compact .color-item{
-  list-style: none;
-  width: 15px;
-  height: 15px;
-  float: left;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  position: relative;
-  cursor: pointer;
-  
-}
-.c-compact .color-item.white {
-  box-shadow: inset 0 0 0 1px #ddd;
-}
-.dot{
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  bottom: 5px;
-  left: 5px;
-  border-radius: 50%;
-  opacity: 1;
-  background: #fff;
-}
-
-.c-compact .color-item.white .dot{
-  background: #000
-}
+<style lang="stylus">
+.c-compact
+  padding-top 5px
+  padding-left 5px
+  width 240px
+  border-radius 2px
+  box-shadow 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)
+  .colors
+    overflow hidden
+    padding 0
+    margin 0
+  .color-item
+    list-style none
+    width 15px
+    height 15px
+    float left
+    margin-right 5px
+    margin-bottom 5px
+    position relative
+    cursor pointer
+    &.white
+      box-shadow inset 0 0 0 1px #ddd
+      .dot
+        background #000      
+  .dot
+    position absolute
+    top 5px
+    right 5px
+    bottom 5px
+    left 5px
+    border-radius 50%
+    opacity 1
+    background #fff
 </style>
