@@ -26,6 +26,11 @@
       <slider-picker :colors.sync="colors"></slider-picker>
       <h6>Slider</h6>
     </div>
+
+    <div class="components-wrap">
+      <sketch-picker :colors.sync="colors"></sketch-picker>
+      <h6>Sketch</h6>
+    </div>
     
   </div>
 </template>
@@ -35,6 +40,7 @@ import material from './components/Material.vue'
 import compact from './components/Compact.vue'
 import swatches from './components/Swatches.vue'
 import slider from './components/Slider.vue'
+import sketch from './components/Sketch.vue'
 
 let defaultProps = {
   hex: '#194d33',
@@ -64,9 +70,8 @@ export default {
     'material-picker': material,
     'compact-picker': compact,
     'swatches-picker': swatches,
-    'slider-picker': slider
-  },
-  props: {
+    'slider-picker': slider,
+    'sketch-picker': sketch
   },
   data () {
     return {

@@ -1,29 +1,21 @@
 <template>
   
   <div class="c-material">
-    <editable-input class="hex" label="hex"
-    :val.sync="colors.hex"
+    <ed-in class="hex" label="hex" :val.sync="colors.hex"
     :style="{ borderColor: colors.hex }"
-    :on-change="onChange">
-    </editable-input>
+    :on-change="onChange"></ed-in>
     <div class="split flexbox-fix">
       <div class="third">
-        <editable-input label="r"
-        :val.sync="colors.rgba.r" 
-        :on-change="onChange">
-        </editable-input>
+        <ed-in label="r" :val.sync="colors.rgba.r" 
+        :on-change="onChange"></ed-in>
       </div>
       <div class="third">
-        <editable-input label="g"
-        :val.sync="colors.rgba.g" 
-        :on-change="onChange">
-        </editable-input>
+        <ed-in label="g" :val.sync="colors.rgba.g" 
+        :on-change="onChange"></ed-in>
       </div>
       <div class="third">
-        <editable-input label="b"
-        :val.sync="colors.rgba.b"
-        :on-change="onChange">
-        </editable-input>
+        <ed-in label="b" :val.sync="colors.rgba.b"
+        :on-change="onChange"></ed-in>
       </div>
     </div>  
   </div>
@@ -44,7 +36,7 @@ export default {
     }
   },
   components: {
-    editableInput
+    'ed-in': editableInput
   },
   ready () {
   },

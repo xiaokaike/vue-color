@@ -11,29 +11,22 @@
     <div class="fields">
       <div class="pick-color" :style="{background: pick}"></div>
       <div class="col-hex">
-        <editable-input label="hex"
+        <ed-in label="hex"
         :val.sync="colors.hex"
         :style="{ borderColor: colors.hex }"
-        :on-change="onChange">
-        </editable-input>
+        :on-change="onChange"></ed-in>
       </div>
       <div class="col-3">
-        <editable-input label="r"
-        :val.sync="colors.rgba.r" 
-        :on-change="onChange">
-        </editable-input>
+        <ed-in label="r" :val.sync="colors.rgba.r" 
+        :on-change="onChange"></ed-in>
       </div>
       <div class="col-3">
-        <editable-input label="g"
-        :val.sync="colors.rgba.g" 
-        :on-change="onChange">
-        </editable-input>
+        <ed-in label="g" :val.sync="colors.rgba.g" 
+        :on-change="onChange"></ed-in>
       </div>
       <div class="col-3">
-        <editable-input label="b"
-        :val.sync="colors.rgba.b"
-        :on-change="onChange">
-        </editable-input>
+        <ed-in label="b" :val.sync="colors.rgba.b"
+        :on-change="onChange"></ed-in>
       </div>
     </div>
   </div>
@@ -58,7 +51,7 @@ export default {
   props: {
   },
   components: {
-    editableInput
+    'ed-in': editableInput
   },
   computed: {
     pick () {

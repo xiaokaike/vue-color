@@ -19,7 +19,8 @@
   "author": "xiaokaike",
   "dependencies": {
     "material-colors": "^1.0.0",
-    "tinycolor2": "^1.1.2"
+    "tinycolor2": "^1.1.2",
+    "lodash.throttle": "^4.0.0"
   },
   "devDependencies": {
     "vue": "^1.0.12",
