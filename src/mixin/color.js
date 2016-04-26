@@ -30,8 +30,6 @@ export default {
         oldHue: data.h || oldHue || hsl.h,
         source: data.source,
       }
-
-      this.onChange && this.onChange();
     },
     isValidHex (hex) {
       return tinycolor(hex).isValid()

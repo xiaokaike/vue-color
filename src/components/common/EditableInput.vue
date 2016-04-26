@@ -1,5 +1,5 @@
 <template>
-  <div class="editable-input" data-cid="{{cid}}">
+  <div class="editable-input">
     <input class="input" 
       v-model="val"
       @keydown="handleKeyDown"
@@ -12,7 +12,6 @@
 export default {
   name: 'editableInput',
   props: {
-    cid: String,
     label: String,
     val: [String | Number],
     onChange: Function

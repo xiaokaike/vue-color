@@ -67,8 +67,6 @@ export default {
         hex: c,
         source: 'hex'
       })
-    },
-    onChange () {      
     }
   }
 

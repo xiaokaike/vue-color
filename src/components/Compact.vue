@@ -11,26 +11,26 @@
     <div class="fields">
       <div class="pick-color" :style="{background: pick}"></div>
       <div class="col-hex">
-        <editable-input label="hex" cid="hex"
+        <editable-input label="hex"
         :val.sync="colors.hex"
         :style="{ borderColor: colors.hex }"
         :on-change="onChange">
         </editable-input>
       </div>
       <div class="col-3">
-        <editable-input label="r" cid="rgba"
+        <editable-input label="r"
         :val.sync="colors.rgba.r" 
         :on-change="onChange">
         </editable-input>
       </div>
       <div class="col-3">
-        <editable-input label="g" cid="rgba"
+        <editable-input label="g"
         :val.sync="colors.rgba.g" 
         :on-change="onChange">
         </editable-input>
       </div>
       <div class="col-3">
-        <editable-input label="b" cid="rgba"
+        <editable-input label="b"
         :val.sync="colors.rgba.b"
         :on-change="onChange">
         </editable-input>
@@ -77,7 +77,24 @@ export default {
         source: 'hex'
       })
     },
-    onChange () {
+    onChange (data) {
+      if(!data){
+        return
+      }
+      if (data.hex) {
+        this.isValidHex(data.hex) && this.colorChange({
+          hex: data.hex,
+          source: 'hex',
+        })
+      } else if (data.r || data.g || data.b) {
+        this.colorChange({
+          r: data.r || this.colors.rgba.r,
+          g: data.g || this.colors.rgba.g,
+          b: data.b || this.colors.rgba.b,
+          a: data.a || this.colors.rgba.a,
+          source: 'rgba',
+        })
+      }
     }
   }
 }
