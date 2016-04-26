@@ -8,7 +8,7 @@
         <div class="dot" v-show="c === pick"></div>
       </li>
     </ul>
-
+    
   </div>
 </template>
 
@@ -36,8 +36,7 @@ export default {
   },
   data () {
     return {
-      defaultColors: defaultColors,
-      pick: ''
+      defaultColors: defaultColors
     }
   },
   methods: {
@@ -50,8 +49,8 @@ export default {
     onChange () {
     }
   }
-
 }
+
 </script>
 
 <style lang="stylus">
