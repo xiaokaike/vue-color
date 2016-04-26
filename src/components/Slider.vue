@@ -4,11 +4,11 @@
       <hue :colors.sync="colors" :on-change="hueChange"></hue>
     </div>
     <div class="swatches">
-      <div class="swatch" v-for="sw in swatches" data-index="{{$index}}"
-        @click="handleSwClick($index, sw.offset)">
+      <div class="swatch" v-for="offset in swatches" data-index="{{$index}}"
+        @click="handleSwClick($index, offset)">
         <div class="swatch-picker"
-        :class="{active: sw.offset == activeOffset}"
-        :style="{background: 'hsl(' + colors.hsl.h + ', 50%, ' + (sw.offset * 100) + '%)'}"
+        :class="{active: offset == activeOffset}"
+        :style="{background: 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
         ></div>
       </div>
     </div>
@@ -40,17 +40,7 @@ export default {
   },
   data () {
     return {
-      swatches: [{
-        offset: '.80',
-      }, {
-        offset: '.65',
-      }, {
-        offset: '.50',
-      }, {
-        offset: '.35',
-      }, {
-        offset: '.20',
-      }]
+      swatches: ['.80', '.65', '.50', '.35', '.20']
     }
   },
   ready () {
