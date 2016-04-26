@@ -1,7 +1,9 @@
 <template>
   <div class="hue">
     <div class="container" v-el:container
-      @mousedown="handleMouseDown">
+      @mousedown="handleMouseDown"
+      @touchmove="handleChange"
+      @touchstart="handleChange">
       <div class="pointer" :style="{left: pointerLeft}">
         <div class="picker"></div>
       </div>  
@@ -89,7 +91,7 @@ export default {
     unbindEventListeners() {
       window.removeEventListener('mousemove', this.handleChange)
       window.removeEventListener('mouseup', this.handleMouseUp)
-    },
+    }
   }
 
 }

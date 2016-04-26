@@ -5,6 +5,7 @@
       <p>{{colors.rgba.r}} {{colors.rgba.g}} {{colors.rgba.b}} {{colors.rgba.a}}</p>
       <p>{{colors.hsl.h}} {{colors.hsl.s}} {{colors.hsl.l}} {{colors.hsl.a}}</p>
       <p>{{colors.hsv.h}} {{colors.hsl.s}} {{colors.hsv.v}} {{colors.hsv.a}}</p>
+      <p>{{colors.a}}</p>
     </div>
 
     <div class="components-wrap">
@@ -62,6 +63,7 @@ let defaultProps = {
     b: 51,
     a: 1,
   },
+  a: 1,
 }
 
 export default {

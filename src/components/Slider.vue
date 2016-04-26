@@ -1,8 +1,8 @@
 <template>
   <div class="c-slider">
-    <dir class="hue-warp">
+    <div class="hue-warp">
       <hue :colors.sync="colors" :on-change="hueChange"></hue>
-    </dir>
+    </div>
     <div class="swatches">
       <div class="swatch" v-for="sw in swatches" data-index="{{$index}}"
         @click="handleSwClick($index, sw.offset)">

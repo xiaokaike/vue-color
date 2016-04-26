@@ -9,7 +9,7 @@
           <hue :colors.sync="colors" :on-change="childChange"></hue>  
         </div>
         <div class="alpha-wrap">
-          
+          <alpha :colors.sync="colors" :on-change="childChange"></alpha>
         </div>
       </div>
       <div class="color-wrap">
@@ -33,6 +33,7 @@ import colorMixin from '../mixin/color'
 import editableInput from './common/EditableInput.vue'
 import saturation from './common/Saturation.vue'
 import hue from './common/Hue.vue'
+import alpha from './common/Alpha.vue'
 
 let presetColors = [
   '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', 
@@ -46,6 +47,7 @@ export default {
   components: {
     saturation,
     hue,
+    alpha,
     'ed-in': editableInput,
   },
   props: {

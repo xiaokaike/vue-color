@@ -9,7 +9,7 @@ export default {
     colors: Object
   },
   created (){
-    console.log(this.colors)
+    // console.log(this.colors)
     this.colors.hex = this.colors.hex.toUpperCase()
   },
   methods: {
@@ -29,6 +29,7 @@ export default {
         hsv: hsv,
         oldHue: data.h || oldHue || hsl.h,
         source: data.source,
+        a: data.a
       }
     },
     isValidHex (hex) {
