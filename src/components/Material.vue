@@ -79,7 +79,8 @@ export default {
   border-radius 2px
   box-shadow 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)
   .hex
-    border-width 2px
+    border-bottom-width 2px
+    border-bottom-style solid
   .split
     display flex
     margin-right -10px
@@ -87,4 +88,17 @@ export default {
   .third
     flex 1
     padding-right 10px
+  .input
+    width 100%
+    margin-top 12px
+    font-size 15px
+    color #333
+    height 30px
+  .label
+    position absolute
+    top 0
+    left 0
+    font-size 11px
+    color #999
+    text-transform capitalize
 </style>

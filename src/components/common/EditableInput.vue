@@ -14,7 +14,7 @@ export default {
   props: {
     cid: String,
     label: String,
-    val: [String|Number],
+    val: [String | Number],
     onChange: Function
   },
   data () {
@@ -64,27 +64,13 @@ export default {
 }
 </script>
 
-<style>
-.editable-input {
-  border-bottom: 1px solid #eee;
-  position: relative;
-}
-.editable-input .input{
-  width: 100%;
-  margin-top: 12px;
-  font-size: 15px;
-  color: #333;
-  padding: 0;
-  border: 0;
-  outline: none;
-  height: 30px;
-}
-.editable-input .label{
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 11px;
-  color: #999999;
-  text-transform: capitalize;
-}
+<style lang="stylus">
+.editable-input
+  position relative
+  .input
+    padding 0
+    border 0
+    outline none
+  .label
+    text-transform capitalize
 </style>

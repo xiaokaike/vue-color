@@ -8,12 +8,40 @@
         <div class="dot" v-show="c === pick"></div>
       </li>
     </ul>
-    
+    <div class="fields">
+      <div class="pick-color" :style="{background: pick}"></div>
+      <div class="col-hex">
+        <editable-input label="hex" cid="hex"
+        :val.sync="colors.hex"
+        :style="{ borderColor: colors.hex }"
+        :on-change="onChange">
+        </editable-input>
+      </div>
+      <div class="col-3">
+        <editable-input label="r" cid="rgba"
+        :val.sync="colors.rgba.r" 
+        :on-change="onChange">
+        </editable-input>
+      </div>
+      <div class="col-3">
+        <editable-input label="g" cid="rgba"
+        :val.sync="colors.rgba.g" 
+        :on-change="onChange">
+        </editable-input>
+      </div>
+      <div class="col-3">
+        <editable-input label="b" cid="rgba"
+        :val.sync="colors.rgba.b"
+        :on-change="onChange">
+        </editable-input>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import colorMixin from '../mixin/color'
+import editableInput from './common/EditableInput.vue'
 
 var defaultColors = [
   '#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FCDC00',
@@ -28,6 +56,9 @@ export default {
   name: 'Compact',
   mixins: [colorMixin],
   props: {
+  },
+  components: {
+    editableInput
   },
   computed: {
     pick () {
@@ -86,4 +117,40 @@ export default {
     border-radius 50%
     opacity 1
     background #fff
+  .fields
+    display flex
+    position relative
+    padding-bottom 6px
+    padding-right 5px
+    position relative
+    .pick-color
+      position absolute
+      top 6px
+      left 5px
+      height 9px
+      width 9px
+    .col-hex
+      flex 2
+      .input
+        width 80%
+        padding-left 20%  
+      .label
+        display none
+    .col-3
+      flex 1
+    .input
+      width 70%
+      padding-left 30%
+      background none
+      font-size 12px
+      color #333
+      height 16px
+    .label
+      position absolute
+      top 3px
+      left 0
+      line-height 16px
+      text-transform uppercase
+      font-size 12px
+      color #999
 </style>
