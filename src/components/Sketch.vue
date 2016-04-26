@@ -1,8 +1,22 @@
 <template>
   <div class="c-sketch">
     <div class="saturation-wrap">
-      <saturation :colors.sync="colors" :on-change="saturationChange"></saturation>
+      <saturation :colors.sync="colors" :on-change="childChange"></saturation>
     </div>
+    <div class="controls">
+      <div class="sliders">
+        <div class="hue-wrap">
+          <hue :colors.sync="colors" :on-change="childChange"></hue>  
+        </div>
+        <div class="alpha-wrap">
+          
+        </div>
+      </div>
+      <div class="color-wrap">
+        <div class="active-color" :style="{background: activeColor}"></div>
+      </div>
+    </div>
+    
     <div class="presets">
       <div class="presets-color"
         v-for="c in presetColors"
@@ -18,6 +32,7 @@
 import colorMixin from '../mixin/color'
 import editableInput from './common/EditableInput.vue'
 import saturation from './common/Saturation.vue'
+import hue from './common/Hue.vue'
 
 let presetColors = [
   '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', 
@@ -29,8 +44,9 @@ export default {
   name: 'Sketch',
   mixins: [colorMixin],
   components: {
+    saturation,
+    hue,
     'ed-in': editableInput,
-    saturation
   },
   props: {
   },
@@ -39,14 +55,20 @@ export default {
       presetColors: presetColors
     }
   },
+  computed: {
+    activeColor () {
+      var rgba = this.colors.rgba
+      return 'rgba(' + rgba.r + ', ' + rgba.g + ', ' + rgba.b + ', ' + rgba.a + ')'
+    }
+  },
   methods:{
-    handlePreset: function(c){
+    handlePreset (c){
       this.colorChange({
         hex: c,
         source: 'hex'
       })
     },
-    saturationChange: function(data){
+    childChange (data){
       this.colorChange(data)
     }
   }
@@ -68,7 +90,36 @@ export default {
     padding-bottom 75%
     position relative
     overflow hidden
-    margin-bottom 10px
+  .controls
+    display flex
+    .sliders
+      padding 4px 0
+      flex 1
+    .hue-wrap
+      position relative
+      height 10px
+      overflow hidden
+    .alpha-wrap
+      position relative
+      height 10px
+      margin-top 4px
+      overflow hidden
+    .color-wrap
+      width 24px
+      height 24px
+      position relative
+      margin-top 4px
+      margin-left 4px
+      border-radius 3px
+    .active-color
+      position absolute
+      top 0
+      left 0
+      right 0
+      bottom 0
+      border-radius 2px
+      box-shadow inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)
+      z-index 2
   .presets
     margin-right -10px
     margin-left -10px

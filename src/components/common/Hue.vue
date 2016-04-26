@@ -3,7 +3,7 @@
     <div class="container" v-el:container
       @mousedown="handleMouseDown">
       <div class="pointer" :style="{left: pointerLeft}">
-        <i class="picker"></i>
+        <div class="picker"></div>
       </div>  
     </div>
   </div>
@@ -108,11 +108,11 @@ export default {
     z-index 2
     position absolute
   .picker
-    display block
-    width 14px
-    height 14px
-    border-radius 6px
-    transform translate(-7px, -1px)
-    background-color rgb(248, 248, 248)
-    box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)
+    margin-top 1px
+    width 4px
+    border-radius 1px
+    height 8px
+    box-shadow 0 0 2px rgba(0, 0, 0, .6)
+    background #fff
+    transform translateX(-2px)
 </style>
