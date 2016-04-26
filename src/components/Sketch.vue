@@ -100,7 +100,6 @@ export default {
     .hue-wrap
       position relative
       height 10px
-      overflow hidden
     .alpha-wrap
       position relative
       height 10px

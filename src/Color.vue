@@ -33,6 +33,11 @@
       <h6>Sketch</h6>
     </div>
     
+    <div class="components-wrap">
+      <chrome-picker :colors.sync="colors"></chrome-picker>
+      <h6>Chrome</h6>
+    </div>
+
   </div>
 </template>
 
@@ -42,6 +47,7 @@ import compact from './components/Compact.vue'
 import swatches from './components/Swatches.vue'
 import slider from './components/Slider.vue'
 import sketch from './components/Sketch.vue'
+import chrome from './components/Chrome.vue'
 
 let defaultProps = {
   hex: '#194d33',
@@ -73,7 +79,8 @@ export default {
     'compact-picker': compact,
     'swatches-picker': swatches,
     'slider-picker': slider,
-    'sketch-picker': sketch
+    'sketch-picker': sketch,
+    'chrome-picker': chrome
   },
   data () {
     return {

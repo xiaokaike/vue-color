@@ -86,11 +86,7 @@ export default {
       border-radius 6px
       transform translate(-7px, -2px)
       background-color rgb(248, 248, 248)
-      box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)
-  .container
-    margin 0 2px
-    position relative
-    height 100%
+      box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)    
   .swatches
     display -webkit-box
     margin-top 20px

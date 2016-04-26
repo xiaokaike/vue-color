@@ -1,5 +1,5 @@
 <template>
-  <div class="hue">
+  <div class="c-hue">
     <div class="container" v-el:container
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
@@ -19,9 +19,7 @@ export default {
     onChange: Function
   },
   data () {
-    return {
-      
-    }
+    return {}
   },
   computed: {
     pointerLeft () {
@@ -98,7 +96,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.hue
+.c-hue
   position absolute
   top 0px
   right 0px
@@ -106,6 +104,10 @@ export default {
   left 0px
   background linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)
   border-radius 2px
+  .container
+    margin 0 2px
+    position relative
+    height 100%
   .pointer
     z-index 2
     position absolute
