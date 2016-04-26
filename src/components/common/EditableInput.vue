@@ -1,7 +1,7 @@
 <template>
   <div class="editable-input">
     <input class="input" 
-      v-model="val"
+      v-model="val | maxFilter"
       @keydown="handleKeyDown"
       @input="handleChange">
     <span class="label" @mousedown="handleMouseDown">{{label}}</span>
@@ -14,11 +14,30 @@ export default {
   props: {
     label: String,
     val: [String | Number],
-    onChange: Function
+    onChange: Function,
+    max: Number,
+    arrowOffset: {
+      type: Number,
+      default: 1
+    }
   },
   data () {
     return {
-      arrowOffset: 1
+      
+    }
+  },
+  filters: {
+    maxFilter: {
+      read (val) {
+        if(this.max && val > this.max){
+          return this.max
+        }else{
+          return val
+        }
+      },
+      write (val, oldVal) {
+        return val
+      }
     }
   },
   methods: {

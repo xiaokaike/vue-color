@@ -14,6 +14,10 @@ export default {
   },
   methods: {
     colorChange (data, oldHue) {
+      if(data.a && data.a >1){
+        data.a = 1
+      }
+
       var color = data.hex ? tinycolor(data.hex) : tinycolor(data)
       var hsl = color.toHsl()
       var hsv = color.toHsv()
@@ -21,7 +25,6 @@ export default {
         hsl.h = oldHue || 0
         hsv.h = oldHue || 0
       }
-
       this.colors = {
         hsl: hsl,
         hex: color.toHexString().toUpperCase(),
