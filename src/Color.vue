@@ -1,4 +1,7 @@
 <template>
+  <header>
+    <h1>Vue-color</h1>  
+  </header>
   <div class="wrap">
     <div class="test-wrap">
       <p>{{colors.hex}}</p>
@@ -8,32 +11,32 @@
       <p>{{colors.a}}</p>
     </div>
 
-    <div class="components-wrap">
+    <div class="components-wrap" style="position: absolute; top: 320px; left: 10px;">
       <material-picker :colors.sync="colors"></material-picker>
       <h6>Material</h6>
     </div>
     
-    <div class="components-wrap">
+    <div class="components-wrap" style="position: absolute; top: 320px; left: 200px;">
       <compact-picker :colors.sync="colors"></compact-picker>
       <h6>Compact</h6>
     </div>
 
-    <div class="components-wrap">
+    <div class="components-wrap" style="position: absolute; top: 320px; right: 0px;">
       <swatches-picker :colors.sync="colors"></swatches-picker>
       <h6>Swatches</h6>
     </div>
 
-    <div class="components-wrap">
+    <div class="components-wrap" style="position: absolute; top: 500px; left: 10px;">
       <slider-picker :colors.sync="colors"></slider-picker>
       <h6>Slider</h6>
     </div>
 
-    <div class="components-wrap">
+    <div class="components-wrap" style="position: absolute; top: 10px; left: 300px;">
       <sketch-picker :colors.sync="colors"></sketch-picker>
       <h6>Sketch</h6>
     </div>
     
-    <div class="components-wrap">
+    <div class="components-wrap" style="position: absolute; top: 10px; right: 10px;">
       <chrome-picker :colors.sync="colors"></chrome-picker>
       <h6>Chrome</h6>
     </div>
@@ -92,9 +95,13 @@ export default {
 </script>
 
 <style lang="stylus">
+header
+  text-align center
 .wrap
-  width 600px
+  width 900px
+  min-height 800px
   margin 0 auto
+  position relative
 .components-wrap
   margin-bottom 10px
   h6
