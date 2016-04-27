@@ -16,7 +16,30 @@
         <div class="active-color" :style="{background: activeColor}"></div>
       </div>
     </div>
-    
+    <div class="field">
+      <!-- rgba -->
+      <div class="double">
+        <ed-in label="hex"
+        :val.sync="colors.hex"
+        :on-change="inputChange"></ed-in>  
+      </div>
+      <div class="single">
+        <ed-in label="r" :val.sync="colors.rgba.r" 
+        :on-change="inputChange"></ed-in>
+      </div>
+      <div class="single">
+        <ed-in label="g" :val.sync="colors.rgba.g" 
+        :on-change="inputChange"></ed-in>
+      </div>
+      <div class="single">
+        <ed-in label="b" :val.sync="colors.rgba.b"
+        :on-change="inputChange"></ed-in>
+      </div>
+      <div class="single">
+        <ed-in label="a" :val.sync="colors.a" :arrow-offset="0.01" :max="1"
+        :on-change="inputChange"></ed-in>
+      </div>
+    </div>
     <div class="presets">
       <div class="presets-color"
         v-for="c in presetColors"
@@ -72,7 +95,26 @@ export default {
     },
     childChange (data){
       this.colorChange(data)
-    }
+    },
+    inputChange (data) {
+      if(!data){
+        return
+      }
+      if (data.hex) {
+        this.isValidHex(data.hex) && this.colorChange({
+          hex: data.hex,
+          source: 'hex',
+        })
+      } else if (data.r || data.g || data.b || data.a) {
+        this.colorChange({
+          r: data.r || this.colors.rgba.r,
+          g: data.g || this.colors.rgba.g,
+          b: data.b || this.colors.rgba.b,
+          a: data.a || this.colors.rgba.a,
+          source: 'rgba',
+        })
+      }
+    },
   }
 
 }
@@ -121,6 +163,28 @@ export default {
       border-radius 2px
       box-shadow inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)
       z-index 2
+  .field
+    display flex
+    padding-top 4px
+    .single
+      flex 1
+      padding-left 6px
+    .double
+      flex 2
+    .input
+      width 80%
+      padding 4px 10% 3px
+      border none
+      box-shadow inset 0 0 0 1px #ccc
+      font-size 11px
+    .label
+      display block
+      text-align center
+      font-size 11px
+      color #222
+      padding-top 3px
+      padding-bottom 4px
+      text-transform capitalize
   .presets
     margin-right -10px
     margin-left -10px

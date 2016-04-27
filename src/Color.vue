@@ -11,22 +11,22 @@
       <p>{{colors.a}}</p>
     </div>
 
-    <div class="components-wrap" style="position: absolute; top: 320px; left: 10px;">
+    <div class="components-wrap" style="position: absolute; top: 350px; left: 10px;">
       <material-picker :colors.sync="colors"></material-picker>
       <h6>Material</h6>
     </div>
     
-    <div class="components-wrap" style="position: absolute; top: 320px; left: 200px;">
+    <div class="components-wrap" style="position: absolute; top: 350px; left: 200px;">
       <compact-picker :colors.sync="colors"></compact-picker>
       <h6>Compact</h6>
     </div>
 
-    <div class="components-wrap" style="position: absolute; top: 320px; right: 0px;">
+    <div class="components-wrap" style="position: absolute; top: 350px; right: 0px;">
       <swatches-picker :colors.sync="colors"></swatches-picker>
       <h6>Swatches</h6>
     </div>
 
-    <div class="components-wrap" style="position: absolute; top: 500px; left: 10px;">
+    <div class="components-wrap" style="position: absolute; top: 520px; left: 10px;">
       <slider-picker :colors.sync="colors"></slider-picker>
       <h6>Slider</h6>
     </div>
