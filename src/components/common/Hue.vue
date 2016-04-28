@@ -5,7 +5,9 @@
       @touchmove="handleChange"
       @touchstart="handleChange">
       <div class="pointer" :style="{top: pointerTop, left: pointerLeft}">
-        <div class="picker"></div>
+        <slot>
+          <div class="picker"></div>  
+        </slot>
       </div>  
     </div>
   </div>
@@ -25,6 +27,8 @@ export default {
   },
   data () {
     return {}
+  },
+  created () {
   },
   computed: {
     pointerTop () {
