@@ -1,10 +1,10 @@
 <template>
-  <div class="c-hue">
+  <div class="c-hue {{direction}}">
     <div class="container" v-el:container
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
       @touchstart="handleChange">
-      <div class="pointer" :style="{left: pointerLeft}">
+      <div class="pointer" :style="{top: pointerTop, left: pointerLeft}">
         <div class="picker"></div>
       </div>  
     </div>
@@ -16,14 +16,30 @@ export default {
   name: 'Hue',
   props: {
     colors: Object,
-    onChange: Function
+    onChange: Function,
+    direction: {
+      type: String,
+      // [horizontal | vertical]
+      default: 'horizontal'
+    }
   },
   data () {
     return {}
   },
   computed: {
+    pointerTop () {
+      if(this.direction === 'vertical'){
+        return -((this.colors.hsl.h * 100) / 360) + 100 + '%'
+      }else{
+        return 0
+      }
+    },
     pointerLeft () {
-      return (this.colors.hsl.h * 100) / 360 + '%'
+      if(this.direction === 'vertical'){
+        return 0 
+      }else{
+        return (this.colors.hsl.h * 100) / 360 + '%'
+      }
     }
   },
   methods:{
@@ -102,8 +118,11 @@ export default {
   right 0px
   bottom 0px
   left 0px
-  background linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)
   border-radius 2px
+  &.horizontal
+    background linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)
+  &.vertical
+    background linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)
   .container
     margin 0 2px
     position relative
