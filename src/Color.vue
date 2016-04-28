@@ -11,34 +11,39 @@
       <p>{{colors.a}}</p>
     </div>
 
-    <div class="components-wrap" style="position: absolute; top: 350px; left: 10px;">
+    <div class="components-wrap" style="position: absolute; top: 380px; left: 10px;">
       <material-picker :colors.sync="colors"></material-picker>
       <h6>Material</h6>
     </div>
     
-    <div class="components-wrap" style="position: absolute; top: 350px; left: 200px;">
+    <div class="components-wrap" style="position: absolute; top: 380px; left: 200px;">
       <compact-picker :colors.sync="colors"></compact-picker>
       <h6>Compact</h6>
     </div>
 
-    <div class="components-wrap" style="position: absolute; top: 350px; right: 0px;">
+    <div class="components-wrap" style="position: absolute; top: 380px; right: 0px;">
       <swatches-picker :colors.sync="colors"></swatches-picker>
       <h6>Swatches</h6>
     </div>
 
-    <div class="components-wrap" style="position: absolute; top: 520px; left: 10px;">
+    <div class="components-wrap" style="position: absolute; top: 550px; left: 10px;">
       <slider-picker :colors.sync="colors"></slider-picker>
       <h6>Slider</h6>
     </div>
 
-    <div class="components-wrap" style="position: absolute; top: 10px; left: 300px;">
+    <div class="components-wrap" style="position: absolute; top: 10px; left: 240px;">
       <sketch-picker :colors.sync="colors"></sketch-picker>
       <h6>Sketch</h6>
     </div>
     
-    <div class="components-wrap" style="position: absolute; top: 10px; right: 10px;">
+    <div class="components-wrap" style="position: absolute; top: 100px; left: 0px;">
       <chrome-picker :colors.sync="colors"></chrome-picker>
       <h6>Chrome</h6>
+    </div>
+
+    <div class="components-wrap" style="position: absolute; top: 10px; right: 0px;">
+      <photoshop-picker :colors.sync="colors"></photoshop-picker>
+      <h6>Photoshop</h6>
     </div>
 
   </div>
@@ -51,6 +56,7 @@ import swatches from './components/Swatches.vue'
 import slider from './components/Slider.vue'
 import sketch from './components/Sketch.vue'
 import chrome from './components/Chrome.vue'
+import photoshop from './components/Photoshop.vue'
 
 let defaultProps = {
   hex: '#194d33',
@@ -83,7 +89,8 @@ export default {
     'swatches-picker': swatches,
     'slider-picker': slider,
     'sketch-picker': sketch,
-    'chrome-picker': chrome
+    'chrome-picker': chrome,
+    'photoshop-picker': photoshop
   },
   data () {
     return {
@@ -98,7 +105,7 @@ export default {
 header
   text-align center
 .wrap
-  width 900px
+  width 1000px
   min-height 800px
   margin 0 auto
   position relative
