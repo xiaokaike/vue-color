@@ -78,11 +78,11 @@ export default {
       background-color rgb(248, 248, 248)
       box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)    
   .swatches
-    display -webkit-box
+    display flex
     margin-top 20px
     .swatch
       margin-right 1px
-      -webkit-box-flex 1
+      flex 1
       width 20%
       &:first-child
         .swatch-picker

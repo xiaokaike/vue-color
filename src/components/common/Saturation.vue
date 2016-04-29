@@ -98,6 +98,7 @@ export default {
   .pointer
     position absolute
   .circle
+    cursor head
     width 4px
     height 4px
     box-shadow 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(0,0,0,.4)

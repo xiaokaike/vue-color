@@ -83,7 +83,7 @@ export default {
   computed: {
     activeColor () {
       var rgba = this.colors.rgba
-      return 'rgba(' + rgba.r + ', ' + rgba.g + ', ' + rgba.b + ', ' + rgba.a + ')'
+      return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
     }
   },
   methods:{
