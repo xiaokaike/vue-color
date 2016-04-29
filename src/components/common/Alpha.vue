@@ -9,7 +9,7 @@
         @touchmove="handleChange"
         @touchstart="handleChange">
       <div class="pointer" :style="{left: colors.a * 100 + '%'}">
-        <div class="picker"></div>
+        <slot><div class="picker"></div></slot>
       </div>
     </div>
   </div>
@@ -24,19 +24,17 @@ export default {
     colors: Object,
     onChange: Function
   },
-  components:{
+  components: {
     checkboard
-  },
-  data () {
-    return {}
   },
   computed: {
     gradientColor () {
       var rgba = this.colors.rgba
-      return 'linear-gradient(to right, rgba(' + rgba.r + ', ' + rgba.g + ', ' + rgba.b + ', 0) 0%, rgba(' + rgba.r + ', ' + rgba.g + ', ' + rgba.b + ', 1) 100%)'
+      var rgbStr = [rgba.r, rgba.g, rgba.b].join(',')
+      return 'linear-gradient(to right, rgba(' + rgbStr + ', 0) 0%, rgba(' + rgbStr + ', 1) 100%)'
     }
   },
-  methods:{
+  methods: {
     handleChange (e, skip)  {
       !skip && e.preventDefault()
       var container = this.$els.container
@@ -62,7 +60,6 @@ export default {
         })
       }
     },
-
     handleMouseDown (e)  {
       this.handleChange(e, true)
       window.addEventListener('mousemove', this.handleChange)
@@ -77,6 +74,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style lang="stylus">
