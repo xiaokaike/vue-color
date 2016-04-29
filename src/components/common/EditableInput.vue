@@ -21,11 +21,6 @@ export default {
       default: 1
     }
   },
-  data () {
-    return {
-      
-    }
-  },
   filters: {
     maxFilter: {
       read (val) {
