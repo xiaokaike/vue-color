@@ -239,7 +239,7 @@ export default {
     top 10px
     left 12px
   
-  .field
+  .fields
     .input
       font-size 11px
       color #333
@@ -257,6 +257,5 @@ export default {
       text-align center
       display block
       margin-top 12px
-    
 
 </style>

@@ -22,7 +22,31 @@
           <div class="label">current</div>
         </div>
         <div class="actions">
-          
+          <div class="ac-btn" @click="handleAccept">OK</div>
+          <div class="ac-btn" @click="handleCancel">Cancel</div>
+          <div class="fields">
+            <!-- hsla -->
+            <ed-in label="h" :val.sync="colors.hsl.h" 
+              :on-change="inputChange"></ed-in>
+            <ed-in label="s" :val.sync="colors.hsl.s"
+              :on-change="inputChange"></ed-in>
+            <ed-in label="v" :val.sync="colors.hsl.l"
+              :on-change="inputChange"></ed-in>
+            <div class="divider"></div>
+            <!-- rgba -->
+            <ed-in label="r" :val.sync="colors.rgba.r" 
+              :on-change="inputChange"></ed-in>
+            <ed-in label="g" :val.sync="colors.rgba.g" 
+              :on-change="inputChange"></ed-in>
+            <ed-in label="b" :val.sync="colors.rgba.b"
+              :on-change="inputChange"></ed-in>
+            <div class="divider"></div>
+            <!-- hex -->
+            <ed-in label="#" class="hex"
+              :val.sync="colors.hex"
+              :on-change="inputChange"></ed-in>    
+          </div>
+
         </div>
       </div>
     </div>
@@ -60,8 +84,33 @@ export default {
     this.currentColor = this.colors.hex
   },
   methods:{
-    childChange (data){
+    childChange (data) {
       this.colorChange(data)
+    },
+    inputChange (data) {
+      if(!data){
+        return
+      }
+      if (data['#']) {
+        this.isValidHex(data['#']) && this.colorChange({
+          hex: data['#'],
+          source: 'hex',
+        })
+      } else if (data.r || data.g || data.b || data.a) {
+        this.colorChange({
+          r: data.r || this.colors.rgba.r,
+          g: data.g || this.colors.rgba.g,
+          b: data.b || this.colors.rgba.b,
+          a: data.a || this.colors.rgba.a,
+          source: 'rgba',
+        })
+      }
+    },
+    handleAccept () {
+      console.log('accept')
+    },
+    handleCancel () {
+      console.log('cancel')
     }
   }
 
@@ -75,6 +124,7 @@ export default {
   box-shadow 0 0 0 1px rgba(0,0,0,.25), 0 8px 16px rgba(0,0,0,.15)
   box-sizing initial
   width 513px
+  font-family Roboto
   .head
     background-image linear-gradient(-180deg, #F0F0F0 0%, #D4D4D4 100%)
     border-bottom 1px solid #B1B1B1
@@ -131,6 +181,20 @@ export default {
     width 180px
     margin-left 10px
     display flex
+  .actions
+    margin-left 20px
+    flex 1
+    .ac-btn
+      background-image linear-gradient(-180deg, #FFFFFF 0%, #E6E6E6 100%)
+      border 1px solid #878787
+      border-radius 2px
+      height 20px
+      box-shadow 0 1px 0 0 #EAEAEA
+      font-size 14px
+      color #000
+      line-height 20px
+      text-align center
+      margin-bottom 10px
   .previews
     width 60px
     .swatches
@@ -145,4 +209,50 @@ export default {
       font-size 14px
       color #000
       text-align center
+  
+  .fields
+    padding-top 5px
+    padding-bottom 9px
+    width 80px
+    position relative
+    .divider
+      height 5px
+    .input
+      margin-left 40%
+      width 40%
+      height 18px
+      border 1px solid #888888
+      box-shadow inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC
+      margin-bottom 5px
+      font-size 13px
+      padding-left 3px
+      margin-right 10px
+    .label
+      top 0
+      left 0
+      width 34px
+      text-transform uppercase
+      font-size 13px
+      height 18px
+      line-height 22px
+      position absolute
+    .hex 
+      .input
+        margin-left 20%
+        width 80%
+        height 18px
+        border 1px solid #888888
+        box-shadow inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC
+        margin-bottom 6px
+        font-size 13px
+        padding-left 3px
+      .label
+        position absolute
+        top 0
+        left 0
+        width 14px
+        text-transform uppercase
+        font-size 13px
+        height 18px
+        line-height 22px
 </style>
