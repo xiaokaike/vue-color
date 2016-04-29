@@ -1,17 +1,54 @@
 <template>
-  <div class="c-checkboard" :style="{background:  bg}"></div>
+  <div class="c-checkboard" :style="{background:  bgStyle}"></div>
 </template>
 
 <script>
 
 let _checkboardCache = {}
 
+export default {
+  name: 'Checkboard',
+  props: {
+    size: {
+      type: [Number|String],
+      default: 8
+    },
+    white: {
+      type: String,
+      default: '#fff'
+    },
+    grey: {
+      type: String,
+      default: '#e6e6e6'
+    }
+  },
+  computed: {
+    bgStyle () {
+      return 'url(' + getCheckboard(this.white, this.grey, this.size) + ') center left' 
+    }
+  }
+}
+
+/**
+ * get base 64 data by canvas
+ *
+ * @param {String} c1 hex color
+ * @param {String} c2 hex color
+ * @param {Number} size 
+ */
+
 function renderCheckboard(c1, c2, size) {
-  if (typeof document == 'undefined') return null // Dont Render On Server
+  // Dont Render On Server
+  if (typeof document == 'undefined'){
+    return null
+  }
   var canvas = document.createElement('canvas')
   canvas.width = canvas.height = size * 2
   var ctx = canvas.getContext('2d')
-  if (!ctx) return null // If no context can be found, return early.
+  // If no context can be found, return early.
+  if (!ctx) {
+    return null
+  }
   ctx.fillStyle = c1
   ctx.fillRect(0, 0, canvas.width, canvas.height)
   ctx.fillStyle = c2
@@ -21,6 +58,13 @@ function renderCheckboard(c1, c2, size) {
   return canvas.toDataURL()
 }
 
+/**
+ * get checkboard base data and cache
+ *
+ * @param {String} c1 hex color
+ * @param {String} c2 hex color
+ * @param {Number} size 
+ */
 
 function getCheckboard(c1, c2, size) {
   var key = c1 + ',' + c2 + ',' + size
@@ -34,23 +78,6 @@ function getCheckboard(c1, c2, size) {
   }
 }
 
-export default {
-  name: 'Checkboard',
-  data () {
-    return {
-      size: 8,
-      white: '#fff',
-      grey: '#e6e6e6',
-    }
-  },
-  computed: {
-    bg () {
-      var bgi = getCheckboard(this.white, this.grey, this.size)
-
-      return 'url(' + bgi + ') center left' 
-    }
-  }
-}
 </script>
 
 <style lang="stylus">
