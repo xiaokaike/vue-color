@@ -13,7 +13,17 @@
         </hue>  
       </div>
       <div class="controls">
-        
+        <div class="previews">
+          <div class="label">new</div>
+          <div class="swatches">
+            <div class="pr-color" :style="{background: colors.hex}"></div>
+            <div class="pr-color" :style="{background: currentColor}"></div>
+          </div>
+          <div class="label">current</div>
+        </div>
+        <div class="actions">
+          
+        </div>
       </div>
     </div>
   </div>
@@ -43,8 +53,11 @@ export default {
   },
   data () {
     return {
-        
+      currentColor: '#FFF'   
     }
+  },
+  created () {
+    this.currentColor = this.colors.hex
   },
   methods:{
     childChange (data){
@@ -117,4 +130,19 @@ export default {
   .controls
     width 180px
     margin-left 10px
+    display flex
+  .previews
+    width 60px
+    .swatches
+      border 1px solid #B3B3B3
+      border-bottom 1px solid #F0F0F0
+      margin-bottom 2px
+      margin-top 1px
+    .pr-color
+      height 34px
+      box-shadow inset 1px 0 0 #000, inset -1px 0 0 #000, inset 0 1px 0 #000
+    .label
+      font-size 14px
+      color #000
+      text-align center
 </style>
