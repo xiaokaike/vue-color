@@ -5,9 +5,7 @@
       @touchmove="handleChange"
       @touchstart="handleChange">
       <div class="pointer" :style="{top: pointerTop, left: pointerLeft}">
-        <slot>
-          <div class="picker"></div>  
-        </slot>
+        <slot><div class="picker"></div></slot>
       </div>  
     </div>
   </div>
@@ -24,11 +22,6 @@ export default {
       // [horizontal | vertical]
       default: 'horizontal'
     }
-  },
-  data () {
-    return {}
-  },
-  created () {
   },
   computed: {
     pointerTop () {
@@ -111,7 +104,6 @@ export default {
       window.removeEventListener('mouseup', this.handleMouseUp)
     }
   }
-
 }
 </script>
 
