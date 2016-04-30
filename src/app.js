@@ -1,4 +1,4 @@
-import Vue from 'vue'
+/* eslint-disable */
 import material from './components/Material.vue'
 import compact from './components/Compact.vue'
 import swatches from './components/Swatches.vue'
@@ -8,8 +8,6 @@ import chrome from './components/Chrome.vue'
 import photoshop from './components/Photoshop.vue'
 
 Vue.config.debug = true
-
-/* eslint-disable no-new */
 
 let defaultProps = {
   hex: '#194d33',
