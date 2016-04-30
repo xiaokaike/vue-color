@@ -6,7 +6,7 @@
     "color",
     "vuejs"
   ],
-  "main": "src/app.js",
+  "main": "dist/vue-color.min.js",
   "scripts": {
     "dev": "webpack-dev-server --port 3004 --inline --hot --quiet",
     "build": "NODE_ENV=production webpack --progress --hide-modules",
