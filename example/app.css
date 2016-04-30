@@ -1,0 +1,28 @@
+header {
+  text-align: center;
+}
+
+.wrap {
+  width: 1000px;
+  min-height: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.components-wrap {
+  margin-bottom: 10px;
+}
+
+.components-wrap h6 {
+  margin: 0;
+  padding: 5px 0;
+  color: #666;
+}
+
+.test-wrap {
+  margin-bottom: 10px;
+}
+
+.test-wrap p {
+  margin: 0;
+}
