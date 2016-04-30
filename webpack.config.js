@@ -1,8 +1,9 @@
 var vue = require('vue-loader')
+var path = require('path')
 var webpack = require("webpack")
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
-
-var cssLoader = ExtractTextPlugin.extract("style-loader", "css-loader")
+var projectRoot = path.resolve(__dirname, '../')
+var cssLoader = ExtractTextPlugin.extract('style-loader', 'css-loader')
 
 module.exports = {
   entry: {
@@ -14,6 +15,20 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.vue$/,
+        loader: 'eslint',
+        include: projectRoot,
+        exclude: /node_modules/
+      },
+      {
+        test: /\.js$/,
+        loader: 'eslint',
+        include: projectRoot,
+        exclude: /node_modules/
+      }
+    ],
     loaders: [
       {
         test: /\.vue$/,
@@ -32,17 +47,14 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        loader: ExtractTextPlugin.extract("style-loader","css-loader!stylus-loader")
+        loader: ExtractTextPlugin.extract('style-loader','css-loader!stylus-loader')
       }
     ]
   },
-  // vue: {
-  //   loaders: {
-  //     css: ExtractTextPlugin.extract("css"),
-  //     stylus: ExtractTextPlugin.extract("css!stylus")
-  //   }
-  // },
-  devtool: "#source-map",
+  eslint: {
+    formatter: require('eslint-friendly-formatter')
+  },
+  devtool: '#source-map',
   babel: {
     presets: ['es2015'],
     plugins: ['transform-runtime']
@@ -64,11 +76,11 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.optimize.OccurenceOrderPlugin()
-    // new ExtractTextPlugin("build.css")
+    // new ExtractTextPlugin('build.css')
   ]
 } else {
   // module.exports.plugins = [
-  //   new ExtractTextPlugin("build.css")
+  //   new ExtractTextPlugin('build.css')
   // ]
   // module.exports.devtool = '#source-map'
 }
