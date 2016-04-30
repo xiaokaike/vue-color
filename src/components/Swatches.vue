@@ -22,32 +22,28 @@ import material from 'material-colors'
 import colorMixin from '../mixin/color'
 
 var colorMap = [
-  'red','pink','purple','deepPurple',
-  'indigo','blue','lightBlue','cyan',
-  'teal','green','lightGreen','lime',
-  'yellow','amber','orange','deepOrange',
-  'brown','blueGrey']
+  'red', 'pink', 'purple', 'deepPurple',
+  'indigo', 'blue', 'lightBlue', 'cyan',
+  'teal', 'green', 'lightGreen', 'lime',
+  'yellow', 'amber', 'orange', 'deepOrange',
+  'brown', 'blueGrey'
+]
 var colorLevel = ['900', '700', '500', '300', '100']
-
 var defaultColors = (() => {
   var colors = []
-
-  colorMap.forEach( (type) => {
+  colorMap.forEach((type) => {
     var typeColor = []
-    colorLevel.forEach( (level)  => {
+    colorLevel.forEach((level) => {
       typeColor.push(material[type][level].toUpperCase())
     })
     colors.push(typeColor)
   })
-
   return colors
 })()
 
 export default {
   name: 'Swatches',
   mixins: [colorMixin],
-  props: {
-  },
   computed: {
     pick () {
       return this.colors.hex
@@ -57,9 +53,6 @@ export default {
     return {
       defaultColors: defaultColors
     }
-  },
-  ready () {
-    
   },
   methods: {
     handlerClick (c) {

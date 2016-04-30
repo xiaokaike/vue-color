@@ -38,17 +38,15 @@ export default {
   components: {
     'ed-in': editableInput
   },
-  ready () {
-  },
   methods: {
     onChange (data) {
-      if(!data){
+      if (!data) {
         return
       }
       if (data.hex) {
         this.isValidHex(data.hex) && this.colorChange({
           hex: data.hex,
-          source: 'hex',
+          source: 'hex'
         })
       } else if (data.r || data.g || data.b) {
         this.colorChange({
@@ -56,7 +54,7 @@ export default {
           g: data.g || this.colors.rgba.g,
           b: data.b || this.colors.rgba.b,
           a: data.a || this.colors.rgba.a,
-          source: 'rgba',
+          source: 'rgba'
         })
       }
     }

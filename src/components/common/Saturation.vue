@@ -32,7 +32,7 @@ export default {
     }
   },
   methods: {
-    throttle: throttle( (fn, data) => {
+    throttle: throttle((fn, data) => {
       fn(data)
     }, 50),
     handleChange (e, skip) {
@@ -61,7 +61,7 @@ export default {
         s: saturation,
         v: bright,
         a: this.colors.hsl.a,
-        source: 'rgb',
+        source: 'rgb'
       })
     },
     handleMouseDown (e) {
@@ -72,7 +72,7 @@ export default {
     handleMouseUp (e) {
       this.unbindEventListeners()
     },
-    unbindEventListeners() {
+    unbindEventListeners () {
       window.removeEventListener('mousemove', this.handleChange)
       window.removeEventListener('mouseup', this.handleMouseUp)
     }

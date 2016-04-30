@@ -1,20 +1,16 @@
 import tinycolor from 'tinycolor2'
 
-var rgbaRE = /r|g|b|a/i
-var hslRE = /h|s|l/i
-var hsvRE = /h|s|v/i
-
 export default {
   props: {
     colors: Object
   },
-  created (){
+  created () {
     // console.log(this.colors)
     this.colors.hex = this.colors.hex.toUpperCase()
   },
   methods: {
     colorChange (data, oldHue) {
-      if(data.a && data.a >1){
+      if (data.a && data.a > 1) {
         data.a = 1
       }
 

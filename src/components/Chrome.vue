@@ -100,7 +100,7 @@ export default {
     saturation,
     hue,
     alpha,
-    'ed-in': editableInput,
+    'ed-in': editableInput
   },
   data () {
     return {
@@ -112,27 +112,27 @@ export default {
   computed: {
     activeColor () {
       var rgba = this.colors.rgba
-      return 'rgba(' + rgba.r + ', ' + rgba.g + ', ' + rgba.b + ', ' + rgba.a + ')'
+      return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
     }
   },
-  methods:{
-    handlePreset (c){
+  methods: {
+    handlePreset (c) {
       this.colorChange({
         hex: c,
         source: 'hex'
       })
     },
-    childChange (data){
+    childChange (data) {
       this.colorChange(data)
     },
     inputChange (data) {
-      if(!data){
+      if (!data) {
         return
       }
       if (data.hex) {
         this.isValidHex(data.hex) && this.colorChange({
           hex: data.hex,
-          source: 'hex',
+          source: 'hex'
         })
       } else if (data.r || data.g || data.b || data.a) {
         this.colorChange({
@@ -140,15 +140,16 @@ export default {
           g: data.g || this.colors.rgba.g,
           b: data.b || this.colors.rgba.b,
           a: data.a || this.colors.rgba.a,
-          source: 'rgba',
+          source: 'rgba'
         })
       }
     },
     toggleViews () {
-      if(this.fieldsIndex >= 2){
-        return this.fieldsIndex = 0
+      if (this.fieldsIndex >= 2) {
+        this.fieldsIndex = 0
+        return
       }
-      return this.fieldsIndex ++
+      this.fieldsIndex = 0
     },
     showHighlight () {
       this.highlight = true
@@ -157,7 +158,6 @@ export default {
       this.highlight = false
     }
   }
-
 }
 </script>
 

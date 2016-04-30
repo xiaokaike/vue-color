@@ -11,7 +11,10 @@ const VueColor = {
   Compact,
   Material,
   Slider,
-  Swatches
+  Swatches,
+  Photoshop,
+  Sketch,
+  Chrome
 }
 
 module.exports = VueColor

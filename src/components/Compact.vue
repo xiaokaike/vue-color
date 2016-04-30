@@ -42,7 +42,7 @@ var defaultColors = [
   '#333333', '#808080', '#CCCCCC', '#D33115', '#E27300', '#FCC400',
   '#B0BC00', '#68BC00', '#16A5A5', '#009CE0', '#7B64FF', '#FA28FF',
   '#000000', '#666666', '#B3B3B3', '#9F0500', '#C45100', '#FB9E00',
-  '#808900', '#194D33', '#0C797D', '#0062B1', '#653294', '#AB149E',
+  '#808900', '#194D33', '#0C797D', '#0062B1', '#653294', '#AB149E'
 ]
 
 export default {
@@ -71,13 +71,13 @@ export default {
       })
     },
     onChange (data) {
-      if(!data){
+      if (!data) {
         return
       }
       if (data.hex) {
         this.isValidHex(data.hex) && this.colorChange({
           hex: data.hex,
-          source: 'hex',
+          source: 'hex'
         })
       } else if (data.r || data.g || data.b) {
         this.colorChange({
@@ -85,7 +85,7 @@ export default {
           g: data.g || this.colors.rgba.g,
           b: data.b || this.colors.rgba.b,
           a: data.a || this.colors.rgba.a,
-          source: 'rgba',
+          source: 'rgba'
         })
       }
     }

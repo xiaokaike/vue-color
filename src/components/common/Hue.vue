@@ -25,38 +25,39 @@ export default {
   },
   computed: {
     pointerTop () {
-      if(this.direction === 'vertical'){
+      if (this.direction === 'vertical') {
         return -((this.colors.hsl.h * 100) / 360) + 100 + '%'
-      }else{
+      } else {
         return 0
       }
     },
     pointerLeft () {
-      if(this.direction === 'vertical'){
-        return 0 
-      }else{
+      if (this.direction === 'vertical') {
+        return 0
+      } else {
         return (this.colors.hsl.h * 100) / 360 + '%'
       }
     }
   },
-  methods:{
+  methods: {
     handleChange (e, skip) {
       !skip && e.preventDefault()
-      
+
       var container = this.$els.container
       var containerWidth = container.clientWidth
       var containerHeight = container.clientHeight
       var left = (e.pageX || e.touches[0].pageX) - (container.getBoundingClientRect().left + window.pageXOffset)
       var top = (e.pageY || e.touches[0].pageY) - (container.getBoundingClientRect().top + window.pageYOffset)
+      var h
+      var percent
 
       if (this.direction === 'vertical') {
-        var h
         if (top < 0) {
           h = 359
         } else if (top > containerHeight) {
           h = 0
         } else {
-          var percent = -(top * 100 / containerHeight) + 100
+          percent = -(top * 100 / containerHeight) + 100
           h = (360 * percent / 100)
         }
 
@@ -66,17 +67,16 @@ export default {
             s: this.colors.hsl.s,
             l: this.colors.hsl.l,
             a: this.colors.hsl.a,
-            source: 'hsl',
+            source: 'hsl'
           })
         }
       } else {
-        var h
         if (left < 0) {
           h = 0
         } else if (left > containerWidth) {
           h = 359
         } else {
-          var percent = left * 100 / containerWidth
+          percent = left * 100 / containerWidth
           h = (360 * percent / 100)
         }
 
@@ -86,7 +86,7 @@ export default {
             s: this.colors.hsl.s,
             l: this.colors.hsl.l,
             a: this.colors.hsl.a,
-            source: 'hsl',
+            source: 'hsl'
           })
         }
       }
@@ -99,7 +99,7 @@ export default {
     handleMouseUp (e) {
       this.unbindEventListeners()
     },
-    unbindEventListeners() {
+    unbindEventListeners () {
       window.removeEventListener('mousemove', this.handleChange)
       window.removeEventListener('mouseup', this.handleMouseUp)
     }

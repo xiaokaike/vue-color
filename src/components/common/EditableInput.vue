@@ -24,9 +24,9 @@ export default {
   filters: {
     maxFilter: {
       read (val) {
-        if(this.max && val > this.max){
+        if (this.max && val > this.max) {
           return this.max
-        }else{
+        } else {
           return val
         }
       },
@@ -38,11 +38,11 @@ export default {
   methods: {
     handleChange (e) {
       var data = {}
-      data[this.label] = this.val;
+      data[this.label] = this.val
       this.onChange(data)
     },
     handleBlur (e) {
-      
+      console.log(e)
     },
     handleKeyDown (e) {
       var val = this.val
@@ -70,10 +70,9 @@ export default {
       console.log(e)
     },
     handleMouseDown (e) {
-      
+      console.log(e)
     }
   }
-
 }
 </script>
 

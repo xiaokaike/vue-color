@@ -66,35 +66,35 @@ export default {
   props: {
     head: {
       type: String,
-      default: 'Color Picker' 
+      default: 'Color Picker'
     }
   },
   components: {
     saturation,
     hue,
     alpha,
-    'ed-in': editableInput,
+    'ed-in': editableInput
   },
   data () {
     return {
-      currentColor: '#FFF'   
+      currentColor: '#FFF'
     }
   },
   created () {
     this.currentColor = this.colors.hex
   },
-  methods:{
+  methods: {
     childChange (data) {
       this.colorChange(data)
     },
     inputChange (data) {
-      if(!data){
+      if (!data) {
         return
       }
       if (data['#']) {
         this.isValidHex(data['#']) && this.colorChange({
           hex: data['#'],
-          source: 'hex',
+          source: 'hex'
         })
       } else if (data.r || data.g || data.b || data.a) {
         this.colorChange({
@@ -102,7 +102,7 @@ export default {
           g: data.g || this.colors.rgba.g,
           b: data.b || this.colors.rgba.b,
           a: data.a || this.colors.rgba.a,
-          source: 'rgba',
+          source: 'rgba'
         })
       }
     },

@@ -3,14 +3,13 @@
 </template>
 
 <script>
-
 let _checkboardCache = {}
 
 export default {
   name: 'Checkboard',
   props: {
     size: {
-      type: [Number|String],
+      type: [Number | String],
       default: 8
     },
     white: {
@@ -24,7 +23,7 @@ export default {
   },
   computed: {
     bgStyle () {
-      return 'url(' + getCheckboard(this.white, this.grey, this.size) + ') center left' 
+      return 'url(' + getCheckboard(this.white, this.grey, this.size) + ') center left'
     }
   }
 }
@@ -34,12 +33,12 @@ export default {
  *
  * @param {String} c1 hex color
  * @param {String} c2 hex color
- * @param {Number} size 
+ * @param {Number} size
  */
 
-function renderCheckboard(c1, c2, size) {
+function renderCheckboard (c1, c2, size) {
   // Dont Render On Server
-  if (typeof document == 'undefined'){
+  if (typeof document === 'undefined') {
     return null
   }
   var canvas = document.createElement('canvas')
@@ -63,10 +62,10 @@ function renderCheckboard(c1, c2, size) {
  *
  * @param {String} c1 hex color
  * @param {String} c2 hex color
- * @param {Number} size 
+ * @param {Number} size
  */
 
-function getCheckboard(c1, c2, size) {
+function getCheckboard (c1, c2, size) {
   var key = c1 + ',' + c2 + ',' + size
 
   if (_checkboardCache[key]) {

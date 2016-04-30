@@ -35,7 +35,7 @@ export default {
     }
   },
   methods: {
-    handleChange (e, skip)  {
+    handleChange (e, skip) {
       !skip && e.preventDefault()
       var container = this.$els.container
       var containerWidth = container.clientWidth
@@ -56,19 +56,19 @@ export default {
           s: this.colors.hsl.s,
           l: this.colors.hsl.l,
           a: a,
-          source: 'rgba',
+          source: 'rgba'
         })
       }
     },
-    handleMouseDown (e)  {
+    handleMouseDown (e) {
       this.handleChange(e, true)
       window.addEventListener('mousemove', this.handleChange)
       window.addEventListener('mouseup', this.handleMouseUp)
     },
-    handleMouseUp  () {
+    handleMouseUp () {
       this.unbindEventListeners()
     },
-    unbindEventListeners  ()  {
+    unbindEventListeners () {
       window.removeEventListener('mousemove', this.handleChange)
       window.removeEventListener('mouseup', this.handleMouseUp)
     }

@@ -59,8 +59,8 @@ import hue from './common/Hue.vue'
 import alpha from './common/Alpha.vue'
 
 let presetColors = [
-  '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', 
-  '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', 
+  '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321',
+  '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2',
   '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF'
 ]
 
@@ -71,9 +71,7 @@ export default {
     saturation,
     hue,
     alpha,
-    'ed-in': editableInput,
-  },
-  props: {
+    'ed-in': editableInput
   },
   data () {
     return {
@@ -86,24 +84,24 @@ export default {
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
     }
   },
-  methods:{
-    handlePreset (c){
+  methods: {
+    handlePreset (c) {
       this.colorChange({
         hex: c,
         source: 'hex'
       })
     },
-    childChange (data){
+    childChange (data) {
       this.colorChange(data)
     },
     inputChange (data) {
-      if(!data){
+      if (!data) {
         return
       }
       if (data.hex) {
         this.isValidHex(data.hex) && this.colorChange({
           hex: data.hex,
-          source: 'hex',
+          source: 'hex'
         })
       } else if (data.r || data.g || data.b || data.a) {
         this.colorChange({
@@ -111,12 +109,11 @@ export default {
           g: data.g || this.colors.rgba.g,
           b: data.b || this.colors.rgba.b,
           a: data.a || this.colors.rgba.a,
-          source: 'rgba',
+          source: 'rgba'
         })
       }
-    },
+    }
   }
-
 }
 </script>
 

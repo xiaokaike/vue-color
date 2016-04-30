@@ -30,36 +30,30 @@ export default {
   },
   computed: {
     activeOffset () {
-      if(Math.round(this.colors.hsl.s * 100) / 100 == .50){
+      if (Math.round(this.colors.hsl.s * 100) / 100 === 0.50) {
         return Math.round(this.colors.hsl.l * 100) / 100
       }
       return 0
     }
-  },
-  filters: {
   },
   data () {
     return {
       swatches: ['.80', '.65', '.50', '.35', '.20']
     }
   },
-  ready () {
-    
-  },
   methods: {
     hueChange (data) {
       this.colorChange(data)
     },
-    handleSwClick (index, offset){
+    handleSwClick (index, offset) {
       this.colorChange({
         h: this.colors.hsl.h,
-        s: .5,
+        s: 0.5,
         l: offset,
-        source: 'hsl',
+        source: 'hsl'
       })
     }
   }
-
 }
 </script>
 
