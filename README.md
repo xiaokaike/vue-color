@@ -1,6 +1,6 @@
 # vue-color
 
-Color Pickers from Sketch, Photoshop, Chrome & more with Vue.js.  Special thanks to [yuanyan](https://github.com/yuanyan) for the wonderful project.
+Color Pickers for Sketch, Photoshop, Chrome & more with Vue.js.  
 
 ## [Live demo](http://xiaokaike.github.io/vue-color/)
 
