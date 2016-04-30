@@ -8,7 +8,7 @@ var sketch = VueColor.Sketch
 var chrome = VueColor.Chrome
 var photoshop = VueColor.Photoshop
 
-let defaultProps = {
+var defaultProps = {
   hex: '#194d33',
   hsl: {
     h: 150,
