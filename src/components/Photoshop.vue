@@ -145,6 +145,9 @@ export default {
     border 2px solid #B3B3B3
     border-bottom 2px solid #F0F0F0
     overflow hidden
+    .circle
+      width 12px
+      height 12px
   .hue-wrap
     position relative
     height 256px
