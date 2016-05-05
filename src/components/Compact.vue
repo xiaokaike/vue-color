@@ -36,7 +36,7 @@
 import colorMixin from '../mixin/color'
 import editableInput from './common/EditableInput.vue'
 
-var defaultColors = [
+const defaultColors = [
   '#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FCDC00',
   '#DBDF00', '#A4DD00', '#68CCCA', '#73D8FF', '#AEA1FF', '#FDA1FF',
   '#333333', '#808080', '#CCCCCC', '#D33115', '#E27300', '#FCC400',
