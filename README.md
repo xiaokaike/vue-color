@@ -26,11 +26,11 @@ new Vue({
 
 ### ES6
 ```js
-import Photoshop from 'vue-color/src/Photoshop.vue'
+import { Photoshop } from 'vue-color'
 
 new Vue({
   components: {
-    PulseLoader
+    'photoshop-picker': Photoshop
   }
 })
 ```
