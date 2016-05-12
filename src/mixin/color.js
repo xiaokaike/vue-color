@@ -30,7 +30,10 @@ export default {
   created () {
     // console.log(this.colors)
     /*
-      enforce the colorChange in case only hex is given it will create every data needed
+      Enforce the colorChange in case only HEX value is given.
+      Guarantees that HEX value is uppercase and other values such
+      as HSL or HSV exists and reflect the HEX value
+      TODO accept any kind of color value, HEX, RGBA, HSL and others
     */
     this.colors = _colorChange(this.colors)
   },
