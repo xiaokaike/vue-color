@@ -12,24 +12,22 @@ import {
 // triggered, the DOM would have already been in updated
 // state.
 
-var queueIndex
 var queue = []
 var userQueue = []
 var has = {}
 var circular = {}
 var waiting = false
-var internalQueueDepleted = false
 
 /**
  * Reset the batcher's state.
  */
 
 function resetBatcherState () {
-  queue = []
-  userQueue = []
+  queue.length = 0
+  userQueue.length = 0
   has = {}
   circular = {}
-  waiting = internalQueueDepleted = false
+  waiting = false
 }
 
 /**
@@ -38,8 +36,12 @@ function resetBatcherState () {
 
 function flushBatcherQueue () {
   runBatcherQueue(queue)
-  internalQueueDepleted = true
+  queue.length = 0
   runBatcherQueue(userQueue)
+  // user watchers triggered more internal watchers
+  if (queue.length) {
+    runBatcherQueue(queue)
+  }
   // dev tool hook
   /* istanbul ignore if */
   if (devtools && config.devtools) {
@@ -57,8 +59,8 @@ function flushBatcherQueue () {
 function runBatcherQueue (queue) {
   // do not cache length because more watchers might be pushed
   // as we run existing watchers
-  for (queueIndex = 0; queueIndex < queue.length; queueIndex++) {
-    var watcher = queue[queueIndex]
+  for (let i = 0; i < queue.length; i++) {
+    var watcher = queue[i]
     var id = watcher.id
     has[id] = null
     watcher.run()
@@ -89,24 +91,18 @@ function runBatcherQueue (queue) {
  */
 
 export function pushWatcher (watcher) {
-  var id = watcher.id
+  const id = watcher.id
   if (has[id] == null) {
-    if (internalQueueDepleted && !watcher.user) {
-      // an internal watcher triggered by a user watcher...
-      // let's run it immediately after current user watcher is done.
-      userQueue.splice(queueIndex + 1, 0, watcher)
-    } else {
-      // push watcher into appropriate queue
-      var q = watcher.user
-        ? userQueue
-        : queue
-      has[id] = q.length
-      q.push(watcher)
-      // queue the flush
-      if (!waiting) {
-        waiting = true
-        nextTick(flushBatcherQueue)
-      }
+    // push watcher into appropriate queue
+    const q = watcher.user
+      ? userQueue
+      : queue
+    has[id] = q.length
+    q.push(watcher)
+    // queue the flush
+    if (!waiting) {
+      waiting = true
+      nextTick(flushBatcherQueue)
     }
   }
 }

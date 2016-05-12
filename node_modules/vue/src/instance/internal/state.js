@@ -87,11 +87,6 @@ export default function (Vue) {
       )
     }
     var props = this._props
-    var runtimeData = this._runtimeData
-      ? typeof this._runtimeData === 'function'
-        ? this._runtimeData()
-        : this._runtimeData
-      : null
     // proxy data on instance
     var keys = Object.keys(data)
     var i, key
@@ -102,15 +97,14 @@ export default function (Vue) {
       // 1. it's not already defined as a prop
       // 2. it's provided via a instantiation option AND there are no
       //    template prop present
-      if (
-        !props || !hasOwn(props, key) ||
-        (runtimeData && hasOwn(runtimeData, key) && props[key].raw === null)
-      ) {
+      if (!props || !hasOwn(props, key)) {
         this._proxy(key)
       } else if (process.env.NODE_ENV !== 'production') {
         warn(
           'Data field "' + key + '" is already defined ' +
-          'as a prop. Use prop default value instead.',
+          'as a prop. To provide default value for a prop, use the "default" ' +
+          'prop option; if you want to pass prop values to an instantiation ' +
+          'call, use the "propsData" option.',
           this
         )
       }

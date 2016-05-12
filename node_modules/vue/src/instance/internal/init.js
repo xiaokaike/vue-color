@@ -91,13 +91,8 @@ export default function (Vue) {
     this._updateRef()
 
     // initialize data as empty object.
-    // it will be filled up in _initScope().
+    // it will be filled up in _initData().
     this._data = {}
-
-    // save raw constructor data before merge
-    // so that we know which properties are provided at
-    // instantiation.
-    this._runtimeData = options.data
 
     // call init hook
     this._callHook('init')

@@ -7,7 +7,8 @@ import {
   warn,
   isArray,
   isObject,
-  nextTick
+  nextTick,
+  _Set as Set
 } from './util/index'
 
 let uid = 0
@@ -47,8 +48,8 @@ export default function Watcher (vm, expOrFn, cb, options) {
   this.dirty = this.lazy // for lazy watchers
   this.deps = []
   this.newDeps = []
-  this.depIds = Object.create(null)
-  this.newDepIds = null
+  this.depIds = new Set()
+  this.newDepIds = new Set()
   this.prevError = null // for async error stacks
   // parse expression for getter/setter
   if (isFn) {
@@ -163,8 +164,6 @@ Watcher.prototype.set = function (value) {
 
 Watcher.prototype.beforeGet = function () {
   Dep.target = this
-  this.newDepIds = Object.create(null)
-  this.newDeps.length = 0
 }
 
 /**
@@ -175,10 +174,10 @@ Watcher.prototype.beforeGet = function () {
 
 Watcher.prototype.addDep = function (dep) {
   var id = dep.id
-  if (!this.newDepIds[id]) {
-    this.newDepIds[id] = true
+  if (!this.newDepIds.has(id)) {
+    this.newDepIds.add(id)
     this.newDeps.push(dep)
-    if (!this.depIds[id]) {
+    if (!this.depIds.has(id)) {
       dep.addSub(this)
     }
   }
@@ -193,14 +192,18 @@ Watcher.prototype.afterGet = function () {
   var i = this.deps.length
   while (i--) {
     var dep = this.deps[i]
-    if (!this.newDepIds[dep.id]) {
+    if (!this.newDepIds.has(dep.id)) {
       dep.removeSub(this)
     }
   }
+  var tmp = this.depIds
   this.depIds = this.newDepIds
-  var tmp = this.deps
+  this.newDepIds = tmp
+  this.newDepIds.clear()
+  tmp = this.deps
   this.deps = this.newDeps
   this.newDeps = tmp
+  this.newDeps.length = 0
 }
 
 /**
@@ -331,14 +334,31 @@ Watcher.prototype.teardown = function () {
  * @param {*} val
  */
 
-function traverse (val) {
-  var i, keys
-  if (isArray(val)) {
-    i = val.length
-    while (i--) traverse(val[i])
-  } else if (isObject(val)) {
-    keys = Object.keys(val)
-    i = keys.length
-    while (i--) traverse(val[keys[i]])
+const seenObjects = new Set()
+function traverse (val, seen) {
+  let i, keys
+  if (!seen) {
+    seen = seenObjects
+    seen.clear()
+  }
+  const isA = isArray(val)
+  const isO = isObject(val)
+  if (isA || isO) {
+    if (val.__ob__) {
+      var depId = val.__ob__.dep.id
+      if (seen.has(depId)) {
+        return
+      } else {
+        seen.add(depId)
+      }
+    }
+    if (isA) {
+      i = val.length
+      while (i--) traverse(val[i], seen)
+    } else if (isO) {
+      keys = Object.keys(val)
+      i = keys.length
+      while (i--) traverse(val[keys[i]], seen)
+    }
   }
 }
