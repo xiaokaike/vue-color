@@ -1,7 +1,7 @@
 var config = require('./webpack.config.js')
 
 config.entry = {
-  'vue-color': './src/index.js',
+  'vue-color': './src/index.js'
 }
 
 config.output = {
@@ -9,6 +9,5 @@ config.output = {
   library: 'VueColor',
   libraryTarget: 'umd'
 }
-
 
 module.exports = config
