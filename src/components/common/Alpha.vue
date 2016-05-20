@@ -4,7 +4,7 @@
       <checkboard></checkboard>
     </div>
     <div class="gradient" :style="{background: gradientColor}"></div>
-    <div class="container" v-el:container
+    <div class="vc-container" v-el:container
         @mousedown="handleMouseDown"
         @touchmove="handleChange"
         @touchstart="handleChange">
@@ -97,7 +97,7 @@ export default {
     right 0px
     bottom 0px
     left 0px
-  .container
+  .vc-container
     position relative
     z-index 2
     height 100%

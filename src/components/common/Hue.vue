@@ -1,6 +1,6 @@
 <template>
   <div class="c-hue {{direction}}">
-    <div class="container" v-el:container
+    <div class="vc-container" v-el:container
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
       @touchstart="handleChange">
@@ -119,7 +119,7 @@ export default {
     background linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)
   &.vertical
     background linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)
-  .container
+  .vc-container
     margin 0 2px
     position relative
     height 100%

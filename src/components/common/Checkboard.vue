@@ -80,11 +80,10 @@ function getCheckboard (c1, c2, size) {
 </script>
 
 <style lang="stylus">
-.c-checkboard{
+.c-checkboard
   position absolute
   top 0px
   right 0px
   bottom 0px
   left 0px
-}
 </style>
