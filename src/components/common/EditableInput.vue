@@ -1,10 +1,10 @@
 <template>
-  <div class="editable-input">
-    <input class="input" 
+  <div class="vue-color__editable-input">
+    <input class="vue-color__editable-input__input"
       v-model="val | maxFilter"
       @keydown="handleKeyDown"
       @input="handleChange">
-    <span class="label" @mousedown="handleMouseDown">{{label}}</span>
+    <span class="vue-color__editable-input__label" @mousedown="handleMouseDown">{{label}}</span>
   </div>
 </template>
 
@@ -77,12 +77,12 @@ export default {
 </script>
 
 <style lang="stylus">
-.editable-input
+.vue-color__editable-input
   position relative
-  .input
-    padding 0
-    border 0
-    outline none
-  .label
-    text-transform capitalize
+.vue-color__editable-input__input
+  padding 0
+  border 0
+  outline none
+.vue-color__editable-input__label
+  text-transform capitalize
 </style>
