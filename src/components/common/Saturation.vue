@@ -1,12 +1,12 @@
 <template>
-  <div class="saturation" 
+  <div class=".vue-color__saturation" 
     :style="{background: bgColor}"
     v-el:container
     @mousedown="handleMouseDown">
-    <div class="white"></div>
-    <div class="black"></div>
-    <div class="pointer" :style="{top: pointerTop, left: pointerLeft}">
-      <slot><div class="circle"></div></slot>
+    <div class="vue-color__saturation--white"></div>
+    <div class="vue-color__saturation--black"></div>
+    <div class="vue-color__saturation--pointer" :style="{top: pointerTop, left: pointerLeft}">
+      <slot><div class="vue-color__saturation--circle"></div></slot>
     </div>
   </div>
 </template>
@@ -81,27 +81,28 @@ export default {
 </script>
 
 <style lang="stylus">
-.white
-.black
-.saturation
+.vue-color__saturation
+.vue-color__saturation--white
+.vue-color__saturation--black
+  cursor pointer
   position absolute
   top 0
   left 0
   right 0
   bottom 0
   
-.saturation
-  .white 
-    background linear-gradient(to right, #fff, rgba(255,255,255,0))
-  .black
-    background linear-gradient(to top, #000, rgba(0,0,0,0))
-  .pointer
-    position absolute
-  .circle
-    cursor head
-    width 4px
-    height 4px
-    box-shadow 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(0,0,0,.4)
-    border-radius 50%
-    transform translate(-2px, -2px)
+.vue-color__saturation--white
+  background linear-gradient(to right, #fff, rgba(255,255,255,0))
+.vue-color__saturation--black
+  background linear-gradient(to top, #000, rgba(0,0,0,0))
+.vue-color__saturation--pointer
+  cursor pointer
+  position absolute
+.vue-color__saturation--circle
+  cursor head
+  width 4px
+  height 4px
+  box-shadow 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(0,0,0,.4)
+  border-radius 50%
+  transform translate(-2px, -2px)
 </style>
