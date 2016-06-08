@@ -1,5 +1,5 @@
 <template>
-  <div class=".vue-color__saturation" 
+  <div class="vue-color__saturation" 
     :style="{background: bgColor}"
     v-el:container
     @mousedown="handleMouseDown">
