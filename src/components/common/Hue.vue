@@ -1,11 +1,11 @@
 <template>
-  <div class="c-hue {{direction}}">
-    <div class="vc-container" v-el:container
+  <div :class="['vue-color__c-hue', directionClass]">
+    <div class="vue-color__c-hue__container" v-el:container
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
       @touchstart="handleChange">
-      <div class="pointer" :style="{top: pointerTop, left: pointerLeft}">
-        <slot><div class="picker"></div></slot>
+      <div class="vue-color__c-hue__pointer" :style="{top: pointerTop, left: pointerLeft}">
+        <slot><div class="vue-color__c-hue__picker"></div></slot>
       </div>  
     </div>
   </div>
@@ -24,6 +24,12 @@ export default {
     }
   },
   computed: {
+    directionClass () {
+      return {
+        'vue-color__c-hue--horizontal': this.direction === 'horizontal',
+        'vue-color__c-hue--vertical': this.direction === 'vertical'
+      }
+    },
     pointerTop () {
       if (this.direction === 'vertical') {
         return -((this.colors.hsl.h * 100) / 360) + 100 + '%'
@@ -108,30 +114,32 @@ export default {
 </script>
 
 <style lang="stylus">
-.c-hue
+.vue-color__c-hue
   position absolute
   top 0px
   right 0px
   bottom 0px
   left 0px
   border-radius 2px
-  &.horizontal
-    background linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)
-  &.vertical
-    background linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)
-  .vc-container
-    margin 0 2px
-    position relative
-    height 100%
-  .pointer
-    z-index 2
-    position absolute
-  .picker
-    margin-top 1px
-    width 4px
-    border-radius 1px
-    height 8px
-    box-shadow 0 0 2px rgba(0, 0, 0, .6)
-    background #fff
-    transform translateX(-2px)
+.vue-color__c-hue--horizontal
+  background linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)
+.vue-color__c-hue--vertical
+  background linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%)
+.vue-color__c-hue__container
+  cursor pointer
+  margin 0 2px
+  position relative
+  height 100%
+.vue-color__c-hue__pointer
+  z-index 2
+  position absolute
+.vue-color__c-hue__picker
+  cursor pointer
+  margin-top 1px
+  width 4px
+  border-radius 1px
+  height 8px
+  box-shadow 0 0 2px rgba(0, 0, 0, .6)
+  background #fff
+  transform translateX(-2px)
 </style>
