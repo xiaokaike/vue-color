@@ -1,19 +1,19 @@
 <template>
   
-  <div class="c-material">
-    <ed-in class="hex" label="hex" :val.sync="colors.hex"
+  <div class="vue-color__material">
+    <ed-in class="vue-color__material__hex" label="hex" :val.sync="colors.hex"
     :style="{ borderColor: colors.hex }"
     :on-change="onChange"></ed-in>
-    <div class="split flexbox-fix">
-      <div class="third">
+    <div class="vue-color__material__split">
+      <div class="vue-color__material__third">
         <ed-in label="r" :val.sync="colors.rgba.r" 
         :on-change="onChange"></ed-in>
       </div>
-      <div class="third">
+      <div class="vue-color__material__third">
         <ed-in label="g" :val.sync="colors.rgba.g" 
         :on-change="onChange"></ed-in>
       </div>
-      <div class="third">
+      <div class="vue-color__material__third">
         <ed-in label="b" :val.sync="colors.rgba.b"
         :on-change="onChange"></ed-in>
       </div>
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.c-material
+.vue-color__material
   width 98px
   height 98px
   padding 16px
@@ -71,27 +71,27 @@ export default {
   position relative
   border-radius 2px
   box-shadow 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)
-  .hex
-    border-bottom-width 2px
-    border-bottom-style solid
-  .split
-    display flex
-    margin-right -10px
-    padding-top 11px
-  .third
-    flex 1
-    padding-right 10px
-  .input
+  .vue-color__editable-input__input
     width 100%
     margin-top 12px
     font-size 15px
     color #333
     height 30px
-  .label
+  .vue-color__editable-input__label
     position absolute
     top 0
     left 0
     font-size 11px
     color #999
     text-transform capitalize
+.vue-color__material__hex
+  border-bottom-width 2px
+  border-bottom-style solid
+.vue-color__material__split
+  display flex
+  margin-right -10px
+  padding-top 11px
+.vue-color__material__third
+  flex 1
+  padding-right 10px
 </style>
