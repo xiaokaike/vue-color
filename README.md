@@ -108,7 +108,7 @@ new Vue({
 ```
 
 ## TODO
-
+-[] support Vue 2.0
 
 
 ## License
