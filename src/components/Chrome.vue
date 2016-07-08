@@ -67,8 +67,8 @@
           </div>
         </div>
         <!-- btn -->
-        <div class="vue-color__chrome__toggle-btn">
-          <div class="vue-color__chrome__icon" @click="toggleViews">
+        <div class="vue-color__chrome__toggle-btn" @click="toggleViews">
+          <div class="vue-color__chrome__icon">
             <svg style="width:24px; height:24px" viewBox="0 0 24 24" 
               @mouseover="showHighlight" 
               @mouseenter="showHighlight" 
@@ -149,7 +149,7 @@ export default {
         this.fieldsIndex = 0
         return
       }
-      this.fieldsIndex = 0
+      this.fieldsIndex ++
     },
     showHighlight () {
       this.highlight = true
