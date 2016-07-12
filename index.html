@@ -11,57 +11,11 @@
   <!--[if lt IE 9]>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.ie.min.css" />
   <![endif]-->
-  <link rel="stylesheet" type="text/css" href="./example/app.css">
 </head>
 
 <body>
-  <a class="github-fork-ribbon" href="https://github.com/xiaokaike/vue-color" title="Fork me on GitHub">Fork me on GitHub</a>
-  <div id="app">
-    <header>
-      <h1>Vue-color</h1>
-    </header>
-    <div class="wrap">
-      <!-- <div class="test-wrap">
-        <p>{{colors.hex}}</p>
-        <p>{{colors.rgba.r}} {{colors.rgba.g}} {{colors.rgba.b}} {{colors.rgba.a}}</p>
-        <p>{{colors.hsl.h}} {{colors.hsl.s}} {{colors.hsl.l}} {{colors.hsl.a}}</p>
-        <p>{{colors.hsv.h}} {{colors.hsl.s}} {{colors.hsv.v}} {{colors.hsv.a}}</p>
-        <p>{{colors.a}}</p>
-      </div> -->
-      <div class="components-wrap" style="position: absolute; top: 10px; left: 10px;">
-        <material-picker :colors.sync="colors"></material-picker>
-        <h6>Material</h6>
-      </div>
-      <div class="components-wrap" style="position: absolute; top: 10px; left: 200px;">
-        <compact-picker :colors.sync="colors"></compact-picker>
-        <h6>Compact</h6>
-      </div>
-      <div class="components-wrap" style="position: absolute; top: 180px; left: 10px;">
-        <slider-picker :colors.sync="colors"></slider-picker>
-        <h6>Slider</h6>
-      </div>
-      <div class="components-wrap" style="position: absolute; top: 10px; right: 0px;">
-        <photoshop-picker :colors.sync="colors"></photoshop-picker>
-        <h6>Photoshop</h6>
-      </div>
-      <div class="components-wrap" style="position: absolute; top: 380px; right: 0px;">
-        <swatches-picker :colors.sync="colors"></swatches-picker>
-        <h6>Swatches</h6>
-      </div>
-      <div class="components-wrap" style="position: absolute; top: 400px; left: 300px;">
-        <sketch-picker :colors.sync="colors"></sketch-picker>
-        <h6>Sketch</h6>
-      </div>
-      <div class="components-wrap" style="position: absolute; top: 400px; left: 0px;">
-        <chrome-picker :colors.sync="colors"></chrome-picker>
-        <h6>Chrome</h6>
-      </div>
-    </div>
-  </div>
-  <script src="node_modules/vue/dist/vue.js"></script>
-  <!-- <script src="build/bundle.js"></script> -->
-  <script src="dist/vue-color.min.js"></script>
-  <script src="example/app.js"></script>
+  <app></app>
+  <!-- built files will be auto injected -->
 </body>
 
 </html>

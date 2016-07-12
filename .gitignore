@@ -1,5 +1,4 @@
 .DS_Store
 node_modules/*
-!node_modules/vue
 npm-debug.log
 .idea
