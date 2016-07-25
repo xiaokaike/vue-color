@@ -45,13 +45,13 @@
 </template>
 
 <script>
-import material from './components/Material.vue'
-import compact from './components/Compact.vue'
-import swatches from './components/Swatches.vue'
-import slider from './components/Slider.vue'
-import sketch from './components/Sketch.vue'
-import chrome from './components/Chrome.vue'
-import photoshop from './components/Photoshop.vue'
+import material from '../src/components/Material.vue'
+import compact from '../src/components/Compact.vue'
+import swatches from '../src/components/Swatches.vue'
+import slider from '../src/components/Slider.vue'
+import sketch from '../src/components/Sketch.vue'
+import chrome from '../src/components/Chrome.vue'
+import photoshop from '../src/components/Photoshop.vue'
 
 let defaultProps = {
   hex: '#194d33',
