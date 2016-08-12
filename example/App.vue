@@ -25,7 +25,7 @@
         <h6>Slider</h6>
       </div>
       <div class="components-wrap" style="position: absolute; top: 10px; right: 0px;">
-        <photoshop-picker :colors.sync="colors"></photoshop-picker>
+        <photoshop-picker :colors.sync="colors" @ok="onOk" @cancel="onCancel"></photoshop-picker>
         <h6>Photoshop</h6>
       </div>
       <div class="components-wrap" style="position: absolute; top: 380px; right: 0px;">
@@ -90,6 +90,14 @@ export default {
     'sketch-picker': sketch,
     'chrome-picker': chrome,
     'photoshop-picker': photoshop
+  },
+  methods: {
+    onOk () {
+      console.log('ok')
+    },
+    onCancel () {
+      console.log('cancel')
+    }
   }
 }
 </script>
