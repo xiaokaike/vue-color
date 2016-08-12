@@ -7,12 +7,12 @@ var cssLoader = ExtractTextPlugin.extract('style-loader', 'css-loader')
 
 module.exports = {
   entry: {
-    app: './src/app.js'
+    'vue-color': './src/index.js'
   },
   output: {
-    path: './build',
-    publicPath: '/build/',
-    filename: 'bundle.js'
+    filename: './dist/[name].js',
+    library: 'VueColor',
+    libraryTarget: 'umd'
   },
   module: {
     preLoaders: [
@@ -41,9 +41,9 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel'
       },
-      { 
-        test: /\.css$/, 
-        loader: cssLoader 
+      {
+        test: /\.css$/,
+        loader: cssLoader
       },
       {
         test: /\.styl$/,
@@ -62,7 +62,7 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  
+
   delete module.exports.devtool
   module.exports.plugins = [
     new webpack.DefinePlugin({
