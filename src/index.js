@@ -7,6 +7,7 @@ import Sketch from './components/Sketch.vue'
 import Chrome from './components/Chrome.vue'
 
 const VueColor = {
+  version: '1.0.26',
   Compact,
   Material,
   Slider,
@@ -17,4 +18,3 @@ const VueColor = {
 }
 
 module.exports = VueColor
-
