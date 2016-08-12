@@ -10,7 +10,7 @@
           <div class="vue-colors__photoshop__hue-pointer">
             <i class="vue-colors__photoshop__hue-pointer--left"></i><i class="vue-colors__photoshop__hue-pointer--right"></i>
           </div>
-        </hue>  
+        </hue>
       </div>
       <div class="vue-colors__photoshop__controls">
         <div class="vue-colors__photoshop__previews">
@@ -26,7 +26,7 @@
           <div class="vue-colors__photoshop__ac-btn" @click="handleCancel">Cancel</div>
           <div class="vue-colors__photoshop__fields">
             <!-- hsla -->
-            <ed-in label="h" :val.sync="colors.hsl.h" 
+            <ed-in label="h" :val.sync="colors.hsl.h"
               :on-change="inputChange"></ed-in>
             <ed-in label="s" :val.sync="colors.hsl.s"
               :on-change="inputChange"></ed-in>
@@ -34,9 +34,9 @@
               :on-change="inputChange"></ed-in>
             <div class="vue-colors__photoshop__fields__divider"></div>
             <!-- rgba -->
-            <ed-in label="r" :val.sync="colors.rgba.r" 
+            <ed-in label="r" :val.sync="colors.rgba.r"
               :on-change="inputChange"></ed-in>
-            <ed-in label="g" :val.sync="colors.rgba.g" 
+            <ed-in label="g" :val.sync="colors.rgba.g"
               :on-change="inputChange"></ed-in>
             <ed-in label="b" :val.sync="colors.rgba.b"
               :on-change="inputChange"></ed-in>
@@ -44,7 +44,7 @@
             <!-- hex -->
             <ed-in label="#" class="vue-colors__photoshop__fields__hex"
               :val.sync="colors.hex"
-              :on-change="inputChange"></ed-in>    
+              :on-change="inputChange"></ed-in>
           </div>
 
         </div>
@@ -107,10 +107,10 @@ export default {
       }
     },
     handleAccept () {
-      console.log('accept')
+      this.$dispatch('ok')
     },
     handleCancel () {
-      console.log('cancel')
+      this.$dispatch('cancel')
     }
   }
 
@@ -239,7 +239,7 @@ export default {
     position absolute
 .vue-colors__photoshop__fields__divider
   height 5px
-.vue-colors__photoshop__fields__hex 
+.vue-colors__photoshop__fields__hex
   .vue-color__editable-input__input
     margin-left 20%
     width 80%
