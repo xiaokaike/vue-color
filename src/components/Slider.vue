@@ -4,7 +4,7 @@
       <hue :colors.sync="colors" :on-change="hueChange"></hue>
     </div>
     <div class="vue-color__slider__swatches">
-      <div class="vue-color__slider__swatch" v-for="offset in swatches" data-index="{{$index}}"
+      <div class="vue-color__slider__swatch" v-for="offset in swatches" :data-index="$index"
         @click="handleSwClick($index, offset)">
         <div class="vue-color__slider__swatch-picker"
         :class="{'vue-color__slider__swatch-picker--active': offset == activeOffset}"
@@ -81,7 +81,7 @@ export default {
   &:first-child
     margin-right 1px
     .vue-color__slider__swatch-picker
-      border-radius 2px 0px 0px 2px        
+      border-radius 2px 0px 0px 2px
   &:last-child
     margin-right 0
     .vue-color__slider__swatch-picker

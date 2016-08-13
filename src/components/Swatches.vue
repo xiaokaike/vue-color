@@ -1,9 +1,9 @@
 <template>
-  <div class="vue-color__swatches" data-pick="{{pick}}">
+  <div class="vue-color__swatches" :data-pick="pick">
     <div class="vue-color__swatches__box">
       <div class="vue-color__swatches__color-group" v-for="group in defaultColors">
         <div class="vue-color__swatches__color-it" v-for="c in group"
-          data-color="{{c}}"
+          :data-color="c"
           @click="handlerClick(c)"
           :style="{background: c}">
           <div class="vue-color__swatches__pick" v-show="c == pick">

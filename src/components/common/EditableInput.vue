@@ -1,7 +1,7 @@
 <template>
   <div class="vue-color__editable-input">
     <input class="vue-color__editable-input__input"
-      v-model="val | maxFilter"
+      v-model="val"
       @keydown="handleKeyDown"
       @input="handleChange">
     <span class="vue-color__editable-input__label" @mousedown="handleMouseDown">{{label}}</span>
