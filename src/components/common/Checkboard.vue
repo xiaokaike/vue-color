@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-color__c-checkerboard" :style="{background:  bgStyle}"></div>
+  <div class="vue-color__c-checkerboard" :style="{background: bgStyle}"></div>
 </template>
 
 <script>
