@@ -9,8 +9,8 @@ function _colorChange (data, oldHue) {
   var hsl = color.toHsl()
   var hsv = color.toHsv()
   if (hsl.s === 0) {
-    hsl.h = oldHue || 0
-    hsv.h = oldHue || 0
+    hsl.h = data.h || oldHue || 0
+    hsv.h = data.h || oldHue || 0
   }
   return {
     hsl: hsl,
@@ -27,6 +27,11 @@ export default {
   props: {
     colors: Object
   },
+  data () {
+    return {
+      oldHue: 0
+    }
+  },
   created () {
     // console.log(this.colors)
     /*
@@ -39,7 +44,8 @@ export default {
   },
   methods: {
     colorChange (data, oldHue) {
-      this.colors = _colorChange(data, oldHue)
+      this.colors = _colorChange(data, oldHue || this.oldHue)
+      this.oldHue = this.colors.hsl.h
     },
     isValidHex (hex) {
       return tinycolor(hex).isValid()
