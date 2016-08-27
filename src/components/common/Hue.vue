@@ -1,5 +1,5 @@
 <template>
-  <div :class="['vue-color__c-hue', directionClass]">
+  <div class="vue-color__c-hue" :class="directionClass">
     <div class="vue-color__c-hue__container" v-el:container
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
