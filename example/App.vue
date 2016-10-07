@@ -35,11 +35,11 @@
       <!-- <div class="components-wrap" style="position: absolute; top: 400px; left: 300px;">
         <sketch-picker :colors.sync="colors"></sketch-picker>
         <h6>Sketch</h6>
-      </div>
+      </div>  -->
       <div class="components-wrap" style="position: absolute; top: 400px; left: 0px;">
-        <chrome-picker :colors.sync="colors"></chrome-picker>
+        <chrome-picker v-model="colors" @change-color="onChange"></chrome-picker>
         <h6>Chrome</h6>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>

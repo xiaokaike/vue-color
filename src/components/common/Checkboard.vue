@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-color__c-checkerboard" :style="{background:  bgStyle}"></div>
+  <div class="vue-color__c-checkerboard" :style="{background: bgStyle}"></div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
   name: 'Checkboard',
   props: {
     size: {
-      type: [Number | String],
+      type: [Number, String],
       default: 8
     },
     white: {
