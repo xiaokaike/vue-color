@@ -5,31 +5,31 @@
       <h1>Vue-color</h1>
     </header>
     <div class="wrap">
-      <!-- <div class="test-wrap">
+      <div class="test-wrap">
         <p>{{colors.hex}}</p>
         <p>{{colors.rgba.r}} {{colors.rgba.g}} {{colors.rgba.b}} {{colors.rgba.a}}</p>
         <p>{{colors.hsl.h}} {{colors.hsl.s}} {{colors.hsl.l}} {{colors.hsl.a}}</p>
         <p>{{colors.hsv.h}} {{colors.hsl.s}} {{colors.hsv.v}} {{colors.hsv.a}}</p>
         <p>{{colors.a}}</p>
-      </div> -->
+      </div>
       <!-- <div class="components-wrap" style="position: absolute; top: 10px; left: 10px;">
         <material-picker v-bind:val="colors"></material-picker>
         <h6>Material</h6>
       </div> -->
       <div class="components-wrap" style="position: absolute; top: 10px; left: 200px;">
-        <compact-picker v-model="colors" @change="onChange"></compact-picker>
+        <compact-picker v-model="colors" @change-color="onChange"></compact-picker>
         <h6>Compact</h6>
       </div>
-      <!-- <div class="components-wrap" style="position: absolute; top: 180px; left: 10px;">
-        <slider-picker :colors.sync="colors"></slider-picker>
+      <div class="components-wrap" style="position: absolute; top: 180px; left: 10px;">
+        <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
         <h6>Slider</h6>
       </div>
-      <div class="components-wrap" style="position: absolute; top: 10px; right: 0px;">
+      <!-- <div class="components-wrap" style="position: absolute; top: 10px; right: 0px;">
         <photoshop-picker :colors.sync="colors" @ok="onOk" @cancel="onCancel"></photoshop-picker>
         <h6>Photoshop</h6>
       </div> -->
       <div class="components-wrap" style="position: absolute; top: 380px; right: 0px;">
-        <swatches-picker v-model="colors" @change="onChange"></swatches-picker>
+        <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
         <h6>Swatches</h6>
       </div>
       <!-- <div class="components-wrap" style="position: absolute; top: 400px; left: 300px;">

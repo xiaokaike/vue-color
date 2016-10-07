@@ -37,13 +37,12 @@ export default {
       },
       set (newVal) {
         this.val = newVal
-        this.$emit('change', newVal)
+        this.$emit('change-color', newVal)
       }
     }
   },
   watch: {
     value (newVal) {
-      console.log(newVal)
       this.val = _colorChange(newVal)
       // this.$emit('change', newVal)
     }
