@@ -5,13 +5,13 @@
       <h1>Vue-color</h1>
     </header>
     <div class="wrap">
-      <div class="test-wrap">
+      <!-- <div class="test-wrap">
         <p>{{colors.hex}}</p>
         <p>{{colors.rgba.r}} {{colors.rgba.g}} {{colors.rgba.b}} {{colors.rgba.a}}</p>
         <p>{{colors.hsl.h}} {{colors.hsl.s}} {{colors.hsl.l}} {{colors.hsl.a}}</p>
         <p>{{colors.hsv.h}} {{colors.hsl.s}} {{colors.hsv.v}} {{colors.hsv.a}}</p>
         <p>{{colors.a}}</p>
-      </div>
+      </div> -->
       <div class="components-wrap" style="position: absolute; top: 10px; left: 10px;">
         <material-picker v-model="colors" @change-color="onChange"></material-picker>
         <h6>Material</h6>
