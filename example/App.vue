@@ -12,10 +12,10 @@
         <p>{{colors.hsv.h}} {{colors.hsl.s}} {{colors.hsv.v}} {{colors.hsv.a}}</p>
         <p>{{colors.a}}</p>
       </div>
-      <!-- <div class="components-wrap" style="position: absolute; top: 10px; left: 10px;">
-        <material-picker v-bind:val="colors"></material-picker>
+      <div class="components-wrap" style="position: absolute; top: 10px; left: 10px;">
+        <material-picker v-model="colors" @change-color="onChange"></material-picker>
         <h6>Material</h6>
-      </div> -->
+      </div>
       <div class="components-wrap" style="position: absolute; top: 10px; left: 200px;">
         <compact-picker v-model="colors" @change-color="onChange"></compact-picker>
         <h6>Compact</h6>
