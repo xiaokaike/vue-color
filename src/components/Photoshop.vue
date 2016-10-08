@@ -3,10 +3,10 @@
     <div class="vue-colors__photoshop__head">{{head}}</div>
     <div class="vue-colors__photoshop__body">
       <div class="vue-colors__photoshop__saturation-wrap">
-        <saturation :colors.sync="colors" :on-change="childChange"></saturation>
+        <saturation v-model="colors" @on-change="childChange"></saturation>
       </div>
       <div class="vue-colors__photoshop__hue-wrap">
-        <hue :colors.sync="colors" :on-change="childChange" direction="vertical">
+        <hue v-model="colors" @on-change="childChange" direction="vertical">
           <div class="vue-colors__photoshop__hue-pointer">
             <i class="vue-colors__photoshop__hue-pointer--left"></i><i class="vue-colors__photoshop__hue-pointer--right"></i>
           </div>
@@ -26,25 +26,17 @@
           <div class="vue-colors__photoshop__ac-btn" @click="handleCancel">Cancel</div>
           <div class="vue-colors__photoshop__fields">
             <!-- hsla -->
-            <ed-in label="h" :val.sync="colors.hsl.h"
-              :on-change="inputChange"></ed-in>
-            <ed-in label="s" :val.sync="colors.hsl.s"
-              :on-change="inputChange"></ed-in>
-            <ed-in label="v" :val.sync="colors.hsl.l"
-              :on-change="inputChange"></ed-in>
+            <ed-in label="h" v-model="colors.hsl.h" @on-change="inputChange"></ed-in>
+            <ed-in label="s" v-model="colors.hsl.s" @on-change="inputChange"></ed-in>
+            <ed-in label="v" v-model="colors.hsl.l" @on-change="inputChange"></ed-in>
             <div class="vue-colors__photoshop__fields__divider"></div>
             <!-- rgba -->
-            <ed-in label="r" :val.sync="colors.rgba.r"
-              :on-change="inputChange"></ed-in>
-            <ed-in label="g" :val.sync="colors.rgba.g"
-              :on-change="inputChange"></ed-in>
-            <ed-in label="b" :val.sync="colors.rgba.b"
-              :on-change="inputChange"></ed-in>
+            <ed-in label="r" v-model="colors.rgba.r" @on-change="inputChange"></ed-in>
+            <ed-in label="g" v-model="colors.rgba.g" @on-change="inputChange"></ed-in>
+            <ed-in label="b" v-model="colors.rgba.b" @on-change="inputChange"></ed-in>
             <div class="vue-colors__photoshop__fields__divider"></div>
             <!-- hex -->
-            <ed-in label="#" class="vue-colors__photoshop__fields__hex"
-              :val.sync="colors.hex"
-              :on-change="inputChange"></ed-in>
+            <ed-in label="#" class="vue-colors__photoshop__fields__hex" v-model="colors.hex" @on-change="inputChange"></ed-in>
           </div>
 
         </div>

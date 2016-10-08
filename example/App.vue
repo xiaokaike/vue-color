@@ -24,18 +24,18 @@
         <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
         <h6>Slider</h6>
       </div>
-      <!-- <div class="components-wrap" style="position: absolute; top: 10px; right: 0px;">
-        <photoshop-picker :colors.sync="colors" @ok="onOk" @cancel="onCancel"></photoshop-picker>
+      <div class="components-wrap" style="position: absolute; top: 10px; right: 0px;">
+        <photoshop-picker v-model="colors" @change-color="onChange" @ok="onOk" @cancel="onCancel"></photoshop-picker>
         <h6>Photoshop</h6>
-      </div> -->
+      </div>
       <div class="components-wrap" style="position: absolute; top: 380px; right: 0px;">
         <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
         <h6>Swatches</h6>
       </div>
-      <!-- <div class="components-wrap" style="position: absolute; top: 400px; left: 300px;">
-        <sketch-picker :colors.sync="colors"></sketch-picker>
+      <div class="components-wrap" style="position: absolute; top: 400px; left: 300px;">
+        <sketch-picker v-model="colors" @change-color="onChange"></sketch-picker>
         <h6>Sketch</h6>
-      </div>  -->
+      </div> 
       <div class="components-wrap" style="position: absolute; top: 400px; left: 0px;">
         <chrome-picker v-model="colors" @change-color="onChange"></chrome-picker>
         <h6>Chrome</h6>

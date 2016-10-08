@@ -56,7 +56,6 @@ export default {
       TODO accept any kind of color value, HEX, RGBA, HSL and others
     */
     // this.colors = _colorChange(this.colors)
-    console.log(this.colors)
   },
   methods: {
     colorChange (data, oldHue) {
