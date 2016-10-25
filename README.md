@@ -98,13 +98,22 @@ new Vue({
 ```
 
 ```html
-<material-picker :colors.sync="colors"></material-picker>
-<compact-picker :colors.sync="colors"></compact-picker>
-<swatches-picker :colors.sync="colors"></swatches-picker>
-<slider-picker :colors.sync="colors"></slider-picker>
-<sketch-picker :colors.sync="colors"></sketch-picker>
-<chrome-picker :colors.sync="colors"></chrome-picker>
-<photoshop-picker :colors.sync="colors"></photoshop-picker>
+<!-- suppose you have the data 'colors' in your component -->
+<material-picker v-model="colors" @change-color="onChange"></material-picker>
+<material-picker v-model="colors" @change-color="onChange"></material-picker>
+<compact-picker v-model="colors" @change-color="onChange"></compact-picker>
+<swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
+<slider-picker v-model="colors" @change-color="onChange"></slider-picker>
+<sketch-picker v-model="colors" @change-color="onChange"></sketch-picker>
+<chrome-picker v-model="colors" @change-color="onChange"></chrome-picker>
+<photoshop-picker v-model="colors" @change-color="onChange"></photoshop-picker>
+```
+
+```javascript
+// onChange method called when the event 'change-color' is emitted
+onChange (val) {
+  this.colors = val
+}
 ```
 
 ## TODO
