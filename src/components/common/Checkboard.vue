@@ -1,5 +1,5 @@
 <template>
-  <div class="c-checkboard" :style="{background:  bgStyle}"></div>
+  <div class="vue-color__c-checkerboard" :style="{background:  bgStyle}"></div>
 </template>
 
 <script>
@@ -80,11 +80,10 @@ function getCheckboard (c1, c2, size) {
 </script>
 
 <style lang="stylus">
-.c-checkboard{
+.vue-color__c-checkerboard
   position absolute
   top 0px
   right 0px
   bottom 0px
   left 0px
-}
 </style>

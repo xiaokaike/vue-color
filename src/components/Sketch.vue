@@ -1,47 +1,47 @@
 <template>
-  <div class="c-sketch">
-    <div class="saturation-wrap">
+  <div class="vue-color__sketch">
+    <div class="vue-color__sketch__saturation-wrap">
       <saturation :colors.sync="colors" :on-change="childChange"></saturation>
     </div>
-    <div class="controls">
-      <div class="sliders">
-        <div class="hue-wrap">
+    <div class="vue-color__sketch__controls">
+      <div class="vue-color__sketch__sliders">
+        <div class="vue-color__sketch__hue-wrap">
           <hue :colors.sync="colors" :on-change="childChange"></hue>  
         </div>
-        <div class="alpha-wrap">
+        <div class="vue-color__sketch__alpha-wrap">
           <alpha :colors.sync="colors" :on-change="childChange"></alpha>
         </div>
       </div>
-      <div class="color-wrap">
-        <div class="active-color" :style="{background: activeColor}"></div>
+      <div class="vue-color__sketch__color-wrap">
+        <div class="vue-color__sketch__active-color" :style="{background: activeColor}"></div>
       </div>
     </div>
-    <div class="field">
+    <div class="vue-color__sketch__field">
       <!-- rgba -->
-      <div class="double">
+      <div class="vue-color__sketch__field--double">
         <ed-in label="hex"
         :val.sync="colors.hex"
         :on-change="inputChange"></ed-in>  
       </div>
-      <div class="single">
+      <div class="vue-color__sketch__field--single">
         <ed-in label="r" :val.sync="colors.rgba.r" 
         :on-change="inputChange"></ed-in>
       </div>
-      <div class="single">
+      <div class="vue-color__sketch__field--single">
         <ed-in label="g" :val.sync="colors.rgba.g" 
         :on-change="inputChange"></ed-in>
       </div>
-      <div class="single">
+      <div class="vue-color__sketch__field--single">
         <ed-in label="b" :val.sync="colors.rgba.b"
         :on-change="inputChange"></ed-in>
       </div>
-      <div class="single">
+      <div class="vue-color__sketch__field--single">
         <ed-in label="a" :val.sync="colors.a" :arrow-offset="0.01" :max="1"
         :on-change="inputChange"></ed-in>
       </div>
     </div>
-    <div class="presets">
-      <div class="presets-color"
+    <div class="vue-color__sketch__presets">
+      <div class="vue-color__sketch__presets-color"
         v-for="c in presetColors"
         :style="{background: c}"
         @click="handlePreset(c)"
@@ -118,7 +118,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.c-sketch
+.vue-color__sketch
   position relative
   width 200px
   padding 10px 10px 0
@@ -126,77 +126,80 @@ export default {
   background #fff
   border-radius 4px
   box-shadow 0 0 0 1px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.15)
-  .saturation-wrap
-    width 100%
-    padding-bottom 75%
-    position relative
-    overflow hidden
-  .controls
-    display flex
-    .sliders
-      padding 4px 0
-      flex 1
-    .hue-wrap
-      position relative
-      height 10px
-    .alpha-wrap
-      position relative
-      height 10px
-      margin-top 4px
-      overflow hidden
-    .color-wrap
-      width 24px
-      height 24px
-      position relative
-      margin-top 4px
-      margin-left 4px
-      border-radius 3px
-    .active-color
-      position absolute
-      top 0
-      left 0
-      right 0
-      bottom 0
-      border-radius 2px
-      box-shadow inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)
-      z-index 2
-  .field
-    display flex
-    padding-top 4px
-    .single
-      flex 1
-      padding-left 6px
-    .double
-      flex 2
-    .input
-      width 80%
-      padding 4px 10% 3px
-      border none
-      box-shadow inset 0 0 0 1px #ccc
-      font-size 11px
-    .label
-      display block
-      text-align center
-      font-size 11px
-      color #222
-      padding-top 3px
-      padding-bottom 4px
-      text-transform capitalize
-  .presets
-    margin-right -10px
-    margin-left -10px
-    padding-left 10px
-    padding-top 10px
-    border-top 1px solid #eee
-    .presets-color
-      border-radius 3px
-      overflow hidden
-      position relative
-      display inline-block
-      margin 0 10px 10px 0
-      vertical-align top
-      cursor pointer
-      width 16px
-      height 16px
-      box-shadow inset 0 0 0 1px rgba(0,0,0,.15)
+.vue-color__sketch__saturation-wrap
+  width 100%
+  padding-bottom 75%
+  position relative
+  overflow hidden
+.vue-color__sketch__controls
+  display flex
+.vue-color__sketch__sliders
+  padding 4px 0
+  flex 1
+  .vue-color__c-hue
+  .vue-color__c-alpha__gradient
+    border-radius 2px
+.vue-color__sketch__hue-wrap
+  position relative
+  height 10px
+.vue-color__sketch__alpha-wrap
+  position relative
+  height 10px
+  margin-top 4px
+  overflow hidden
+.vue-color__sketch__color-wrap
+  width 24px
+  height 24px
+  position relative
+  margin-top 4px
+  margin-left 4px
+  border-radius 3px
+.vue-color__sketch__active-color
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+  border-radius 2px
+  box-shadow inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)
+  z-index 2
+.vue-color__sketch__field
+  display flex
+  padding-top 4px
+  .vue-color__editable-input__input
+    width 80%
+    padding 4px 10% 3px
+    border none
+    box-shadow inset 0 0 0 1px #ccc
+    font-size 11px
+  .vue-color__editable-input__label
+    display block
+    text-align center
+    font-size 11px
+    color #222
+    padding-top 3px
+    padding-bottom 4px
+    text-transform capitalize
+.vue-color__sketch__field--single
+  flex 1
+  padding-left 6px
+.vue-color__sketch__field--double
+  flex 2
+.vue-color__sketch__presets
+  margin-right -10px
+  margin-left -10px
+  padding-left 10px
+  padding-top 10px
+  border-top 1px solid #eee
+.vue-color__sketch__presets-color
+  border-radius 3px
+  overflow hidden
+  position relative
+  display inline-block
+  margin 0 10px 10px 0
+  vertical-align top
+  cursor pointer
+  width 16px
+  height 16px
+  box-shadow inset 0 0 0 1px rgba(0,0,0,.15)
 </style>

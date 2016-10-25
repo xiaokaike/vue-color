@@ -1,15 +1,15 @@
 <template>
-  <div class="c-alpha">
-    <div class="checkboard-wrap">
+  <div class="vue-color__c-alpha">
+    <div class="vue-color__c-alpha__checkboard-wrap">
       <checkboard></checkboard>
     </div>
-    <div class="gradient" :style="{background: gradientColor}"></div>
-    <div class="container" v-el:container
+    <div class="vue-color__c-alpha__gradient" :style="{background: gradientColor}"></div>
+    <div class="vue-color__c-alpha__container" v-el:container
         @mousedown="handleMouseDown"
         @touchmove="handleChange"
         @touchstart="handleChange">
-      <div class="pointer" :style="{left: colors.a * 100 + '%'}">
-        <slot><div class="picker"></div></slot>
+      <div class="vue-color__c-alpha__pointer" :style="{left: colors.a * 100 + '%'}">
+        <slot><div class="vue-color__c-alpha__picker"></div></slot>
       </div>
     </div>
   </div>
@@ -78,39 +78,41 @@ export default {
 </script>
 
 <style lang="stylus">
-.c-alpha
+.vue-color__c-alpha
   position absolute
   top 0px
   right 0px
   bottom 0px
   left 0px
-  .checkboard-wrap
-    position absolute
-    top 0px
-    right 0px
-    bottom 0px
-    left 0px
-    overflow hidden
-  .gradient
-    position absolute
-    top 0px
-    right 0px
-    bottom 0px
-    left 0px
-  .container
-    position relative
-    z-index 2
-    height 100%
-    margin 0 3px
-  .pointer
-    z-index 2
-    position absolute
-  .picker
-    width 4px
-    border-radius 1px
-    height 8px
-    box-shadow 0 0 2px rgba(0, 0, 0, .6)
-    background #fff
-    margin-top 1px
-    transform translateX(-2px)
+.vue-color__c-alpha__checkboard-wrap
+  position absolute
+  top 0px
+  right 0px
+  bottom 0px
+  left 0px
+  overflow hidden
+.vue-color__c-alpha__gradient
+  position absolute
+  top 0px
+  right 0px
+  bottom 0px
+  left 0px
+.vue-color__c-alpha__container
+  cursor pointer
+  position relative
+  z-index 2
+  height 100%
+  margin 0 3px
+.vue-color__c-alpha__pointer
+  z-index 2
+  position absolute
+.vue-color__c-alpha__picker
+  cursor pointer
+  width 4px
+  border-radius 1px
+  height 8px
+  box-shadow 0 0 2px rgba(0, 0, 0, .6)
+  background #fff
+  margin-top 1px
+  transform translateX(-2px)
 </style>
