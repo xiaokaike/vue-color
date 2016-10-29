@@ -1,9 +1,9 @@
 <template>
   <div class="vue-color__editable-input">
     <input class="vue-color__editable-input__input"
-      v-model="value"
+      v-model="val"
       @keydown="handleKeyDown"
-      @input="handleChange">
+      @input="update">
     <span class="vue-color__editable-input__label">{{label}}</span>
   </div>
 </template>
@@ -18,6 +18,11 @@ export default {
     arrowOffset: {
       type: Number,
       default: 1
+    }
+  },
+  computed: {
+    val () {
+      return this.value
     }
   },
   filters: {
@@ -35,34 +40,37 @@ export default {
     }
   },
   methods: {
-    handleChange (e) {
-      var data = {}
-      data[this.label] = this.value
+    update (e) {
+      this.handleChange(e.target.value)
+    },
+    handleChange (newVal) {
+      let data = {}
+      data[this.label] = newVal
       this.$emit('on-change', data)
     },
     handleBlur (e) {
       console.log(e)
     },
     handleKeyDown (e) {
-      var value = this.value
-      var number = Number(value)
+      let val = this.val
+      let number = Number(val)
 
       if (number) {
-        var amount = this.arrowOffset || 1
+        let amount = this.arrowOffset || 1
 
         // Up
         if (e.keyCode === 38) {
-          this.value = number + amount
+          val = number + amount
+          this.handleChange(val)
           e.preventDefault()
         }
 
         // Down
         if (e.keyCode === 40) {
-          this.value = number - amount
+          val = number - amount
+          this.handleChange(val)
           e.preventDefault()
         }
-
-        this.handleChange()
       }
     },
     handleDrag (e) {
