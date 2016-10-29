@@ -11,7 +11,7 @@
     "example": "node build/build.js",
     "dev": "node build/dev-server.js",
     "e2e": "node test/e2e/runner.js",
-    "gh": "npm run build && node build/deploy",
+    "gh": "npm run example && node build/deploy",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "test": "npm run unit && npm run e2e",
     "unit": "karma start test/unit/karma.conf.js --single-run",
