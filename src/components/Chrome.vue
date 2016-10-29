@@ -159,6 +159,7 @@ export default {
   box-sizing initial
   width 225px
   font-family Menlo
+  background-color #fff
 .vue-color__chrome__controls
   display flex
 .vue-color__chrome__color-wrap
@@ -220,6 +221,7 @@ export default {
   height 10px
 .vue-color__chrome__chrome-body
   padding 16px 16px 12px
+  background-color #fff
 .vue-color__chrome__saturation-wrap
   width 100%
   padding-bottom 55%

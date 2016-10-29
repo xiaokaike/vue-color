@@ -101,6 +101,7 @@ export default {
   width 240px
   border-radius 2px
   box-shadow 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)
+  background-color #fff
 .vue-color__compact__colors
   overflow hidden
   padding 0

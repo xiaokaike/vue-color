@@ -65,6 +65,7 @@ export default {
   position relative
   border-radius 2px
   box-shadow 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)
+  background-color #fff
   .vue-color__editable-input__input
     width 100%
     margin-top 12px
