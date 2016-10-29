@@ -134,9 +134,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-2", __vue_options__)
+	    hotAPI.createRecord("data-v-1", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-2", __vue_options__)
+	    hotAPI.reload("data-v-1", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Compact.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -160,8 +160,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -556,8 +556,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var hsl = color.toHsl();
 	  var hsv = color.toHsv();
 	  if (hsl.s === 0) {
-	    hsl.h = oldHue || 0;
-	    hsv.h = oldHue || 0;
+	    hsl.h = data.h || oldHue || 0;
+	    hsv.h = data.h || oldHue || 0;
 	  }
 	  return {
 	    hsl: hsl,
@@ -598,7 +598,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  methods: {
 	    colorChange: function colorChange(data, oldHue) {
-	      this.colors = _colorChange(data, oldHue);
+	      this.colors = _colorChange(data, oldHue || this.oldHue);
+	      this.oldHue = this.colors.hsl.h;
 	    },
 	    isValidHex: function isValidHex(hex) {
 	      return (0, _tinycolor2.default)(hex).isValid();
@@ -1993,6 +1994,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('input', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (value),
 	      expression: "value"
 	    }],
@@ -2044,6 +2046,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, [_h('div', {
 	      directives: [{
 	        name: "show",
+	        rawName: "v-show",
 	        value: (c === pick),
 	        expression: "c === pick"
 	      }],
@@ -2054,7 +2057,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-1", module.exports)
 	  }
 	}
 
@@ -2093,9 +2096,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-1", __vue_options__)
+	    hotAPI.createRecord("data-v-2", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-1", __vue_options__)
+	    hotAPI.reload("data-v-2", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Material.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2119,8 +2122,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2202,6 +2205,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.hex),
 	      expression: "colors.hex"
 	    }],
@@ -2228,6 +2232,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.r),
 	      expression: "colors.rgba.r"
 	    }],
@@ -2248,6 +2253,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.g),
 	      expression: "colors.rgba.g"
 	    }],
@@ -2268,6 +2274,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.b),
 	      expression: "colors.rgba.b"
 	    }],
@@ -2288,7 +2295,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-1", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2", module.exports)
 	  }
 	}
 
@@ -2677,6 +2684,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('hue', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors),
 	      expression: "colors"
 	    }],
@@ -2913,6 +2921,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }, [_h('div', {
 	        directives: [{
 	          name: "show",
+	          rawName: "v-show",
 	          value: (c == pick),
 	          expression: "c == pick"
 	        }],
@@ -4159,6 +4168,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('saturation', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors),
 	      expression: "colors"
 	    }],
@@ -4176,6 +4186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('hue', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors),
 	      expression: "colors"
 	    }],
@@ -4224,6 +4235,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.hsl.h),
 	      expression: "colors.hsl.h"
 	    }],
@@ -4242,6 +4254,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }), " ", _h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.hsl.s),
 	      expression: "colors.hsl.s"
 	    }],
@@ -4260,6 +4273,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }), " ", _h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.hsl.l),
 	      expression: "colors.hsl.l"
 	    }],
@@ -4278,6 +4292,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }), " ", _m(3), " ", " ", _h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.r),
 	      expression: "colors.rgba.r"
 	    }],
@@ -4296,6 +4311,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }), " ", _h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.g),
 	      expression: "colors.rgba.g"
 	    }],
@@ -4314,6 +4330,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }), " ", _h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.b),
 	      expression: "colors.rgba.b"
 	    }],
@@ -4332,6 +4349,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }), " ", _m(4), " ", " ", _h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.hex),
 	      expression: "colors.hex"
 	    }],
@@ -4565,6 +4583,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('saturation', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors),
 	      expression: "colors"
 	    }],
@@ -4586,6 +4605,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('hue', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors),
 	      expression: "colors"
 	    }],
@@ -4603,6 +4623,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('alpha', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors),
 	      expression: "colors"
 	    }],
@@ -4629,6 +4650,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.hex),
 	      expression: "colors.hex"
 	    }],
@@ -4649,6 +4671,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.r),
 	      expression: "colors.rgba.r"
 	    }],
@@ -4669,6 +4692,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.g),
 	      expression: "colors.rgba.g"
 	    }],
@@ -4689,6 +4713,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.b),
 	      expression: "colors.rgba.b"
 	    }],
@@ -4709,6 +4734,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.a),
 	      expression: "colors.a"
 	    }],
@@ -4947,6 +4973,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('saturation', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors),
 	      expression: "colors"
 	    }],
@@ -4977,6 +5004,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('hue', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors),
 	      expression: "colors"
 	    }],
@@ -4994,6 +5022,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('alpha', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors),
 	      expression: "colors"
 	    }],
@@ -5011,6 +5040,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('div', {
 	    directives: [{
 	      name: "show",
+	      rawName: "v-show",
 	      value: (fieldsIndex === 0),
 	      expression: "fieldsIndex === 0"
 	    }],
@@ -5020,6 +5050,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.hex),
 	      expression: "colors.hex"
 	    }],
@@ -5038,6 +5069,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  })])]), " ", _h('div', {
 	    directives: [{
 	      name: "show",
+	      rawName: "v-show",
 	      value: (fieldsIndex === 1),
 	      expression: "fieldsIndex === 1"
 	    }],
@@ -5047,6 +5079,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.r),
 	      expression: "colors.rgba.r"
 	    }],
@@ -5067,6 +5100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.g),
 	      expression: "colors.rgba.g"
 	    }],
@@ -5087,6 +5121,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.rgba.b),
 	      expression: "colors.rgba.b"
 	    }],
@@ -5107,6 +5142,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.a),
 	      expression: "colors.a"
 	    }],
@@ -5127,6 +5163,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  })])]), " ", _h('div', {
 	    directives: [{
 	      name: "show",
+	      rawName: "v-show",
 	      value: (fieldsIndex === 2),
 	      expression: "fieldsIndex === 2"
 	    }],
@@ -5136,6 +5173,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.hsl.h),
 	      expression: "colors.hsl.h"
 	    }],
@@ -5156,6 +5194,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.hsl.s),
 	      expression: "colors.hsl.s"
 	    }],
@@ -5176,6 +5215,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.hsl.l),
 	      expression: "colors.hsl.l"
 	    }],
@@ -5196,6 +5236,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, [_h('ed-in', {
 	    directives: [{
 	      name: "model",
+	      rawName: "v-model",
 	      value: (colors.a),
 	      expression: "colors.a"
 	    }],
@@ -5238,6 +5279,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  })])]), " ", _h('div', {
 	    directives: [{
 	      name: "show",
+	      rawName: "v-show",
 	      value: (highlight),
 	      expression: "highlight"
 	    }],
