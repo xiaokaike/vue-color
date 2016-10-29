@@ -1,45 +1,55 @@
 <template>
   <div id="app">
     <a class="github-fork-ribbon" href="https://github.com/xiaokaike/vue-color" title="Fork me on GitHub">Fork me on GitHub</a>
-    <header>
-      <h1>Vue-color</h1>
-    </header>
-    <div class="wrap">
-      <!-- <div class="test-wrap">
-        <p>{{colors.hex}}</p>
-        <p>{{colors.rgba.r}} {{colors.rgba.g}} {{colors.rgba.b}} {{colors.rgba.a}}</p>
-        <p>{{colors.hsl.h}} {{colors.hsl.s}} {{colors.hsl.l}} {{colors.hsl.a}}</p>
-        <p>{{colors.hsv.h}} {{colors.hsl.s}} {{colors.hsv.v}} {{colors.hsv.a}}</p>
-        <p>{{colors.a}}</p>
-      </div> -->
-      <div class="components-wrap" style="position: absolute; top: 10px; left: 10px;">
-        <material-picker v-model="colors" @change-color="onChange"></material-picker>
-        <h6>Material</h6>
+    <div class="header-container">
+      <div class="header-bg" :style="{'background-color': bgc}"></div>
+      <header class="header">
+        <div class="intro-wrap">
+          <div class="intro">
+            <h1>Vue-color</h1>
+            <p>A Collection of Color Pickers from Sketch, Photoshop, Chrome, Github, Twitter, Material Design & more</p>
+          </div>  
+        </div> 
+        <div class="demo-item">
+          <chrome-picker v-model="colors" @change-color="onChange"></chrome-picker>
+          <h6>Chrome</h6>
+        </div>
+      </header>  
+    </div>
+    
+    <div class="demo-container">
+      <div class="demo-list">
+        <div class="demo-item">
+          <sketch-picker v-model="colors" @change-color="onChange"></sketch-picker>
+          <h6>Sketch</h6>
+        </div> 
+        <div class="demo-item">
+          <photoshop-picker v-model="colors" @change-color="onChange" @ok="onOk" @cancel="onCancel"></photoshop-picker>
+          <h6>Photoshop</h6>
+        </div>
+      </div>  
+      <div class="demo-list">
+        <div class="demo-item">
+          <material-picker v-model="colors" @change-color="onChange"></material-picker>
+          <h6>Material</h6>
+        </div>
+        <div class="demo-item">
+          <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
+          <h6>Slider</h6>
+        </div>
       </div>
-      <div class="components-wrap" style="position: absolute; top: 10px; left: 200px;">
-        <compact-picker v-model="colors" @change-color="onChange"></compact-picker>
-        <h6>Compact</h6>
+      <div class="demo-list">
+        <div class="demo-item">
+          <compact-picker v-model="colors" @change-color="onChange"></compact-picker>
+          <h6>Compact</h6>
+        </div>
+        <div class="demo-item">
+          <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
+          <h6>Swatches</h6>
+        </div>  
       </div>
-      <div class="components-wrap" style="position: absolute; top: 180px; left: 10px;">
-        <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
-        <h6>Slider</h6>
-      </div>
-      <div class="components-wrap" style="position: absolute; top: 10px; right: 0px;">
-        <photoshop-picker v-model="colors" @change-color="onChange" @ok="onOk" @cancel="onCancel"></photoshop-picker>
-        <h6>Photoshop</h6>
-      </div>
-      <div class="components-wrap" style="position: absolute; top: 380px; right: 0px;">
-        <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
-        <h6>Swatches</h6>
-      </div>
-      <div class="components-wrap" style="position: absolute; top: 400px; left: 300px;">
-        <sketch-picker v-model="colors" @change-color="onChange"></sketch-picker>
-        <h6>Sketch</h6>
-      </div> 
-      <div class="components-wrap" style="position: absolute; top: 400px; left: 0px;">
-        <chrome-picker v-model="colors" @change-color="onChange"></chrome-picker>
-        <h6>Chrome</h6>
-      </div>
+      
+      
     </div>
   </div>
 </template>
@@ -77,11 +87,6 @@ let defaultProps = {
 }
 
 export default {
-  data () {
-    return {
-      colors: defaultProps
-    }
-  },
   components: {
     'material-picker': material,
     'compact-picker': compact,
@@ -90,6 +95,16 @@ export default {
     'sketch-picker': sketch,
     'chrome-picker': chrome,
     'photoshop-picker': photoshop
+  },
+  data () {
+    return {
+      colors: defaultProps
+    }
+  },
+  computed: {
+    bgc () {
+      return this.colors.hex
+    }
   },
   methods: {
     onOk () {
@@ -107,33 +122,60 @@ export default {
 }
 </script>
 
-<style>
-header {
-  text-align: center;
-}
+<style lang="stylus">
+*
+  margin 0
+  padding 0
+html
+  font-family 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif
+.header-container
+  position relative
+  .header-bg
+    position absolute
+    top 0
+    left 0
+    right 0
+    min-height 580px
+    background-color #333
+    opacity 0.5
+    z-index 0
+  .header
+    display flex
+    max-width 780px
+    margin 0 auto
+    padding 20px 0
+    .intro-wrap
+      flex 1
+      margin-right 100px
+    .intro
+      width 300px
+      color rgba(0, 0, 0, 0.65098)
+      > h1
+        font-size 40px
+        font-weight normal
+        line-height 60px
+      > p
+        font-size 16px
+        font-weight normal
+        line-height 22px
+  
+.demo-container
+  max-width 780px
+  min-height 800px
+  margin 0 auto
+  position relative
+  z-index 2
+  .demo-list
+    display flex
+    margin-bottom 20px
+.demo-item
+  position relative
+  margin-bottom 10px
+  margin 0 10px 0 10px
+  z-index 2
+  h6 
+    margin 0
+    padding 5px 0
+    color #666
 
-.wrap {
-  width: 1000px;
-  min-height: 800px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.components-wrap {
-  margin-bottom: 10px;
-}
-
-.components-wrap h6 {
-  margin: 0;
-  padding: 5px 0;
-  color: #666;
-}
-
-.test-wrap {
-  margin-bottom: 10px;
-}
-
-.test-wrap p {
-  margin: 0;
-}
 </style>
