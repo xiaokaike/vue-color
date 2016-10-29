@@ -1,10 +1,10 @@
 <template>
   <div class="vue-color__editable-input">
     <input class="vue-color__editable-input__input"
-      v-model="val | maxFilter"
+      v-model="value"
       @keydown="handleKeyDown"
       @input="handleChange">
-    <span class="vue-color__editable-input__label" @mousedown="handleMouseDown">{{label}}</span>
+    <span class="vue-color__editable-input__label">{{label}}</span>
   </div>
 </template>
 
@@ -13,8 +13,7 @@ export default {
   name: 'editableInput',
   props: {
     label: String,
-    val: [String | Number],
-    onChange: Function,
+    value: [String, Number],
     max: Number,
     arrowOffset: {
       type: Number,
@@ -38,28 +37,28 @@ export default {
   methods: {
     handleChange (e) {
       var data = {}
-      data[this.label] = this.val
-      this.onChange(data)
+      data[this.label] = this.value
+      this.$emit('on-change', data)
     },
     handleBlur (e) {
       console.log(e)
     },
     handleKeyDown (e) {
-      var val = this.val
-      var number = Number(val)
+      var value = this.value
+      var number = Number(value)
 
       if (number) {
         var amount = this.arrowOffset || 1
 
         // Up
         if (e.keyCode === 38) {
-          this.val = number + amount
+          this.value = number + amount
           e.preventDefault()
         }
 
         // Down
         if (e.keyCode === 40) {
-          this.val = number - amount
+          this.value = number - amount
           e.preventDefault()
         }
 

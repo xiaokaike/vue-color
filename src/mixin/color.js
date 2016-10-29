@@ -24,12 +24,27 @@ function _colorChange (data, oldHue) {
 }
 
 export default {
-  props: {
-    colors: Object
-  },
+  props: ['value'],
   data () {
     return {
-      oldHue: 0
+      val: _colorChange(this.value)
+    }
+  },
+  computed: {
+    colors: {
+      get () {
+        return this.val
+      },
+      set (newVal) {
+        this.val = newVal
+        this.$emit('change-color', newVal)
+      }
+    }
+  },
+  watch: {
+    value (newVal) {
+      this.val = _colorChange(newVal)
+      // this.$emit('change', newVal)
     }
   },
   created () {
@@ -40,7 +55,7 @@ export default {
       as HSL or HSV exists and reflect the HEX value
       TODO accept any kind of color value, HEX, RGBA, HSL and others
     */
-    this.colors = _colorChange(this.colors)
+    // this.colors = _colorChange(this.colors)
   },
   methods: {
     colorChange (data, oldHue) {

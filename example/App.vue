@@ -13,31 +13,31 @@
         <p>{{colors.a}}</p>
       </div> -->
       <div class="components-wrap" style="position: absolute; top: 10px; left: 10px;">
-        <material-picker :colors.sync="colors"></material-picker>
+        <material-picker v-model="colors" @change-color="onChange"></material-picker>
         <h6>Material</h6>
       </div>
       <div class="components-wrap" style="position: absolute; top: 10px; left: 200px;">
-        <compact-picker :colors.sync="colors"></compact-picker>
+        <compact-picker v-model="colors" @change-color="onChange"></compact-picker>
         <h6>Compact</h6>
       </div>
       <div class="components-wrap" style="position: absolute; top: 180px; left: 10px;">
-        <slider-picker :colors.sync="colors"></slider-picker>
+        <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
         <h6>Slider</h6>
       </div>
       <div class="components-wrap" style="position: absolute; top: 10px; right: 0px;">
-        <photoshop-picker :colors.sync="colors" @ok="onOk" @cancel="onCancel"></photoshop-picker>
+        <photoshop-picker v-model="colors" @change-color="onChange" @ok="onOk" @cancel="onCancel"></photoshop-picker>
         <h6>Photoshop</h6>
       </div>
       <div class="components-wrap" style="position: absolute; top: 380px; right: 0px;">
-        <swatches-picker :colors.sync="colors"></swatches-picker>
+        <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
         <h6>Swatches</h6>
       </div>
       <div class="components-wrap" style="position: absolute; top: 400px; left: 300px;">
-        <sketch-picker :colors.sync="colors"></sketch-picker>
+        <sketch-picker v-model="colors" @change-color="onChange"></sketch-picker>
         <h6>Sketch</h6>
-      </div>
+      </div> 
       <div class="components-wrap" style="position: absolute; top: 400px; left: 0px;">
-        <chrome-picker :colors.sync="colors"></chrome-picker>
+        <chrome-picker v-model="colors" @change-color="onChange"></chrome-picker>
         <h6>Chrome</h6>
       </div>
     </div>
@@ -97,7 +97,12 @@ export default {
     },
     onCancel () {
       console.log('cancel')
+    },
+    onChange (val) {
+      this.colors = val
     }
+  },
+  created () {
   }
 }
 </script>

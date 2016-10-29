@@ -4,7 +4,7 @@
       <checkboard></checkboard>
     </div>
     <div class="vue-color__c-alpha__gradient" :style="{background: gradientColor}"></div>
-    <div class="vue-color__c-alpha__container" v-el:container
+    <div class="vue-color__c-alpha__container" ref="container"
         @mousedown="handleMouseDown"
         @touchmove="handleChange"
         @touchstart="handleChange">
@@ -21,13 +21,16 @@ import checkboard from './Checkboard.vue'
 export default {
   name: 'Alpha',
   props: {
-    colors: Object,
+    value: Object,
     onChange: Function
   },
   components: {
     checkboard
   },
   computed: {
+    colors () {
+      return this.value
+    },
     gradientColor () {
       var rgba = this.colors.rgba
       var rgbStr = [rgba.r, rgba.g, rgba.b].join(',')
@@ -37,7 +40,7 @@ export default {
   methods: {
     handleChange (e, skip) {
       !skip && e.preventDefault()
-      var container = this.$els.container
+      var container = this.$refs.container
       var containerWidth = container.clientWidth
       var left = (e.pageX || e.touches[0].pageX) - (container.getBoundingClientRect().left + window.pageXOffset)
 
@@ -51,7 +54,7 @@ export default {
       }
 
       if (this.colors.a !== a) {
-        this.onChange({
+        this.$emit('on-change', {
           h: this.colors.hsl.h,
           s: this.colors.hsl.s,
           l: this.colors.hsl.l,

@@ -9,7 +9,7 @@ export default {
   name: 'Checkboard',
   props: {
     size: {
-      type: [Number | String],
+      type: [Number, String],
       default: 8
     },
     white: {
