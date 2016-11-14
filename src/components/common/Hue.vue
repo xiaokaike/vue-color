@@ -1,6 +1,6 @@
 <template>
-  <div class="vue-color__c-hue" :class="directionClass">
-    <div class="vue-color__c-hue__container" v-el:container
+  <div :class="['vue-color__c-hue', directionClass]">
+    <div class="vue-color__c-hue__container" ref="container"
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
       @touchstart="handleChange">
@@ -15,8 +15,7 @@
 export default {
   name: 'Hue',
   props: {
-    colors: Object,
-    onChange: Function,
+    value: Object,
     direction: {
       type: String,
       // [horizontal | vertical]
@@ -24,6 +23,9 @@ export default {
     }
   },
   computed: {
+    colors () {
+      return this.value
+    },
     directionClass () {
       return {
         'vue-color__c-hue--horizontal': this.direction === 'horizontal',
@@ -49,7 +51,7 @@ export default {
     handleChange (e, skip) {
       !skip && e.preventDefault()
 
-      var container = this.$els.container
+      var container = this.$refs.container
       var containerWidth = container.clientWidth
       var containerHeight = container.clientHeight
       var left = (e.pageX || e.touches[0].pageX) - (container.getBoundingClientRect().left + window.pageXOffset)
@@ -68,7 +70,7 @@ export default {
         }
 
         if (this.colors.hsl.h !== h) {
-          this.onChange({
+          this.$emit('on-change', {
             h: h,
             s: this.colors.hsl.s,
             l: this.colors.hsl.l,
@@ -87,7 +89,7 @@ export default {
         }
 
         if (this.colors.hsl.h !== h) {
-          this.onChange({
+          this.$emit('on-change', {
             h: h,
             s: this.colors.hsl.s,
             l: this.colors.hsl.l,

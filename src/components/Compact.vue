@@ -1,14 +1,14 @@
 <template>
   <div class="vue-color__compact">
     <ul class="vue-color__compact__colors">
-      <li class="vue-color__compact__color-item" v-for="c in defaultColors" 
+      <li class="vue-color__compact__color-item" v-for="c in defaultColors"
         @click="handlerClick(c)"
         :class="{'vue-color__compact__color-item--white': c === '#FFFFFF' }"
         :style="{background: c}">
         <div class="vue-color__compact__dot" v-show="c === pick"></div>
       </li>
     </ul>
-    <div class="vue-color__compact__fields">
+    <!-- <div class="vue-color__compact__fields">
       <div class="vue-color__compact__pick-color" :style="{background: pick}"></div>
       <div class="vue_color__compact__col-hex">
         <ed-in label="vue-color__compact__hex"
@@ -17,18 +17,18 @@
         :on-change="onChange"></ed-in>
       </div>
       <div class="vue-color__compact__col-3">
-        <ed-in label="r" :val.sync="colors.rgba.r" 
+        <ed-in label="r" :val.sync="colors.rgba.r"
         :on-change="onChange"></ed-in>
       </div>
       <div class="vue-color__compact__col-3">
-        <ed-in label="g" :val.sync="colors.rgba.g" 
+        <ed-in label="g" :val.sync="colors.rgba.g"
         :on-change="onChange"></ed-in>
       </div>
       <div class="vue-color__compact__col-3">
         <ed-in label="b" :val.sync="colors.rgba.b"
         :on-change="onChange"></ed-in>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -101,6 +101,7 @@ export default {
   width 240px
   border-radius 2px
   box-shadow 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)
+  background-color #fff
 .vue-color__compact__colors
   overflow hidden
   padding 0
@@ -117,7 +118,7 @@ export default {
 .vue-color__compact__color-item--white
   box-shadow inset 0 0 0 1px #ddd
   .vue-color__compact__dot
-      background #000      
+      background #000
 .vue-color__compact__dot
   position absolute
   top 5px
@@ -160,7 +161,7 @@ export default {
   flex 2
   .vue-color__editable-input__input
     width 80%
-    padding-left 20%  
+    padding-left 20%
   .vue-color__editable-input__label
     display none
 </style>

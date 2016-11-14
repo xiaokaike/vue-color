@@ -1,25 +1,25 @@
 <template>
-  
+
   <div class="vue-color__material">
-    <ed-in class="vue-color__material__hex" label="hex" :val.sync="colors.hex"
-    :style="{ borderColor: colors.hex }"
-    :on-change="onChange"></ed-in>
+    <ed-in class="vue-color__material__hex" label="hex" v-model="colors.hex"
+      :style="{ borderColor: colors.hex }" @on-change="onChange"></ed-in>
+
     <div class="vue-color__material__split">
       <div class="vue-color__material__third">
-        <ed-in label="r" :val.sync="colors.rgba.r" 
-        :on-change="onChange"></ed-in>
+        <ed-in label="r" v-model="colors.rgba.r"
+        @on-change="onChange"></ed-in>
       </div>
       <div class="vue-color__material__third">
-        <ed-in label="g" :val.sync="colors.rgba.g" 
-        :on-change="onChange"></ed-in>
+        <ed-in label="g" v-model="colors.rgba.g"
+        @on-change="onChange"></ed-in>
       </div>
       <div class="vue-color__material__third">
-        <ed-in label="b" :val.sync="colors.rgba.b"
-        :on-change="onChange"></ed-in>
+        <ed-in label="b" v-model="colors.rgba.b"
+        @on-change="onChange"></ed-in>
       </div>
-    </div>  
+    </div>
   </div>
-  
+
 </template>
 
 <script>
@@ -29,12 +29,6 @@ import colorMixin from '../mixin/color'
 export default {
   name: 'Material',
   mixins: [colorMixin],
-  props: {
-  },
-  data () {
-    return {
-    }
-  },
   components: {
     'ed-in': editableInput
   },
@@ -71,6 +65,7 @@ export default {
   position relative
   border-radius 2px
   box-shadow 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)
+  background-color #fff
   .vue-color__editable-input__input
     width 100%
     margin-top 12px

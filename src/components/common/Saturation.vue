@@ -1,7 +1,7 @@
 <template>
   <div class="vue-color__saturation" 
     :style="{background: bgColor}"
-    v-el:container
+    ref="container"
     @mousedown="handleMouseDown">
     <div class="vue-color__saturation--white"></div>
     <div class="vue-color__saturation--black"></div>
@@ -17,10 +17,12 @@ import throttle from 'lodash.throttle'
 export default {
   name: 'Saturation',
   props: {
-    colors: Object,
-    onChange: Function
+    value: Object
   },
   computed: {
+    colors () {
+      return this.value
+    },
     bgColor () {
       return 'hsl(' + this.colors.hsl.h + ',100%, 50%)'
     },
@@ -37,7 +39,7 @@ export default {
     }, 50),
     handleChange (e, skip) {
       !skip && e.preventDefault()
-      var container = this.$els.container
+      var container = this.$refs.container
       var containerWidth = container.clientWidth
       var containerHeight = container.clientHeight
       var left = (e.pageX || e.touches[0].pageX) - (container.getBoundingClientRect().left + window.pageXOffset)
@@ -63,6 +65,9 @@ export default {
         a: this.colors.hsl.a,
         source: 'rgb'
       })
+    },
+    onChange (param) {
+      this.$emit('on-change', param)
     },
     handleMouseDown (e) {
       this.handleChange(e, true)

@@ -54,7 +54,6 @@ module.exports = {
   eslint: {
     formatter: require('eslint-friendly-formatter')
   },
-  devtool: '#source-map',
   babel: {
     presets: ['es2015'],
     plugins: ['transform-runtime']
@@ -78,9 +77,4 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.optimize.OccurenceOrderPlugin()
     // new ExtractTextPlugin('build.css')
   ]
-} else {
-  // module.exports.plugins = [
-  //   new ExtractTextPlugin('build.css')
-  // ]
-  // module.exports.devtool = '#source-map'
 }
