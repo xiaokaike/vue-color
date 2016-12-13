@@ -99,10 +99,10 @@ export default {
       }
     },
     handleAccept () {
-      this.$dispatch('ok')
+      this.$emit('ok')
     },
     handleCancel () {
-      this.$dispatch('cancel')
+      this.$emit('cancel')
     }
   }
 
