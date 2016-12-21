@@ -76,19 +76,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Photoshop2 = _interopRequireDefault(_Photoshop);
 
-	var _Sketch = __webpack_require__(58);
+	var _Sketch = __webpack_require__(57);
 
 	var _Sketch2 = _interopRequireDefault(_Sketch);
 
-	var _Chrome = __webpack_require__(63);
+	var _Chrome = __webpack_require__(62);
 
 	var _Chrome2 = _interopRequireDefault(_Chrome);
 
-	var _Alpha = __webpack_require__(47);
+	var _Alpha = __webpack_require__(46);
 
 	var _Alpha2 = _interopRequireDefault(_Alpha);
 
-	var _Checkboard = __webpack_require__(51);
+	var _Checkboard = __webpack_require__(50);
 
 	var _Checkboard2 = _interopRequireDefault(_Checkboard);
 
@@ -164,9 +164,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-2", __vue_options__)
+	    hotAPI.createRecord("data-v-1", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-2", __vue_options__)
+	    hotAPI.reload("data-v-1", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Compact.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -190,8 +190,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -660,20 +660,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;// TinyColor v1.3.0
+	var __WEBPACK_AMD_DEFINE_RESULT__;// TinyColor v1.4.1
 	// https://github.com/bgrins/TinyColor
 	// Brian Grinstead, MIT License
 
-	(function() {
+	(function(Math) {
 
 	var trimLeft = /^\s+/,
 	    trimRight = /\s+$/,
 	    tinyCounter = 0,
-	    math = Math,
-	    mathRound = math.round,
-	    mathMin = math.min,
-	    mathMax = math.max,
-	    mathRandom = math.random;
+	    mathRound = Math.round,
+	    mathMin = Math.min,
+	    mathMax = Math.max,
+	    mathRandom = Math.random;
 
 	function tinycolor (color, opts) {
 
@@ -781,11 +780,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    toHexString: function(allow3Char) {
 	        return '#' + this.toHex(allow3Char);
 	    },
-	    toHex8: function() {
-	        return rgbaToHex(this._r, this._g, this._b, this._a);
+	    toHex8: function(allow4Char) {
+	        return rgbaToHex(this._r, this._g, this._b, this._a, allow4Char);
 	    },
-	    toHex8String: function() {
-	        return '#' + this.toHex8();
+	    toHex8String: function(allow4Char) {
+	        return '#' + this.toHex8(allow4Char);
 	    },
 	    toRgb: function() {
 	        return { r: mathRound(this._r), g: mathRound(this._g), b: mathRound(this._b), a: this._a };
@@ -815,13 +814,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return hexNames[rgbToHex(this._r, this._g, this._b, true)] || false;
 	    },
 	    toFilter: function(secondColor) {
-	        var hex8String = '#' + rgbaToHex(this._r, this._g, this._b, this._a);
+	        var hex8String = '#' + rgbaToArgbHex(this._r, this._g, this._b, this._a);
 	        var secondHex8String = hex8String;
 	        var gradientType = this._gradientType ? "GradientType = 1, " : "";
 
 	        if (secondColor) {
 	            var s = tinycolor(secondColor);
-	            secondHex8String = s.toHex8String();
+	            secondHex8String = '#' + rgbaToArgbHex(s._r, s._g, s._b, s._a);
 	        }
 
 	        return "progid:DXImageTransform.Microsoft.gradient("+gradientType+"startColorstr="+hex8String+",endColorstr="+secondHex8String+")";
@@ -832,7 +831,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var formattedString = false;
 	        var hasAlpha = this._a < 1 && this._a >= 0;
-	        var needsAlphaFormat = !formatSet && hasAlpha && (format === "hex" || format === "hex6" || format === "hex3" || format === "name");
+	        var needsAlphaFormat = !formatSet && hasAlpha && (format === "hex" || format === "hex6" || format === "hex3" || format === "hex4" || format === "hex8" || format === "name");
 
 	        if (needsAlphaFormat) {
 	            // Special case for "transparent", all other non-alpha formats
@@ -853,6 +852,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        if (format === "hex3") {
 	            formattedString = this.toHexString(true);
+	        }
+	        if (format === "hex4") {
+	            formattedString = this.toHex8String(true);
 	        }
 	        if (format === "hex8") {
 	            formattedString = this.toHex8String();
@@ -966,6 +968,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var rgb = { r: 0, g: 0, b: 0 };
 	    var a = 1;
+	    var s = null;
+	    var v = null;
+	    var l = null;
 	    var ok = false;
 	    var format = false;
 
@@ -974,22 +979,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    if (typeof color == "object") {
-	        if (color.hasOwnProperty("r") && color.hasOwnProperty("g") && color.hasOwnProperty("b")) {
+	        if (isValidCSSUnit(color.r) && isValidCSSUnit(color.g) && isValidCSSUnit(color.b)) {
 	            rgb = rgbToRgb(color.r, color.g, color.b);
 	            ok = true;
 	            format = String(color.r).substr(-1) === "%" ? "prgb" : "rgb";
 	        }
-	        else if (color.hasOwnProperty("h") && color.hasOwnProperty("s") && color.hasOwnProperty("v")) {
-	            color.s = convertToPercentage(color.s);
-	            color.v = convertToPercentage(color.v);
-	            rgb = hsvToRgb(color.h, color.s, color.v);
+	        else if (isValidCSSUnit(color.h) && isValidCSSUnit(color.s) && isValidCSSUnit(color.v)) {
+	            s = convertToPercentage(color.s);
+	            v = convertToPercentage(color.v);
+	            rgb = hsvToRgb(color.h, s, v);
 	            ok = true;
 	            format = "hsv";
 	        }
-	        else if (color.hasOwnProperty("h") && color.hasOwnProperty("s") && color.hasOwnProperty("l")) {
-	            color.s = convertToPercentage(color.s);
-	            color.l = convertToPercentage(color.l);
-	            rgb = hslToRgb(color.h, color.s, color.l);
+	        else if (isValidCSSUnit(color.h) && isValidCSSUnit(color.s) && isValidCSSUnit(color.l)) {
+	            s = convertToPercentage(color.s);
+	            l = convertToPercentage(color.l);
+	            rgb = hslToRgb(color.h, s, l);
 	            ok = true;
 	            format = "hsl";
 	        }
@@ -1136,7 +1141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    s = bound01(s, 100);
 	    v = bound01(v, 100);
 
-	    var i = math.floor(h),
+	    var i = Math.floor(h),
 	        f = h - i,
 	        p = v * (1 - s),
 	        q = v * (1 - f * s),
@@ -1171,9 +1176,29 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// `rgbaToHex`
 	// Converts an RGBA color plus alpha transparency to hex
-	// Assumes r, g, b and a are contained in the set [0, 255]
-	// Returns an 8 character hex
-	function rgbaToHex(r, g, b, a) {
+	// Assumes r, g, b are contained in the set [0, 255] and
+	// a in [0, 1]. Returns a 4 or 8 character rgba hex
+	function rgbaToHex(r, g, b, a, allow4Char) {
+
+	    var hex = [
+	        pad2(mathRound(r).toString(16)),
+	        pad2(mathRound(g).toString(16)),
+	        pad2(mathRound(b).toString(16)),
+	        pad2(convertDecimalToHex(a))
+	    ];
+
+	    // Return a 4 character hex if possible
+	    if (allow4Char && hex[0].charAt(0) == hex[0].charAt(1) && hex[1].charAt(0) == hex[1].charAt(1) && hex[2].charAt(0) == hex[2].charAt(1) && hex[3].charAt(0) == hex[3].charAt(1)) {
+	        return hex[0].charAt(0) + hex[1].charAt(0) + hex[2].charAt(0) + hex[3].charAt(0);
+	    }
+
+	    return hex.join("");
+	}
+
+	// `rgbaToArgbHex`
+	// Converts an RGBA color to an ARGB Hex8 string
+	// Rarely used, but required for "toFilter()"
+	function rgbaToArgbHex(r, g, b, a) {
 
 	    var hex = [
 	        pad2(convertDecimalToHex(a)),
@@ -1255,7 +1280,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// Values outside of this range will be wrapped into this range.
 	function spin(color, amount) {
 	    var hsl = tinycolor(color).toHsl();
-	    var hue = (mathRound(hsl.h) + amount) % 360;
+	    var hue = (hsl.h + amount) % 360;
 	    hsl.h = hue < 0 ? 360 + hue : hue;
 	    return tinycolor(hsl);
 	}
@@ -1342,26 +1367,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var rgb2 = tinycolor(color2).toRgb();
 
 	    var p = amount / 100;
-	    var w = p * 2 - 1;
-	    var a = rgb2.a - rgb1.a;
-
-	    var w1;
-
-	    if (w * a == -1) {
-	        w1 = w;
-	    } else {
-	        w1 = (w + a) / (1 + w * a);
-	    }
-
-	    w1 = (w1 + 1) / 2;
-
-	    var w2 = 1 - w1;
 
 	    var rgba = {
-	        r: rgb2.r * w1 + rgb1.r * w2,
-	        g: rgb2.g * w1 + rgb1.g * w2,
-	        b: rgb2.b * w1 + rgb1.b * w2,
-	        a: rgb2.a * p  + rgb1.a * (1 - p)
+	        r: ((rgb2.r - rgb1.r) * p) + rgb1.r,
+	        g: ((rgb2.g - rgb1.g) * p) + rgb1.g,
+	        b: ((rgb2.b - rgb1.b) * p) + rgb1.b,
+	        a: ((rgb2.a - rgb1.a) * p) + rgb1.a
 	    };
 
 	    return tinycolor(rgba);
@@ -1647,7 +1658,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    // Handle floating point rounding errors
-	    if ((math.abs(n - max) < 0.000001)) {
+	    if ((Math.abs(n - max) < 0.000001)) {
 	        return 1;
 	    }
 
@@ -1717,6 +1728,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var PERMISSIVE_MATCH4 = "[\\s|\\(]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")\\s*\\)?";
 
 	    return {
+	        CSS_UNIT: new RegExp(CSS_UNIT),
 	        rgb: new RegExp("rgb" + PERMISSIVE_MATCH3),
 	        rgba: new RegExp("rgba" + PERMISSIVE_MATCH4),
 	        hsl: new RegExp("hsl" + PERMISSIVE_MATCH3),
@@ -1725,9 +1737,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        hsva: new RegExp("hsva" + PERMISSIVE_MATCH4),
 	        hex3: /^#?([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
 	        hex6: /^#?([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/,
+	        hex4: /^#?([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
 	        hex8: /^#?([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/
 	    };
 	})();
+
+	// `isValidCSSUnit`
+	// Take in a single string / number and check to see if it looks like a CSS unit
+	// (see `matchers` above for definition).
+	function isValidCSSUnit(color) {
+	    return !!matchers.CSS_UNIT.exec(color);
+	}
 
 	// `stringInputToObject`
 	// Permissive string parsing.  Take in a number of formats, and output an object
@@ -1769,10 +1789,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    if ((match = matchers.hex8.exec(color))) {
 	        return {
-	            a: convertHexToDecimal(match[1]),
-	            r: parseIntFromHex(match[2]),
-	            g: parseIntFromHex(match[3]),
-	            b: parseIntFromHex(match[4]),
+	            r: parseIntFromHex(match[1]),
+	            g: parseIntFromHex(match[2]),
+	            b: parseIntFromHex(match[3]),
+	            a: convertHexToDecimal(match[4]),
 	            format: named ? "name" : "hex8"
 	        };
 	    }
@@ -1782,6 +1802,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            g: parseIntFromHex(match[2]),
 	            b: parseIntFromHex(match[3]),
 	            format: named ? "name" : "hex"
+	        };
+	    }
+	    if ((match = matchers.hex4.exec(color))) {
+	        return {
+	            r: parseIntFromHex(match[1] + '' + match[1]),
+	            g: parseIntFromHex(match[2] + '' + match[2]),
+	            b: parseIntFromHex(match[3] + '' + match[3]),
+	            a: convertHexToDecimal(match[4] + '' + match[4]),
+	            format: named ? "name" : "hex8"
 	        };
 	    }
 	    if ((match = matchers.hex3.exec(color))) {
@@ -1825,7 +1854,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    window.tinycolor = tinycolor;
 	}
 
-	})();
+	})(Math);
 
 
 /***/ },
@@ -1863,9 +1892,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-11", __vue_options__)
+	    hotAPI.createRecord("data-v-10", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-11", __vue_options__)
+	    hotAPI.reload("data-v-10", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] EditableInput.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -1889,8 +1918,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-11!./../../../node_modules/stylus-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-11!./../../../node_modules/stylus-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!./../../../node_modules/stylus-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!./../../../node_modules/stylus-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1998,9 +2027,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "vue-color__editable-input"
-	  }, [_h('input', {
+	  }, [_c('input', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -2018,14 +2047,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        val = $event.target.value
 	      }, update]
 	    }
-	  }), " ", _h('span', {
+	  }), _v(" "), _c('span', {
 	    staticClass: "vue-color__editable-input__label"
-	  }, [_s(label)])])
+	  }, [_v(_s(label))])])
 	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-11", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-10", module.exports)
 	  }
 	}
 
@@ -2034,12 +2063,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "vue-color__compact"
-	  }, [_h('ul', {
+	  }, [_c('ul', {
 	    staticClass: "vue-color__compact__colors"
-	  }, [_l((defaultColors), function(c) {
-	    return _h('li', {
+	  }, _l((defaultColors), function(c) {
+	    return _c('li', {
 	      staticClass: "vue-color__compact__color-item",
 	      class: {
 	        'vue-color__compact__color-item--white': c === '#FFFFFF'
@@ -2052,7 +2081,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          handlerClick(c)
 	        }
 	      }
-	    }, [_h('div', {
+	    }, [_c('div', {
 	      directives: [{
 	        name: "show",
 	        rawName: "v-show",
@@ -2061,12 +2090,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }],
 	      staticClass: "vue-color__compact__dot"
 	    })])
-	  })]), " "])
+	  })), _v(" ")])
 	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-1", module.exports)
 	  }
 	}
 
@@ -2105,9 +2134,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-1", __vue_options__)
+	    hotAPI.createRecord("data-v-2", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-1", __vue_options__)
+	    hotAPI.reload("data-v-2", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Material.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2131,8 +2160,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!./../../node_modules/stylus-loader/index.js!./../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2209,9 +2238,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "vue-color__material"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -2234,11 +2263,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.hex = $event
 	      }
 	    }
-	  }), " ", _h('div', {
+	  }), _v(" "), _c('div', {
 	    staticClass: "vue-color__material__split"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__material__third"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -2257,9 +2286,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.rgba.r = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__material__third"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -2278,9 +2307,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.rgba.g = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__material__third"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -2304,7 +2333,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-1", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2", module.exports)
 	  }
 	}
 
@@ -2486,9 +2515,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-10", __vue_options__)
+	    hotAPI.createRecord("data-v-11", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-10", __vue_options__)
+	    hotAPI.reload("data-v-11", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Hue.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2512,8 +2541,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!./../../../node_modules/stylus-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Hue.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!./../../../node_modules/stylus-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Hue.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-11!./../../../node_modules/stylus-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Hue.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-11!./../../../node_modules/stylus-loader/index.js!./../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Hue.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2652,9 +2681,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    class: ['vue-color__c-hue', directionClass]
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    ref: "container",
 	    staticClass: "vue-color__c-hue__container",
 	    on: {
@@ -2662,22 +2691,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "touchmove": handleChange,
 	      "touchstart": handleChange
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__c-hue__pointer",
 	    style: ({
 	      top: pointerTop,
 	      left: pointerLeft
 	    })
-	  }, [_t("default", [_m(0)])])])])
-	}},staticRenderFns: [function (){with(this) {
-	  return _h('div', {
+	  }, [_t("default", [_c('div', {
 	    staticClass: "vue-color__c-hue__picker"
-	  })
-	}}]}
+	  })])], true)])])
+	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-10", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-11", module.exports)
 	  }
 	}
 
@@ -2686,11 +2713,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "vue-color__slider"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__slider__hue-warp"
-	  }, [_h('hue', {
+	  }, [_c('hue', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -2706,10 +2733,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__slider__swatches"
-	  }, [_l((swatches), function(offset, index) {
-	    return _h('div', {
+	  }, _l((swatches), function(offset, index) {
+	    return _c('div', {
 	      staticClass: "vue-color__slider__swatch",
 	      attrs: {
 	        "data-index": index
@@ -2719,7 +2746,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          handleSwClick(index, offset)
 	        }
 	      }
-	    }, [_h('div', {
+	    }, [_c('div', {
 	      staticClass: "vue-color__slider__swatch-picker",
 	      class: {
 	        'vue-color__slider__swatch-picker--active': offset == activeOffset
@@ -2728,7 +2755,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        background: 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'
 	      })
 	    })])
-	  })])])
+	  }))])
 	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
@@ -2894,7 +2921,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    root.materialColors = factory();
 	  }
 	})(this, function() {
-	  return {"red":{"50":"#ffebee","100":"#ffcdd2","200":"#ef9a9a","300":"#e57373","400":"#ef5350","500":"#f44336","600":"#e53935","700":"#d32f2f","800":"#c62828","900":"#b71c1c","a100":"#ff8a80","a200":"#ff5252","a400":"#ff1744","a700":"#d50000"},"pink":{"50":"#fce4ec","100":"#f8bbd0","200":"#f48fb1","300":"#f06292","400":"#ec407a","500":"#e91e63","600":"#d81b60","700":"#c2185b","800":"#ad1457","900":"#880e4f","a100":"#ff80ab","a200":"#ff4081","a400":"#f50057","a700":"#c51162"},"purple":{"50":"#f3e5f5","100":"#e1bee7","200":"#ce93d8","300":"#ba68c8","400":"#ab47bc","500":"#9c27b0","600":"#8e24aa","700":"#7b1fa2","800":"#6a1b9a","900":"#4a148c","a100":"#ea80fc","a200":"#e040fb","a400":"#d500f9","a700":"#aa00ff"},"deepPurple":{"50":"#ede7f6","100":"#d1c4e9","200":"#b39ddb","300":"#9575cd","400":"#7e57c2","500":"#673ab7","600":"#5e35b1","700":"#512da8","800":"#4527a0","900":"#311b92","a100":"#b388ff","a200":"#7c4dff","a400":"#651fff","a700":"#6200ea"},"indigo":{"50":"#e8eaf6","100":"#c5cae9","200":"#9fa8da","300":"#7986cb","400":"#5c6bc0","500":"#3f51b5","600":"#3949ab","700":"#303f9f","800":"#283593","900":"#1a237e","a100":"#8c9eff","a200":"#536dfe","a400":"#3d5afe","a700":"#304ffe"},"blue":{"50":"#e3f2fd","100":"#bbdefb","200":"#90caf9","300":"#64b5f6","400":"#42a5f5","500":"#2196f3","600":"#1e88e5","700":"#1976d2","800":"#1565c0","900":"#0d47a1","a100":"#82b1ff","a200":"#448aff","a400":"#2979ff","a700":"#2962ff"},"lightBlue":{"50":"#e1f5fe","100":"#b3e5fc","200":"#81d4fa","300":"#4fc3f7","400":"#29b6f6","500":"#03a9f4","600":"#039be5","700":"#0288d1","800":"#0277bd","900":"#01579b","a100":"#80d8ff","a200":"#40c4ff","a400":"#00b0ff","a700":"#0091ea"},"cyan":{"50":"#e0f7fa","100":"#b2ebf2","200":"#80deea","300":"#4dd0e1","400":"#26c6da","500":"#00bcd4","600":"#00acc1","700":"#0097a7","800":"#00838f","900":"#006064","a100":"#84ffff","a200":"#18ffff","a400":"#00e5ff","a700":"#00b8d4"},"teal":{"50":"#e0f2f1","100":"#b2dfdb","200":"#80cbc4","300":"#4db6ac","400":"#26a69a","500":"#009688","600":"#00897b","700":"#00796b","800":"#00695c","900":"#004d40","a100":"#a7ffeb","a200":"#64ffda","a400":"#1de9b6","a700":"#00bfa5"},"green":{"50":"#e8f5e9","100":"#c8e6c9","200":"#a5d6a7","300":"#81c784","400":"#66bb6a","500":"#4caf50","600":"#43a047","700":"#388e3c","800":"#2e7d32","900":"#1b5e20","a100":"#b9f6ca","a200":"#69f0ae","a400":"#00e676","a700":"#00c853"},"lightGreen":{"50":"#f1f8e9","100":"#dcedc8","200":"#c5e1a5","300":"#aed581","400":"#9ccc65","500":"#8bc34a","600":"#7cb342","700":"#689f38","800":"#558b2f","900":"#33691e","a100":"#ccff90","a200":"#b2ff59","a400":"#76ff03","a700":"#64dd17"},"lime":{"50":"#f9fbe7","100":"#f0f4c3","200":"#e6ee9c","300":"#dce775","400":"#d4e157","500":"#cddc39","600":"#c0ca33","700":"#afb42b","800":"#9e9d24","900":"#827717","a100":"#f4ff81","a200":"#eeff41","a400":"#c6ff00","a700":"#aeea00"},"yellow":{"50":"#fffde7","100":"#fff9c4","200":"#fff59d","300":"#fff176","400":"#ffee58","500":"#ffeb3b","600":"#fdd835","700":"#fbc02d","800":"#f9a825","900":"#f57f17","a100":"#ffff8d","a200":"#ffff00","a400":"#ffea00","a700":"#ffd600"},"amber":{"50":"#fff8e1","100":"#ffecb3","200":"#ffe082","300":"#ffd54f","400":"#ffca28","500":"#ffc107","600":"#ffb300","700":"#ffa000","800":"#ff8f00","900":"#ff6f00","a100":"#ffe57f","a200":"#ffd740","a400":"#ffc400","a700":"#ffab00"},"orange":{"50":"#fff3e0","100":"#ffe0b2","200":"#ffcc80","300":"#ffb74d","400":"#ffa726","500":"#ff9800","600":"#fb8c00","700":"#f57c00","800":"#ef6c00","900":"#e65100","a100":"#ffd180","a200":"#ffab40","a400":"#ff9100","a700":"#ff6d00"},"deepOrange":{"50":"#fbe9e7","100":"#ffccbc","200":"#ffab91","300":"#ff8a65","400":"#ff7043","500":"#ff5722","600":"#f4511e","700":"#e64a19","800":"#d84315","900":"#bf360c","a100":"#ff9e80","a200":"#ff6e40","a400":"#ff3d00","a700":"#dd2c00"},"brown":{"50":"#efebe9","100":"#d7ccc8","200":"#bcaaa4","300":"#a1887f","400":"#8d6e63","500":"#795548","600":"#6d4c41","700":"#5d4037","800":"#4e342e","900":"#3e2723"},"grey":{"50":"#fafafa","100":"#f5f5f5","200":"#eeeeee","300":"#e0e0e0","400":"#bdbdbd","500":"#9e9e9e","600":"#757575","700":"#616161","800":"#424242","900":"#212121"},"blueGrey":{"50":"#eceff1","100":"#cfd8dc","200":"#b0bec5","300":"#90a4ae","400":"#78909c","500":"#607d8b","600":"#546e7a","700":"#455a64","800":"#37474f","900":"#263238"},"white":"#ffffff","black":"#000000"};
+	  return {"red":{"50":"#ffebee","100":"#ffcdd2","200":"#ef9a9a","300":"#e57373","400":"#ef5350","500":"#f44336","600":"#e53935","700":"#d32f2f","800":"#c62828","900":"#b71c1c","a100":"#ff8a80","a200":"#ff5252","a400":"#ff1744","a700":"#d50000"},"pink":{"50":"#fce4ec","100":"#f8bbd0","200":"#f48fb1","300":"#f06292","400":"#ec407a","500":"#e91e63","600":"#d81b60","700":"#c2185b","800":"#ad1457","900":"#880e4f","a100":"#ff80ab","a200":"#ff4081","a400":"#f50057","a700":"#c51162"},"purple":{"50":"#f3e5f5","100":"#e1bee7","200":"#ce93d8","300":"#ba68c8","400":"#ab47bc","500":"#9c27b0","600":"#8e24aa","700":"#7b1fa2","800":"#6a1b9a","900":"#4a148c","a100":"#ea80fc","a200":"#e040fb","a400":"#d500f9","a700":"#aa00ff"},"deepPurple":{"50":"#ede7f6","100":"#d1c4e9","200":"#b39ddb","300":"#9575cd","400":"#7e57c2","500":"#673ab7","600":"#5e35b1","700":"#512da8","800":"#4527a0","900":"#311b92","a100":"#b388ff","a200":"#7c4dff","a400":"#651fff","a700":"#6200ea"},"indigo":{"50":"#e8eaf6","100":"#c5cae9","200":"#9fa8da","300":"#7986cb","400":"#5c6bc0","500":"#3f51b5","600":"#3949ab","700":"#303f9f","800":"#283593","900":"#1a237e","a100":"#8c9eff","a200":"#536dfe","a400":"#3d5afe","a700":"#304ffe"},"blue":{"50":"#e3f2fd","100":"#bbdefb","200":"#90caf9","300":"#64b5f6","400":"#42a5f5","500":"#2196f3","600":"#1e88e5","700":"#1976d2","800":"#1565c0","900":"#0d47a1","a100":"#82b1ff","a200":"#448aff","a400":"#2979ff","a700":"#2962ff"},"lightBlue":{"50":"#e1f5fe","100":"#b3e5fc","200":"#81d4fa","300":"#4fc3f7","400":"#29b6f6","500":"#03a9f4","600":"#039be5","700":"#0288d1","800":"#0277bd","900":"#01579b","a100":"#80d8ff","a200":"#40c4ff","a400":"#00b0ff","a700":"#0091ea"},"cyan":{"50":"#e0f7fa","100":"#b2ebf2","200":"#80deea","300":"#4dd0e1","400":"#26c6da","500":"#00bcd4","600":"#00acc1","700":"#0097a7","800":"#00838f","900":"#006064","a100":"#84ffff","a200":"#18ffff","a400":"#00e5ff","a700":"#00b8d4"},"teal":{"50":"#e0f2f1","100":"#b2dfdb","200":"#80cbc4","300":"#4db6ac","400":"#26a69a","500":"#009688","600":"#00897b","700":"#00796b","800":"#00695c","900":"#004d40","a100":"#a7ffeb","a200":"#64ffda","a400":"#1de9b6","a700":"#00bfa5"},"green":{"50":"#e8f5e9","100":"#c8e6c9","200":"#a5d6a7","300":"#81c784","400":"#66bb6a","500":"#4caf50","600":"#43a047","700":"#388e3c","800":"#2e7d32","900":"#1b5e20","a100":"#b9f6ca","a200":"#69f0ae","a400":"#00e676","a700":"#00c853"},"lightGreen":{"50":"#f1f8e9","100":"#dcedc8","200":"#c5e1a5","300":"#aed581","400":"#9ccc65","500":"#8bc34a","600":"#7cb342","700":"#689f38","800":"#558b2f","900":"#33691e","a100":"#ccff90","a200":"#b2ff59","a400":"#76ff03","a700":"#64dd17"},"lime":{"50":"#f9fbe7","100":"#f0f4c3","200":"#e6ee9c","300":"#dce775","400":"#d4e157","500":"#cddc39","600":"#c0ca33","700":"#afb42b","800":"#9e9d24","900":"#827717","a100":"#f4ff81","a200":"#eeff41","a400":"#c6ff00","a700":"#aeea00"},"yellow":{"50":"#fffde7","100":"#fff9c4","200":"#fff59d","300":"#fff176","400":"#ffee58","500":"#ffeb3b","600":"#fdd835","700":"#fbc02d","800":"#f9a825","900":"#f57f17","a100":"#ffff8d","a200":"#ffff00","a400":"#ffea00","a700":"#ffd600"},"amber":{"50":"#fff8e1","100":"#ffecb3","200":"#ffe082","300":"#ffd54f","400":"#ffca28","500":"#ffc107","600":"#ffb300","700":"#ffa000","800":"#ff8f00","900":"#ff6f00","a100":"#ffe57f","a200":"#ffd740","a400":"#ffc400","a700":"#ffab00"},"orange":{"50":"#fff3e0","100":"#ffe0b2","200":"#ffcc80","300":"#ffb74d","400":"#ffa726","500":"#ff9800","600":"#fb8c00","700":"#f57c00","800":"#ef6c00","900":"#e65100","a100":"#ffd180","a200":"#ffab40","a400":"#ff9100","a700":"#ff6d00"},"deepOrange":{"50":"#fbe9e7","100":"#ffccbc","200":"#ffab91","300":"#ff8a65","400":"#ff7043","500":"#ff5722","600":"#f4511e","700":"#e64a19","800":"#d84315","900":"#bf360c","a100":"#ff9e80","a200":"#ff6e40","a400":"#ff3d00","a700":"#dd2c00"},"brown":{"50":"#efebe9","100":"#d7ccc8","200":"#bcaaa4","300":"#a1887f","400":"#8d6e63","500":"#795548","600":"#6d4c41","700":"#5d4037","800":"#4e342e","900":"#3e2723"},"grey":{"50":"#fafafa","100":"#f5f5f5","200":"#eeeeee","300":"#e0e0e0","400":"#bdbdbd","500":"#9e9e9e","600":"#757575","700":"#616161","800":"#424242","900":"#212121"},"blueGrey":{"50":"#eceff1","100":"#cfd8dc","200":"#b0bec5","300":"#90a4ae","400":"#78909c","500":"#607d8b","600":"#546e7a","700":"#455a64","800":"#37474f","900":"#263238"},"darkText":{"primary":"rgba(0, 0, 0, 0.87)","secondary":"rgba(0, 0, 0, 0.54)","disabled":"rgba(0, 0, 0, 0.38)","dividers":"rgba(0, 0, 0, 0.12)"},"lightText":{"primary":"rgba(255, 255, 255, 1)","secondary":"rgba(255, 255, 255, 0.7)","disabled":"rgba(255, 255, 255, 0.5)","dividers":"rgba(255, 255, 255, 0.12)"},"darkIcons":{"active":"rgba(0, 0, 0, 0.54)","inactive":"rgba(0, 0, 0, 0.38)"},"lightIcons":{"active":"rgba(255, 255, 255, 1)","inactive":"rgba(255, 255, 255, 0.5)"},"white":"#ffffff","black":"#000000"};
 	});
 
 
@@ -2903,18 +2930,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "vue-color__swatches",
 	    attrs: {
 	      "data-pick": pick
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__swatches__box"
-	  }, [_l((defaultColors), function(group) {
-	    return _h('div', {
+	  }, _l((defaultColors), function(group) {
+	    return _c('div', {
 	      staticClass: "vue-color__swatches__color-group"
-	    }, [_l((group), function(c) {
-	      return _h('div', {
+	    }, _l((group), function(c) {
+	      return _c('div', {
 	        staticClass: "vue-color__swatches__color-it",
 	        style: ({
 	          background: c
@@ -2927,7 +2954,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            handlerClick(c)
 	          }
 	        }
-	      }, [_h('div', {
+	      }, [_c('div', {
 	        directives: [{
 	          name: "show",
 	          rawName: "v-show",
@@ -2935,18 +2962,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	          expression: "c == pick"
 	        }],
 	        staticClass: "vue-color__swatches__pick"
-	      }, [_h('svg', {
+	      }, [_c('svg', {
+	        staticStyle: {
+	          "width": "24px",
+	          "height": "24px"
+	        },
 	        attrs: {
-	          "style": "width: 24px; height:24px;",
 	          "viewBox": "0 0 24 24"
 	        }
-	      }, [_h('path', {
+	      }, [_c('path', {
 	        attrs: {
 	          "d": "M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
 	        }
 	      })])])])
-	    })])
-	  })])])
+	    }))
+	  }))])
 	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
@@ -2968,7 +2998,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__vue_exports__ = __webpack_require__(39)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(57)
+	var __vue_template__ = __webpack_require__(56)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3066,7 +3096,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Hue2 = _interopRequireDefault(_Hue);
 
-	var _Alpha = __webpack_require__(47);
+	var _Alpha = __webpack_require__(46);
 
 	var _Alpha2 = _interopRequireDefault(_Alpha);
 
@@ -3120,10 +3150,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    handleAccept: function handleAccept() {
-	      this.$dispatch('ok');
+	      this.$emit('ok');
 	    },
 	    handleCancel: function handleCancel() {
-	      this.$dispatch('cancel');
+	      this.$emit('cancel');
 	    }
 	  }
 
@@ -3142,7 +3172,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	__vue_exports__ = __webpack_require__(43)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(46)
+	var __vue_template__ = __webpack_require__(45)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3302,116 +3332,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 44 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * lodash 4.0.1 (Custom Build) <https://lodash.com/>
-	 * Build: `lodash modularize exports="npm" -o ./`
-	 * Copyright 2012-2016 The Dojo Foundation <http://dojofoundation.org/>
-	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
-	 * Copyright 2009-2016 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-	 * Available under MIT license <https://lodash.com/license>
-	 */
-	var debounce = __webpack_require__(45);
-
-	/** Used as the `TypeError` message for "Functions" methods. */
-	var FUNC_ERROR_TEXT = 'Expected a function';
-
-	/**
-	 * Creates a throttled function that only invokes `func` at most once per
-	 * every `wait` milliseconds. The throttled function comes with a `cancel`
-	 * method to cancel delayed `func` invocations and a `flush` method to
-	 * immediately invoke them. Provide an options object to indicate whether
-	 * `func` should be invoked on the leading and/or trailing edge of the `wait`
-	 * timeout. The `func` is invoked with the last arguments provided to the
-	 * throttled function. Subsequent calls to the throttled function return the
-	 * result of the last `func` invocation.
-	 *
-	 * **Note:** If `leading` and `trailing` options are `true`, `func` is invoked
-	 * on the trailing edge of the timeout only if the throttled function is
-	 * invoked more than once during the `wait` timeout.
-	 *
-	 * See [David Corbacho's article](http://drupalmotion.com/article/debounce-and-throttle-visual-explanation)
-	 * for details over the differences between `_.throttle` and `_.debounce`.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Function
-	 * @param {Function} func The function to throttle.
-	 * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
-	 * @param {Object} [options] The options object.
-	 * @param {boolean} [options.leading=true] Specify invoking on the leading
-	 *  edge of the timeout.
-	 * @param {boolean} [options.trailing=true] Specify invoking on the trailing
-	 *  edge of the timeout.
-	 * @returns {Function} Returns the new throttled function.
-	 * @example
-	 *
-	 * // Avoid excessively updating the position while scrolling.
-	 * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
-	 *
-	 * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
-	 * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
-	 * jQuery(element).on('click', throttled);
-	 *
-	 * // Cancel the trailing throttled invocation.
-	 * jQuery(window).on('popstate', throttled.cancel);
-	 */
-	function throttle(func, wait, options) {
-	  var leading = true,
-	      trailing = true;
-
-	  if (typeof func != 'function') {
-	    throw new TypeError(FUNC_ERROR_TEXT);
-	  }
-	  if (isObject(options)) {
-	    leading = 'leading' in options ? !!options.leading : leading;
-	    trailing = 'trailing' in options ? !!options.trailing : trailing;
-	  }
-	  return debounce(func, wait, {
-	    'leading': leading,
-	    'maxWait': wait,
-	    'trailing': trailing
-	  });
-	}
-
-	/**
-	 * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
-	 * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is an object, else `false`.
-	 * @example
-	 *
-	 * _.isObject({});
-	 * // => true
-	 *
-	 * _.isObject([1, 2, 3]);
-	 * // => true
-	 *
-	 * _.isObject(_.noop);
-	 * // => true
-	 *
-	 * _.isObject(null);
-	 * // => false
-	 */
-	function isObject(value) {
-	  var type = typeof value;
-	  return !!value && (type == 'object' || type == 'function');
-	}
-
-	module.exports = throttle;
-
-
-/***/ },
-/* 45 */
 /***/ function(module, exports) {
 
-	/**
-	 * lodash 4.0.6 (Custom Build) <https://lodash.com/>
+	/* WEBPACK VAR INJECTION */(function(global) {/**
+	 * lodash (Custom Build) <https://lodash.com/>
 	 * Build: `lodash modularize exports="npm" -o ./`
 	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
 	 * Released under MIT license <https://lodash.com/license>
@@ -3426,9 +3350,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var NAN = 0 / 0;
 
 	/** `Object#toString` result references. */
-	var funcTag = '[object Function]',
-	    genTag = '[object GeneratorFunction]',
-	    symbolTag = '[object Symbol]';
+	var symbolTag = '[object Symbol]';
 
 	/** Used to match leading and trailing whitespace. */
 	var reTrim = /^\s+|\s+$/g;
@@ -3445,12 +3367,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	/** Built-in method references without a dependency on `root`. */
 	var freeParseInt = parseInt;
 
+	/** Detect free variable `global` from Node.js. */
+	var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+	/** Detect free variable `self`. */
+	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+	/** Used as a reference to the global object. */
+	var root = freeGlobal || freeSelf || Function('return this')();
+
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
 
 	/**
 	 * Used to resolve the
-	 * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
 	 * of values.
 	 */
 	var objectToString = objectProto.toString;
@@ -3466,7 +3397,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @static
 	 * @memberOf _
 	 * @since 2.4.0
-	 * @type {Function}
 	 * @category Date
 	 * @returns {number} Returns the timestamp.
 	 * @example
@@ -3474,23 +3404,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * _.defer(function(stamp) {
 	 *   console.log(_.now() - stamp);
 	 * }, _.now());
-	 * // => Logs the number of milliseconds it took for the deferred function to be invoked.
+	 * // => Logs the number of milliseconds it took for the deferred invocation.
 	 */
-	var now = Date.now;
+	var now = function() {
+	  return root.Date.now();
+	};
 
 	/**
 	 * Creates a debounced function that delays invoking `func` until after `wait`
 	 * milliseconds have elapsed since the last time the debounced function was
 	 * invoked. The debounced function comes with a `cancel` method to cancel
 	 * delayed `func` invocations and a `flush` method to immediately invoke them.
-	 * Provide an options object to indicate whether `func` should be invoked on
-	 * the leading and/or trailing edge of the `wait` timeout. The `func` is invoked
-	 * with the last arguments provided to the debounced function. Subsequent calls
-	 * to the debounced function return the result of the last `func` invocation.
+	 * Provide `options` to indicate whether `func` should be invoked on the
+	 * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+	 * with the last arguments provided to the debounced function. Subsequent
+	 * calls to the debounced function return the result of the last `func`
+	 * invocation.
 	 *
-	 * **Note:** If `leading` and `trailing` options are `true`, `func` is invoked
-	 * on the trailing edge of the timeout only if the debounced function is
-	 * invoked more than once during the `wait` timeout.
+	 * **Note:** If `leading` and `trailing` options are `true`, `func` is
+	 * invoked on the trailing edge of the timeout only if the debounced function
+	 * is invoked more than once during the `wait` timeout.
+	 *
+	 * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+	 * until to the next tick, similar to `setTimeout` with a timeout of `0`.
 	 *
 	 * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
 	 * for details over the differences between `_.debounce` and `_.throttle`.
@@ -3534,7 +3470,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      maxWait,
 	      result,
 	      timerId,
-	      lastCallTime = 0,
+	      lastCallTime,
 	      lastInvokeTime = 0,
 	      leading = false,
 	      maxing = false,
@@ -3585,7 +3521,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Either this is the first call, activity has stopped and we're at the
 	    // trailing edge, the system time has gone backwards and we're treating
 	    // it as the trailing edge, or we've hit the `maxWait` limit.
-	    return (!lastCallTime || (timeSinceLastCall >= wait) ||
+	    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
 	      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
 	  }
 
@@ -3599,7 +3535,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 
 	  function trailingEdge(time) {
-	    clearTimeout(timerId);
 	    timerId = undefined;
 
 	    // Only invoke if we have `lastArgs` which means `func` has been
@@ -3615,8 +3550,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (timerId !== undefined) {
 	      clearTimeout(timerId);
 	    }
-	    lastCallTime = lastInvokeTime = 0;
-	    lastArgs = lastThis = timerId = undefined;
+	    lastInvokeTime = 0;
+	    lastArgs = lastCallTime = lastThis = timerId = undefined;
 	  }
 
 	  function flush() {
@@ -3637,7 +3572,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	      if (maxing) {
 	        // Handle invocations in a tight loop.
-	        clearTimeout(timerId);
 	        timerId = setTimeout(timerExpired, wait);
 	        return invokeFunc(lastCallTime);
 	      }
@@ -3653,34 +3587,70 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	/**
-	 * Checks if `value` is classified as a `Function` object.
+	 * Creates a throttled function that only invokes `func` at most once per
+	 * every `wait` milliseconds. The throttled function comes with a `cancel`
+	 * method to cancel delayed `func` invocations and a `flush` method to
+	 * immediately invoke them. Provide `options` to indicate whether `func`
+	 * should be invoked on the leading and/or trailing edge of the `wait`
+	 * timeout. The `func` is invoked with the last arguments provided to the
+	 * throttled function. Subsequent calls to the throttled function return the
+	 * result of the last `func` invocation.
+	 *
+	 * **Note:** If `leading` and `trailing` options are `true`, `func` is
+	 * invoked on the trailing edge of the timeout only if the throttled function
+	 * is invoked more than once during the `wait` timeout.
+	 *
+	 * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+	 * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+	 *
+	 * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+	 * for details over the differences between `_.throttle` and `_.debounce`.
 	 *
 	 * @static
 	 * @memberOf _
 	 * @since 0.1.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is correctly classified,
-	 *  else `false`.
+	 * @category Function
+	 * @param {Function} func The function to throttle.
+	 * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+	 * @param {Object} [options={}] The options object.
+	 * @param {boolean} [options.leading=true]
+	 *  Specify invoking on the leading edge of the timeout.
+	 * @param {boolean} [options.trailing=true]
+	 *  Specify invoking on the trailing edge of the timeout.
+	 * @returns {Function} Returns the new throttled function.
 	 * @example
 	 *
-	 * _.isFunction(_);
-	 * // => true
+	 * // Avoid excessively updating the position while scrolling.
+	 * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
 	 *
-	 * _.isFunction(/abc/);
-	 * // => false
+	 * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+	 * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+	 * jQuery(element).on('click', throttled);
+	 *
+	 * // Cancel the trailing throttled invocation.
+	 * jQuery(window).on('popstate', throttled.cancel);
 	 */
-	function isFunction(value) {
-	  // The use of `Object#toString` avoids issues with the `typeof` operator
-	  // in Safari 8 which returns 'object' for typed array and weak map constructors,
-	  // and PhantomJS 1.9 which returns 'function' for `NodeList` instances.
-	  var tag = isObject(value) ? objectToString.call(value) : '';
-	  return tag == funcTag || tag == genTag;
+	function throttle(func, wait, options) {
+	  var leading = true,
+	      trailing = true;
+
+	  if (typeof func != 'function') {
+	    throw new TypeError(FUNC_ERROR_TEXT);
+	  }
+	  if (isObject(options)) {
+	    leading = 'leading' in options ? !!options.leading : leading;
+	    trailing = 'trailing' in options ? !!options.trailing : trailing;
+	  }
+	  return debounce(func, wait, {
+	    'leading': leading,
+	    'maxWait': wait,
+	    'trailing': trailing
+	  });
 	}
 
 	/**
 	 * Checks if `value` is the
-	 * [language type](http://www.ecma-international.org/ecma-262/6.0/#sec-ecmascript-language-types)
+	 * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
 	 * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
 	 *
 	 * @static
@@ -3744,8 +3714,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @since 4.0.0
 	 * @category Lang
 	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is correctly classified,
-	 *  else `false`.
+	 * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
 	 * @example
 	 *
 	 * _.isSymbol(Symbol.iterator);
@@ -3770,8 +3739,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {number} Returns the number.
 	 * @example
 	 *
-	 * _.toNumber(3);
-	 * // => 3
+	 * _.toNumber(3.2);
+	 * // => 3.2
 	 *
 	 * _.toNumber(Number.MIN_VALUE);
 	 * // => 5e-324
@@ -3779,8 +3748,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * _.toNumber(Infinity);
 	 * // => Infinity
 	 *
-	 * _.toNumber('3');
-	 * // => 3
+	 * _.toNumber('3.2');
+	 * // => 3.2
 	 */
 	function toNumber(value) {
 	  if (typeof value == 'number') {
@@ -3790,7 +3759,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return NAN;
 	  }
 	  if (isObject(value)) {
-	    var other = isFunction(value.valueOf) ? value.valueOf() : value;
+	    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
 	    value = isObject(other) ? (other + '') : other;
 	  }
 	  if (typeof value != 'string') {
@@ -3803,15 +3772,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    : (reIsBadHex.test(value) ? NAN : +value);
 	}
 
-	module.exports = debounce;
+	module.exports = throttle;
 
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 46 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    ref: "container",
 	    staticClass: "vue-color__saturation",
 	    style: ({
@@ -3820,26 +3790,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    on: {
 	      "mousedown": handleMouseDown
 	    }
-	  }, [_m(0), " ", _m(1), " ", _h('div', {
+	  }, [_c('div', {
+	    staticClass: "vue-color__saturation--white"
+	  }), _v(" "), _c('div', {
+	    staticClass: "vue-color__saturation--black"
+	  }), _v(" "), _c('div', {
 	    staticClass: "vue-color__saturation--pointer",
 	    style: ({
 	      top: pointerTop,
 	      left: pointerLeft
 	    })
-	  }, [_t("default", [_m(2)])])])
-	}},staticRenderFns: [function (){with(this) {
-	  return _h('div', {
-	    staticClass: "vue-color__saturation--white"
-	  })
-	}},function (){with(this) {
-	  return _h('div', {
-	    staticClass: "vue-color__saturation--black"
-	  })
-	}},function (){with(this) {
-	  return _h('div', {
+	  }, [_t("default", [_c('div', {
 	    staticClass: "vue-color__saturation--circle"
-	  })
-	}}]}
+	  })])], true)])
+	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
@@ -3848,19 +3812,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 47 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 
 	/* styles */
-	__webpack_require__(48)
+	__webpack_require__(47)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(50)
+	__vue_exports__ = __webpack_require__(49)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(56)
+	var __vue_template__ = __webpack_require__(55)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -3893,13 +3857,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 48 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(49);
+	var content = __webpack_require__(48);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -3919,7 +3883,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 49 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -3933,7 +3897,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 50 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3942,7 +3906,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _Checkboard = __webpack_require__(51);
+	var _Checkboard = __webpack_require__(50);
 
 	var _Checkboard2 = _interopRequireDefault(_Checkboard);
 
@@ -4009,19 +3973,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 51 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 
 	/* styles */
-	__webpack_require__(52)
+	__webpack_require__(51)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(54)
+	__vue_exports__ = __webpack_require__(53)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(55)
+	var __vue_template__ = __webpack_require__(54)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -4054,13 +4018,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 52 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(53);
+	var content = __webpack_require__(52);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -4080,7 +4044,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 53 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -4094,7 +4058,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 54 */
+/* 53 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4163,11 +4127,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 55 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "vue-color__c-checkerboard",
 	    style: ({
 	      background: bgStyle
@@ -4182,20 +4146,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 56 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "vue-color__c-alpha"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__c-alpha__checkboard-wrap"
-	  }, [_h('checkboard')]), " ", _h('div', {
+	  }, [_c('checkboard')]), _v(" "), _c('div', {
 	    staticClass: "vue-color__c-alpha__gradient",
 	    style: ({
 	      background: gradientColor
 	    })
-	  }), " ", _h('div', {
+	  }), _v(" "), _c('div', {
 	    ref: "container",
 	    staticClass: "vue-color__c-alpha__container",
 	    on: {
@@ -4203,17 +4167,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "touchmove": handleChange,
 	      "touchstart": handleChange
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__c-alpha__pointer",
 	    style: ({
 	      left: colors.a * 100 + '%'
 	    })
-	  }, [_t("default", [_m(0)])])])])
-	}},staticRenderFns: [function (){with(this) {
-	  return _h('div', {
+	  }, [_t("default", [_c('div', {
 	    staticClass: "vue-color__c-alpha__picker"
-	  })
-	}}]}
+	  })])], true)])])
+	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
@@ -4222,19 +4184,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 57 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "vue-colors__photoshop"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-colors__photoshop__head"
-	  }, [_s(head)]), " ", _h('div', {
+	  }, [_v(_s(head))]), _v(" "), _c('div', {
 	    staticClass: "vue-colors__photoshop__body"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-colors__photoshop__saturation-wrap"
-	  }, [_h('saturation', {
+	  }, [_c('saturation', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4250,9 +4212,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-colors__photoshop__hue-wrap"
-	  }, [_h('hue', {
+	  }, [_c('hue', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4271,37 +4233,47 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors = $event
 	      }
 	    }
-	  }, [_m(0)])]), " ", _h('div', {
+	  }, [_c('div', {
+	    staticClass: "vue-colors__photoshop__hue-pointer"
+	  }, [_c('i', {
+	    staticClass: "vue-colors__photoshop__hue-pointer--left"
+	  }), _c('i', {
+	    staticClass: "vue-colors__photoshop__hue-pointer--right"
+	  })])])]), _v(" "), _c('div', {
 	    staticClass: "vue-colors__photoshop__controls"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-colors__photoshop__previews"
-	  }, [_m(1), " ", _h('div', {
+	  }, [_c('div', {
+	    staticClass: "vue-colors__photoshop__previews__label"
+	  }, [_v("new")]), _v(" "), _c('div', {
 	    staticClass: "vue-colors__photoshop__previews__swatches"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-colors__photoshop__previews__pr-color",
 	    style: ({
 	      background: colors.hex
 	    })
-	  }), " ", _h('div', {
+	  }), _v(" "), _c('div', {
 	    staticClass: "vue-colors__photoshop__previews__pr-color",
 	    style: ({
 	      background: currentColor
 	    })
-	  })]), " ", _m(2)]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
+	    staticClass: "vue-colors__photoshop__previews__label"
+	  }, [_v("current")])]), _v(" "), _c('div', {
 	    staticClass: "vue-colors__photoshop__actions"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-colors__photoshop__ac-btn",
 	    on: {
 	      "click": handleAccept
 	    }
-	  }, ["OK"]), " ", _h('div', {
+	  }, [_v("OK")]), _v(" "), _c('div', {
 	    staticClass: "vue-colors__photoshop__ac-btn",
 	    on: {
 	      "click": handleCancel
 	    }
-	  }, ["Cancel"]), " ", _h('div', {
+	  }, [_v("Cancel")]), _v(" "), _c('div', {
 	    staticClass: "vue-colors__photoshop__fields"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4320,7 +4292,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.hsl.h = $event
 	      }
 	    }
-	  }), " ", _h('ed-in', {
+	  }), _v(" "), _c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4339,7 +4311,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.hsl.s = $event
 	      }
 	    }
-	  }), " ", _h('ed-in', {
+	  }), _v(" "), _c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4358,7 +4330,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.hsl.l = $event
 	      }
 	    }
-	  }), " ", _m(3), " ", " ", _h('ed-in', {
+	  }), _v(" "), _c('div', {
+	    staticClass: "vue-colors__photoshop__fields__divider"
+	  }), _v(" "), _v(" "), _c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4377,7 +4351,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.rgba.r = $event
 	      }
 	    }
-	  }), " ", _h('ed-in', {
+	  }), _v(" "), _c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4396,7 +4370,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.rgba.g = $event
 	      }
 	    }
-	  }), " ", _h('ed-in', {
+	  }), _v(" "), _c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4415,7 +4389,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.rgba.b = $event
 	      }
 	    }
-	  }), " ", _m(4), " ", " ", _h('ed-in', {
+	  }), _v(" "), _c('div', {
+	    staticClass: "vue-colors__photoshop__fields__divider"
+	  }), _v(" "), _v(" "), _c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4436,31 +4412,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  })])])])])])
-	}},staticRenderFns: [function (){with(this) {
-	  return _h('div', {
-	    staticClass: "vue-colors__photoshop__hue-pointer"
-	  }, [_h('i', {
-	    staticClass: "vue-colors__photoshop__hue-pointer--left"
-	  }), _h('i', {
-	    staticClass: "vue-colors__photoshop__hue-pointer--right"
-	  })])
-	}},function (){with(this) {
-	  return _h('div', {
-	    staticClass: "vue-colors__photoshop__previews__label"
-	  }, ["new"])
-	}},function (){with(this) {
-	  return _h('div', {
-	    staticClass: "vue-colors__photoshop__previews__label"
-	  }, ["current"])
-	}},function (){with(this) {
-	  return _h('div', {
-	    staticClass: "vue-colors__photoshop__fields__divider"
-	  })
-	}},function (){with(this) {
-	  return _h('div', {
-	    staticClass: "vue-colors__photoshop__fields__divider"
-	  })
-	}}]}
+	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
@@ -4469,19 +4421,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 58 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 
 	/* styles */
-	__webpack_require__(59)
+	__webpack_require__(58)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(61)
+	__vue_exports__ = __webpack_require__(60)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(62)
+	var __vue_template__ = __webpack_require__(61)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -4514,13 +4466,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 59 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(60);
+	var content = __webpack_require__(59);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -4540,7 +4492,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 60 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -4554,7 +4506,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 61 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4579,7 +4531,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Hue2 = _interopRequireDefault(_Hue);
 
-	var _Alpha = __webpack_require__(47);
+	var _Alpha = __webpack_require__(46);
 
 	var _Alpha2 = _interopRequireDefault(_Alpha);
 
@@ -4641,15 +4593,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 62 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "vue-color__sketch"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__sketch__saturation-wrap"
-	  }, [_h('saturation', {
+	  }, [_c('saturation', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4665,13 +4617,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__sketch__controls"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__sketch__sliders"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__sketch__hue-wrap"
-	  }, [_h('hue', {
+	  }, [_c('hue', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4687,9 +4639,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__sketch__alpha-wrap"
-	  }, [_h('alpha', {
+	  }, [_c('alpha', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4705,18 +4657,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors = $event
 	      }
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _v(" "), _c('div', {
 	    staticClass: "vue-color__sketch__color-wrap"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__sketch__active-color",
 	    style: ({
 	      background: activeColor
 	    })
-	  })])]), " ", _h('div', {
+	  })])]), _v(" "), _c('div', {
 	    staticClass: "vue-color__sketch__field"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__sketch__field--double"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4735,9 +4687,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.hex = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__sketch__field--single"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4756,9 +4708,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.rgba.r = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__sketch__field--single"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4777,9 +4729,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.rgba.g = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__sketch__field--single"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4798,9 +4750,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.rgba.b = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__sketch__field--single"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -4821,10 +4773,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.a = $event
 	      }
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _v(" "), _c('div', {
 	    staticClass: "vue-color__sketch__presets"
-	  }, [_l((presetColors), function(c) {
-	    return _h('div', {
+	  }, _l((presetColors), function(c) {
+	    return _c('div', {
 	      staticClass: "vue-color__sketch__presets-color",
 	      style: ({
 	        background: c
@@ -4835,7 +4787,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      }
 	    })
-	  })])])
+	  }))])
 	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
@@ -4845,19 +4797,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 63 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 
 	/* styles */
-	__webpack_require__(64)
+	__webpack_require__(63)
 
 	/* script */
-	__vue_exports__ = __webpack_require__(66)
+	__vue_exports__ = __webpack_require__(65)
 
 	/* template */
-	var __vue_template__ = __webpack_require__(67)
+	var __vue_template__ = __webpack_require__(66)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -4890,13 +4842,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 64 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(65);
+	var content = __webpack_require__(64);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -4916,7 +4868,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 65 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -4930,7 +4882,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 66 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4955,7 +4907,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Hue2 = _interopRequireDefault(_Hue);
 
-	var _Alpha = __webpack_require__(47);
+	var _Alpha = __webpack_require__(46);
 
 	var _Alpha2 = _interopRequireDefault(_Alpha);
 
@@ -5031,15 +4983,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 67 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){with(this) {
-	  return _h('div', {
+	  return _c('div', {
 	    staticClass: "vue-color__chrome"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__chrome__saturation-wrap"
-	  }, [_h('saturation', {
+	  }, [_c('saturation', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5055,22 +5007,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__chrome__chrome-body"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__chrome__controls"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__chrome__color-wrap"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__chrome__active-color",
 	    style: ({
 	      background: activeColor
 	    })
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__chrome__sliders"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__chrome__hue-wrap"
-	  }, [_h('hue', {
+	  }, [_c('hue', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5086,9 +5038,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__chrome__alpha-wrap"
-	  }, [_h('alpha', {
+	  }, [_c('alpha', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5104,9 +5056,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors = $event
 	      }
 	    }
-	  })])])]), " ", _h('div', {
+	  })])])]), _v(" "), _c('div', {
 	    staticClass: "vue-color__chrome__fields-wrap"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    directives: [{
 	      name: "show",
 	      rawName: "v-show",
@@ -5114,9 +5066,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      expression: "fieldsIndex === 0"
 	    }],
 	    staticClass: "vue-color__chrome__fields"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__chrome__field"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5135,7 +5087,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.hex = $event
 	      }
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _v(" "), _c('div', {
 	    directives: [{
 	      name: "show",
 	      rawName: "v-show",
@@ -5143,9 +5095,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      expression: "fieldsIndex === 1"
 	    }],
 	    staticClass: "vue-color__chrome__fields"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__chrome__field"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5164,9 +5116,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.rgba.r = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__chrome__field"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5185,9 +5137,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.rgba.g = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__chrome__field"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5206,9 +5158,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.rgba.b = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__chrome__field"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5229,7 +5181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.a = $event
 	      }
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _v(" "), _c('div', {
 	    directives: [{
 	      name: "show",
 	      rawName: "v-show",
@@ -5237,9 +5189,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      expression: "fieldsIndex === 2"
 	    }],
 	    staticClass: "vue-color__chrome__fields"
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__chrome__field"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5258,9 +5210,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.hsl.h = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__chrome__field"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5279,9 +5231,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.hsl.s = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__chrome__field"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5300,9 +5252,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.hsl.l = $event
 	      }
 	    }
-	  })]), " ", _h('div', {
+	  })]), _v(" "), _c('div', {
 	    staticClass: "vue-color__chrome__field"
-	  }, [_h('ed-in', {
+	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
 	      rawName: "v-model",
@@ -5323,16 +5275,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	        colors.a = $event
 	      }
 	    }
-	  })])]), " ", " ", _h('div', {
+	  })])]), _v(" "), _v(" "), _c('div', {
 	    staticClass: "vue-color__chrome__toggle-btn",
 	    on: {
 	      "click": toggleViews
 	    }
-	  }, [_h('div', {
+	  }, [_c('div', {
 	    staticClass: "vue-color__chrome__icon"
-	  }, [_h('svg', {
+	  }, [_c('svg', {
+	    staticStyle: {
+	      "width": "24px",
+	      "height": "24px"
+	    },
 	    attrs: {
-	      "style": "width:24px; height:24px",
 	      "viewBox": "0 0 24 24"
 	    },
 	    on: {
@@ -5340,12 +5295,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "mouseenter": showHighlight,
 	      "mouseout": hideHighlight
 	    }
-	  }, [_h('path', {
+	  }, [_c('path', {
 	    attrs: {
 	      "fill": "#333",
 	      "d": "M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z"
 	    }
-	  })])]), " ", _h('div', {
+	  })])]), _v(" "), _c('div', {
 	    directives: [{
 	      name: "show",
 	      rawName: "v-show",
@@ -5353,7 +5308,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      expression: "highlight"
 	    }],
 	    staticClass: "vue-color__chrome__icon-highlight"
-	  })]), " "])])])
+	  })]), _v(" ")])])])
 	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()
