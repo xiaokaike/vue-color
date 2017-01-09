@@ -9,7 +9,7 @@
         @touchmove="handleChange"
         @touchstart="handleChange">
       <div class="vue-color__c-alpha__pointer" :style="{left: colors.a * 100 + '%'}">
-        <slot><div class="vue-color__c-alpha__picker"></div></slot>
+        <div class="vue-color__c-alpha__picker"></div>
       </div>
     </div>
   </div>

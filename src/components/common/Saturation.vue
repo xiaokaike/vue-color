@@ -6,7 +6,7 @@
     <div class="vue-color__saturation--white"></div>
     <div class="vue-color__saturation--black"></div>
     <div class="vue-color__saturation--pointer" :style="{top: pointerTop, left: pointerLeft}">
-      <slot><div class="vue-color__saturation--circle"></div></slot>
+      <div class="vue-color__saturation--circle"></div>
     </div>
   </div>
 </template>
