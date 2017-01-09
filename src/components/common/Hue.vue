@@ -5,7 +5,7 @@
       @touchmove="handleChange"
       @touchstart="handleChange">
       <div class="vue-color__c-hue__pointer" :style="{top: pointerTop, left: pointerLeft}">
-        <slot><div class="vue-color__c-hue__picker"></div></slot>
+        <div class="vue-color__c-hue__picker"></div>
       </div>  
     </div>
   </div>
