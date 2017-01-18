@@ -19,7 +19,7 @@ function _colorChange (data, oldHue) {
     hsv: hsv,
     oldHue: data.h || oldHue || hsl.h,
     source: data.source,
-    a: data.a
+    a: data.a || color.getAlpha()
   }
 }
 
