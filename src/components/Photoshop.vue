@@ -1,42 +1,42 @@
 <template>
-  <div class="vue-colors__photoshop">
-    <div class="vue-colors__photoshop__head">{{head}}</div>
-    <div class="vue-colors__photoshop__body">
-      <div class="vue-colors__photoshop__saturation-wrap">
+  <div class="vue-color__photoshop">
+    <div class="vue-color__photoshop__head">{{head}}</div>
+    <div class="vue-color__photoshop__body">
+      <div class="vue-color__photoshop__saturation-wrap">
         <saturation v-model="colors" @on-change="childChange"></saturation>
       </div>
-      <div class="vue-colors__photoshop__hue-wrap">
+      <div class="vue-color__photoshop__hue-wrap">
         <hue v-model="colors" @on-change="childChange" direction="vertical">
-          <div class="vue-colors__photoshop__hue-pointer">
-            <i class="vue-colors__photoshop__hue-pointer--left"></i><i class="vue-colors__photoshop__hue-pointer--right"></i>
+          <div class="vue-color__photoshop__hue-pointer">
+            <i class="vue-color__photoshop__hue-pointer--left"></i><i class="vue-color__photoshop__hue-pointer--right"></i>
           </div>
         </hue>
       </div>
-      <div class="vue-colors__photoshop__controls">
-        <div class="vue-colors__photoshop__previews">
-          <div class="vue-colors__photoshop__previews__label">new</div>
-          <div class="vue-colors__photoshop__previews__swatches">
-            <div class="vue-colors__photoshop__previews__pr-color" :style="{background: colors.hex}"></div>
-            <div class="vue-colors__photoshop__previews__pr-color" :style="{background: currentColor}"></div>
+      <div class="vue-color__photoshop__controls">
+        <div class="vue-color__photoshop__previews">
+          <div class="vue-color__photoshop__previews__label">new</div>
+          <div class="vue-color__photoshop__previews__swatches">
+            <div class="vue-color__photoshop__previews__pr-color" :style="{background: colors.hex}"></div>
+            <div class="vue-color__photoshop__previews__pr-color" :style="{background: currentColor}"></div>
           </div>
-          <div class="vue-colors__photoshop__previews__label">current</div>
+          <div class="vue-color__photoshop__previews__label">current</div>
         </div>
-        <div class="vue-colors__photoshop__actions">
-          <div class="vue-colors__photoshop__ac-btn" @click="handleAccept">OK</div>
-          <div class="vue-colors__photoshop__ac-btn" @click="handleCancel">Cancel</div>
-          <div class="vue-colors__photoshop__fields">
+        <div class="vue-color__photoshop__actions">
+          <div class="vue-color__photoshop__ac-btn" @click="handleAccept">OK</div>
+          <div class="vue-color__photoshop__ac-btn" @click="handleCancel">Cancel</div>
+          <div class="vue-color__photoshop__fields">
             <!-- hsla -->
             <ed-in label="h" v-model="colors.hsl.h" @on-change="inputChange"></ed-in>
             <ed-in label="s" v-model="colors.hsl.s" @on-change="inputChange"></ed-in>
             <ed-in label="v" v-model="colors.hsl.l" @on-change="inputChange"></ed-in>
-            <div class="vue-colors__photoshop__fields__divider"></div>
+            <div class="vue-color__photoshop__fields__divider"></div>
             <!-- rgba -->
             <ed-in label="r" v-model="colors.rgba.r" @on-change="inputChange"></ed-in>
             <ed-in label="g" v-model="colors.rgba.g" @on-change="inputChange"></ed-in>
             <ed-in label="b" v-model="colors.rgba.b" @on-change="inputChange"></ed-in>
-            <div class="vue-colors__photoshop__fields__divider"></div>
+            <div class="vue-color__photoshop__fields__divider"></div>
             <!-- hex -->
-            <ed-in label="#" class="vue-colors__photoshop__fields__hex" v-model="colors.hex" @on-change="inputChange"></ed-in>
+            <ed-in label="#" class="vue-color__photoshop__fields__hex" v-model="colors.hex" @on-change="inputChange"></ed-in>
           </div>
 
         </div>
@@ -110,14 +110,14 @@ export default {
 </script>
 
 <style lang="stylus">
-.vue-colors__photoshop
+.vue-color__photoshop
   background #DCDCDC
   border-radius 4px
   box-shadow 0 0 0 1px rgba(0,0,0,.25), 0 8px 16px rgba(0,0,0,.15)
   box-sizing initial
   width 513px
   font-family Roboto
-.vue-colors__photoshop__head
+.vue-color__photoshop__head
   background-image linear-gradient(-180deg, #F0F0F0 0%, #D4D4D4 100%)
   border-bottom 1px solid #B1B1B1
   box-shadow inset 0 1px 0 0 rgba(255,255,255,.2), inset 0 -1px 0 0 rgba(0,0,0,.02)
@@ -127,10 +127,10 @@ export default {
   font-size 13px
   color #4D4D4D
   text-align center
-.vue-colors__photoshop__body
+.vue-color__photoshop__body
   padding 15px
   display flex
-.vue-colors__photoshop__saturation-wrap
+.vue-color__photoshop__saturation-wrap
   width 256px
   height 256px
   position relative
@@ -140,17 +140,17 @@ export default {
   .vue-color__saturation--circle
     width 12px
     height 12px
-.vue-colors__photoshop__hue-wrap
+.vue-color__photoshop__hue-wrap
   position relative
   height 256px
   width 19px
   margin-left 10px
   border 2px solid #B3B3B3
   border-bottom 2px solid #F0F0F0
-.vue-colors__photoshop__hue-pointer
+.vue-color__photoshop__hue-pointer
   position relative
-.vue-colors__photoshop__hue-pointer--left
-.vue-colors__photoshop__hue-pointer--right
+.vue-color__photoshop__hue-pointer--left
+.vue-color__photoshop__hue-pointer--right
   position absolute
   width 0
   height 0
@@ -168,18 +168,18 @@ export default {
     top 1px
     left 1px
     transform translate(-8px, -5px)
-.vue-colors__photoshop__hue-pointer--left
+.vue-color__photoshop__hue-pointer--left
   transform translate(-13px, -4px)
-.vue-colors__photoshop__hue-pointer--right
+.vue-color__photoshop__hue-pointer--right
   transform translate(20px, -4px) rotate(180deg)
-.vue-colors__photoshop__controls
+.vue-color__photoshop__controls
   width 180px
   margin-left 10px
   display flex
-.vue-colors__photoshop__actions
+.vue-color__photoshop__actions
   margin-left 20px
   flex 1
-.vue-colors__photoshop__ac-btn
+.vue-color__photoshop__ac-btn
   cursor pointer
   background-image linear-gradient(-180deg, #FFFFFF 0%, #E6E6E6 100%)
   border 1px solid #878787
@@ -191,21 +191,21 @@ export default {
   line-height 20px
   text-align center
   margin-bottom 10px
-.vue-colors__photoshop__previews
+.vue-color__photoshop__previews
   width 60px
-.vue-colors__photoshop__previews__swatches
+.vue-color__photoshop__previews__swatches
   border 1px solid #B3B3B3
   border-bottom 1px solid #F0F0F0
   margin-bottom 2px
   margin-top 1px
-.vue-colors__photoshop__previews__pr-color
+.vue-color__photoshop__previews__pr-color
   height 34px
   box-shadow inset 1px 0 0 #000, inset -1px 0 0 #000, inset 0 1px 0 #000
-.vue-colors__photoshop__previews__label
+.vue-color__photoshop__previews__label
   font-size 14px
   color #000
   text-align center
-.vue-colors__photoshop__fields
+.vue-color__photoshop__fields
   padding-top 5px
   padding-bottom 9px
   width 80px
@@ -229,9 +229,9 @@ export default {
     height 18px
     line-height 22px
     position absolute
-.vue-colors__photoshop__fields__divider
+.vue-color__photoshop__fields__divider
   height 5px
-.vue-colors__photoshop__fields__hex
+.vue-color__photoshop__fields__hex
   .vue-color__editable-input__input
     margin-left 20%
     width 80%
