@@ -3065,7 +3065,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, "\n.vue-colors__photoshop {\n  background: #dcdcdc;\n  border-radius: 4px;\n  box-shadow: 0 0 0 1px rgba(0,0,0,0.25), 0 8px 16px rgba(0,0,0,0.15);\n  box-sizing: initial;\n  width: 513px;\n  font-family: Roboto;\n}\n.vue-colors__photoshop__head {\n  background-image: linear-gradient(-180deg, #f0f0f0 0%, #d4d4d4 100%);\n  border-bottom: 1px solid #b1b1b1;\n  box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.2), inset 0 -1px 0 0 rgba(0,0,0,0.02);\n  height: 23px;\n  line-height: 24px;\n  border-radius: 4px 4px 0 0;\n  font-size: 13px;\n  color: #4d4d4d;\n  text-align: center;\n}\n.vue-colors__photoshop__body {\n  padding: 15px;\n  display: flex;\n}\n.vue-colors__photoshop__saturation-wrap {\n  width: 256px;\n  height: 256px;\n  position: relative;\n  border: 2px solid #b3b3b3;\n  border-bottom: 2px solid #f0f0f0;\n  overflow: hidden;\n}\n.vue-colors__photoshop__saturation-wrap .vue-color__saturation--circle {\n  width: 12px;\n  height: 12px;\n}\n.vue-colors__photoshop__hue-wrap {\n  position: relative;\n  height: 256px;\n  width: 19px;\n  margin-left: 10px;\n  border: 2px solid #b3b3b3;\n  border-bottom: 2px solid #f0f0f0;\n}\n.vue-colors__photoshop__hue-pointer {\n  position: relative;\n}\n.vue-colors__photoshop__hue-pointer--left,\n.vue-colors__photoshop__hue-pointer--right {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 5px 0 5px 8px;\n  border-color: transparent transparent transparent #555;\n}\n.vue-colors__photoshop__hue-pointer--left:after,\n.vue-colors__photoshop__hue-pointer--right:after {\n  content: \"\";\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 4px 0 4px 6px;\n  border-color: transparent transparent transparent #fff;\n  position: absolute;\n  top: 1px;\n  left: 1px;\n  transform: translate(-8px, -5px);\n}\n.vue-colors__photoshop__hue-pointer--left {\n  transform: translate(-13px, -4px);\n}\n.vue-colors__photoshop__hue-pointer--right {\n  transform: translate(20px, -4px) rotate(180deg);\n}\n.vue-colors__photoshop__controls {\n  width: 180px;\n  margin-left: 10px;\n  display: flex;\n}\n.vue-colors__photoshop__actions {\n  margin-left: 20px;\n  flex: 1;\n}\n.vue-colors__photoshop__ac-btn {\n  cursor: pointer;\n  background-image: linear-gradient(-180deg, #fff 0%, #e6e6e6 100%);\n  border: 1px solid #878787;\n  border-radius: 2px;\n  height: 20px;\n  box-shadow: 0 1px 0 0 #eaeaea;\n  font-size: 14px;\n  color: #000;\n  line-height: 20px;\n  text-align: center;\n  margin-bottom: 10px;\n}\n.vue-colors__photoshop__previews {\n  width: 60px;\n}\n.vue-colors__photoshop__previews__swatches {\n  border: 1px solid #b3b3b3;\n  border-bottom: 1px solid #f0f0f0;\n  margin-bottom: 2px;\n  margin-top: 1px;\n}\n.vue-colors__photoshop__previews__pr-color {\n  height: 34px;\n  box-shadow: inset 1px 0 0 #000, inset -1px 0 0 #000, inset 0 1px 0 #000;\n}\n.vue-colors__photoshop__previews__label {\n  font-size: 14px;\n  color: #000;\n  text-align: center;\n}\n.vue-colors__photoshop__fields {\n  padding-top: 5px;\n  padding-bottom: 9px;\n  width: 80px;\n  position: relative;\n}\n.vue-colors__photoshop__fields .vue-color__editable-input__input {\n  margin-left: 40%;\n  width: 40%;\n  height: 18px;\n  border: 1px solid #888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,0.1), 0 1px 0 0 #ececec;\n  margin-bottom: 5px;\n  font-size: 13px;\n  padding-left: 3px;\n  margin-right: 10px;\n}\n.vue-colors__photoshop__fields .vue-color__editable-input__label {\n  top: 0;\n  left: 0;\n  width: 34px;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n  position: absolute;\n}\n.vue-colors__photoshop__fields__divider {\n  height: 5px;\n}\n.vue-colors__photoshop__fields__hex .vue-color__editable-input__input {\n  margin-left: 20%;\n  width: 80%;\n  height: 18px;\n  border: 1px solid #888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,0.1), 0 1px 0 0 #ececec;\n  margin-bottom: 6px;\n  font-size: 13px;\n  padding-left: 3px;\n}\n.vue-colors__photoshop__fields__hex .vue-color__editable-input__label {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 14px;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n}\n", ""]);
+	exports.push([module.id, "\n.vue-color__photoshop {\n  background: #dcdcdc;\n  border-radius: 4px;\n  box-shadow: 0 0 0 1px rgba(0,0,0,0.25), 0 8px 16px rgba(0,0,0,0.15);\n  box-sizing: initial;\n  width: 513px;\n  font-family: Roboto;\n}\n.vue-color__photoshop__head {\n  background-image: linear-gradient(-180deg, #f0f0f0 0%, #d4d4d4 100%);\n  border-bottom: 1px solid #b1b1b1;\n  box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.2), inset 0 -1px 0 0 rgba(0,0,0,0.02);\n  height: 23px;\n  line-height: 24px;\n  border-radius: 4px 4px 0 0;\n  font-size: 13px;\n  color: #4d4d4d;\n  text-align: center;\n}\n.vue-color__photoshop__body {\n  padding: 15px;\n  display: flex;\n}\n.vue-color__photoshop__saturation-wrap {\n  width: 256px;\n  height: 256px;\n  position: relative;\n  border: 2px solid #b3b3b3;\n  border-bottom: 2px solid #f0f0f0;\n  overflow: hidden;\n}\n.vue-color__photoshop__saturation-wrap .vue-color__saturation--circle {\n  width: 12px;\n  height: 12px;\n}\n.vue-color__photoshop__hue-wrap {\n  position: relative;\n  height: 256px;\n  width: 19px;\n  margin-left: 10px;\n  border: 2px solid #b3b3b3;\n  border-bottom: 2px solid #f0f0f0;\n}\n.vue-color__photoshop__hue-pointer {\n  position: relative;\n}\n.vue-color__photoshop__hue-pointer--left,\n.vue-color__photoshop__hue-pointer--right {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 5px 0 5px 8px;\n  border-color: transparent transparent transparent #555;\n}\n.vue-color__photoshop__hue-pointer--left:after,\n.vue-color__photoshop__hue-pointer--right:after {\n  content: \"\";\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 4px 0 4px 6px;\n  border-color: transparent transparent transparent #fff;\n  position: absolute;\n  top: 1px;\n  left: 1px;\n  transform: translate(-8px, -5px);\n}\n.vue-color__photoshop__hue-pointer--left {\n  transform: translate(-13px, -4px);\n}\n.vue-color__photoshop__hue-pointer--right {\n  transform: translate(20px, -4px) rotate(180deg);\n}\n.vue-color__photoshop__controls {\n  width: 180px;\n  margin-left: 10px;\n  display: flex;\n}\n.vue-color__photoshop__actions {\n  margin-left: 20px;\n  flex: 1;\n}\n.vue-color__photoshop__ac-btn {\n  cursor: pointer;\n  background-image: linear-gradient(-180deg, #fff 0%, #e6e6e6 100%);\n  border: 1px solid #878787;\n  border-radius: 2px;\n  height: 20px;\n  box-shadow: 0 1px 0 0 #eaeaea;\n  font-size: 14px;\n  color: #000;\n  line-height: 20px;\n  text-align: center;\n  margin-bottom: 10px;\n}\n.vue-color__photoshop__previews {\n  width: 60px;\n}\n.vue-color__photoshop__previews__swatches {\n  border: 1px solid #b3b3b3;\n  border-bottom: 1px solid #f0f0f0;\n  margin-bottom: 2px;\n  margin-top: 1px;\n}\n.vue-color__photoshop__previews__pr-color {\n  height: 34px;\n  box-shadow: inset 1px 0 0 #000, inset -1px 0 0 #000, inset 0 1px 0 #000;\n}\n.vue-color__photoshop__previews__label {\n  font-size: 14px;\n  color: #000;\n  text-align: center;\n}\n.vue-color__photoshop__fields {\n  padding-top: 5px;\n  padding-bottom: 9px;\n  width: 80px;\n  position: relative;\n}\n.vue-color__photoshop__fields .vue-color__editable-input__input {\n  margin-left: 40%;\n  width: 40%;\n  height: 18px;\n  border: 1px solid #888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,0.1), 0 1px 0 0 #ececec;\n  margin-bottom: 5px;\n  font-size: 13px;\n  padding-left: 3px;\n  margin-right: 10px;\n}\n.vue-color__photoshop__fields .vue-color__editable-input__label {\n  top: 0;\n  left: 0;\n  width: 34px;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n  position: absolute;\n}\n.vue-color__photoshop__fields__divider {\n  height: 5px;\n}\n.vue-color__photoshop__fields__hex .vue-color__editable-input__input {\n  margin-left: 20%;\n  width: 80%;\n  height: 18px;\n  border: 1px solid #888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,0.1), 0 1px 0 0 #ececec;\n  margin-bottom: 6px;\n  font-size: 13px;\n  padding-left: 3px;\n}\n.vue-color__photoshop__fields__hex .vue-color__editable-input__label {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 14px;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n}\n", ""]);
 
 	// exports
 
@@ -4189,13 +4189,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports={render:function (){with(this) {
 	  return _c('div', {
-	    staticClass: "vue-colors__photoshop"
+	    staticClass: "vue-color__photoshop"
 	  }, [_c('div', {
-	    staticClass: "vue-colors__photoshop__head"
+	    staticClass: "vue-color__photoshop__head"
 	  }, [_v(_s(head))]), _v(" "), _c('div', {
-	    staticClass: "vue-colors__photoshop__body"
+	    staticClass: "vue-color__photoshop__body"
 	  }, [_c('div', {
-	    staticClass: "vue-colors__photoshop__saturation-wrap"
+	    staticClass: "vue-color__photoshop__saturation-wrap"
 	  }, [_c('saturation', {
 	    directives: [{
 	      name: "model",
@@ -4213,7 +4213,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  })]), _v(" "), _c('div', {
-	    staticClass: "vue-colors__photoshop__hue-wrap"
+	    staticClass: "vue-color__photoshop__hue-wrap"
 	  }, [_c('hue', {
 	    directives: [{
 	      name: "model",
@@ -4234,45 +4234,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }, [_c('div', {
-	    staticClass: "vue-colors__photoshop__hue-pointer"
+	    staticClass: "vue-color__photoshop__hue-pointer"
 	  }, [_c('i', {
-	    staticClass: "vue-colors__photoshop__hue-pointer--left"
+	    staticClass: "vue-color__photoshop__hue-pointer--left"
 	  }), _c('i', {
-	    staticClass: "vue-colors__photoshop__hue-pointer--right"
+	    staticClass: "vue-color__photoshop__hue-pointer--right"
 	  })])])]), _v(" "), _c('div', {
-	    staticClass: "vue-colors__photoshop__controls"
+	    staticClass: "vue-color__photoshop__controls"
 	  }, [_c('div', {
-	    staticClass: "vue-colors__photoshop__previews"
+	    staticClass: "vue-color__photoshop__previews"
 	  }, [_c('div', {
-	    staticClass: "vue-colors__photoshop__previews__label"
+	    staticClass: "vue-color__photoshop__previews__label"
 	  }, [_v("new")]), _v(" "), _c('div', {
-	    staticClass: "vue-colors__photoshop__previews__swatches"
+	    staticClass: "vue-color__photoshop__previews__swatches"
 	  }, [_c('div', {
-	    staticClass: "vue-colors__photoshop__previews__pr-color",
+	    staticClass: "vue-color__photoshop__previews__pr-color",
 	    style: ({
 	      background: colors.hex
 	    })
 	  }), _v(" "), _c('div', {
-	    staticClass: "vue-colors__photoshop__previews__pr-color",
+	    staticClass: "vue-color__photoshop__previews__pr-color",
 	    style: ({
 	      background: currentColor
 	    })
 	  })]), _v(" "), _c('div', {
-	    staticClass: "vue-colors__photoshop__previews__label"
+	    staticClass: "vue-color__photoshop__previews__label"
 	  }, [_v("current")])]), _v(" "), _c('div', {
-	    staticClass: "vue-colors__photoshop__actions"
+	    staticClass: "vue-color__photoshop__actions"
 	  }, [_c('div', {
-	    staticClass: "vue-colors__photoshop__ac-btn",
+	    staticClass: "vue-color__photoshop__ac-btn",
 	    on: {
 	      "click": handleAccept
 	    }
 	  }, [_v("OK")]), _v(" "), _c('div', {
-	    staticClass: "vue-colors__photoshop__ac-btn",
+	    staticClass: "vue-color__photoshop__ac-btn",
 	    on: {
 	      "click": handleCancel
 	    }
 	  }, [_v("Cancel")]), _v(" "), _c('div', {
-	    staticClass: "vue-colors__photoshop__fields"
+	    staticClass: "vue-color__photoshop__fields"
 	  }, [_c('ed-in', {
 	    directives: [{
 	      name: "model",
@@ -4331,7 +4331,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }), _v(" "), _c('div', {
-	    staticClass: "vue-colors__photoshop__fields__divider"
+	    staticClass: "vue-color__photoshop__fields__divider"
 	  }), _v(" "), _v(" "), _c('ed-in', {
 	    directives: [{
 	      name: "model",
@@ -4390,7 +4390,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }), _v(" "), _c('div', {
-	    staticClass: "vue-colors__photoshop__fields__divider"
+	    staticClass: "vue-color__photoshop__fields__divider"
 	  }), _v(" "), _v(" "), _c('ed-in', {
 	    directives: [{
 	      name: "model",
@@ -4398,7 +4398,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      value: (colors.hex),
 	      expression: "colors.hex"
 	    }],
-	    staticClass: "vue-colors__photoshop__fields__hex",
+	    staticClass: "vue-color__photoshop__fields__hex",
 	    attrs: {
 	      "label": "#"
 	    },
