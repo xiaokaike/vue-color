@@ -8,7 +8,7 @@ function _colorChange (data, oldHue) {
   var color
   if (data.hex) {
     color = tinycolor(data.hex)
-    color.setAlpha(data.a)
+    color.setAlpha(data.a || 1)
   } else {
     color = tinycolor(data)
   }
