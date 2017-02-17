@@ -5,7 +5,13 @@ function _colorChange (data, oldHue) {
     data.a = 1
   }
 
-  var color = data.hex ? tinycolor(data.hex) : tinycolor(data)
+  var color
+  if (data.hex) {
+    color = tinycolor(data.hex)
+    color.setAlpha(data.a || 1)
+  } else {
+    color = tinycolor(data)
+  }
   var hsl = color.toHsl()
   var hsv = color.toHsv()
   if (hsl.s === 0) {
