@@ -1,25 +1,28 @@
 import tinycolor from 'tinycolor2'
 
 function _colorChange (data, oldHue) {
-  if (data.a && data.a > 1) {
-    data.a = 1
-  }
-
-  data.a = data.a || 1
-
+  var alpha = data && data.a
   var color
-  if (data.hex) {
+
+  // hsl is better than hex between conversions
+  if (data && data.hsl) {
+    color = tinycolor(data.hsl)
+  } else if (data && data.hex && data.hex.length > 0) {
     color = tinycolor(data.hex)
-    color.setAlpha(data.a)
   } else {
     color = tinycolor(data)
   }
+
+  if (color) color.setAlpha(alpha || 1)
+
   var hsl = color.toHsl()
   var hsv = color.toHsv()
+
   if (hsl.s === 0) {
     hsl.h = data.h || oldHue || 0
     hsv.h = data.h || oldHue || 0
   }
+
   return {
     hsl: hsl,
     hex: color.toHexString().toUpperCase(),
@@ -27,7 +30,7 @@ function _colorChange (data, oldHue) {
     hsv: hsv,
     oldHue: data.h || oldHue || hsl.h,
     source: data.source,
-    a: data.a
+    a: alpha
   }
 }
 
@@ -52,23 +55,12 @@ export default {
   watch: {
     value (newVal) {
       this.val = _colorChange(newVal)
-      // this.$emit('change', newVal)
     }
-  },
-  created () {
-    // console.log(this.colors)
-    /*
-      Enforce the colorChange in case only HEX value is given.
-      Guarantees that HEX value is uppercase and other values such
-      as HSL or HSV exists and reflect the HEX value
-      TODO accept any kind of color value, HEX, RGBA, HSL and others
-    */
-    // this.colors = _colorChange(this.colors)
   },
   methods: {
     colorChange (data, oldHue) {
-      this.colors = _colorChange(data, oldHue || this.oldHue)
       this.oldHue = this.colors.hsl.h
+      this.colors = _colorChange(data, oldHue || this.oldHue)
     },
     isValidHex (hex) {
       return tinycolor(hex).isValid()
