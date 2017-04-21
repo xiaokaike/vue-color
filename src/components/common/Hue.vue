@@ -54,8 +54,14 @@ export default {
       var container = this.$refs.container
       var containerWidth = container.clientWidth
       var containerHeight = container.clientHeight
-      var left = (e.pageX || e.touches[0].pageX) - (container.getBoundingClientRect().left + window.pageXOffset)
-      var top = (e.pageY || e.touches[0].pageY) - (container.getBoundingClientRect().top + window.pageYOffset)
+
+      var xOffset = container.getBoundingClientRect().left + window.pageXOffset
+      var yOffset = container.getBoundingClientRect().top + window.pageYOffset
+      var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
+      var pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
+      var left = pageX - xOffset
+      var top = pageY - yOffset
+
       var h
       var percent
 
