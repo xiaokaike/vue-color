@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-color__saturation" 
+  <div class="vue-color__saturation"
     :style="{background: bgColor}"
     ref="container"
     @mousedown="handleMouseDown">
@@ -24,7 +24,7 @@ export default {
       return this.value
     },
     bgColor () {
-      return 'hsl(' + this.colors.hsl.h + ',100%, 50%)'
+      return `hsl(${this.colors.hsl.h}, 100%, 50%)`
     },
     pointerTop () {
       return -(this.colors.hsv.v * 100) + 100 + '%'
@@ -36,14 +36,23 @@ export default {
   methods: {
     throttle: throttle((fn, data) => {
       fn(data)
-    }, 50),
+    }, 20,
+      {
+        'leading': true,
+        'trailing': false
+      }),
     handleChange (e, skip) {
       !skip && e.preventDefault()
       var container = this.$refs.container
       var containerWidth = container.clientWidth
       var containerHeight = container.clientHeight
-      var left = (e.pageX || e.touches[0].pageX) - (container.getBoundingClientRect().left + window.pageXOffset)
-      var top = (e.pageY || e.touches[0].pageY) - (container.getBoundingClientRect().top + window.pageYOffset)
+
+      var xOffset = container.getBoundingClientRect().left + window.pageXOffset
+      var yOffset = container.getBoundingClientRect().top + window.pageYOffset
+      var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
+      var pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
+      var left = pageX - xOffset
+      var top = pageY - yOffset
 
       if (left < 0) {
         left = 0
@@ -61,17 +70,18 @@ export default {
       this.throttle(this.onChange, {
         h: this.colors.hsl.h,
         s: saturation,
-        v: bright,
+        v: bright > 0 ? bright : 0.01, // avoid TinyColor change to black when v === 0 check issue (https://github.com/bgrins/TinyColor/issues/86)
         a: this.colors.hsl.a,
-        source: 'rgb'
+        source: 'hsva'
       })
     },
     onChange (param) {
       this.$emit('on-change', param)
     },
     handleMouseDown (e) {
-      this.handleChange(e, true)
+      // this.handleChange(e, true)
       window.addEventListener('mousemove', this.handleChange)
+      window.addEventListener('mouseup', this.handleChange)
       window.addEventListener('mouseup', this.handleMouseUp)
     },
     handleMouseUp (e) {
@@ -79,6 +89,7 @@ export default {
     },
     unbindEventListeners () {
       window.removeEventListener('mousemove', this.handleChange)
+      window.removeEventListener('mouseup', this.handleChange)
       window.removeEventListener('mouseup', this.handleMouseUp)
     }
   }
@@ -95,7 +106,7 @@ export default {
   left 0
   right 0
   bottom 0
-  
+
 .vue-color__saturation--white
   background linear-gradient(to right, #fff, rgba(255,255,255,0))
 .vue-color__saturation--black

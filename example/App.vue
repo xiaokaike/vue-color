@@ -8,26 +8,26 @@
           <div class="intro">
             <h1>Vue-color</h1>
             <p>A Collection of Color Pickers from Sketch, Photoshop, Chrome, Github, Twitter, Material Design & more</p>
-          </div>  
-        </div> 
+          </div>
+        </div>
         <div class="demo-item">
           <chrome-picker v-model="colors" @change-color="onChange"></chrome-picker>
           <h6>Chrome</h6>
         </div>
-      </header>  
+      </header>
     </div>
-    
+
     <div class="demo-container">
       <div class="demo-list">
         <div class="demo-item">
           <sketch-picker v-model="colors" @change-color="onChange"></sketch-picker>
           <h6>Sketch</h6>
-        </div> 
+        </div>
         <div class="demo-item">
           <photoshop-picker v-model="colors" @change-color="onChange" @ok="onOk" @cancel="onCancel"></photoshop-picker>
           <h6>Photoshop</h6>
         </div>
-      </div>  
+      </div>
       <div class="demo-list">
         <div class="demo-item">
           <material-picker v-model="colors" @change-color="onChange"></material-picker>
@@ -46,10 +46,10 @@
         <div class="demo-item">
           <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
           <h6>Swatches</h6>
-        </div>  
+        </div>
       </div>
-      
-      
+
+
     </div>
   </div>
 </template>
@@ -158,7 +158,7 @@ html
         font-size 16px
         font-weight normal
         line-height 22px
-  
+
 .demo-container
   max-width 780px
   min-height 800px
@@ -173,7 +173,7 @@ html
   margin-bottom 10px
   margin 0 10px 0 10px
   z-index 2
-  h6 
+  h6
     margin 0
     padding 5px 0
     color #666
