@@ -100,7 +100,6 @@ new Vue({
 ```html
 <!-- suppose you have the data 'colors' in your component -->
 <material-picker v-model="colors" @change-color="onChange"></material-picker>
-<material-picker v-model="colors" @change-color="onChange"></material-picker>
 <compact-picker v-model="colors" @change-color="onChange"></compact-picker>
 <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
 <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
