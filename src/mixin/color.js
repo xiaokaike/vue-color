@@ -48,7 +48,7 @@ export default {
       },
       set (newVal) {
         this.val = newVal
-        this.$emit('change', newVal)
+        this.$emit('input', newVal)
       }
     }
   },
