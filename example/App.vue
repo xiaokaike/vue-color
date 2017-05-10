@@ -115,7 +115,6 @@ export default {
     },
     onChange (val) {
       console.log(val)
-      // this.colors = val
     }
   },
   created () {

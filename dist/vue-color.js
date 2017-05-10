@@ -111,7 +111,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var VueColor = {
-	  version: '1.0.26',
+	  version: '2.0.9',
 	  Compact: _Compact2.default,
 	  Material: _Material2.default,
 	  Slider: _Slider2.default,
@@ -164,9 +164,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-1", __vue_options__)
+	    hotAPI.createRecord("data-v-3", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-1", __vue_options__)
+	    hotAPI.reload("data-v-3", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Compact.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -190,8 +190,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue");
+			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue", function() {
+				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1900,9 +1900,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-12", __vue_options__)
+	    hotAPI.createRecord("data-v-10", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-12", __vue_options__)
+	    hotAPI.reload("data-v-10", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] EditableInput.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -1926,8 +1926,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-12!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue", function() {
-				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-12!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue");
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -1996,7 +1996,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    handleChange: function handleChange(newVal) {
 	      var data = {};
 	      data[this.label] = newVal;
-	      this.$emit('on-change', data);
+	      this.$emit('change', data);
 	    },
 	    handleBlur: function handleBlur(e) {
 	      console.log(e);
@@ -2062,7 +2062,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-12", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-10", module.exports)
 	  }
 	}
 
@@ -2103,7 +2103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-1", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-3", module.exports)
 	  }
 	}
 
@@ -2142,9 +2142,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-2", __vue_options__)
+	    hotAPI.createRecord("data-v-1", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-2", __vue_options__)
+	    hotAPI.reload("data-v-1", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Material.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2168,8 +2168,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue");
+			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue", function() {
+				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2257,7 +2257,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "hex"
 	    },
 	    on: {
-	      "on-change": _vm.onChange
+	      "change": _vm.onChange
 	    },
 	    model: {
 	      value: (_vm.colors.hex),
@@ -2275,7 +2275,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "r"
 	    },
 	    on: {
-	      "on-change": _vm.onChange
+	      "change": _vm.onChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.r),
@@ -2291,7 +2291,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "g"
 	    },
 	    on: {
-	      "on-change": _vm.onChange
+	      "change": _vm.onChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.g),
@@ -2307,7 +2307,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "b"
 	    },
 	    on: {
-	      "on-change": _vm.onChange
+	      "change": _vm.onChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.b),
@@ -2321,7 +2321,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-1", module.exports)
 	  }
 	}
 
@@ -2360,9 +2360,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-3", __vue_options__)
+	    hotAPI.createRecord("data-v-2", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-3", __vue_options__)
+	    hotAPI.reload("data-v-2", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Slider.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2386,8 +2386,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slider.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slider.vue");
+			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slider.vue", function() {
+				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slider.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2626,7 +2626,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        if (this.colors.hsl.h !== h) {
-	          this.$emit('on-change', {
+	          this.$emit('change', {
 	            h: h,
 	            s: this.colors.hsl.s,
 	            l: this.colors.hsl.l,
@@ -2645,7 +2645,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        if (this.colors.hsl.h !== h) {
-	          this.$emit('on-change', {
+	          this.$emit('change', {
 	            h: h,
 	            s: this.colors.hsl.s,
 	            l: this.colors.hsl.l,
@@ -2713,7 +2713,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    staticClass: "vue-color__slider__hue-warp"
 	  }, [_c('hue', {
 	    on: {
-	      "on-change": _vm.hueChange
+	      "change": _vm.hueChange
 	    },
 	    model: {
 	      value: (_vm.colors),
@@ -2749,7 +2749,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-3", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2", module.exports)
 	  }
 	}
 
@@ -3183,9 +3183,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-10", __vue_options__)
+	    hotAPI.createRecord("data-v-12", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-10", __vue_options__)
+	    hotAPI.reload("data-v-12", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Saturation.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -3209,8 +3209,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Saturation.vue", function() {
-				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Saturation.vue");
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-12!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Saturation.vue", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-12!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Saturation.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -3310,7 +3310,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	    },
 	    onChange: function onChange(param) {
-	      this.$emit('on-change', param);
+	      this.$emit('change', param);
 	    },
 	    handleMouseDown: function handleMouseDown(e) {
 	      window.addEventListener('mousemove', this.handleChange);
@@ -3805,7 +3805,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-10", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-12", module.exports)
 	  }
 	}
 
@@ -3844,9 +3844,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-7", __vue_options__)
+	    hotAPI.createRecord("data-v-8", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-7", __vue_options__)
+	    hotAPI.reload("data-v-8", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Alpha.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -3870,8 +3870,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Alpha.vue", function() {
-				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Alpha.vue");
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Alpha.vue", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Alpha.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -3949,7 +3949,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      if (this.colors.a !== a) {
-	        this.$emit('on-change', {
+	        this.$emit('change', {
 	          h: this.colors.hsl.h,
 	          s: this.colors.hsl.s,
 	          l: this.colors.hsl.l,
@@ -4180,7 +4180,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-7", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-8", module.exports)
 	  }
 	}
 
@@ -4199,7 +4199,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    staticClass: "vue-color__photoshop__saturation-wrap"
 	  }, [_c('saturation', {
 	    on: {
-	      "on-change": _vm.childChange
+	      "change": _vm.childChange
 	    },
 	    model: {
 	      value: (_vm.colors),
@@ -4215,7 +4215,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "direction": "vertical"
 	    },
 	    on: {
-	      "on-change": _vm.childChange
+	      "change": _vm.childChange
 	    },
 	    model: {
 	      value: (_vm.colors),
@@ -4269,7 +4269,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "h"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.hsl.h),
@@ -4283,7 +4283,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "s"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.hsl.s),
@@ -4297,7 +4297,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "v"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.hsl.l),
@@ -4313,7 +4313,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "r"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.r),
@@ -4327,7 +4327,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "g"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.g),
@@ -4341,7 +4341,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "b"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.b),
@@ -4358,7 +4358,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "#"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.hex),
@@ -4559,7 +4559,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    staticClass: "vue-color__sketch__saturation-wrap"
 	  }, [_c('saturation', {
 	    on: {
-	      "on-change": _vm.childChange
+	      "change": _vm.childChange
 	    },
 	    model: {
 	      value: (_vm.colors),
@@ -4576,7 +4576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    staticClass: "vue-color__sketch__hue-wrap"
 	  }, [_c('hue', {
 	    on: {
-	      "on-change": _vm.childChange
+	      "change": _vm.childChange
 	    },
 	    model: {
 	      value: (_vm.colors),
@@ -4589,7 +4589,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    staticClass: "vue-color__sketch__alpha-wrap"
 	  }, [_c('alpha', {
 	    on: {
-	      "on-change": _vm.childChange
+	      "change": _vm.childChange
 	    },
 	    model: {
 	      value: (_vm.colors),
@@ -4614,7 +4614,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "hex"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.hex),
@@ -4630,7 +4630,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "r"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.r),
@@ -4646,7 +4646,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "g"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.g),
@@ -4662,7 +4662,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "b"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.b),
@@ -4680,7 +4680,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "max": 1
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.a),
@@ -4747,9 +4747,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-8", __vue_options__)
+	    hotAPI.createRecord("data-v-7", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-8", __vue_options__)
+	    hotAPI.reload("data-v-7", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Chrome.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -4773,8 +4773,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chrome.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chrome.vue");
+			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chrome.vue", function() {
+				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chrome.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -4909,7 +4909,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    staticClass: "vue-color__chrome__saturation-wrap"
 	  }, [_c('saturation', {
 	    on: {
-	      "on-change": _vm.childChange
+	      "change": _vm.childChange
 	    },
 	    model: {
 	      value: (_vm.colors),
@@ -4935,7 +4935,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    staticClass: "vue-color__chrome__hue-wrap"
 	  }, [_c('hue', {
 	    on: {
-	      "on-change": _vm.childChange
+	      "change": _vm.childChange
 	    },
 	    model: {
 	      value: (_vm.colors),
@@ -4948,7 +4948,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    staticClass: "vue-color__chrome__alpha-wrap"
 	  }, [_c('alpha', {
 	    on: {
-	      "on-change": _vm.childChange
+	      "change": _vm.childChange
 	    },
 	    model: {
 	      value: (_vm.colors),
@@ -4974,7 +4974,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "hex"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.hex),
@@ -4998,7 +4998,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "r"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.r),
@@ -5014,7 +5014,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "g"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.g),
@@ -5030,7 +5030,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "b"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.rgba.b),
@@ -5048,7 +5048,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "max": 1
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.a),
@@ -5072,7 +5072,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "h"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.hsl.h),
@@ -5088,7 +5088,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "s"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.hsl.s),
@@ -5104,7 +5104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "label": "l"
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.hsl.l),
@@ -5122,7 +5122,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      "max": 1
 	    },
 	    on: {
-	      "on-change": _vm.inputChange
+	      "change": _vm.inputChange
 	    },
 	    model: {
 	      value: (_vm.colors.a),
@@ -5169,7 +5169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-8", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-7", module.exports)
 	  }
 	}
 
