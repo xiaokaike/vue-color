@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="demo-item">
-          <chrome-picker v-model="colors" @input="onChange"></chrome-picker>
+          <chrome-picker :value="colors" @input="updateValue"></chrome-picker>
           <h6>Chrome</h6>
         </div>
       </header>
@@ -20,31 +20,31 @@
     <div class="demo-container">
       <div class="demo-list">
         <div class="demo-item">
-          <sketch-picker v-model="colors" @input="onChange"></sketch-picker>
+          <sketch-picker v-model="colors"></sketch-picker>
           <h6>Sketch</h6>
         </div>
         <div class="demo-item">
-          <photoshop-picker v-model="colors" @input="onChange" @ok="onOk" @cancel="onCancel"></photoshop-picker>
+          <photoshop-picker v-model="colors" @ok="onOk" @cancel="onCancel"></photoshop-picker>
           <h6>Photoshop</h6>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <material-picker v-model="colors" @input="onChange"></material-picker>
+          <material-picker v-model="colors"></material-picker>
           <h6>Material</h6>
         </div>
         <div class="demo-item">
-          <slider-picker v-model="colors" @input="onChange"></slider-picker>
+          <slider-picker v-model="colors"></slider-picker>
           <h6>Slider</h6>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <compact-picker v-model="colors" @input="onChange"></compact-picker>
+          <compact-picker v-model="colors"></compact-picker>
           <h6>Compact</h6>
         </div>
         <div class="demo-item">
-          <swatches-picker v-model="colors" @input="onChange"></swatches-picker>
+          <swatches-picker v-model="colors"></swatches-picker>
           <h6>Swatches</h6>
         </div>
       </div>
@@ -113,8 +113,9 @@ export default {
     onCancel () {
       console.log('cancel')
     },
-    onChange (val) {
-      console.log(val)
+    updateValue (value) {
+      console.log(value)
+      this.colors = value
     }
   },
   created () {

@@ -108,6 +108,13 @@ new Vue({
 <photoshop-picker v-model="colors" />
 ```
 
+OR
+
+```html
+<chrome-picker :value="colors" @input="updateValue"></chrome-picker>
+```
+
+
 ## TODO
 -[] docs
 -[] more components
