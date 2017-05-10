@@ -1,7 +1,7 @@
 <template>
   <div class="vue-color__chrome">
     <div class="vue-color__chrome__saturation-wrap">
-      <saturation v-model="colors" @on-change="childChange"></saturation>
+      <saturation v-model="colors" @change="childChange"></saturation>
     </div>
     <div class="vue-color__chrome__chrome-body">
       <div class="vue-color__chrome__controls">
@@ -11,10 +11,10 @@
 
         <div class="vue-color__chrome__sliders">
           <div class="vue-color__chrome__hue-wrap">
-            <hue v-model="colors" @on-change="childChange"></hue>
+            <hue v-model="colors" @change="childChange"></hue>
           </div>
           <div class="vue-color__chrome__alpha-wrap">
-            <alpha v-model="colors" @on-change="childChange"></alpha>
+            <alpha v-model="colors" @change="childChange"></alpha>
           </div>
         </div>
       </div>
@@ -23,37 +23,37 @@
         <div class="vue-color__chrome__fields" v-show="fieldsIndex === 0">
           <!-- hex -->
           <div class="vue-color__chrome__field">
-            <ed-in label="hex" v-model="colors.hex" @on-change="inputChange"></ed-in>  
+            <ed-in label="hex" v-model="colors.hex" @change="inputChange"></ed-in>  
           </div>
         </div>
         <div class="vue-color__chrome__fields" v-show="fieldsIndex === 1">
           <!-- rgba -->
           <div class="vue-color__chrome__field">
-            <ed-in label="r" v-model="colors.rgba.r" @on-change="inputChange"></ed-in>
+            <ed-in label="r" v-model="colors.rgba.r" @change="inputChange"></ed-in>
           </div>
           <div class="vue-color__chrome__field">
-            <ed-in label="g" v-model="colors.rgba.g" @on-change="inputChange"></ed-in>
+            <ed-in label="g" v-model="colors.rgba.g" @change="inputChange"></ed-in>
           </div>
           <div class="vue-color__chrome__field">
-            <ed-in label="b" v-model="colors.rgba.b" @on-change="inputChange"></ed-in>
+            <ed-in label="b" v-model="colors.rgba.b" @change="inputChange"></ed-in>
           </div>
           <div class="vue-color__chrome__field">
-            <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @on-change="inputChange"></ed-in>
+            <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
         <div class="vue-color__chrome__fields" v-show="fieldsIndex === 2">
           <!-- hsla -->
           <div class="vue-color__chrome__field">
-            <ed-in label="h" v-model="colors.hsl.h" @on-change="inputChange"></ed-in>
+            <ed-in label="h" v-model="colors.hsl.h" @change="inputChange"></ed-in>
           </div>
           <div class="vue-color__chrome__field"> 
-            <ed-in label="s" v-model="colors.hsl.s" @on-change="inputChange"></ed-in>
+            <ed-in label="s" v-model="colors.hsl.s" @change="inputChange"></ed-in>
           </div>
           <div class="vue-color__chrome__field">
-            <ed-in label="l" v-model="colors.hsl.l" @on-change="inputChange"></ed-in>
+            <ed-in label="l" v-model="colors.hsl.l" @change="inputChange"></ed-in>
           </div>
           <div class="vue-color__chrome__field">
-            <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @on-change="inputChange"></ed-in>
+            <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
         <!-- btn -->

@@ -76,7 +76,7 @@ export default {
         }
 
         if (this.colors.hsl.h !== h) {
-          this.$emit('on-change', {
+          this.$emit('change', {
             h: h,
             s: this.colors.hsl.s,
             l: this.colors.hsl.l,
@@ -95,7 +95,7 @@ export default {
         }
 
         if (this.colors.hsl.h !== h) {
-          this.$emit('on-change', {
+          this.$emit('change', {
             h: h,
             s: this.colors.hsl.s,
             l: this.colors.hsl.l,

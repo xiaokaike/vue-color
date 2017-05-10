@@ -1,15 +1,15 @@
 <template>
   <div class="vue-color__sketch">
     <div class="vue-color__sketch__saturation-wrap">
-      <saturation v-model="colors" @on-change="childChange"></saturation>
+      <saturation v-model="colors" @change="childChange"></saturation>
     </div>
     <div class="vue-color__sketch__controls">
       <div class="vue-color__sketch__sliders">
         <div class="vue-color__sketch__hue-wrap">
-          <hue v-model="colors" @on-change="childChange"></hue>  
+          <hue v-model="colors" @change="childChange"></hue>  
         </div>
         <div class="vue-color__sketch__alpha-wrap">
-          <alpha v-model="colors" @on-change="childChange"></alpha>
+          <alpha v-model="colors" @change="childChange"></alpha>
         </div>
       </div>
       <div class="vue-color__sketch__color-wrap">
@@ -19,19 +19,19 @@
     <div class="vue-color__sketch__field">
       <!-- rgba -->
       <div class="vue-color__sketch__field--double">
-        <ed-in label="hex" v-model="colors.hex" @on-change="inputChange"></ed-in>  
+        <ed-in label="hex" v-model="colors.hex" @change="inputChange"></ed-in>  
       </div>
       <div class="vue-color__sketch__field--single">
-        <ed-in label="r" v-model="colors.rgba.r" @on-change="inputChange"></ed-in>
+        <ed-in label="r" v-model="colors.rgba.r" @change="inputChange"></ed-in>
       </div>
       <div class="vue-color__sketch__field--single">
-        <ed-in label="g" v-model="colors.rgba.g" @on-change="inputChange"></ed-in>
+        <ed-in label="g" v-model="colors.rgba.g" @change="inputChange"></ed-in>
       </div>
       <div class="vue-color__sketch__field--single">
-        <ed-in label="b" v-model="colors.rgba.b" @on-change="inputChange"></ed-in>
+        <ed-in label="b" v-model="colors.rgba.b" @change="inputChange"></ed-in>
       </div>
       <div class="vue-color__sketch__field--single">
-        <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @on-change="inputChange"></ed-in>
+        <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
       </div>
     </div>
     <div class="vue-color__sketch__presets">

@@ -76,7 +76,7 @@ export default {
       })
     },
     onChange (param) {
-      this.$emit('on-change', param)
+      this.$emit('change', param)
     },
     handleMouseDown (e) {
       // this.handleChange(e, true)

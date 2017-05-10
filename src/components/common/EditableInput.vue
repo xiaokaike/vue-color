@@ -46,7 +46,7 @@ export default {
     handleChange (newVal) {
       let data = {}
       data[this.label] = newVal
-      this.$emit('on-change', data)
+      this.$emit('change', data)
     },
     handleBlur (e) {
       console.log(e)

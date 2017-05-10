@@ -14,19 +14,19 @@
         <ed-in label="vue-color__compact__hex"
         :val.sync="colors.hex"
         :style="{ borderColor: colors.hex }"
-        :on-change="onChange"></ed-in>
+        :change="onChange"></ed-in>
       </div>
       <div class="vue-color__compact__col-3">
         <ed-in label="r" :val.sync="colors.rgba.r"
-        :on-change="onChange"></ed-in>
+        :change="onChange"></ed-in>
       </div>
       <div class="vue-color__compact__col-3">
         <ed-in label="g" :val.sync="colors.rgba.g"
-        :on-change="onChange"></ed-in>
+        :change="onChange"></ed-in>
       </div>
       <div class="vue-color__compact__col-3">
         <ed-in label="b" :val.sync="colors.rgba.b"
-        :on-change="onChange"></ed-in>
+        :change="onChange"></ed-in>
       </div>
     </div> -->
   </div>

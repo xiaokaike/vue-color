@@ -2,20 +2,20 @@
 
   <div class="vue-color__material">
     <ed-in class="vue-color__material__hex" label="hex" v-model="colors.hex"
-      :style="{ borderColor: colors.hex }" @on-change="onChange"></ed-in>
+      :style="{ borderColor: colors.hex }" @change="onChange"></ed-in>
 
     <div class="vue-color__material__split">
       <div class="vue-color__material__third">
         <ed-in label="r" v-model="colors.rgba.r"
-        @on-change="onChange"></ed-in>
+        @change="onChange"></ed-in>
       </div>
       <div class="vue-color__material__third">
         <ed-in label="g" v-model="colors.rgba.g"
-        @on-change="onChange"></ed-in>
+        @change="onChange"></ed-in>
       </div>
       <div class="vue-color__material__third">
         <ed-in label="b" v-model="colors.rgba.b"
-        @on-change="onChange"></ed-in>
+        @change="onChange"></ed-in>
       </div>
     </div>
   </div>

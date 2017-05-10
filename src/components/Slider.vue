@@ -1,7 +1,7 @@
 <template>
   <div class="vue-color__slider">
     <div class="vue-color__slider__hue-warp">
-      <hue v-model="colors" @on-change="hueChange"></hue>
+      <hue v-model="colors" @change="hueChange"></hue>
     </div>
     <div class="vue-color__slider__swatches">
       <div class="vue-color__slider__swatch" v-for="(offset, index) in swatches" :data-index="index"
