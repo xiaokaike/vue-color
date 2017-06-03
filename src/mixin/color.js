@@ -13,7 +13,7 @@ function _colorChange (data, oldHue) {
     color = tinycolor(data)
   }
 
-  if (color) color.setAlpha(alpha || 1)
+  if (color && (color._a == undefined || color._a == null)) color.setAlpha(alpha || 1)
 
   var hsl = color.toHsl()
   var hsv = color.toHsv()
