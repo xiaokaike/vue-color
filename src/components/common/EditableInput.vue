@@ -46,7 +46,11 @@ export default {
     handleChange (newVal) {
       let data = {}
       data[this.label] = newVal
-      this.$emit('change', data)
+      if (data.hex === undefined && data['#'] === undefined) {
+        this.$emit('change', data)
+      } else if (newVal.length > 5) {
+        this.$emit('change', data)
+      }
     },
     handleBlur (e) {
       console.log(e)
