@@ -1,5 +1,7 @@
 # vue-color 
 
+[![npm](https://img.shields.io/npm/v/vue-color.svg)](https://www.npmjs.com/package/vue-color)
+
 Color Pickers for Sketch, Photoshop, Chrome & more with Vue.js(vue2.0).  
 
 ## [Live demo](http://xiaokaike.github.io/vue-color/)
