@@ -114,7 +114,6 @@ export default {
       console.log('cancel')
     },
     updateValue (value) {
-      console.log(value)
       this.colors = value
     }
   },

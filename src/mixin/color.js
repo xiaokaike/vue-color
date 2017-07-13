@@ -21,8 +21,7 @@ function _colorChange (data, oldHue) {
   var hsv = color.toHsv()
 
   if (hsl.s === 0) {
-    hsl.h = data.h || oldHue || 0
-    hsv.h = data.h || oldHue || 0
+    hsv.h = hsl.h = data.h || (data.hsl && data.hsl.h) || oldHue || 0
   }
 
   return {
