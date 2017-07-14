@@ -27,7 +27,7 @@ export default {
       return `hsl(${this.colors.hsl.h}, 100%, 50%)`
     },
     pointerTop () {
-      return -(this.colors.hsv.v * 100) + 100 + '%'
+      return (-(this.colors.hsv.v * 100) + 1) + 100 + '%'
     },
     pointerLeft () {
       return this.colors.hsv.s * 100 + '%'
@@ -64,13 +64,16 @@ export default {
         top = containerHeight
       }
 
-      var saturation = left * 100 / containerWidth
-      var bright = -(top * 100 / containerHeight) + 100
+      var saturation = left / containerWidth
+      var bright = -(top / containerHeight) + 1
+
+      bright = bright > 0 ? bright : 0.01 // avoid TinyColor change to black when v === 0 check issue (https://github.com/bgrins/TinyColor/issues/86)
+      bright = bright > 1 ? 1 : bright
 
       this.throttle(this.onChange, {
         h: this.colors.hsl.h,
         s: saturation,
-        v: bright > 0 ? bright : 0.01, // avoid TinyColor change to black when v === 0 check issue (https://github.com/bgrins/TinyColor/issues/86)
+        v: bright, 
         a: this.colors.hsl.a,
         source: 'hsva'
       })
