@@ -73,7 +73,7 @@ export default {
       this.throttle(this.onChange, {
         h: this.colors.hsl.h,
         s: saturation,
-        v: bright, 
+        v: bright,
         a: this.colors.hsl.a,
         source: 'hsva'
       })

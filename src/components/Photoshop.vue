@@ -26,9 +26,9 @@
           <div class="vue-color__photoshop__ac-btn" @click="handleCancel">Cancel</div>
           <div class="vue-color__photoshop__fields">
             <!-- hsla -->
-            <ed-in label="h" v-model="colors.hsl.h" @change="inputChange"></ed-in>
-            <ed-in label="s" v-model="colors.hsl.s" @change="inputChange"></ed-in>
-            <ed-in label="v" v-model="colors.hsl.l" @change="inputChange"></ed-in>
+            <ed-in label="h" v-model="colors.hsv.h" @change="inputChange"></ed-in>
+            <ed-in label="s" v-model="colors.hsv.s" @change="inputChange"></ed-in>
+            <ed-in label="v" v-model="colors.hsv.v" @change="inputChange"></ed-in>
             <div class="vue-color__photoshop__fields__divider"></div>
             <!-- rgba -->
             <ed-in label="r" v-model="colors.rgba.r" @change="inputChange"></ed-in>

@@ -22,7 +22,7 @@ export default {
       default: 'horizontal'
     }
   },
-  data() {
+  data () {
     return {
       oldHue: ''
     }
@@ -83,7 +83,7 @@ export default {
         }
 
         if (this.colors.hsl.h !== h) {
-          this.oldHue = h;
+          this.oldHue = h
           this.$emit('change', {
             h: h,
             s: this.colors.hsl.s,
@@ -103,7 +103,7 @@ export default {
         }
 
         if (this.colors.hsl.h !== h) {
-          this.oldHue = h;
+          this.oldHue = h
           this.$emit('change', {
             h: h,
             s: this.colors.hsl.s,
