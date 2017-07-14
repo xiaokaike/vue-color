@@ -22,6 +22,11 @@ export default {
       default: 'horizontal'
     }
   },
+  data() {
+    return {
+      oldHue: ''
+    }
+  },
   computed: {
     colors () {
       return this.value
@@ -34,6 +39,7 @@ export default {
     },
     pointerTop () {
       if (this.direction === 'vertical') {
+        if (this.colors.hsl.h === 0 && this.oldHue === 360) return 0
         return -((this.colors.hsl.h * 100) / 360) + 100 + '%'
       } else {
         return 0
@@ -43,6 +49,7 @@ export default {
       if (this.direction === 'vertical') {
         return 0
       } else {
+        if (this.colors.hsl.h === 0 && this.oldHue === 360) return '100%'
         return (this.colors.hsl.h * 100) / 360 + '%'
       }
     }
@@ -67,7 +74,7 @@ export default {
 
       if (this.direction === 'vertical') {
         if (top < 0) {
-          h = 359
+          h = 360
         } else if (top > containerHeight) {
           h = 0
         } else {
@@ -76,6 +83,7 @@ export default {
         }
 
         if (this.colors.hsl.h !== h) {
+          this.oldHue = h;
           this.$emit('change', {
             h: h,
             s: this.colors.hsl.s,
@@ -88,13 +96,14 @@ export default {
         if (left < 0) {
           h = 0
         } else if (left > containerWidth) {
-          h = 359
+          h = 360
         } else {
           percent = left * 100 / containerWidth
           h = (360 * percent / 100)
         }
 
         if (this.colors.hsl.h !== h) {
+          this.oldHue = h;
           this.$emit('change', {
             h: h,
             s: this.colors.hsl.s,
