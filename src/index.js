@@ -5,6 +5,7 @@ import Swatches from './components/Swatches.vue'
 import Photoshop from './components/Photoshop.vue'
 import Sketch from './components/Sketch.vue'
 import Chrome from './components/Chrome.vue'
+import ChromeCompact from './components/ChromeCompact.vue'
 import Alpha from './components/common/Alpha.vue'
 import Checkboard from './components/common/Checkboard.vue'
 import EditableInput from './components/common/EditableInput.vue'
@@ -21,6 +22,7 @@ const VueColor = {
   Photoshop,
   Sketch,
   Chrome,
+  ChromeCompact,
   Alpha,
   Checkboard,
   EditableInput,
