@@ -68,6 +68,7 @@ export default {
       var pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
       var left = pageX - xOffset
       var top = pageY - yOffset
+      var eventType = 'change'
 
       var h
       var percent
@@ -84,7 +85,10 @@ export default {
 
         if (this.colors.hsl.h !== h) {
           this.oldHue = h
-          this.$emit('change', {
+          if (e.type === 'mouseup') {
+            eventType = 'change-ended'
+          }
+          this.$emit(eventType, {
             h: h,
             s: this.colors.hsl.s,
             l: this.colors.hsl.l,
@@ -104,7 +108,10 @@ export default {
 
         if (this.colors.hsl.h !== h) {
           this.oldHue = h
-          this.$emit('change', {
+          if (e.type === 'mouseup') {
+            eventType = 'change-ended'
+          }
+          this.$emit(eventType, {
             h: h,
             s: this.colors.hsl.s,
             l: this.colors.hsl.l,
@@ -115,11 +122,12 @@ export default {
       }
     },
     handleMouseDown (e) {
-      this.handleChange(e, true)
+      // this.handleChange(e, true)
       window.addEventListener('mousemove', this.handleChange)
       window.addEventListener('mouseup', this.handleMouseUp)
     },
     handleMouseUp (e) {
+      this.handleChange(e)
       this.unbindEventListeners()
     },
     unbindEventListeners () {

@@ -70,29 +70,37 @@ export default {
       bright = bright > 0 ? bright : 0.01 // avoid TinyColor change to black when v === 0 check issue (https://github.com/bgrins/TinyColor/issues/86)
       bright = bright > 1 ? 1 : bright
 
-      this.throttle(this.onChange, {
+      var params = {
         h: this.colors.hsl.h,
         s: saturation,
         v: bright,
         a: this.colors.hsl.a,
         source: 'hsva'
-      })
+      }
+
+      if (e.type === 'mouseup') {
+        this.throttle(this.onMouseMoveEnd, params)
+      } else {
+        this.throttle(this.onChange, params)
+      }
     },
     onChange (param) {
       this.$emit('change', param)
     },
+    onMouseMoveEnd (param) {
+      this.$emit('change-ended', param)
+    },
     handleMouseDown (e) {
       // this.handleChange(e, true)
       window.addEventListener('mousemove', this.handleChange)
-      window.addEventListener('mouseup', this.handleChange)
       window.addEventListener('mouseup', this.handleMouseUp)
     },
     handleMouseUp (e) {
+      this.handleChange(e)
       this.unbindEventListeners()
     },
     unbindEventListeners () {
       window.removeEventListener('mousemove', this.handleChange)
-      window.removeEventListener('mouseup', this.handleChange)
       window.removeEventListener('mouseup', this.handleMouseUp)
     }
   }
