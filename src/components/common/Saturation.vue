@@ -70,7 +70,6 @@ export default {
       bright = bright > 0 ? bright : 0.01 // avoid TinyColor change to black when v === 0 check issue (https://github.com/bgrins/TinyColor/issues/86)
       bright = bright > 1 ? 1 : bright
 
-      
       this.throttle(this.onChange, {
         h: this.colors.hsv.h,
         s: saturation,

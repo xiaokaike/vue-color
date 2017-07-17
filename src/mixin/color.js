@@ -24,6 +24,9 @@ function _colorChange (data, oldHue) {
     hsv.h = hsl.h = data.h || (data.hsl && data.hsl.h) || oldHue || 0
   }
 
+  // when the hsv.v is less than 0.0164 (base on test)
+  // because of possible loss of precision
+  // the result of hue and saturation would be miscalculated
   if (hsv.v < 0.0164) {
     hsv.h = data.h || (data.hsv && data.hsv.h)
     hsv.s = data.s || (data.hsv && data.hsv.s)
