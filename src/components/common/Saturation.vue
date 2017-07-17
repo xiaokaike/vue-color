@@ -24,7 +24,7 @@ export default {
       return this.value
     },
     bgColor () {
-      return `hsl(${this.colors.hsl.h}, 100%, 50%)`
+      return `hsl(${this.colors.hsv.h}, 100%, 50%)`
     },
     pointerTop () {
       return (-(this.colors.hsv.v * 100) + 1) + 100 + '%'
@@ -70,11 +70,12 @@ export default {
       bright = bright > 0 ? bright : 0.01 // avoid TinyColor change to black when v === 0 check issue (https://github.com/bgrins/TinyColor/issues/86)
       bright = bright > 1 ? 1 : bright
 
+      
       this.throttle(this.onChange, {
-        h: this.colors.hsl.h,
+        h: this.colors.hsv.h,
         s: saturation,
         v: bright,
-        a: this.colors.hsl.a,
+        a: this.colors.hsv.a,
         source: 'hsva'
       })
     },
