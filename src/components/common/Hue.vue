@@ -24,11 +24,17 @@ export default {
   },
   data () {
     return {
-      oldHue: ''
+      oldHue: 0,
+      pullDirection: ''
     }
   },
   computed: {
     colors () {
+      const h = this.value.hsl.h;
+      if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
+      if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
+      this.oldHue = h;
+
       return this.value
     },
     directionClass () {
@@ -39,7 +45,7 @@ export default {
     },
     pointerTop () {
       if (this.direction === 'vertical') {
-        if (this.colors.hsl.h === 0 && this.oldHue === 360) return 0
+        if (this.colors.hsl.h === 0 && this.pullDirection === 'right') return 0
         return -((this.colors.hsl.h * 100) / 360) + 100 + '%'
       } else {
         return 0
@@ -49,7 +55,7 @@ export default {
       if (this.direction === 'vertical') {
         return 0
       } else {
-        if (this.colors.hsl.h === 0 && this.oldHue === 360) return '100%'
+        if (this.colors.hsl.h === 0 && this.pullDirection === 'right') return '100%'
         return (this.colors.hsl.h * 100) / 360 + '%'
       }
     }
@@ -83,7 +89,6 @@ export default {
         }
 
         if (this.colors.hsl.h !== h) {
-          this.oldHue = h
           this.$emit('change', {
             h: h,
             s: this.colors.hsl.s,
@@ -103,7 +108,6 @@ export default {
         }
 
         if (this.colors.hsl.h !== h) {
-          this.oldHue = h
           this.$emit('change', {
             h: h,
             s: this.colors.hsl.s,
