@@ -28,13 +28,13 @@ function _colorChange (data, oldHue) {
   // because of possible loss of precision
   // the result of hue and saturation would be miscalculated
   if (hsv.v < 0.0164) {
-    hsv.h = data.h || (data.hsv && data.hsv.h)
-    hsv.s = data.s || (data.hsv && data.hsv.s)
+    hsv.h = data.h || (data.hsv && data.hsv.h) || 0
+    hsv.s = data.s || (data.hsv && data.hsv.s) || 0
   }
 
   if (hsl.l < 0.01) {
-    hsl.h = data.h || (data.hsl && data.hsl.h)
-    hsl.s = data.s || (data.hsl && data.hsl.s)
+    hsl.h = data.h || (data.hsl && data.hsl.h) || 0
+    hsl.s = data.s || (data.hsl && data.hsl.s) || 0
   }
 
   return {
