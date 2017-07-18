@@ -32,6 +32,11 @@ function _colorChange (data, oldHue) {
     hsv.s = data.s || (data.hsv && data.hsv.s)
   }
 
+  if (hsl.l < 0.01) {
+    hsl.h = data.h || (data.hsl && data.hsl.h)
+    hsl.s = data.s || (data.hsl && data.hsl.s)
+  }
+
   return {
     hsl: hsl,
     hex: color.toHexString().toUpperCase(),
