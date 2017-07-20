@@ -30,10 +30,10 @@ export default {
   },
   computed: {
     colors () {
-      const h = this.value.hsl.h;
+      const h = this.value.hsl.h
       if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
       if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
-      this.oldHue = h;
+      this.oldHue = h
 
       return this.value
     },
