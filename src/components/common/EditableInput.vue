@@ -1,10 +1,10 @@
 <template>
-  <div class="vue-color__editable-input">
-    <input class="vue-color__editable-input__input"
+  <div class="editable-input">
+    <input class="input__input"
       v-model="val"
       @keydown="handleKeyDown"
       @input="update">
-    <span class="vue-color__editable-input__label">{{label}}</span>
+    <span class="input__label">{{label}}</span>
   </div>
 </template>
 
@@ -87,13 +87,16 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-.vue-color__editable-input
-  position relative
-.vue-color__editable-input__input
-  padding 0
-  border 0
-  outline none
-.vue-color__editable-input__label
-  text-transform capitalize
+<style scoped>
+.editable-input {
+  position: relative;
+}
+.input__input {
+  padding: 0;
+  border: 0;
+  outline: none;
+}
+.input__label {
+  text-transform: capitalize;
+}
 </style>
