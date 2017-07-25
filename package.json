@@ -46,6 +46,7 @@
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.1",
+    "friendly-errors-webpack-plugin": "^1.6.1",
     "gh-pages": "^1.0.0",
     "html-webpack-plugin": "^2.28.x",
     "http-proxy-middleware": "^0.17.0",
