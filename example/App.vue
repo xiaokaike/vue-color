@@ -122,60 +122,73 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-*
-  margin 0
-  padding 0
-html
-  font-family 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif
-.header-container
-  position relative
-  .header-bg
-    position absolute
-    top 0
-    left 0
-    right 0
-    min-height 580px
-    background-color #333
-    opacity 0.5
-    z-index 0
-  .header
-    display flex
-    max-width 780px
-    margin 0 auto
-    padding 20px 0
-    .intro-wrap
-      flex 1
-      margin-right 100px
-    .intro
-      width 300px
-      color rgba(0, 0, 0, 0.65098)
-      > h1
-        font-size 40px
-        font-weight normal
-        line-height 60px
-      > p
-        font-size 16px
-        font-weight normal
-        line-height 22px
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+}
 
-.demo-container
-  max-width 780px
-  min-height 800px
-  margin 0 auto
-  position relative
-  z-index 2
-  .demo-list
-    display flex
-    margin-bottom 20px
-.demo-item
-  position relative
-  margin-bottom 10px
-  margin 0 10px 0 10px
-  z-index 2
-  h6
-    margin 0
-    padding 5px 0
-    color #666
+.header-container {
+  position: relative;
+}
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 580px;
+  background-color: #333;
+  opacity: 0.5;
+  z-index: 0;
+}
+.header {
+  display: flex;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.intro-wrap {
+  flex: 1;
+  margin-right: 100px;
+}
+.intro {
+  width: 300px;
+  color: rgba(0, 0, 0, 0.65098);
+}
+.intro > h1 {
+  font-size: 40px;
+  font-weight: normal;
+  line-height: 60px;
+}
+.intro > p {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 22px;
+}
 
+.demo-container {
+  max-width: 780px;
+  min-height: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.demo-list {
+  display: flex;
+  margin-bottom: 20px;
+}
+.demo-item {
+  position: relative;
+  margin-bottom: 10px;
+  margin: 0 10px 0 10px;
+  z-index: 2;
+}
+.demo-item h6 {
+  margin: 0;
+  padding: 5px 0;
+  color: #666;
+}
 </style>
