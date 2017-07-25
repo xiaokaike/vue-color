@@ -111,7 +111,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var VueColor = {
-	  version: '2.2.2',
+	  version: '2.2.3',
 	  Compact: _Compact2.default,
 	  Material: _Material2.default,
 	  Slider: _Slider2.default,
@@ -190,8 +190,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-1!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue");
+			module.hot.accept("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-1!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue", function() {
+				var newContent = require("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-1!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Compact.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -724,7 +724,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (this._r < 1) { this._r = mathRound(this._r); }
 	    if (this._g < 1) { this._g = mathRound(this._g); }
 	    if (this._b < 1) { this._b = mathRound(this._b); }
-	    // console.log('====this===', this)
+
 	    this._ok = rgb.ok;
 	    this._tc_id = tinyCounter++;
 	}
@@ -997,8 +997,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        color = stringInputToObject(color);
 	    }
 
-	    // console.log('==color===', color)
-
 	    if (typeof color == "object") {
 	        if (isValidCSSUnit(color.r) && isValidCSSUnit(color.g) && isValidCSSUnit(color.b)) {
 	            rgb = rgbToRgb(color.r, color.g, color.b);
@@ -1127,19 +1125,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	// *Assumes:* r, g, and b are contained in the set [0, 255] or [0, 1]
 	// *Returns:* { h, s, v } in [0,1]
 	function rgbToHsv(r, g, b) {
-	    // console.log('==rgbToHsv=1111==', r, g, b)
 
 	    r = bound01(r, 255);
 	    g = bound01(g, 255);
 	    b = bound01(b, 255);
 
-	    
-	    // console.log('==rgbToHsv=2222=', r, g, b)
-
 	    var max = mathMax(r, g, b), min = mathMin(r, g, b);
-
-	    // console.log('===max===', max)
-
 	    var h, s, v = max;
 
 	    var d = max - min;
@@ -1151,15 +1142,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    else {
 	        switch(max) {
 	            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-	            case g:
-	                h = (b - r) / d + 2;
-	                // console.log('=====4=====', h);
-	                break;
+	            case g: h = (b - r) / d + 2; break;
 	            case b: h = (r - g) / d + 4; break;
 	        }
 	        h /= 6;
 	    }
-	    // console.log('===h====', h)
 	    return { h: h, s: s, v: v };
 	}
 
@@ -1172,8 +1159,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    h = bound01(h, 360) * 6;
 	    s = bound01(s, 100);
 	    v = bound01(v, 100);
-
-	    // console.log('===3====', h, s, v)
 
 	    var i = Math.floor(h),
 	        f = h - i,
@@ -1926,9 +1911,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-9", __vue_options__)
+	    hotAPI.createRecord("data-v-10", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-9", __vue_options__)
+	    hotAPI.reload("data-v-10", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] EditableInput.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -1952,8 +1937,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-9!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue", function() {
-				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-9!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue");
+			module.hot.accept("!!../../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-10!../../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue", function() {
+				var newContent = require("!!../../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-10!../../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./EditableInput.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2092,7 +2077,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-9", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-10", module.exports)
 	  }
 	}
 
@@ -2198,8 +2183,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-2!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Material.vue");
+			module.hot.accept("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-2!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Material.vue", function() {
+				var newContent = require("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-2!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Material.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2416,8 +2401,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slider.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-3!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Slider.vue");
+			module.hot.accept("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-3!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Slider.vue", function() {
+				var newContent = require("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-3!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Slider.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2533,9 +2518,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-12", __vue_options__)
+	    hotAPI.createRecord("data-v-11", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-12", __vue_options__)
+	    hotAPI.reload("data-v-11", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Hue.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -2559,8 +2544,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-12!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Hue.vue", function() {
-				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-12!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Hue.vue");
+			module.hot.accept("!!../../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-11!../../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Hue.vue", function() {
+				var newContent = require("!!../../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-11!../../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Hue.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -2742,7 +2727,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-12", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-11", module.exports)
 	  }
 	}
 
@@ -2858,8 +2843,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-4!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Swatches.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-4!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Swatches.vue");
+			module.hot.accept("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-4!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Swatches.vue", function() {
+				var newContent = require("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-4!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Swatches.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -3079,8 +3064,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Photoshop.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-5!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Photoshop.vue");
+			module.hot.accept("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-5!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Photoshop.vue", function() {
+				var newContent = require("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-5!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Photoshop.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -3227,9 +3212,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-11", __vue_options__)
+	    hotAPI.createRecord("data-v-12", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-11", __vue_options__)
+	    hotAPI.reload("data-v-12", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Saturation.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -3253,8 +3238,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-11!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Saturation.vue", function() {
-				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-11!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Saturation.vue");
+			module.hot.accept("!!../../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-12!../../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Saturation.vue", function() {
+				var newContent = require("!!../../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-12!../../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Saturation.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -3345,7 +3330,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var saturation = left / containerWidth;
 	      var bright = -(top / containerHeight) + 1;
 
-	      bright = bright > 0 ? bright : 0.01;
+	      bright = bright > 0 ? bright : 0;
 	      bright = bright > 1 ? 1 : bright;
 
 	      this.throttle(this.onChange, {
@@ -3852,7 +3837,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-11", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-12", module.exports)
 	  }
 	}
 
@@ -3917,8 +3902,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Alpha.vue", function() {
-				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Alpha.vue");
+			module.hot.accept("!!../../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-8!../../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Alpha.vue", function() {
+				var newContent = require("!!../../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-8!../../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Alpha.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -4055,9 +4040,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-10", __vue_options__)
+	    hotAPI.createRecord("data-v-9", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-10", __vue_options__)
+	    hotAPI.reload("data-v-9", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Checkboard.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -4081,8 +4066,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Checkboard.vue", function() {
-				var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-10!../../../node_modules/stylus-loader/index.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Checkboard.vue");
+			module.hot.accept("!!../../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-9!../../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Checkboard.vue", function() {
+				var newContent = require("!!../../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-9!../../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Checkboard.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -4189,7 +4174,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-10", module.exports)
+	     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-9", module.exports)
 	  }
 	}
 
@@ -4484,8 +4469,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Sketch.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-6!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Sketch.vue");
+			module.hot.accept("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-6!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Sketch.vue", function() {
+				var newContent = require("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-6!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Sketch.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -4820,8 +4805,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chrome.vue", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-7!../../node_modules/stylus-loader/index.js!../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Chrome.vue");
+			module.hot.accept("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-7!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Chrome.vue", function() {
+				var newContent = require("!!../../node_modules/_css-loader@0.23.1@css-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/style-rewriter.js?id=data-v-7!../../node_modules/_stylus-loader@2.5.1@stylus-loader/index.js!../../node_modules/_vue-loader@9.5.1@vue-loader/lib/selector.js?type=styles&index=0!./Chrome.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
