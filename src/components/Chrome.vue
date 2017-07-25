@@ -1,64 +1,64 @@
 <template>
-  <div class="vue-color__chrome">
-    <div class="vue-color__chrome__saturation-wrap">
+  <div class="c-chrome">
+    <div class="saturation-wrap">
       <saturation v-model="colors" @change="childChange"></saturation>
     </div>
-    <div class="vue-color__chrome__chrome-body">
-      <div class="vue-color__chrome__controls">
-        <div class="vue-color__chrome__color-wrap">
-          <div class="vue-color__chrome__active-color" :style="{background: activeColor}"></div>
+    <div class="chrome-body">
+      <div class="controls">
+        <div class="color-wrap">
+          <div class="active-color" :style="{background: activeColor}"></div>
         </div>
 
-        <div class="vue-color__chrome__sliders">
-          <div class="vue-color__chrome__hue-wrap">
+        <div class="sliders">
+          <div class="hue-wrap">
             <hue v-model="colors" @change="childChange"></hue>
           </div>
-          <div class="vue-color__chrome__alpha-wrap">
+          <div class="alpha-wrap">
             <alpha v-model="colors" @change="childChange"></alpha>
           </div>
         </div>
       </div>
       
-      <div class="vue-color__chrome__fields-wrap">
-        <div class="vue-color__chrome__fields" v-show="fieldsIndex === 0">
+      <div class="fields-wrap">
+        <div class="fields" v-show="fieldsIndex === 0">
           <!-- hex -->
-          <div class="vue-color__chrome__field">
+          <div class="field">
             <ed-in label="hex" v-model="colors.hex" @change="inputChange"></ed-in>  
           </div>
         </div>
-        <div class="vue-color__chrome__fields" v-show="fieldsIndex === 1">
+        <div class="fields" v-show="fieldsIndex === 1">
           <!-- rgba -->
-          <div class="vue-color__chrome__field">
+          <div class="field">
             <ed-in label="r" v-model="colors.rgba.r" @change="inputChange"></ed-in>
           </div>
-          <div class="vue-color__chrome__field">
+          <div class="field">
             <ed-in label="g" v-model="colors.rgba.g" @change="inputChange"></ed-in>
           </div>
-          <div class="vue-color__chrome__field">
+          <div class="field">
             <ed-in label="b" v-model="colors.rgba.b" @change="inputChange"></ed-in>
           </div>
-          <div class="vue-color__chrome__field">
+          <div class="field">
             <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
-        <div class="vue-color__chrome__fields" v-show="fieldsIndex === 2">
+        <div class="fields" v-show="fieldsIndex === 2">
           <!-- hsla -->
-          <div class="vue-color__chrome__field">
+          <div class="field">
             <ed-in label="h" v-model="colors.hsl.h" @change="inputChange"></ed-in>
           </div>
-          <div class="vue-color__chrome__field"> 
+          <div class="field"> 
             <ed-in label="s" v-model="colors.hsl.s" @change="inputChange"></ed-in>
           </div>
-          <div class="vue-color__chrome__field">
+          <div class="field">
             <ed-in label="l" v-model="colors.hsl.l" @change="inputChange"></ed-in>
           </div>
-          <div class="vue-color__chrome__field">
+          <div class="field">
             <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
         <!-- btn -->
-        <div class="vue-color__chrome__toggle-btn" @click="toggleViews">
-          <div class="vue-color__chrome__icon">
+        <div class="toggle-btn" @click="toggleViews">
+          <div class="icon">
             <svg style="width:24px; height:24px" viewBox="0 0 24 24" 
               @mouseover="showHighlight" 
               @mouseenter="showHighlight" 
@@ -66,7 +66,7 @@
               <path fill="#333" d="M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z" />
             </svg>
           </div>
-          <div class="vue-color__chrome__icon-highlight" v-show="highlight"></div>
+          <div class="icon-highlight" v-show="highlight"></div>
         </div>
         <!-- btn -->
       </div>      
@@ -151,103 +151,119 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-.vue-color__chrome
-  background #fff
-  border-radius 2px
-  box-shadow 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3)
-  box-sizing initial
-  width 225px
-  font-family Menlo
-  background-color #fff
-.vue-color__chrome__controls
-  display flex
-.vue-color__chrome__color-wrap
-  width 32px
-.vue-color__chrome__active-color
-  margin-top 6px
-  width 16px
-  height 16px
-  border-radius 8px
-  position relative
-  overflow hidden
-.vue-color__chrome__sliders
-  flex 1
-  .vue-color__c-hue
-  .vue-color__c-alpha__gradient
-    border-radius 2px
-  .vue-color__c-alpha__picker,
-  .vue-color__c-hue__picker
-    width 12px
-    height 12px
-    border-radius 6px
-    transform translate(-6px, -2px)
-    background-color rgb(248, 248, 248)
-    box-shadow 0 1px 4px 0 rgba(0, 0, 0, 0.37)
-.vue-color__chrome__fields-wrap
-  padding-top 16px
-  display flex
-.vue-color__chrome__fields
-  display flex
-  margin-left -6px
-  flex 1
-.vue-color__chrome__field
-  padding-left 6px
-  width 100%
-.vue-color__chrome__toggle-btn
-  width 32px
-  text-align right
-  position relative
-.vue-color__chrome__icon
-  margin-right -4px
-  margin-top 12px
-  cursor pointer
-  position relative
-  z-index 2
-.vue-color__chrome__icon-highlight
-  position absolute
-  width 24px
-  height 28px
-  background #eee
-  border-radius 4px
-  top 10px
-  left 12px  
-.vue-color__chrome__hue-wrap
-  position relative
-  height 10px
-  margin-bottom 8px
-.vue-color__chrome__alpha-wrap
-  position relative
-  height 10px
-.vue-color__chrome__chrome-body
-  padding 16px 16px 12px
-  background-color #fff
-.vue-color__chrome__saturation-wrap
-  width 100%
-  padding-bottom 55%
-  position relative
-  border-radius 2px 2px 0 0
-  overflow hidden
-  .vue-color__saturation--circle
-    width 12px
-    height 12px
-.vue-color__chrome__fields
-  .vue-color__editable-input__input
-    font-size 11px
-    color #333
-    width 100%
-    border-rradius 2px
-    border none
-    box-shadow inset 0 0 0 1px #dadada
-    height 21px
-    text-align center
-  .vue-color__editable-input__label
-    text-transform uppercase
-    font-size 11px
-    line-height 11px
-    color #969696
-    text-align center
-    display block
-    margin-top 12px
-
+<style scoped>
+.c-chrome {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3);
+  box-sizing: initial;
+  width: 225px;
+  font-family: Menlo;
+  background-color: #fff;
+}
+.controls {
+  display: flex;
+}
+.color-wrap {
+  width: 32px;
+}
+.active-color {
+  margin-top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.sliders {
+  flex: 1;
+}
+.fields-wrap {
+  display: flex;
+  padding-top: 16px;
+}
+.fields {
+  display: flex;
+  margin-left: -6px;
+  flex: 1;
+}
+.field {
+  padding-left: 6px;
+  width: 100%;
+}
+.toggle-btn {
+  width: 32px;
+  text-align: right;
+  position: relative;
+}
+.icon {
+  margin-right: -4px;
+  margin-top: 12px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+.icon-highlight {
+  position: absolute;
+  width: 24px;
+  height: 28px;
+  background: #eee;
+  border-radius: 4px;
+  top: 10px;
+  left: 12px;
+}
+.hue-wrap {
+  position: relative;
+  height: 10px;
+  margin-bottom: 8px;
+}
+.alpha-wrap {
+  position: relative;
+  height: 10px;
+}
+.hue-wrap >>> .c-hue, .alpha-wrap >>> .gradient {
+  border-radius: 2px;
+}
+.hue-wrap >>> .picker, .alpha-wrap >>> .picker {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  transform: translate(-6px, -2px);
+  background-color: rgb(248, 248, 248);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+.chrome-body {
+  padding: 16px 16px 12px;
+  background-color: #fff;
+}
+.saturation-wrap {
+  width: 100%;
+  padding-bottom: 55%;
+  position: relative;
+  border-radius: 2px 2px 0 0;
+  overflow: hidden;
+}
+.saturation-wrap >>> .circle {
+  width: 12px;
+  height: 12px;
+}
+.fields >>> .input__input {
+  font-size: 11px;
+  color: #333;
+  width: 100%;
+  border-radius: 2px;
+  border: none;
+  box-shadow: inset 0 0 0 1px #dadada;
+  height: 21px;
+  text-align: center;
+}
+.fields >>> .input__label {
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 11px;
+  color: #969696;
+  text-align: center;
+  display: block;
+  margin-top: 12px;
+}
 </style>
