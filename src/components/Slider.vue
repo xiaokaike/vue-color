@@ -78,28 +78,28 @@ export default {
   display: flex;
   margin-top: 20px;
 }
-.slider__swatch {
+.swatch {
   margin-right: 1px;
   flex: 1;
   width: 20%;
 }
-.slider__swatch:first-child {
+.swatch:first-child {
   margin-right: 1px;
 }
-.slider__swatch:first-child .slider__swatch-picker {
+.swatch:first-child .swatch-picker {
   border-radius: 2px 0px 0px 2px;
 }
-.slider__swatch:last-child {
+.swatch:last-child {
   margin-right: 0;
 }
-.slider__swatch:last-child .slider__swatch-picker {
+.swatch:last-child .swatch-picker {
   border-radius: 0px 2px 2px 0px;
 }
-.slider__swatch-picker {
+.swatch-picker {
   cursor: pointer;
   height: 12px;
 }
-.slider__swatch-picker--active {
+.swatch-picker--active {
   transform: scaleY(1.8);
   border-radius: 3.6px/2px;
 }
