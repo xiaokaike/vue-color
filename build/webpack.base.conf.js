@@ -44,7 +44,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src')],
+        include: [resolve('/')],
         exclude: /node_modules/
       },
       {
@@ -68,6 +68,6 @@ module.exports = {
       /chart\.js/,
       /handsontable\.(full\.)?js/,
       /plotly\.js/
-    ],
+    ]
   }
 }
