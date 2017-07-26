@@ -100,7 +100,7 @@ export default {
 </script>
 
 <style scoped>
-.saturation,
+.c-saturation,
 .saturation--white,
 .saturation--black {
   cursor: pointer;
