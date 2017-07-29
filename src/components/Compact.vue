@@ -1,11 +1,11 @@
 <template>
-  <div class="vue-color__compact">
-    <ul class="vue-color__compact__colors">
-      <li class="vue-color__compact__color-item" v-for="c in defaultColors"
+  <div class="c-compact">
+    <ul class="colors">
+      <li class="color-item" v-for="c in defaultColors" :key="c"
         @click="handlerClick(c)"
-        :class="{'vue-color__compact__color-item--white': c === '#FFFFFF' }"
+        :class="{'color-item--white': c === '#FFFFFF' }"
         :style="{background: c}">
-        <div class="vue-color__compact__dot" v-show="c === pick"></div>
+        <div class="dot" v-show="c === pick"></div>
       </li>
     </ul>
     <!-- <div class="vue-color__compact__fields">
@@ -94,74 +94,81 @@ export default {
 
 </script>
 
-<style lang="stylus">
-.vue-color__compact
-  padding-top 5px
-  padding-left 5px
-  width 240px
-  border-radius 2px
-  box-shadow 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16)
-  background-color #fff
-.vue-color__compact__colors
-  overflow hidden
-  padding 0
-  margin 0
-.vue-color__compact__color-item
-  list-style none
-  width 15px
-  height 15px
-  float left
-  margin-right 5px
-  margin-bottom 5px
-  position relative
-  cursor pointer
-.vue-color__compact__color-item--white
-  box-shadow inset 0 0 0 1px #ddd
-  .vue-color__compact__dot
-      background #000
-.vue-color__compact__dot
-  position absolute
-  top 5px
-  right 5px
-  bottom 5px
-  left 5px
-  border-radius 50%
-  opacity 1
-  background #fff
-.vue-color__compact__fields
-  display flex
-  position relative
-  padding-bottom 6px
-  padding-right 5px
-  position relative
+<style scoped>
+.c-compact {
+  padding-top: 5px;
+  padding-left: 5px;
+  width: 240px;
+  border-radius: 2px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
+  background-color: #fff;
+}
+.colors {
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+.color-item {
+  list-style: none;
+  width: 15px;
+  height: 15px;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  position: relative;
+  cursor: pointer;
+}
+.color-item--white {
+  box-shadow: inset 0 0 0 1px #ddd;
+}
+.color-item--white .dot {
+  background: #000;
+}
+  
+.dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
+  border-radius: 50%;
+  opacity: 1;
+  background: #fff;
+}
+/* .vue-color__compact__fields
+  display: flex;
+  position: relative;
+  padding-bottom: 6px;
+  padding-right: 5px;
+  position: relative;
   .vue-color__editable-input__input
-    width 70%
-    padding-left 30%
-    background none
-    font-size 12px
-    color #333
-    height 16px
+    width: 70%;
+    padding-left: 30%;
+    background: none;
+    font-size: 12px;
+    color: #333;
+    height: 16px;
   .vue-color__editable-input__label
-    position absolute
-    top 3px
-    left 0
-    line-height 16px
-    text-transform uppercase
-    font-size 12px
-    color #999
+    position: absolute;
+    top: 3px;
+    left: 0;
+    line-height: 16px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #999;
 .vue-color__compact__pick-color
-  position absolute
-  top 6px
-  left 5px
-  height 9px
-  width 9px
+  position: absolute;
+  top: 6px;
+  left: 5px;
+  height: 9px;
+  width: 9px;
 .vue-color__compact__col-3
-  flex 1
+  flex: 1;
 .vue_color__compact__col-hex
-  flex 2
+  flex: 2;
   .vue-color__editable-input__input
-    width 80%
-    padding-left 20%
+    width: 80%;
+    padding-left: 20%;
   .vue-color__editable-input__label
-    display none
+    display: none; */
 </style>

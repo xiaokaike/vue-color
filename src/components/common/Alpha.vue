@@ -1,15 +1,15 @@
 <template>
-  <div class="vue-color__c-alpha">
-    <div class="vue-color__c-alpha__checkboard-wrap">
+  <div class="c-alpha">
+    <div class="checkboard-wrap">
       <checkboard></checkboard>
     </div>
-    <div class="vue-color__c-alpha__gradient" :style="{background: gradientColor}"></div>
-    <div class="vue-color__c-alpha__container" ref="container"
+    <div class="gradient" :style="{background: gradientColor}"></div>
+    <div class="container" ref="container"
         @mousedown="handleMouseDown"
         @touchmove="handleChange"
         @touchstart="handleChange">
-      <div class="vue-color__c-alpha__pointer" :style="{left: colors.a * 100 + '%'}">
-        <div class="vue-color__c-alpha__picker"></div>
+      <div class="pointer" :style="{left: colors.a * 100 + '%'}">
+        <div class="picker"></div>
       </div>
     </div>
   </div>
@@ -83,42 +83,48 @@ export default {
 
 </script>
 
-<style lang="stylus">
-.vue-color__c-alpha
-  position absolute
-  top 0px
-  right 0px
-  bottom 0px
-  left 0px
-.vue-color__c-alpha__checkboard-wrap
-  position absolute
-  top 0px
-  right 0px
-  bottom 0px
-  left 0px
-  overflow hidden
-.vue-color__c-alpha__gradient
-  position absolute
-  top 0px
-  right 0px
-  bottom 0px
-  left 0px
-.vue-color__c-alpha__container
-  cursor pointer
-  position relative
-  z-index 2
-  height 100%
-  margin 0 3px
-.vue-color__c-alpha__pointer
-  z-index 2
-  position absolute
-.vue-color__c-alpha__picker
-  cursor pointer
-  width 4px
-  border-radius 1px
-  height 8px
-  box-shadow 0 0 2px rgba(0, 0, 0, .6)
-  background #fff
-  margin-top 1px
-  transform translateX(-2px)
+<style scoped>
+.c-alpha {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+.checkboard-wrap {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.gradient {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+.container {
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  margin: 0 3px;
+}
+.pointer {
+  z-index: 2;
+  position: absolute;
+}
+.picker {
+  cursor: pointer;
+  width: 4px;
+  border-radius: 1px;
+  height: 8px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .6);
+  background: #fff;
+  margin-top: 1px;
+  transform: translateX(-2px);
+}
 </style>
