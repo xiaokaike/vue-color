@@ -80,7 +80,7 @@ export default {
       return tinycolor(hex).isValid()
     },
     simpleCheckForValidColor (data) {
-      var keysToCheck = ['r', 'g', 'b', 'a', 'h', 's', 'a', 'v']
+      var keysToCheck = ['r', 'g', 'b', 'a', 'h', 's', 'l', 'v']
       var checked = 0
       var passed = 0
 
