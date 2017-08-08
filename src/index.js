@@ -13,7 +13,7 @@ import Saturation from './components/common/Saturation.vue'
 import ColorMixin from './mixin/color.js'
 
 const VueColor = {
-  version: '2.2.3',
+  version: '2.3.1',
   Compact,
   Material,
   Slider,

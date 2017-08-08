@@ -567,7 +567,7 @@ exports.default = {
       return (0, _tinycolor2.default)(hex).isValid();
     },
     simpleCheckForValidColor: function simpleCheckForValidColor(data) {
-      var keysToCheck = ['r', 'g', 'b', 'a', 'h', 's', 'a', 'v'];
+      var keysToCheck = ['r', 'g', 'b', 'a', 'h', 's', 'l', 'v'];
       var checked = 0;
       var passed = 0;
 
@@ -925,7 +925,7 @@ var _color2 = _interopRequireDefault(_color);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var VueColor = {
-  version: '2.2.3',
+  version: '2.3.1',
   Compact: _Compact2.default,
   Material: _Material2.default,
   Slider: _Slider2.default,
@@ -2477,22 +2477,13 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   return _c('div', {
     staticClass: "editable-input"
   }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.val),
-      expression: "val"
-    }],
     staticClass: "input__input",
     domProps: {
-      "value": (_vm.val)
+      "value": _vm.val
     },
     on: {
       "keydown": _vm.handleKeyDown,
-      "input": [function($event) {
-        if ($event.target.composing) { return; }
-        _vm.val = $event.target.value
-      }, _vm.update]
+      "input": _vm.update
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "input__label"
