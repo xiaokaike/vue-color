@@ -1,7 +1,7 @@
 <template>
   <div class="editable-input">
     <input class="input__input"
-      v-model="val"
+      :value="val"
       @keydown="handleKeyDown"
       @input="update">
     <span class="input__label">{{label}}</span>
