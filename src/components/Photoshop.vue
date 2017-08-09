@@ -235,7 +235,7 @@ export default {
   width: 80px;
   position: relative;
 }
-.fields >>> .input__input {
+.fields >>> .vc-input__input {
   margin-left: 40%;
   width: 40%;
   height: 18px;
@@ -246,7 +246,7 @@ export default {
   padding-left: 3px;
   margin-right: 10px;
 }
-.fields >>> .input__label {
+.fields >>> .vc-input__label {
   top: 0;
   left: 0;
   width: 34px;

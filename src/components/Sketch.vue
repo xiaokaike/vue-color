@@ -169,14 +169,14 @@ export default {
   display: flex;
   padding-top: 4px;
 }
-.field >>> .input__input {
+.field >>> .vc-input__input {
   width: 80%;
   padding: 4px 10% 3px;
   border: none;
   box-shadow: inset 0 0 0 1px #ccc;
   font-size: 11px;
 }
-.field >>> .input__label {
+.field >>> .vc-input__label {
   display: block;
   text-align: center;
   font-size: 11px;
