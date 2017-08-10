@@ -1,12 +1,12 @@
 <template>
-  <div class="c-saturation"
+  <div class="vc-saturation"
     :style="{background: bgColor}"
     ref="container"
     @mousedown="handleMouseDown">
-    <div class="saturation--white"></div>
-    <div class="saturation--black"></div>
-    <div class="pointer" :style="{top: pointerTop, left: pointerLeft}">
-      <div class="circle"></div>
+    <div class="vc-saturation--white"></div>
+    <div class="vc-saturation--black"></div>
+    <div class="vc-saturation-pointer" :style="{top: pointerTop, left: pointerLeft}">
+      <div class="vc-saturation-circle"></div>
     </div>
   </div>
 </template>
@@ -99,10 +99,10 @@ export default {
 }
 </script>
 
-<style scoped>
-.c-saturation,
-.saturation--white,
-.saturation--black {
+<style>
+.vc-saturation,
+.vc-saturation--white,
+.vc-saturation--black {
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -111,17 +111,17 @@ export default {
   bottom: 0;
 }
 
-.saturation--white {
+.vc-saturation--white {
   background: linear-gradient(to right, #fff, rgba(255,255,255,0));
 }
-.saturation--black {
+.vc-saturation--black {
   background: linear-gradient(to top, #000, rgba(0,0,0,0));
 }
-.pointer {
+.vc-saturation-pointer {
   cursor: pointer;
   position: absolute;
 }
-.circle {
+.vc-saturation-circle {
   cursor: head;
   width: 4px;
   height: 4px;
