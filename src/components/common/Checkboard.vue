@@ -1,5 +1,5 @@
 <template>
-  <div class="vc-c-checkerboard" :style="{background: bgStyle}"></div>
+  <div class="vc-checkerboard" :style="{background: bgStyle}"></div>
 </template>
 
 <script>
@@ -80,7 +80,7 @@ function getCheckboard (c1, c2, size) {
 </script>
 
 <style>
-.vc-c-checkerboard {
+.vc-checkerboard {
   position: absolute;
   top: 0px;
   right: 0px;
