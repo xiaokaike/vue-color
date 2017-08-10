@@ -1,19 +1,19 @@
 <template>
 
-  <div class="c-material">
-    <ed-in class="hex" label="hex" v-model="colors.hex"
+  <div class="vc-material">
+    <ed-in class="vc-material-hex" label="hex" v-model="colors.hex"
       :style="{ borderColor: colors.hex }" @change="onChange"></ed-in>
 
-    <div class="split">
-      <div class="third">
+    <div class="vc-material-split">
+      <div class="vc-material-third">
         <ed-in label="r" v-model="colors.rgba.r"
         @change="onChange"></ed-in>
       </div>
-      <div class="third">
+      <div class="vc-material-third">
         <ed-in label="g" v-model="colors.rgba.g"
         @change="onChange"></ed-in>
       </div>
-      <div class="third">
+      <div class="vc-material-third">
         <ed-in label="b" v-model="colors.rgba.b"
         @change="onChange"></ed-in>
       </div>
@@ -56,8 +56,8 @@ export default {
 }
 </script>
 
-<style scoped>
-.c-material {
+<style>
+.vc-material {
   width: 98px;
   height: 98px;
   padding: 16px;
@@ -68,7 +68,7 @@ export default {
   background-color: #fff;
 }
 
-.c-material >>> .input__input {
+.vc-material .vc-input__input {
   width: 100%;
   margin-top: 12px;
   font-size: 15px;
@@ -76,7 +76,7 @@ export default {
   height: 30px;
 }
 
-.c-material >>> .input__label {
+.vc-material .vc-input__label {
   position: absolute;
   top: 0;
   left: 0;
@@ -85,16 +85,16 @@ export default {
   text-transform: capitalize;
 }
 
-.hex {
+.vc-material-hex {
   border-bottom-width: 2px;
   border-bottom-style: solid;
 }
-.split {
+.vc-material-split {
   display: flex;
   margin-right: -10px;
   padding-top: 11px;
 }
-.third {
+.vc-material-third {
   flex: 1;
   padding-right: 10px;
 }

@@ -1,12 +1,12 @@
 <template>
-  <div class="c-swatches" :data-pick="pick">
-    <div class="box">
-      <div class="color-group" v-for="group in defaultColors">
-        <div class="color-it" v-for="c in group"
+  <div class="vc-swatches" :data-pick="pick">
+    <div class="vc-swatches-box">
+      <div class="vc-swatches-color-group" v-for="group in defaultColors">
+        <div class="vc-swatches-color-it" v-for="c in group"
           :data-color="c"
           @click="handlerClick(c)"
           :style="{background: c}">
-          <div class="pick" v-show="c == pick">
+          <div class="vc-swatches-pick" v-show="c == pick">
             <svg style="width: 24px; height:24px;" viewBox="0 0 24 24">
               <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
             </svg>
@@ -66,25 +66,25 @@ export default {
 }
 </script>
 
-<style scoped>
- .c-swatches {
+<style>
+.vc-swatches {
   width: 320px;
   height: 240px;
   overflow-y: scroll;
   background-color: #fff;
   box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
  }
-.box {
+.vc-swatches-box {
   padding: 16px 0 6px 16px;
   overflow: hidden;
 }
-.color-group {
+.vc-swatches-color-group {
   padding-bottom: 10px;
   width: 40px;
   float: left;
   margin-right: 10px;
 }
-.color-it {
+.vc-swatches-color-it {
   width: 40px;
   height: 24px;
   cursor: pointer;
@@ -97,7 +97,7 @@ export default {
   -webkit-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
 }
-.pick {
+.vc-swatches-pick {
   fill: rgb(255, 255, 255);
   margin-left: 8px;
   display: block; 

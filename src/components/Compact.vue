@@ -1,11 +1,11 @@
 <template>
-  <div class="c-compact">
-    <ul class="colors">
-      <li class="color-item" v-for="c in defaultColors" :key="c"
+  <div class="vc-compact">
+    <ul class="vc-compact-colors">
+      <li class="vc-compact-color-item" v-for="c in defaultColors" :key="c"
         @click="handlerClick(c)"
-        :class="{'color-item--white': c === '#FFFFFF' }"
+        :class="{'vc-compact-color-item--white': c === '#FFFFFF' }"
         :style="{background: c}">
-        <div class="dot" v-show="c === pick"></div>
+        <div class="vc-compact-dot" v-show="c === pick"></div>
       </li>
     </ul>
     <!-- <div class="vue-color__compact__fields">
@@ -94,8 +94,8 @@ export default {
 
 </script>
 
-<style scoped>
-.c-compact {
+<style>
+.vc-compact {
   padding-top: 5px;
   padding-left: 5px;
   width: 240px;
@@ -103,12 +103,12 @@ export default {
   box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
   background-color: #fff;
 }
-.colors {
+.vc-compact-colors {
   overflow: hidden;
   padding: 0;
   margin: 0;
 }
-.color-item {
+.vc-compact-color-item {
   list-style: none;
   width: 15px;
   height: 15px;
@@ -118,14 +118,14 @@ export default {
   position: relative;
   cursor: pointer;
 }
-.color-item--white {
+.vc-compact-color-item--white {
   box-shadow: inset 0 0 0 1px #ddd;
 }
-.color-item--white .dot {
+.vc-compact-color-item--white .vc-compact-dot {
   background: #000;
 }
   
-.dot {
+.vc-compact-dot {
   position: absolute;
   top: 5px;
   right: 5px;

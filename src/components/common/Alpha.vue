@@ -1,15 +1,15 @@
 <template>
-  <div class="c-alpha">
-    <div class="checkboard-wrap">
+  <div class="vc-alpha">
+    <div class="vc-alpha-checkboard-wrap">
       <checkboard></checkboard>
     </div>
-    <div class="gradient" :style="{background: gradientColor}"></div>
-    <div class="container" ref="container"
+    <div class="vc-alpha-gradient" :style="{background: gradientColor}"></div>
+    <div class="vc-alpha-container" ref="container"
         @mousedown="handleMouseDown"
         @touchmove="handleChange"
         @touchstart="handleChange">
-      <div class="pointer" :style="{left: colors.a * 100 + '%'}">
-        <div class="picker"></div>
+      <div class="vc-alpha-pointer" :style="{left: colors.a * 100 + '%'}">
+        <div class="vc-alpha-picker"></div>
       </div>
     </div>
   </div>
@@ -83,15 +83,15 @@ export default {
 
 </script>
 
-<style scoped>
-.c-alpha {
+<style>
+.vc-alpha {
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
 }
-.checkboard-wrap {
+.vc-alpha-checkboard-wrap {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -99,25 +99,25 @@ export default {
   left: 0px;
   overflow: hidden;
 }
-.gradient {
+.vc-alpha-gradient {
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
 }
-.container {
+.vc-alpha-container {
   cursor: pointer;
   position: relative;
   z-index: 2;
   height: 100%;
   margin: 0 3px;
 }
-.pointer {
+.vc-alpha-pointer {
   z-index: 2;
   position: absolute;
 }
-.picker {
+.vc-alpha-picker {
   cursor: pointer;
   width: 4px;
   border-radius: 1px;

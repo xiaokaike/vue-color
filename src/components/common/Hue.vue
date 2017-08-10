@@ -1,11 +1,11 @@
 <template>
-  <div :class="['c-hue', directionClass]">
-    <div class="container" ref="container"
+  <div :class="['vc-hue', directionClass]">
+    <div class="vc-hue-container" ref="container"
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
       @touchstart="handleChange">
-      <div class="pointer" :style="{top: pointerTop, left: pointerLeft}">
-        <div class="picker"></div>
+      <div class="vc-hue-pointer" :style="{top: pointerTop, left: pointerLeft}">
+        <div class="vc-hue-picker"></div>
       </div>  
     </div>
   </div>
@@ -39,8 +39,8 @@ export default {
     },
     directionClass () {
       return {
-        'c-hue--horizontal': this.direction === 'horizontal',
-        'c-hue--vertical': this.direction === 'vertical'
+        'vc-hue--horizontal': this.direction === 'horizontal',
+        'vc-hue--vertical': this.direction === 'vertical'
       }
     },
     pointerTop () {
@@ -134,8 +134,8 @@ export default {
 }
 </script>
 
-<style scoped>
-.c-hue {
+<style>
+.vc-hue {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -143,23 +143,23 @@ export default {
   left: 0px;
   border-radius: 2px;
 }
-.c-hue--horizontal {
+.vc-hue--horizontal {
   background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
 }
-.c-hue--vertical {
+.vc-hue--vertical {
   background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
 }
-.container {
+.vc-hue-container {
   cursor: pointer;
   margin: 0 2px;
   position: relative;
   height: 100%;
 }
-.pointer {
+.vc-hue-pointer {
   z-index: 2;
   position: absolute;
 }
-.picker {
+.vc-hue-picker {
   cursor: pointer;
   margin-top: 1px;
   width: 4px;

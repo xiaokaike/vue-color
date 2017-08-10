@@ -1,10 +1,10 @@
 <template>
-  <div class="editable-input">
-    <input class="input__input"
+  <div class="vc-editable-input">
+    <input class="vc-input__input"
       :value="val"
       @keydown="handleKeyDown"
       @input="update">
-    <span class="input__label">{{label}}</span>
+    <span class="vc-input__label">{{label}}</span>
   </div>
 </template>
 
@@ -87,16 +87,16 @@ export default {
 }
 </script>
 
-<style scoped>
-.editable-input {
+<style>
+.vc-editable-input {
   position: relative;
 }
-.input__input {
+.vc-input__input {
   padding: 0;
   border: 0;
   outline: none;
 }
-.input__label {
+.vc-input__label {
   text-transform: capitalize;
 }
 </style>
