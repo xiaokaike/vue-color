@@ -1,42 +1,42 @@
 <template>
-  <div class="c-photoshop">
-    <div class="head">{{head}}</div>
-    <div class="body">
-      <div class="saturation-wrap">
+  <div class="vc-photoshop">
+    <div class="vc-ps-head">{{head}}</div>
+    <div class="vc-ps-body">
+      <div class="vc-ps-saturation-wrap">
         <saturation v-model="colors" @change="childChange"></saturation>
       </div>
-      <div class="hue-wrap">
+      <div class="vc-ps-hue-wrap">
         <hue v-model="colors" @change="childChange" direction="vertical">
-          <div class="hue-pointer">
-            <i class="hue-pointer--left"></i><i class="hue-pointer--right"></i>
+          <div class="vc-ps-hue-pointer">
+            <i class="vc-ps-hue-pointer--left"></i><i class="vc-ps-hue-pointer--right"></i>
           </div>
         </hue>
       </div>
-      <div class="controls">
-        <div class="previews">
-          <div class="previews__label">new</div>
-          <div class="previews__swatches">
-            <div class="previews__pr-color" :style="{background: colors.hex}"></div>
-            <div class="previews__pr-color" :style="{background: currentColor}"></div>
+      <div class="vc-ps-controls">
+        <div class="vc-ps-previews">
+          <div class="vc-ps-previews__label">new</div>
+          <div class="vc-ps-previews__swatches">
+            <div class="vc-ps-previews__pr-color" :style="{background: colors.hex}"></div>
+            <div class="vc-ps-previews__pr-color" :style="{background: currentColor}"></div>
           </div>
-          <div class="previews__label">current</div>
+          <div class="vc-ps-previews__label">current</div>
         </div>
-        <div class="actions">
-          <div class="ac-btn" @click="handleAccept">OK</div>
-          <div class="ac-btn" @click="handleCancel">Cancel</div>
-          <div class="fields">
+        <div class="vc-ps-actions">
+          <div class="vc-ps-ac-btn" @click="handleAccept">OK</div>
+          <div class="vc-ps-ac-btn" @click="handleCancel">Cancel</div>
+          <div class="vc-ps-fields">
             <!-- hsla -->
             <ed-in label="h" v-model="colors.hsv.h" @change="inputChange"></ed-in>
             <ed-in label="s" v-model="colors.hsv.s" @change="inputChange"></ed-in>
             <ed-in label="v" v-model="colors.hsv.v" @change="inputChange"></ed-in>
-            <div class="fields__divider"></div>
+            <div class="vc-ps-fields__divider"></div>
             <!-- rgba -->
             <ed-in label="r" v-model="colors.rgba.r" @change="inputChange"></ed-in>
             <ed-in label="g" v-model="colors.rgba.g" @change="inputChange"></ed-in>
             <ed-in label="b" v-model="colors.rgba.b" @change="inputChange"></ed-in>
-            <div class="fields__divider"></div>
+            <div class="vc-ps-fields__divider"></div>
             <!-- hex -->
-            <ed-in label="#" class="fields__hex" v-model="colors.hex" @change="inputChange"></ed-in>
+            <ed-in label="#" class="vc-ps-fields__hex" v-model="colors.hex" @change="inputChange"></ed-in>
           </div>
 
         </div>
@@ -109,8 +109,8 @@ export default {
 }
 </script>
 
-<style scoped>
-.c-photoshop {
+<style>
+.vc-photoshop {
   background: #DCDCDC;
   border-radius: 4px;
   box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 8px 16px rgba(0,0,0,.15);
@@ -118,7 +118,7 @@ export default {
   width: 513px;
   font-family: Roboto;
 }
-.head {
+.vc-ps-head {
   background-image: linear-gradient(-180deg, #F0F0F0 0%, #D4D4D4 100%);
   border-bottom: 1px solid #B1B1B1;
   box-shadow: inset 0 1px 0 0 rgba(255,255,255,.2), inset 0 -1px 0 0 rgba(0,0,0,.02);
@@ -129,12 +129,12 @@ export default {
   color: #4D4D4D;
   text-align: center;
 }
-.body {
+.vc-ps-body {
   padding: 15px;
   display: flex;
 }
 
-.saturation-wrap {
+.vc-ps-saturation-wrap {
   width: 256px;
   height: 256px;
   position: relative;
@@ -142,12 +142,12 @@ export default {
   border-bottom: 2px solid #F0F0F0;
   overflow: hidden;
 }
-.saturation-wrap >>> .circle {
+.vc-ps-saturation-wrap .vc-saturation-circle {
   width: 12px;
   height: 12px;
 }
 
-.hue-wrap {
+.vc-ps-hue-wrap {
   position: relative;
   height: 256px;
   width: 19px;
@@ -155,11 +155,11 @@ export default {
   border: 2px solid #B3B3B3;
   border-bottom: 2px solid #F0F0F0;
 }
-.hue-pointer {
+.vc-ps-hue-pointer {
   position: relative;
 }
-.hue-pointer--left,
-.hue-pointer--right {
+.vc-ps-hue-pointer--left,
+.vc-ps-hue-pointer--right {
   position: absolute;
   width: 0;
   height: 0;
@@ -167,8 +167,8 @@ export default {
   border-width: 5px 0 5px 8px;
   border-color: transparent transparent transparent #555;
 }
-.hue-pointer--left:after,
-.hue-pointer--right:after {
+.vc-ps-hue-pointer--left:after,
+.vc-ps-hue-pointer--right:after {
   content: "";
   width: 0;
   height: 0;
@@ -180,24 +180,24 @@ export default {
   left: 1px;
   transform: translate(-8px, -5px);
 }
-.hue-pointer--left {
+.vc-ps-hue-pointer--left {
   transform: translate(-13px, -4px);
 }
-.hue-pointer--right {
+.vc-ps-hue-pointer--right {
   transform: translate(20px, -4px) rotate(180deg);
 }
 
-.controls {
+.vc-ps-controls {
   width: 180px;
   margin-left: 10px;
   display: flex;
 }
 
-.actions {
+.vc-ps-actions {
   margin-left: 20px;
   flex: 1;
 }
-.ac-btn {
+.vc-ps-ac-btn {
   cursor: pointer;
   background-image: linear-gradient(-180deg, #FFFFFF 0%, #E6E6E6 100%);
   border: 1px solid #878787;
@@ -210,32 +210,32 @@ export default {
   text-align: center;
   margin-bottom: 10px;
 }
-.previews {
+.vc-ps-previews {
   width: 60px;
 }
-.previews__swatches {
+.vc-ps-previews__swatches {
   border: 1px solid #B3B3B3;
   border-bottom: 1px solid #F0F0F0;
   margin-bottom: 2px;
   margin-top: 1px;
 }
-.previews__pr-color {
+.vc-ps-previews__pr-color {
   height: 34px;
   box-shadow: inset 1px 0 0 #000, inset -1px 0 0 #000, inset 0 1px 0 #000;
 }
-.previews__label {
+.vc-ps-previews__label {
   font-size: 14px;
   color: #000;
   text-align: center;
 }
 
-.fields {
+.vc-ps-fields {
   padding-top: 5px;
   padding-bottom: 9px;
   width: 80px;
   position: relative;
 }
-.fields >>> .vc-input__input {
+.vc-ps-fields .vc-input__input {
   margin-left: 40%;
   width: 40%;
   height: 18px;
@@ -246,7 +246,7 @@ export default {
   padding-left: 3px;
   margin-right: 10px;
 }
-.fields >>> .vc-input__label {
+.vc-ps-fields .vc-input__label {
   top: 0;
   left: 0;
   width: 34px;
@@ -257,11 +257,11 @@ export default {
   position: absolute;
 }
 
-.fields__divider {
+.vc-ps-fields__divider {
   height: 5px;
 }
 
-.fields__hex >>> .input__input {
+.vc-ps-fields__hex .vc-input__input {
   margin-left: 20%;
   width: 80%;
   height: 18px;
@@ -271,7 +271,7 @@ export default {
   font-size: 13px;
   padding-left: 3px;
 }
-.fields__hex >>> .input__label {
+.vc-ps-fields__hex .vc-input__label {
   position: absolute;
   top: 0;
   left: 0;
