@@ -26,17 +26,17 @@
           <div class="vc-ps-ac-btn" @click="handleCancel">Cancel</div>
           <div class="vc-ps-fields">
             <!-- hsla -->
-            <ed-in label="h" v-model="colors.hsv.h" @change="inputChange"></ed-in>
-            <ed-in label="s" v-model="colors.hsv.s" @change="inputChange"></ed-in>
-            <ed-in label="v" v-model="colors.hsv.v" @change="inputChange"></ed-in>
+            <ed-in label="h" :value="hsv.h" @change="inputChange"></ed-in>
+            <ed-in label="s" :value="hsv.s" @change="inputChange"></ed-in>
+            <ed-in label="v" :value="hsv.v" @change="inputChange"></ed-in>
             <div class="vc-ps-fields__divider"></div>
             <!-- rgba -->
-            <ed-in label="r" v-model="colors.rgba.r" @change="inputChange"></ed-in>
-            <ed-in label="g" v-model="colors.rgba.g" @change="inputChange"></ed-in>
-            <ed-in label="b" v-model="colors.rgba.b" @change="inputChange"></ed-in>
+            <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
+            <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
+            <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
             <div class="vc-ps-fields__divider"></div>
             <!-- hex -->
-            <ed-in label="#" class="vc-ps-fields__hex" v-model="colors.hex" @change="inputChange"></ed-in>
+            <ed-in label="#" class="vc-ps-fields__hex" :value="colors.hex" @change="inputChange"></ed-in>
           </div>
 
         </div>
@@ -72,6 +72,16 @@ export default {
       currentColor: '#FFF'
     }
   },
+  computed: {
+    hsv () {
+      const hsv = this.colors.hsv
+      return {
+        h: (+hsv.h).toFixed(),
+        s: (+hsv.s).toFixed() * 100,
+        v: (+hsv.v).toFixed() * 100
+      }
+    }
+  },
   created () {
     this.currentColor = this.colors.hex
   },
@@ -95,6 +105,13 @@ export default {
           b: data.b || this.colors.rgba.b,
           a: data.a || this.colors.rgba.a,
           source: 'rgba'
+        })
+      } else if (data.h || data.s || data.v) {
+        this.colorChange({
+          h: data.h || this.colors.hsv.h,
+          s: data.s || this.colors.hsv.s,
+          v: data.v || this.colors.hsv.v,
+          source: 'hsv'
         })
       }
     },
