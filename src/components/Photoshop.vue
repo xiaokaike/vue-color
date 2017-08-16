@@ -27,8 +27,8 @@
           <div class="vc-ps-fields">
             <!-- hsla -->
             <ed-in label="h" :value="hsv.h" @change="inputChange"></ed-in>
-            <ed-in label="s" :value="hsv.s" @change="inputChange"></ed-in>
-            <ed-in label="v" :value="hsv.v" @change="inputChange"></ed-in>
+            <ed-in label="s" :value="hsv.s" :max="100" @change="inputChange"></ed-in>
+            <ed-in label="v" :value="hsv.v" :max="100" @change="inputChange"></ed-in>
             <div class="vc-ps-fields__divider"></div>
             <!-- rgba -->
             <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
@@ -76,9 +76,9 @@ export default {
     hsv () {
       const hsv = this.colors.hsv
       return {
-        h: (+hsv.h).toFixed(),
-        s: (+hsv.s).toFixed() * 100,
-        v: (+hsv.v).toFixed() * 100
+        h: hsv.h.toFixed(),
+        s: (hsv.s * 100).toFixed(),
+        v: (hsv.v * 100).toFixed()
       }
     }
   },
@@ -109,8 +109,8 @@ export default {
       } else if (data.h || data.s || data.v) {
         this.colorChange({
           h: data.h || this.colors.hsv.h,
-          s: data.s || this.colors.hsv.s,
-          v: data.v || this.colors.hsv.v,
+          s: (data.s / 100) || this.colors.hsv.s,
+          v: (data.v / 100) || this.colors.hsv.v,
           source: 'hsv'
         })
       }
