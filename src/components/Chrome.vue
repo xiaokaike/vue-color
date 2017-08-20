@@ -7,6 +7,7 @@
       <div class="vc-chrome-controls">
         <div class="vc-chrome-color-wrap">
           <div class="vc-chrome-active-color" :style="{background: activeColor}"></div>
+          <checkboard></checkboard>
         </div>
 
         <div class="vc-chrome-sliders">
@@ -80,6 +81,7 @@ import editableInput from './common/EditableInput.vue'
 import saturation from './common/Saturation.vue'
 import hue from './common/Hue.vue'
 import alpha from './common/Alpha.vue'
+import checkboard from './common/Checkboard.vue'
 
 export default {
   name: 'Chrome',
@@ -90,7 +92,8 @@ export default {
     saturation,
     hue,
     alpha,
-    'ed-in': editableInput
+    'ed-in': editableInput,
+    checkboard
   },
   data () {
     return {
@@ -165,15 +168,22 @@ export default {
   display: flex;
 }
 .vc-chrome-color-wrap {
-  width: 32px;
+  position: relative;
+  width: 36px;
 }
 .vc-chrome-active-color {
-  margin-top: 6px;
-  width: 16px;
-  height: 16px;
-  border-radius: 8px;
   position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
   overflow: hidden;
+  z-index: 1;
+}
+.vc-chrome-color-wrap .vc-checkerboard {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-size: auto;
 }
 .vc-chrome-sliders {
   flex: 1;
