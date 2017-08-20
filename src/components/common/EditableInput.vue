@@ -6,6 +6,7 @@
       @input="update"
       ref="input">
     <span class="vc-input__label">{{label}}</span>
+    <span class="vc-input__desc">{{desc}}</span>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ export default {
   name: 'editableInput',
   props: {
     label: String,
+    desc: String,
     value: [String, Number],
     max: Number,
     min: Number,
@@ -28,6 +30,7 @@ export default {
         return this.value
       },
       set (v) {
+        // TODO: min
         if (!(this.max ===  undefined) && +v > this.max) {
           this.$refs.input.value = this.max
         } else {

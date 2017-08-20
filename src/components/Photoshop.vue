@@ -26,9 +26,9 @@
           <div class="vc-ps-ac-btn" @click="handleCancel">Cancel</div>
           <div class="vc-ps-fields">
             <!-- hsla -->
-            <ed-in label="h" :value="hsv.h" @change="inputChange"></ed-in>
-            <ed-in label="s" :value="hsv.s" :max="100" @change="inputChange"></ed-in>
-            <ed-in label="v" :value="hsv.v" :max="100" @change="inputChange"></ed-in>
+            <ed-in label="h" desc="°" :value="hsv.h" @change="inputChange"></ed-in>
+            <ed-in label="s" desc="%" :value="hsv.s" :max="100" @change="inputChange"></ed-in>
+            <ed-in label="v" desc="%" :value="hsv.v" :max="100" @change="inputChange"></ed-in>
             <div class="vc-ps-fields__divider"></div>
             <!-- rgba -->
             <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
@@ -263,15 +263,21 @@ export default {
   padding-left: 3px;
   margin-right: 10px;
 }
-.vc-ps-fields .vc-input__label {
+.vc-ps-fields .vc-input__label, .vc-ps-fields .vc-input__desc {
   top: 0;
-  left: 0;
-  width: 34px;
   text-transform: uppercase;
   font-size: 13px;
   height: 18px;
   line-height: 22px;
   position: absolute;
+}
+.vc-ps-fields .vc-input__label {
+  left: 0;
+  width: 34px;
+}
+.vc-ps-fields .vc-input__desc {
+  right: 0;
+  width: 0;
 }
 
 .vc-ps-fields__divider {
