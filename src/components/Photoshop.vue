@@ -17,7 +17,7 @@
           <div class="vc-ps-previews__label">new</div>
           <div class="vc-ps-previews__swatches">
             <div class="vc-ps-previews__pr-color" :style="{background: colors.hex}"></div>
-            <div class="vc-ps-previews__pr-color" :style="{background: currentColor}"></div>
+            <div class="vc-ps-previews__pr-color" :style="{background: currentColor}" @click="clickCurrentColor"></div>
           </div>
           <div class="vc-ps-previews__label">current</div>
         </div>
@@ -118,6 +118,12 @@ export default {
           source: 'hsv'
         })
       }
+    },
+    clickCurrentColor () {
+      this.colorChange({
+        hex: this.currentColor,
+        source: 'hex'
+      })
     },
     handleAccept () {
       this.$emit('ok')
