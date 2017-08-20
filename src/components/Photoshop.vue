@@ -36,7 +36,7 @@
             <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
             <div class="vc-ps-fields__divider"></div>
             <!-- hex -->
-            <ed-in label="#" class="vc-ps-fields__hex" :value="colors.hex" @change="inputChange"></ed-in>
+            <ed-in label="#" class="vc-ps-fields__hex" :value="hex" @change="inputChange"></ed-in>
           </div>
 
         </div>
@@ -80,6 +80,10 @@ export default {
         s: (hsv.s * 100).toFixed(),
         v: (hsv.v * 100).toFixed()
       }
+    },
+    hex () {
+      const hex = this.colors.hex
+      return hex && hex.replace('#', '')
     }
   },
   created () {
