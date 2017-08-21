@@ -24,37 +24,37 @@
         <div class="vc-chrome-fields" v-show="fieldsIndex === 0">
           <!-- hex -->
           <div class="vc-chrome-field">
-            <ed-in label="hex" v-model="colors.hex" @change="inputChange"></ed-in>  
+            <ed-in label="hex" :value="colors.hex" @change="inputChange"></ed-in>  
           </div>
         </div>
         <div class="vc-chrome-fields" v-show="fieldsIndex === 1">
           <!-- rgba -->
           <div class="vc-chrome-field">
-            <ed-in label="r" v-model="colors.rgba.r" @change="inputChange"></ed-in>
+            <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
           </div>
           <div class="vc-chrome-field">
-            <ed-in label="g" v-model="colors.rgba.g" @change="inputChange"></ed-in>
+            <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
           </div>
           <div class="vc-chrome-field">
-            <ed-in label="b" v-model="colors.rgba.b" @change="inputChange"></ed-in>
+            <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
           </div>
           <div class="vc-chrome-field">
-            <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
+            <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
         <div class="vc-chrome-fields" v-show="fieldsIndex === 2">
           <!-- hsla -->
           <div class="vc-chrome-field">
-            <ed-in label="h" v-model="colors.hsl.h" @change="inputChange"></ed-in>
+            <ed-in label="h" :value="hsl.h" @change="inputChange"></ed-in>
           </div>
           <div class="vc-chrome-field"> 
-            <ed-in label="s" v-model="colors.hsl.s" @change="inputChange"></ed-in>
+            <ed-in label="s" :value="hsl.s" @change="inputChange"></ed-in>
           </div>
           <div class="vc-chrome-field">
-            <ed-in label="l" v-model="colors.hsl.l" @change="inputChange"></ed-in>
+            <ed-in label="l" :value="hsl.l" @change="inputChange"></ed-in>
           </div>
           <div class="vc-chrome-field">
-            <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
+            <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
         <!-- btn -->
@@ -103,6 +103,14 @@ export default {
     }
   },
   computed: {
+    hsl () {
+      const { h, s, l } = this.colors.hsl
+      return {
+        h: h.toFixed(),
+        s: `${(s * 100).toFixed()}%`,
+        l: `${(l * 100).toFixed()}%`
+      }
+    },
     activeColor () {
       var rgba = this.colors.rgba
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
@@ -134,6 +142,16 @@ export default {
           b: data.b || this.colors.rgba.b,
           a: data.a || this.colors.rgba.a,
           source: 'rgba'
+        })
+      } else if (data.h || data.s || data.l) {
+        const s = data.s ? (data.s.replace('%', '') / 100) : this.colors.hsl.s
+        const l = data.l ? (data.l.replace('%', '') / 100) : this.colors.hsl.l
+
+        this.colorChange({
+          h: data.h || this.colors.hsl.h,
+          s,
+          l,
+          source: 'hsl'
         })
       }
     },
