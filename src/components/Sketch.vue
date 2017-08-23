@@ -72,7 +72,9 @@ export default {
   props: {
     presetColors: {
       type: Array,
-      default: presetColors
+      default() {
+        return presetColors
+      }
     }
   },
   computed: {
