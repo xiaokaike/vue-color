@@ -69,9 +69,10 @@ export default {
     'ed-in': editableInput,
     checkboard
   },
-  data () {
-    return {
-      presetColors: presetColors
+  props: {
+    presetColors: {
+      type: Array,
+      default: presetColors
     }
   },
   computed: {
