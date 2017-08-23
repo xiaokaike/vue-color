@@ -38,6 +38,7 @@
     <div class="vc-sketch-presets">
       <div class="vc-sketch-presets-color"
         v-for="c in presetColors"
+        :key="c"
         :style="{background: c}"
         @click="handlePreset(c)">
       </div>
