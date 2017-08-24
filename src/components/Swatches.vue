@@ -1,12 +1,13 @@
 <template>
   <div class="vc-swatches" :data-pick="pick">
     <div class="vc-swatches-box">
-      <div class="vc-swatches-color-group" v-for="group in defaultColors">
-        <div class="vc-swatches-color-it" v-for="c in group"
+      <div class="vc-swatches-color-group" v-for="(group, $idx) in palette" :key="$idx">
+        <div :class="['vc-swatches-color-it', {'vc-swatches-color--white': c === '#FFFFFF' }]"
+          v-for="c in group" :key="c"
           :data-color="c"
-          @click="handlerClick(c)"
-          :style="{background: c}">
-          <div class="vc-swatches-pick" v-show="c == pick">
+          :style="{background: c}"
+          @click="handlerClick(c)">
+          <div class="vc-swatches-pick" v-show="equal(c)">
             <svg style="width: 24px; height:24px;" viewBox="0 0 24 24">
               <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
             </svg>
@@ -44,17 +45,23 @@ var defaultColors = (() => {
 export default {
   name: 'Swatches',
   mixins: [colorMixin],
+  props: {
+    palette: {
+      type: Array,
+      default() {
+        return defaultColors
+      }
+    }
+  },
   computed: {
     pick () {
       return this.colors.hex
     }
   },
-  data () {
-    return {
-      defaultColors: defaultColors
-    }
-  },
   methods: {
+    equal(color) {
+      return color.toLowerCase() === this.colors.hex.toLowerCase()
+    },
     handlerClick (c) {
       this.colorChange({
         hex: c,
@@ -85,6 +92,7 @@ export default {
   margin-right: 10px;
 }
 .vc-swatches-color-it {
+  box-sizing: border-box;
   width: 40px;
   height: 24px;
   cursor: pointer;
@@ -97,9 +105,15 @@ export default {
   -webkit-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
 }
+.vc-swatches-color--white {
+  border: 1px solid #DDD;
+}
 .vc-swatches-pick {
   fill: rgb(255, 255, 255);
   margin-left: 8px;
   display: block; 
+}
+.vc-swatches-color--white .vc-swatches-pick {
+  fill: rgb(51, 51, 51);
 }
 </style>
