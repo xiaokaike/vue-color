@@ -1,5 +1,5 @@
 <template>
-  <div class="vc-checkerboard" :style="{background: bgStyle}"></div>
+  <div class="vc-checkerboard" :style="bgStyle"></div>
 </template>
 
 <script>
@@ -23,7 +23,9 @@ export default {
   },
   computed: {
     bgStyle () {
-      return 'url(' + getCheckboard(this.white, this.grey, this.size) + ') center left'
+      return {
+        'background-image': 'url(' + getCheckboard(this.white, this.grey, this.size) + ')'
+      }
     }
   }
 }
@@ -86,5 +88,6 @@ function getCheckboard (c1, c2, size) {
   right: 0px;
   bottom: 0px;
   left: 0px;
+  background-size: contain;
 }
 </style>

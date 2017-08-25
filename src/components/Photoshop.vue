@@ -17,7 +17,7 @@
           <div class="vc-ps-previews__label">new</div>
           <div class="vc-ps-previews__swatches">
             <div class="vc-ps-previews__pr-color" :style="{background: colors.hex}"></div>
-            <div class="vc-ps-previews__pr-color" :style="{background: currentColor}"></div>
+            <div class="vc-ps-previews__pr-color" :style="{background: currentColor}" @click="clickCurrentColor"></div>
           </div>
           <div class="vc-ps-previews__label">current</div>
         </div>
@@ -26,17 +26,17 @@
           <div class="vc-ps-ac-btn" @click="handleCancel">Cancel</div>
           <div class="vc-ps-fields">
             <!-- hsla -->
-            <ed-in label="h" v-model="colors.hsv.h" @change="inputChange"></ed-in>
-            <ed-in label="s" v-model="colors.hsv.s" @change="inputChange"></ed-in>
-            <ed-in label="v" v-model="colors.hsv.v" @change="inputChange"></ed-in>
+            <ed-in label="h" desc="°" :value="hsv.h" @change="inputChange"></ed-in>
+            <ed-in label="s" desc="%" :value="hsv.s" :max="100" @change="inputChange"></ed-in>
+            <ed-in label="v" desc="%" :value="hsv.v" :max="100" @change="inputChange"></ed-in>
             <div class="vc-ps-fields__divider"></div>
             <!-- rgba -->
-            <ed-in label="r" v-model="colors.rgba.r" @change="inputChange"></ed-in>
-            <ed-in label="g" v-model="colors.rgba.g" @change="inputChange"></ed-in>
-            <ed-in label="b" v-model="colors.rgba.b" @change="inputChange"></ed-in>
+            <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
+            <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
+            <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
             <div class="vc-ps-fields__divider"></div>
             <!-- hex -->
-            <ed-in label="#" class="vc-ps-fields__hex" v-model="colors.hex" @change="inputChange"></ed-in>
+            <ed-in label="#" class="vc-ps-fields__hex" :value="hex" @change="inputChange"></ed-in>
           </div>
 
         </div>
@@ -72,6 +72,20 @@ export default {
       currentColor: '#FFF'
     }
   },
+  computed: {
+    hsv () {
+      const hsv = this.colors.hsv
+      return {
+        h: hsv.h.toFixed(),
+        s: (hsv.s * 100).toFixed(),
+        v: (hsv.v * 100).toFixed()
+      }
+    },
+    hex () {
+      const hex = this.colors.hex
+      return hex && hex.replace('#', '')
+    }
+  },
   created () {
     this.currentColor = this.colors.hex
   },
@@ -96,7 +110,20 @@ export default {
           a: data.a || this.colors.rgba.a,
           source: 'rgba'
         })
+      } else if (data.h || data.s || data.v) {
+        this.colorChange({
+          h: data.h || this.colors.hsv.h,
+          s: (data.s / 100) || this.colors.hsv.s,
+          v: (data.v / 100) || this.colors.hsv.v,
+          source: 'hsv'
+        })
       }
+    },
+    clickCurrentColor () {
+      this.colorChange({
+        hex: this.currentColor,
+        source: 'hex'
+      })
     },
     handleAccept () {
       this.$emit('ok')
@@ -246,15 +273,21 @@ export default {
   padding-left: 3px;
   margin-right: 10px;
 }
-.vc-ps-fields .vc-input__label {
+.vc-ps-fields .vc-input__label, .vc-ps-fields .vc-input__desc {
   top: 0;
-  left: 0;
-  width: 34px;
   text-transform: uppercase;
   font-size: 13px;
   height: 18px;
   line-height: 22px;
   position: absolute;
+}
+.vc-ps-fields .vc-input__label {
+  left: 0;
+  width: 34px;
+}
+.vc-ps-fields .vc-input__desc {
+  right: 0;
+  width: 0;
 }
 
 .vc-ps-fields__divider {
