@@ -73,13 +73,13 @@ export default {
   props: {
     presetColors: {
       type: Array,
-      default() {
+      default () {
         return presetColors
       }
     }
   },
   computed: {
-    hex() {
+    hex () {
       return this.colors.hex.replace('#', '')
     },
     activeColor () {

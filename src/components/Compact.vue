@@ -30,7 +30,7 @@ export default {
   props: {
     palette: {
       type: Array,
-      default() {
+      default () {
         return defaultColors
       }
     }

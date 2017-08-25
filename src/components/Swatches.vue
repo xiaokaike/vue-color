@@ -48,7 +48,7 @@ export default {
   props: {
     palette: {
       type: Array,
-      default() {
+      default () {
         return defaultColors
       }
     }
@@ -59,7 +59,7 @@ export default {
     }
   },
   methods: {
-    equal(color) {
+    equal (color) {
       return color.toLowerCase() === this.colors.hex.toLowerCase()
     },
     handlerClick (c) {
