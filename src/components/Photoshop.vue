@@ -3,10 +3,10 @@
     <div class="vc-ps-head">{{head}}</div>
     <div class="vc-ps-body">
       <div class="vc-ps-saturation-wrap">
-        <saturation v-model="colors" @change="childChange"></saturation>
+        <saturation :colors="colors" @change="childChange"></saturation>
       </div>
       <div class="vc-ps-hue-wrap">
-        <hue v-model="colors" @change="childChange" direction="vertical">
+        <hue :colors="colors" @change="childChange" direction="vertical">
           <div class="vc-ps-hue-pointer">
             <i class="vc-ps-hue-pointer--left"></i><i class="vc-ps-hue-pointer--right"></i>
           </div>
