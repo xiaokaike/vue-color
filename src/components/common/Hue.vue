@@ -15,7 +15,7 @@
 export default {
   name: 'Hue',
   props: {
-    value: Object,
+    colors: Object,
     direction: {
       type: String,
       // [horizontal | vertical]
@@ -28,15 +28,15 @@ export default {
       pullDirection: ''
     }
   },
-  computed: {
+  watch: {
     colors () {
-      const h = this.value.hsl.h
+      const h = this.colors.hsl.h
       if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
       if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
       this.oldHue = h
-
-      return this.value
-    },
+    }
+  },
+  computed: {
     directionClass () {
       return {
         'vc-hue--horizontal': this.direction === 'horizontal',

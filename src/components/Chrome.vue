@@ -1,7 +1,7 @@
 <template>
   <div class="vc-chrome">
     <div class="vc-chrome-saturation-wrap">
-      <saturation v-model="colors" @change="childChange"></saturation>
+      <saturation :colors="colors" @change="childChange"></saturation>
     </div>
     <div class="vc-chrome-body">
       <div class="vc-chrome-controls">
@@ -12,10 +12,10 @@
 
         <div class="vc-chrome-sliders">
           <div class="vc-chrome-hue-wrap">
-            <hue v-model="colors" @change="childChange"></hue>
+            <hue :colors="colors" @change="childChange"></hue>
           </div>
           <div class="vc-chrome-alpha-wrap">
-            <alpha v-model="colors" @change="childChange"></alpha>
+            <alpha :colors="colors" @change="childChange"></alpha>
           </div>
         </div>
       </div>

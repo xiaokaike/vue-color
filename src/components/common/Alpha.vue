@@ -21,16 +21,13 @@ import checkboard from './Checkboard.vue'
 export default {
   name: 'Alpha',
   props: {
-    value: Object,
+    colors: Object,
     onChange: Function
   },
   components: {
     checkboard
   },
   computed: {
-    colors () {
-      return this.value
-    },
     gradientColor () {
       var rgba = this.colors.rgba
       var rgbStr = [rgba.r, rgba.g, rgba.b].join(',')
