@@ -50,15 +50,21 @@ function _colorChange (data, oldHue) {
 
 export default {
   props: ['color'],
-  data () {
-    return {
-      colors: _colorChange(this.color)
+  computed: {
+    colors: {
+      get () {
+        return _colorChange(this.color)
+      },
+      set (color) {
+        this.$emit('change', color)
+      }
     }
   },
   methods: {
     colorChange (data, oldHue) {
       this.oldHue = this.colors.hsl.h
-      this.colors = _colorChange(data, oldHue || this.oldHue)
+      const color = _colorChange(data, oldHue || this.oldHue)
+      this.colors = color
     },
     isValidHex (hex) {
       return tinycolor(hex).isValid()
