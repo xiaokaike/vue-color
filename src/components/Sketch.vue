@@ -1,15 +1,15 @@
 <template>
   <div class="vc-sketch">
     <div class="vc-sketch-saturation-wrap">
-      <saturation v-model="colors" @change="childChange"></saturation>
+      <saturation :colors="colors" @change="childChange"></saturation>
     </div>
     <div class="vc-sketch-controls">
       <div class="vc-sketch-sliders">
         <div class="vc-sketch-hue-wrap">
-          <hue v-model="colors" @change="childChange"></hue>  
+          <hue :colors="colors" @change="childChange"></hue>  
         </div>
         <div class="vc-sketch-alpha-wrap">
-          <alpha v-model="colors" @change="childChange"></alpha>
+          <alpha :colors="colors" @change="childChange"></alpha>
         </div>
       </div>
       <div class="vc-sketch-color-wrap">
