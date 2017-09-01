@@ -1,25 +1,23 @@
 <template>
-
   <div class="vc-material">
-    <ed-in class="vc-material-hex" label="hex" v-model="colors.hex"
+    <ed-in class="vc-material-hex" label="hex" :value="colors.hex"
       :style="{ borderColor: colors.hex }" @change="onChange"></ed-in>
 
     <div class="vc-material-split">
       <div class="vc-material-third">
-        <ed-in label="r" v-model="colors.rgba.r"
+        <ed-in label="r" :value="colors.rgba.r"
         @change="onChange"></ed-in>
       </div>
       <div class="vc-material-third">
-        <ed-in label="g" v-model="colors.rgba.g"
+        <ed-in label="g" :value="colors.rgba.g"
         @change="onChange"></ed-in>
       </div>
       <div class="vc-material-third">
-        <ed-in label="b" v-model="colors.rgba.b"
+        <ed-in label="b" :value="colors.rgba.b"
         @change="onChange"></ed-in>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
