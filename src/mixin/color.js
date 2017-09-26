@@ -24,7 +24,7 @@ function _colorChange (data, oldHue) {
     hsv.h = hsl.h = data.h || (data.hsl && data.hsl.h) || oldHue || 0
   }
 
-  // when the hsv.v is less than 0.0164 (base on test)
+  // when the hsv.v is less than 0.0164 (base on tests)
   // because of possible loss of precision
   // the result of hue and saturation would be miscalculated
   if (hsv.v < 0.0164) {
@@ -49,22 +49,30 @@ function _colorChange (data, oldHue) {
 }
 
 export default {
-  props: ['color'],
-  computed: {
-    colors: {
-      get () {
-        return _colorChange(this.color)
-      },
-      set (color) {
-        this.$emit('change', color)
+  props: {
+    color: {
+      type: [String, Object],
+      default () {
+        return '#194d33'
       }
+    }
+  },
+  data () {
+    const _color = _colorChange(this.color)
+    return {
+      _color
+    }
+  },
+  watch: {
+    color () {
+      this.$data._color = _colorChange(this.color)
     }
   },
   methods: {
     colorChange (data, oldHue) {
-      this.oldHue = this.colors.hsl.h
-      const color = _colorChange(data, oldHue || this.oldHue)
-      this.colors = color
+      this.oldHue = this.$data._color.hsl.h
+      this.$data._color = _colorChange(data, oldHue || this.oldHue)
+      this.$emit('change', this.$data._color)
     },
     isValidHex (hex) {
       return tinycolor(hex).isValid()

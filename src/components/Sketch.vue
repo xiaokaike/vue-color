@@ -1,15 +1,15 @@
 <template>
   <div class="vc-sketch">
     <div class="vc-sketch-saturation-wrap">
-      <saturation :colors="colors" @change="childChange"></saturation>
+      <saturation :color="$data._color" @change="childChange"></saturation>
     </div>
     <div class="vc-sketch-controls">
       <div class="vc-sketch-sliders">
         <div class="vc-sketch-hue-wrap">
-          <hue :colors="colors" @change="childChange"></hue>  
+          <hue :color="$data._color" @change="childChange"></hue>  
         </div>
         <div class="vc-sketch-alpha-wrap">
-          <alpha :colors="colors" @change="childChange"></alpha>
+          <alpha :color="$data._color" @change="childChange"></alpha>
         </div>
       </div>
       <div class="vc-sketch-color-wrap">
@@ -23,16 +23,16 @@
         <ed-in label="hex" :value="hex" @change="inputChange"></ed-in>  
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
+        <ed-in label="r" :value="$data._color.rgba.r" @change="inputChange"></ed-in>
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
+        <ed-in label="g" :value="$data._color.rgba.g" @change="inputChange"></ed-in>
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
+        <ed-in label="b" :value="$data._color.rgba.b" @change="inputChange"></ed-in>
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
+        <ed-in label="a" :value="$data._color.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
       </div>
     </div>
     <div class="vc-sketch-presets">
@@ -80,10 +80,10 @@ export default {
   },
   computed: {
     hex () {
-      return this.colors.hex.replace('#', '')
+      return this.$data._color.hex.replace('#', '')
     },
     activeColor () {
-      var rgba = this.colors.rgba
+      var rgba = this.$data._color.rgba
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
     }
   },
@@ -108,10 +108,10 @@ export default {
         })
       } else if (data.r || data.g || data.b || data.a) {
         this.colorChange({
-          r: data.r || this.colors.rgba.r,
-          g: data.g || this.colors.rgba.g,
-          b: data.b || this.colors.rgba.b,
-          a: data.a || this.colors.rgba.a,
+          r: data.r || this.$data._color.rgba.r,
+          g: data.g || this.$data._color.rgba.g,
+          b: data.b || this.$data._color.rgba.b,
+          a: data.a || this.$data._color.rgba.a,
           source: 'rgba'
         })
       }

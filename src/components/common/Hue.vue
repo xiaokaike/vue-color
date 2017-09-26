@@ -15,7 +15,7 @@
 export default {
   name: 'Hue',
   props: {
-    colors: Object,
+    color: Object,
     direction: {
       type: String,
       // [horizontal | vertical]
@@ -29,8 +29,8 @@ export default {
     }
   },
   watch: {
-    colors () {
-      const h = this.colors.hsl.h
+    color () {
+      const h = this.color.hsl.h
       if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
       if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
       this.oldHue = h
@@ -45,8 +45,8 @@ export default {
     },
     pointerTop () {
       if (this.direction === 'vertical') {
-        if (this.colors.hsl.h === 0 && this.pullDirection === 'right') return 0
-        return -((this.colors.hsl.h * 100) / 360) + 100 + '%'
+        if (this.color.hsl.h === 0 && this.pullDirection === 'right') return 0
+        return -((this.color.hsl.h * 100) / 360) + 100 + '%'
       } else {
         return 0
       }
@@ -55,8 +55,8 @@ export default {
       if (this.direction === 'vertical') {
         return 0
       } else {
-        if (this.colors.hsl.h === 0 && this.pullDirection === 'right') return '100%'
-        return (this.colors.hsl.h * 100) / 360 + '%'
+        if (this.color.hsl.h === 0 && this.pullDirection === 'right') return '100%'
+        return (this.color.hsl.h * 100) / 360 + '%'
       }
     }
   },
@@ -88,12 +88,12 @@ export default {
           h = (360 * percent / 100)
         }
 
-        if (this.colors.hsl.h !== h) {
+        if (this.color.hsl.h !== h) {
           this.$emit('change', {
             h: h,
-            s: this.colors.hsl.s,
-            l: this.colors.hsl.l,
-            a: this.colors.hsl.a,
+            s: this.color.hsl.s,
+            l: this.color.hsl.l,
+            a: this.color.hsl.a,
             source: 'hsl'
           })
         }
@@ -107,12 +107,12 @@ export default {
           h = (360 * percent / 100)
         }
 
-        if (this.colors.hsl.h !== h) {
+        if (this.color.hsl.h !== h) {
           this.$emit('change', {
             h: h,
-            s: this.colors.hsl.s,
-            l: this.colors.hsl.l,
-            a: this.colors.hsl.a,
+            s: this.color.hsl.s,
+            l: this.color.hsl.l,
+            a: this.color.hsl.a,
             source: 'hsl'
           })
         }

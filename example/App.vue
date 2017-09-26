@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="demo-item">
-          <chrome-picker :color="colors" @change="updateValue"></chrome-picker>
+          <chrome-picker :color="color.hex" @change="updateValue"></chrome-picker>
           <h6>Chrome</h6>
         </div>
       </header>
@@ -20,7 +20,7 @@
     <div class="demo-container">
       <div class="demo-list">
         <div class="demo-item">
-          <sketch-picker :color="colors" @change="updateValue"></sketch-picker>
+          <sketch-picker :color="color.hex" @change="updateValue"></sketch-picker>
           <h6>Sketch</h6>
         </div>
         <div class="demo-item">
