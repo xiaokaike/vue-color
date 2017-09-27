@@ -24,27 +24,27 @@
           <h6>Sketch</h6>
         </div>
         <div class="demo-item">
-          <photoshop-picker :color="colors" @ok="onOk" @cancel="onCancel" @change="updateValue"></photoshop-picker>
+          <photoshop-picker :color="color.hex" @ok="onOk" @cancel="onCancel" @change="updateValue"></photoshop-picker>
           <h6>Photoshop</h6>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <material-picker :color="colors" @change="updateValue"></material-picker>
+          <material-picker :color="color.hex" @change="updateValue"></material-picker>
           <h6>Material</h6>
         </div>
         <div class="demo-item">
-          <slider-picker :color="colors" @change="updateValue"></slider-picker>
+          <slider-picker :color="color.hex" @change="updateValue"></slider-picker>
           <h6>Slider</h6>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <compact-picker :color="colors" @change="updateValue"></compact-picker>
+          <compact-picker :color="color.hex" @change="updateValue"></compact-picker>
           <h6>Compact</h6>
         </div>
         <div class="demo-item">
-          <swatches-picker :color="colors" @change="updateValue"></swatches-picker>
+          <swatches-picker :color="color.hex" @change="updateValue"></swatches-picker>
           <h6>Swatches</h6>
         </div>
       </div>
@@ -96,12 +96,12 @@ export default {
   },
   data () {
     return {
-      colors: defaultProps
+      color: defaultProps
     }
   },
   computed: {
     bgc () {
-      return this.colors.hex
+      return this.color.hex
     }
   },
   methods: {
@@ -112,7 +112,8 @@ export default {
       console.log('cancel')
     },
     updateValue (value) {
-      this.colors = value
+      // TODO: 格式转换
+      this.color = value
     }
   },
   created () {

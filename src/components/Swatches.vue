@@ -55,12 +55,12 @@ export default {
   },
   computed: {
     pick () {
-      return this.colors.hex
+      return this.$data._color.hex
     }
   },
   methods: {
     equal (color) {
-      return color.toLowerCase() === this.colors.hex.toLowerCase()
+      return color.toLowerCase() === this.$data._color.hex.toLowerCase()
     },
     handlerClick (c) {
       this.colorChange({

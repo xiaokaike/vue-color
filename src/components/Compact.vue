@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     pick () {
-      return this.colors.hex
+      return this.$data._color.hex
     }
   },
   methods: {
