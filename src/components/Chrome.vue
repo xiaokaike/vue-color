@@ -1,5 +1,5 @@
 <template>
-  <div class="vc-chrome">
+  <div :class="['vc-chrome', disableAlpha ? 'vc-chrome__disable-alpha' : '']">
     <div class="vc-chrome-saturation-wrap">
       <saturation v-model="colors" @change="childChange"></saturation>
     </div>
@@ -7,14 +7,14 @@
       <div class="vc-chrome-controls">
         <div class="vc-chrome-color-wrap">
           <div class="vc-chrome-active-color" :style="{background: activeColor}"></div>
-          <checkboard></checkboard>
+          <checkboard v-if="!disableAlpha"></checkboard>
         </div>
 
         <div class="vc-chrome-sliders">
           <div class="vc-chrome-hue-wrap">
             <hue v-model="colors" @change="childChange"></hue>
           </div>
-          <div class="vc-chrome-alpha-wrap">
+          <div class="vc-chrome-alpha-wrap" v-if="!disableAlpha">
             <alpha v-model="colors" @change="childChange"></alpha>
           </div>
         </div>
@@ -38,7 +38,7 @@
           <div class="vc-chrome-field">
             <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
           </div>
-          <div class="vc-chrome-field">
+          <div class="vc-chrome-field" v-if="!disableAlpha">
             <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
@@ -53,7 +53,7 @@
           <div class="vc-chrome-field">
             <ed-in label="l" :value="hsl.l" @change="inputChange"></ed-in>
           </div>
-          <div class="vc-chrome-field">
+          <div class="vc-chrome-field" v-if="!disableAlpha">
             <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
@@ -87,6 +87,10 @@ export default {
   name: 'Chrome',
   mixins: [colorMixin],
   props: {
+    disableAlpha: {
+      type: Boolean,
+      default: false
+    },
   },
   components: {
     saturation,
@@ -117,7 +121,7 @@ export default {
     }
   },
   watch: {
-    colors(newVal) {
+    colors (newVal) {
       const { a } = newVal
       if (a < 1 && this.fieldsIndex === 0) {
         this.fieldsIndex = 1
@@ -305,5 +309,17 @@ export default {
   text-align: center;
   display: block;
   margin-top: 12px;
+}
+
+.vc-chrome__disable-alpha .vc-chrome-active-color {
+  width: 18px;
+  height: 18px;
+}
+.vc-chrome__disable-alpha .vc-chrome-color-wrap {
+  width: 30px;
+}
+.vc-chrome__disable-alpha .vc-chrome-hue-wrap {
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 </style>
