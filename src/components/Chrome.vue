@@ -112,8 +112,16 @@ export default {
       }
     },
     activeColor () {
-      var rgba = this.colors.rgba
+      const rgba = this.colors.rgba
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
+    }
+  },
+  watch: {
+    colors(newVal) {
+      const { a } = newVal
+      if (a < 1 && this.fieldsIndex === 0) {
+        this.fieldsIndex = 1
+      }
     }
   },
   methods: {
@@ -157,7 +165,7 @@ export default {
     },
     toggleViews () {
       if (this.fieldsIndex >= 2) {
-        this.fieldsIndex = 0
+        this.fieldsIndex = this.colors.a < 1 ? 1 : 0
         return
       }
       this.fieldsIndex ++
