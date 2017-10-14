@@ -1,5 +1,5 @@
 <template>
-  <div class="vc-sketch">
+  <div :class="['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']">
     <div class="vc-sketch-saturation-wrap">
       <saturation v-model="colors" @change="childChange"></saturation>
     </div>
@@ -8,35 +8,37 @@
         <div class="vc-sketch-hue-wrap">
           <hue v-model="colors" @change="childChange"></hue>  
         </div>
-        <div class="vc-sketch-alpha-wrap">
+        <div class="vc-sketch-alpha-wrap" v-if="!disableAlpha">
           <alpha v-model="colors" @change="childChange"></alpha>
         </div>
       </div>
       <div class="vc-sketch-color-wrap">
         <div class="vc-sketch-active-color" :style="{background: activeColor}"></div>
+        <checkboard></checkboard>
       </div>
     </div>
     <div class="vc-sketch-field">
       <!-- rgba -->
       <div class="vc-sketch-field--double">
-        <ed-in label="hex" v-model="colors.hex" @change="inputChange"></ed-in>  
+        <ed-in label="hex" :value="hex" @change="inputChange"></ed-in>  
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in label="r" v-model="colors.rgba.r" @change="inputChange"></ed-in>
+        <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in label="g" v-model="colors.rgba.g" @change="inputChange"></ed-in>
+        <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in label="b" v-model="colors.rgba.b" @change="inputChange"></ed-in>
+        <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
       </div>
-      <div class="vc-sketch-field--single">
-        <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
+      <div class="vc-sketch-field--single" v-if="!disableAlpha">
+        <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
       </div>
     </div>
     <div class="vc-sketch-presets">
       <div class="vc-sketch-presets-color"
         v-for="c in presetColors"
+        :key="c"
         :style="{background: c}"
         @click="handlePreset(c)">
       </div>
@@ -50,6 +52,7 @@ import editableInput from './common/EditableInput.vue'
 import saturation from './common/Saturation.vue'
 import hue from './common/Hue.vue'
 import alpha from './common/Alpha.vue'
+import checkboard from './common/Checkboard.vue'
 
 const presetColors = [
   '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321',
@@ -64,14 +67,25 @@ export default {
     saturation,
     hue,
     alpha,
-    'ed-in': editableInput
+    'ed-in': editableInput,
+    checkboard
   },
-  data () {
-    return {
-      presetColors: presetColors
+  props: {
+    presetColors: {
+      type: Array,
+      default () {
+        return presetColors
+      }
+    },
+    disableAlpha: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
+    hex () {
+      return this.colors.hex.replace('#', '')
+    },
     activeColor () {
       var rgba = this.colors.rgba
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
@@ -165,6 +179,10 @@ export default {
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25);
   z-index: 2;
 }
+.vc-sketch-color-wrap .vc-checkerboard {
+  background-size: auto;
+}
+
 .vc-sketch-field {
   display: flex;
   padding-top: 4px;
@@ -210,5 +228,9 @@ export default {
   width: 16px;
   height: 16px;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);
+}
+
+.vc-sketch__disable-alpha .vc-sketch-color-wrap {
+  height: 10px;
 }
 </style>

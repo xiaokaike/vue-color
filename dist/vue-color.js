@@ -925,7 +925,7 @@ var _color2 = _interopRequireDefault(_color);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var VueColor = {
-  version: '2.3.2',
+  version: '2.4.0',
   Compact: _Compact2.default,
   Material: _Material2.default,
   Slider: _Slider2.default,
@@ -1033,7 +1033,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.vc-compact {\n  padding-top: 5px;\n  padding-left: 5px;\n  width: 240px;\n  border-radius: 2px;\n  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);\n  background-color: #fff;\n}\n.vc-compact-colors {\n  overflow: hidden;\n  padding: 0;\n  margin: 0;\n}\n.vc-compact-color-item {\n  list-style: none;\n  width: 15px;\n  height: 15px;\n  float: left;\n  margin-right: 5px;\n  margin-bottom: 5px;\n  position: relative;\n  cursor: pointer;\n}\n.vc-compact-color-item--white {\n  box-shadow: inset 0 0 0 1px #ddd;\n}\n.vc-compact-color-item--white .vc-compact-dot {\n  background: #000;\n}\n.vc-compact-dot {\n  position: absolute;\n  top: 5px;\n  right: 5px;\n  bottom: 5px;\n  left: 5px;\n  border-radius: 50%;\n  opacity: 1;\n  background: #fff;\n}\n/* .vue-color__compact__fields\n  display: flex;\n  position: relative;\n  padding-bottom: 6px;\n  padding-right: 5px;\n  position: relative;\n  .vue-color__editable-input__input\n    width: 70%;\n    padding-left: 30%;\n    background: none;\n    font-size: 12px;\n    color: #333;\n    height: 16px;\n  .vue-color__editable-input__label\n    position: absolute;\n    top: 3px;\n    left: 0;\n    line-height: 16px;\n    text-transform: uppercase;\n    font-size: 12px;\n    color: #999;\n.vue-color__compact__pick-color\n  position: absolute;\n  top: 6px;\n  left: 5px;\n  height: 9px;\n  width: 9px;\n.vue-color__compact__col-3\n  flex: 1;\n.vue_color__compact__col-hex\n  flex: 2;\n  .vue-color__editable-input__input\n    width: 80%;\n    padding-left: 20%;\n  .vue-color__editable-input__label\n    display: none; */\n", ""]);
+exports.push([module.i, "\n.vc-compact {\n  padding-top: 5px;\n  padding-left: 5px;\n  width: 240px;\n  border-radius: 2px;\n  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);\n  background-color: #fff;\n}\n.vc-compact-colors {\n  overflow: hidden;\n  padding: 0;\n  margin: 0;\n}\n.vc-compact-color-item {\n  list-style: none;\n  width: 15px;\n  height: 15px;\n  float: left;\n  margin-right: 5px;\n  margin-bottom: 5px;\n  position: relative;\n  cursor: pointer;\n}\n.vc-compact-color-item--white {\n  box-shadow: inset 0 0 0 1px #ddd;\n}\n.vc-compact-color-item--white .vc-compact-dot {\n  background: #000;\n}\n.vc-compact-dot {\n  position: absolute;\n  top: 5px;\n  right: 5px;\n  bottom: 5px;\n  left: 5px;\n  border-radius: 50%;\n  opacity: 1;\n  background: #fff;\n}\n", ""]);
 
 // exports
 
@@ -1097,7 +1097,14 @@ var defaultColors = ['#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FC
 exports.default = {
   name: 'Compact',
   mixins: [_color2.default],
-  props: {},
+  props: {
+    palette: {
+      type: Array,
+      default: function _default() {
+        return defaultColors;
+      }
+    }
+  },
   components: {
     'ed-in': _EditableInput2.default
   },
@@ -1106,37 +1113,12 @@ exports.default = {
       return this.colors.hex;
     }
   },
-  data: function data() {
-    return {
-      defaultColors: defaultColors
-    };
-  },
-
   methods: {
     handlerClick: function handlerClick(c) {
       this.colorChange({
         hex: c,
         source: 'hex'
       });
-    },
-    onChange: function onChange(data) {
-      if (!data) {
-        return;
-      }
-      if (data.hex) {
-        this.isValidHex(data.hex) && this.colorChange({
-          hex: data.hex,
-          source: 'hex'
-        });
-      } else if (data.r || data.g || data.b) {
-        this.colorChange({
-          r: data.r || this.colors.rgba.r,
-          g: data.g || this.colors.rgba.g,
-          b: data.b || this.colors.rgba.b,
-          a: data.a || this.colors.rgba.a,
-          source: 'rgba'
-        });
-      }
     }
   }
 };
@@ -2397,29 +2379,26 @@ exports.default = {
   name: 'editableInput',
   props: {
     label: String,
+    desc: String,
     value: [String, Number],
     max: Number,
+    min: Number,
     arrowOffset: {
       type: Number,
       default: 1
     }
   },
   computed: {
-    val: function val() {
-      return this.value;
-    }
-  },
-  filters: {
-    maxFilter: {
-      read: function read(val) {
-        if (this.max && val > this.max) {
-          return this.max;
-        } else {
-          return val;
-        }
+    val: {
+      get: function get() {
+        return this.value;
       },
-      write: function write(val, oldVal) {
-        return val;
+      set: function set(v) {
+        if (!(this.max === undefined) && +v > this.max) {
+          this.$refs.input.value = this.max;
+        } else {
+          return v;
+        }
       }
     }
   },
@@ -2477,17 +2456,29 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   return _c('div', {
     staticClass: "vc-editable-input"
   }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.val),
+      expression: "val"
+    }],
+    ref: "input",
     staticClass: "vc-input__input",
     domProps: {
-      "value": _vm.val
+      "value": (_vm.val)
     },
     on: {
       "keydown": _vm.handleKeyDown,
-      "input": _vm.update
+      "input": [function($event) {
+        if ($event.target.composing) { return; }
+        _vm.val = $event.target.value
+      }, _vm.update]
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "vc-input__label"
-  }, [_vm._v(_vm._s(_vm.label))])])
+  }, [_vm._v(_vm._s(_vm.label))]), _vm._v(" "), _c('span', {
+    staticClass: "vc-input__desc"
+  }, [_vm._v(_vm._s(_vm.desc))])])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2510,7 +2501,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "vc-compact"
   }, [_c('ul', {
     staticClass: "vc-compact-colors"
-  }, _vm._l((_vm.defaultColors), function(c) {
+  }, _vm._l((_vm.palette), function(c) {
     return _c('li', {
       key: c,
       staticClass: "vc-compact-color-item",
@@ -3290,7 +3281,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.vc-swatches {\n  width: 320px;\n  height: 240px;\n  overflow-y: scroll;\n  background-color: #fff;\n  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);\n}\n.vc-swatches-box {\n  padding: 16px 0 6px 16px;\n  overflow: hidden;\n}\n.vc-swatches-color-group {\n  padding-bottom: 10px;\n  width: 40px;\n  float: left;\n  margin-right: 10px;\n}\n.vc-swatches-color-it {\n  width: 40px;\n  height: 24px;\n  cursor: pointer;\n  background: #880e4f;\n  margin-bottom: 1px;\n  overflow: hidden;\n  -ms-border-radius: 2px 2px 0 0;\n  -moz-border-radius: 2px 2px 0 0;\n  -o-border-radius: 2px 2px 0 0;\n  -webkit-border-radius: 2px 2px 0 0;\n  border-radius: 2px 2px 0 0;\n}\n.vc-swatches-pick {\n  fill: rgb(255, 255, 255);\n  margin-left: 8px;\n  display: block;\n}\n", ""]);
+exports.push([module.i, "\n.vc-swatches {\n  width: 320px;\n  height: 240px;\n  overflow-y: scroll;\n  background-color: #fff;\n  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);\n}\n.vc-swatches-box {\n  padding: 16px 0 6px 16px;\n  overflow: hidden;\n}\n.vc-swatches-color-group {\n  padding-bottom: 10px;\n  width: 40px;\n  float: left;\n  margin-right: 10px;\n}\n.vc-swatches-color-it {\n  box-sizing: border-box;\n  width: 40px;\n  height: 24px;\n  cursor: pointer;\n  background: #880e4f;\n  margin-bottom: 1px;\n  overflow: hidden;\n  -ms-border-radius: 2px 2px 0 0;\n  -moz-border-radius: 2px 2px 0 0;\n  -o-border-radius: 2px 2px 0 0;\n  -webkit-border-radius: 2px 2px 0 0;\n  border-radius: 2px 2px 0 0;\n}\n.vc-swatches-color--white {\n  border: 1px solid #DDD;\n}\n.vc-swatches-pick {\n  fill: rgb(255, 255, 255);\n  margin-left: 8px;\n  display: block;\n}\n.vc-swatches-color--white .vc-swatches-pick {\n  fill: rgb(51, 51, 51);\n}\n", ""]);
 
 // exports
 
@@ -3333,18 +3324,23 @@ var defaultColors = function () {
 exports.default = {
   name: 'Swatches',
   mixins: [_color2.default],
+  props: {
+    palette: {
+      type: Array,
+      default: function _default() {
+        return defaultColors;
+      }
+    }
+  },
   computed: {
     pick: function pick() {
       return this.colors.hex;
     }
   },
-  data: function data() {
-    return {
-      defaultColors: defaultColors
-    };
-  },
-
   methods: {
+    equal: function equal(color) {
+      return color.toLowerCase() === this.colors.hex.toLowerCase();
+    },
     handlerClick: function handlerClick(c) {
       this.colorChange({
         hex: c,
@@ -3454,12 +3450,16 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     }
   }, [_c('div', {
     staticClass: "vc-swatches-box"
-  }, _vm._l((_vm.defaultColors), function(group) {
+  }, _vm._l((_vm.palette), function(group, $idx) {
     return _c('div', {
+      key: $idx,
       staticClass: "vc-swatches-color-group"
     }, _vm._l((group), function(c) {
       return _c('div', {
-        staticClass: "vc-swatches-color-it",
+        key: c,
+        class: ['vc-swatches-color-it', {
+          'vc-swatches-color--white': c === '#FFFFFF'
+        }],
         style: ({
           background: c
         }),
@@ -3475,8 +3475,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
         directives: [{
           name: "show",
           rawName: "v-show",
-          value: (c == _vm.pick),
-          expression: "c == pick"
+          value: (_vm.equal(c)),
+          expression: "equal(c)"
         }],
         staticClass: "vc-swatches-pick"
       }, [_c('svg', {
@@ -3596,7 +3596,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.vc-photoshop {\n  background: #DCDCDC;\n  border-radius: 4px;\n  box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 8px 16px rgba(0,0,0,.15);\n  box-sizing: initial;\n  width: 513px;\n  font-family: Roboto;\n}\n.vc-ps-head {\n  background-image: linear-gradient(-180deg, #F0F0F0 0%, #D4D4D4 100%);\n  border-bottom: 1px solid #B1B1B1;\n  box-shadow: inset 0 1px 0 0 rgba(255,255,255,.2), inset 0 -1px 0 0 rgba(0,0,0,.02);\n  height: 23px;\n  line-height: 24px;\n  border-radius: 4px 4px 0 0;\n  font-size: 13px;\n  color: #4D4D4D;\n  text-align: center;\n}\n.vc-ps-body {\n  padding: 15px;\n  display: flex;\n}\n.vc-ps-saturation-wrap {\n  width: 256px;\n  height: 256px;\n  position: relative;\n  border: 2px solid #B3B3B3;\n  border-bottom: 2px solid #F0F0F0;\n  overflow: hidden;\n}\n.vc-ps-saturation-wrap .vc-saturation-circle {\n  width: 12px;\n  height: 12px;\n}\n.vc-ps-hue-wrap {\n  position: relative;\n  height: 256px;\n  width: 19px;\n  margin-left: 10px;\n  border: 2px solid #B3B3B3;\n  border-bottom: 2px solid #F0F0F0;\n}\n.vc-ps-hue-pointer {\n  position: relative;\n}\n.vc-ps-hue-pointer--left,\n.vc-ps-hue-pointer--right {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 5px 0 5px 8px;\n  border-color: transparent transparent transparent #555;\n}\n.vc-ps-hue-pointer--left:after,\n.vc-ps-hue-pointer--right:after {\n  content: \"\";\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 4px 0 4px 6px;\n  border-color: transparent transparent transparent #fff;\n  position: absolute;\n  top: 1px;\n  left: 1px;\n  transform: translate(-8px, -5px);\n}\n.vc-ps-hue-pointer--left {\n  transform: translate(-13px, -4px);\n}\n.vc-ps-hue-pointer--right {\n  transform: translate(20px, -4px) rotate(180deg);\n}\n.vc-ps-controls {\n  width: 180px;\n  margin-left: 10px;\n  display: flex;\n}\n.vc-ps-actions {\n  margin-left: 20px;\n  flex: 1;\n}\n.vc-ps-ac-btn {\n  cursor: pointer;\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, #E6E6E6 100%);\n  border: 1px solid #878787;\n  border-radius: 2px;\n  height: 20px;\n  box-shadow: 0 1px 0 0 #EAEAEA;\n  font-size: 14px;\n  color: #000;\n  line-height: 20px;\n  text-align: center;\n  margin-bottom: 10px;\n}\n.vc-ps-previews {\n  width: 60px;\n}\n.vc-ps-previews__swatches {\n  border: 1px solid #B3B3B3;\n  border-bottom: 1px solid #F0F0F0;\n  margin-bottom: 2px;\n  margin-top: 1px;\n}\n.vc-ps-previews__pr-color {\n  height: 34px;\n  box-shadow: inset 1px 0 0 #000, inset -1px 0 0 #000, inset 0 1px 0 #000;\n}\n.vc-ps-previews__label {\n  font-size: 14px;\n  color: #000;\n  text-align: center;\n}\n.vc-ps-fields {\n  padding-top: 5px;\n  padding-bottom: 9px;\n  width: 80px;\n  position: relative;\n}\n.vc-ps-fields .vc-input__input {\n  margin-left: 40%;\n  width: 40%;\n  height: 18px;\n  border: 1px solid #888888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC;\n  margin-bottom: 5px;\n  font-size: 13px;\n  padding-left: 3px;\n  margin-right: 10px;\n}\n.vc-ps-fields .vc-input__label {\n  top: 0;\n  left: 0;\n  width: 34px;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n  position: absolute;\n}\n.vc-ps-fields__divider {\n  height: 5px;\n}\n.vc-ps-fields__hex .vc-input__input {\n  margin-left: 20%;\n  width: 80%;\n  height: 18px;\n  border: 1px solid #888888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC;\n  margin-bottom: 6px;\n  font-size: 13px;\n  padding-left: 3px;\n}\n.vc-ps-fields__hex .vc-input__label {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 14px;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n}\n", ""]);
+exports.push([module.i, "\n.vc-photoshop {\n  background: #DCDCDC;\n  border-radius: 4px;\n  box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 8px 16px rgba(0,0,0,.15);\n  box-sizing: initial;\n  width: 513px;\n  font-family: Roboto;\n}\n.vc-ps-head {\n  background-image: linear-gradient(-180deg, #F0F0F0 0%, #D4D4D4 100%);\n  border-bottom: 1px solid #B1B1B1;\n  box-shadow: inset 0 1px 0 0 rgba(255,255,255,.2), inset 0 -1px 0 0 rgba(0,0,0,.02);\n  height: 23px;\n  line-height: 24px;\n  border-radius: 4px 4px 0 0;\n  font-size: 13px;\n  color: #4D4D4D;\n  text-align: center;\n}\n.vc-ps-body {\n  padding: 15px;\n  display: flex;\n}\n.vc-ps-saturation-wrap {\n  width: 256px;\n  height: 256px;\n  position: relative;\n  border: 2px solid #B3B3B3;\n  border-bottom: 2px solid #F0F0F0;\n  overflow: hidden;\n}\n.vc-ps-saturation-wrap .vc-saturation-circle {\n  width: 12px;\n  height: 12px;\n}\n.vc-ps-hue-wrap {\n  position: relative;\n  height: 256px;\n  width: 19px;\n  margin-left: 10px;\n  border: 2px solid #B3B3B3;\n  border-bottom: 2px solid #F0F0F0;\n}\n.vc-ps-hue-pointer {\n  position: relative;\n}\n.vc-ps-hue-pointer--left,\n.vc-ps-hue-pointer--right {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 5px 0 5px 8px;\n  border-color: transparent transparent transparent #555;\n}\n.vc-ps-hue-pointer--left:after,\n.vc-ps-hue-pointer--right:after {\n  content: \"\";\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 4px 0 4px 6px;\n  border-color: transparent transparent transparent #fff;\n  position: absolute;\n  top: 1px;\n  left: 1px;\n  transform: translate(-8px, -5px);\n}\n.vc-ps-hue-pointer--left {\n  transform: translate(-13px, -4px);\n}\n.vc-ps-hue-pointer--right {\n  transform: translate(20px, -4px) rotate(180deg);\n}\n.vc-ps-controls {\n  width: 180px;\n  margin-left: 10px;\n  display: flex;\n}\n.vc-ps-actions {\n  margin-left: 20px;\n  flex: 1;\n}\n.vc-ps-ac-btn {\n  cursor: pointer;\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, #E6E6E6 100%);\n  border: 1px solid #878787;\n  border-radius: 2px;\n  height: 20px;\n  box-shadow: 0 1px 0 0 #EAEAEA;\n  font-size: 14px;\n  color: #000;\n  line-height: 20px;\n  text-align: center;\n  margin-bottom: 10px;\n}\n.vc-ps-previews {\n  width: 60px;\n}\n.vc-ps-previews__swatches {\n  border: 1px solid #B3B3B3;\n  border-bottom: 1px solid #F0F0F0;\n  margin-bottom: 2px;\n  margin-top: 1px;\n}\n.vc-ps-previews__pr-color {\n  height: 34px;\n  box-shadow: inset 1px 0 0 #000, inset -1px 0 0 #000, inset 0 1px 0 #000;\n}\n.vc-ps-previews__label {\n  font-size: 14px;\n  color: #000;\n  text-align: center;\n}\n.vc-ps-fields {\n  padding-top: 5px;\n  padding-bottom: 9px;\n  width: 80px;\n  position: relative;\n}\n.vc-ps-fields .vc-input__input {\n  margin-left: 40%;\n  width: 40%;\n  height: 18px;\n  border: 1px solid #888888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC;\n  margin-bottom: 5px;\n  font-size: 13px;\n  padding-left: 3px;\n  margin-right: 10px;\n}\n.vc-ps-fields .vc-input__label, .vc-ps-fields .vc-input__desc {\n  top: 0;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n  position: absolute;\n}\n.vc-ps-fields .vc-input__label {\n  left: 0;\n  width: 34px;\n}\n.vc-ps-fields .vc-input__desc {\n  right: 0;\n  width: 0;\n}\n.vc-ps-fields__divider {\n  height: 5px;\n}\n.vc-ps-fields__hex .vc-input__input {\n  margin-left: 20%;\n  width: 80%;\n  height: 18px;\n  border: 1px solid #888888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC;\n  margin-bottom: 6px;\n  font-size: 13px;\n  padding-left: 3px;\n}\n.vc-ps-fields__hex .vc-input__label {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 14px;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n}\n", ""]);
 
 // exports
 
@@ -3654,6 +3654,21 @@ exports.default = {
       currentColor: '#FFF'
     };
   },
+
+  computed: {
+    hsv: function hsv() {
+      var hsv = this.colors.hsv;
+      return {
+        h: hsv.h.toFixed(),
+        s: (hsv.s * 100).toFixed(),
+        v: (hsv.v * 100).toFixed()
+      };
+    },
+    hex: function hex() {
+      var hex = this.colors.hex;
+      return hex && hex.replace('#', '');
+    }
+  },
   created: function created() {
     this.currentColor = this.colors.hex;
   },
@@ -3679,7 +3694,20 @@ exports.default = {
           a: data.a || this.colors.rgba.a,
           source: 'rgba'
         });
+      } else if (data.h || data.s || data.v) {
+        this.colorChange({
+          h: data.h || this.colors.hsv.h,
+          s: data.s / 100 || this.colors.hsv.s,
+          v: data.v / 100 || this.colors.hsv.v,
+          source: 'hsv'
+        });
       }
+    },
+    clickCurrentColor: function clickCurrentColor() {
+      this.colorChange({
+        hex: this.currentColor,
+        source: 'hex'
+      });
     },
     handleAccept: function handleAccept() {
       this.$emit('ok');
@@ -4498,7 +4526,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.vc-checkerboard {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n}\n", ""]);
+exports.push([module.i, "\n.vc-checkerboard {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  background-size: contain;\n}\n", ""]);
 
 // exports
 
@@ -4535,7 +4563,9 @@ exports.default = {
   },
   computed: {
     bgStyle: function bgStyle() {
-      return 'url(' + getCheckboard(this.white, this.grey, this.size) + ') center left';
+      return {
+        'background-image': 'url(' + getCheckboard(this.white, this.grey, this.size) + ')'
+      };
     }
   }
 };
@@ -4581,9 +4611,7 @@ function getCheckboard(c1, c2, size) {
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "vc-checkerboard",
-    style: ({
-      background: _vm.bgStyle
-    })
+    style: (_vm.bgStyle)
   })
 }
 var staticRenderFns = []
@@ -4704,7 +4732,10 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "vc-ps-previews__pr-color",
     style: ({
       background: _vm.currentColor
-    })
+    }),
+    on: {
+      "click": _vm.clickCurrentColor
+    }
   })]), _vm._v(" "), _c('div', {
     staticClass: "vc-ps-previews__label"
   }, [_vm._v("current")])]), _vm._v(" "), _c('div', {
@@ -4723,106 +4754,69 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "vc-ps-fields"
   }, [_c('ed-in', {
     attrs: {
-      "label": "h"
+      "label": "h",
+      "desc": "°",
+      "value": _vm.hsv.h
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.hsv.h),
-      callback: function($$v) {
-        _vm.colors.hsv.h = $$v
-      },
-      expression: "colors.hsv.h"
     }
   }), _vm._v(" "), _c('ed-in', {
     attrs: {
-      "label": "s"
+      "label": "s",
+      "desc": "%",
+      "value": _vm.hsv.s,
+      "max": 100
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.hsv.s),
-      callback: function($$v) {
-        _vm.colors.hsv.s = $$v
-      },
-      expression: "colors.hsv.s"
     }
   }), _vm._v(" "), _c('ed-in', {
     attrs: {
-      "label": "v"
+      "label": "v",
+      "desc": "%",
+      "value": _vm.hsv.v,
+      "max": 100
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.hsv.v),
-      callback: function($$v) {
-        _vm.colors.hsv.v = $$v
-      },
-      expression: "colors.hsv.v"
     }
   }), _vm._v(" "), _c('div', {
     staticClass: "vc-ps-fields__divider"
   }), _vm._v(" "), _c('ed-in', {
     attrs: {
-      "label": "r"
+      "label": "r",
+      "value": _vm.colors.rgba.r
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.rgba.r),
-      callback: function($$v) {
-        _vm.colors.rgba.r = $$v
-      },
-      expression: "colors.rgba.r"
     }
   }), _vm._v(" "), _c('ed-in', {
     attrs: {
-      "label": "g"
+      "label": "g",
+      "value": _vm.colors.rgba.g
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.rgba.g),
-      callback: function($$v) {
-        _vm.colors.rgba.g = $$v
-      },
-      expression: "colors.rgba.g"
     }
   }), _vm._v(" "), _c('ed-in', {
     attrs: {
-      "label": "b"
+      "label": "b",
+      "value": _vm.colors.rgba.b
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.rgba.b),
-      callback: function($$v) {
-        _vm.colors.rgba.b = $$v
-      },
-      expression: "colors.rgba.b"
     }
   }), _vm._v(" "), _c('div', {
     staticClass: "vc-ps-fields__divider"
   }), _vm._v(" "), _c('ed-in', {
     staticClass: "vc-ps-fields__hex",
     attrs: {
-      "label": "#"
+      "label": "#",
+      "value": _vm.hex
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.hex),
-      callback: function($$v) {
-        _vm.colors.hex = $$v
-      },
-      expression: "colors.hex"
     }
   })], 1)])])])])
 }
@@ -4927,7 +4921,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.vc-sketch {\n  position: relative;\n  width: 200px;\n  padding: 10px 10px 0;\n  box-sizing: initial;\n  background: #fff;\n  border-radius: 4px;\n  box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.15);\n}\n.vc-sketch-saturation-wrap {\n  width: 100%;\n  padding-bottom: 75%;\n  position: relative;\n  overflow: hidden;\n}\n.vc-sketch-controls {\n  display: flex;\n}\n.vc-sketch-sliders {\n  padding: 4px 0;\n  flex: 1;\n}\n.vc-sketch-sliders .vc-hue,\n.vc-sketch-sliders .vc-alpha-gradient {\n  border-radius: 2px;\n}\n.vc-sketch-hue-wrap {\n  position: relative;\n  height: 10px;\n}\n.vc-sketch-alpha-wrap {\n  position: relative;\n  height: 10px;\n  margin-top: 4px;\n  overflow: hidden;\n}\n.vc-sketch-color-wrap {\n  width: 24px;\n  height: 24px;\n  position: relative;\n  margin-top: 4px;\n  margin-left: 4px;\n  border-radius: 3px;\n}\n.vc-sketch-active-color {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  border-radius: 2px;\n  box-shadow: inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25);\n  z-index: 2;\n}\n.vc-sketch-field {\n  display: flex;\n  padding-top: 4px;\n}\n.vc-sketch-field .vc-input__input {\n  width: 80%;\n  padding: 4px 10% 3px;\n  border: none;\n  box-shadow: inset 0 0 0 1px #ccc;\n  font-size: 11px;\n}\n.vc-sketch-field .vc-input__label {\n  display: block;\n  text-align: center;\n  font-size: 11px;\n  color: #222;\n  padding-top: 3px;\n  padding-bottom: 4px;\n  text-transform: capitalize;\n}\n.vc-sketch-field--single {\n  flex: 1;\n  padding-left: 6px;\n}\n.vc-sketch-field--double {\n  flex: 2;\n}\n.vc-sketch-presets {\n  margin-right: -10px;\n  margin-left: -10px;\n  padding-left: 10px;\n  padding-top: 10px;\n  border-top: 1px solid #eee;\n}\n.vc-sketch-presets-color {\n  border-radius: 3px;\n  overflow: hidden;\n  position: relative;\n  display: inline-block;\n  margin: 0 10px 10px 0;\n  vertical-align: top;\n  cursor: pointer;\n  width: 16px;\n  height: 16px;\n  box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);\n}\n", ""]);
+exports.push([module.i, "\n.vc-sketch {\n  position: relative;\n  width: 200px;\n  padding: 10px 10px 0;\n  box-sizing: initial;\n  background: #fff;\n  border-radius: 4px;\n  box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.15);\n}\n.vc-sketch-saturation-wrap {\n  width: 100%;\n  padding-bottom: 75%;\n  position: relative;\n  overflow: hidden;\n}\n.vc-sketch-controls {\n  display: flex;\n}\n.vc-sketch-sliders {\n  padding: 4px 0;\n  flex: 1;\n}\n.vc-sketch-sliders .vc-hue,\n.vc-sketch-sliders .vc-alpha-gradient {\n  border-radius: 2px;\n}\n.vc-sketch-hue-wrap {\n  position: relative;\n  height: 10px;\n}\n.vc-sketch-alpha-wrap {\n  position: relative;\n  height: 10px;\n  margin-top: 4px;\n  overflow: hidden;\n}\n.vc-sketch-color-wrap {\n  width: 24px;\n  height: 24px;\n  position: relative;\n  margin-top: 4px;\n  margin-left: 4px;\n  border-radius: 3px;\n}\n.vc-sketch-active-color {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  border-radius: 2px;\n  box-shadow: inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25);\n  z-index: 2;\n}\n.vc-sketch-color-wrap .vc-checkerboard {\n  background-size: auto;\n}\n.vc-sketch-field {\n  display: flex;\n  padding-top: 4px;\n}\n.vc-sketch-field .vc-input__input {\n  width: 80%;\n  padding: 4px 10% 3px;\n  border: none;\n  box-shadow: inset 0 0 0 1px #ccc;\n  font-size: 11px;\n}\n.vc-sketch-field .vc-input__label {\n  display: block;\n  text-align: center;\n  font-size: 11px;\n  color: #222;\n  padding-top: 3px;\n  padding-bottom: 4px;\n  text-transform: capitalize;\n}\n.vc-sketch-field--single {\n  flex: 1;\n  padding-left: 6px;\n}\n.vc-sketch-field--double {\n  flex: 2;\n}\n.vc-sketch-presets {\n  margin-right: -10px;\n  margin-left: -10px;\n  padding-left: 10px;\n  padding-top: 10px;\n  border-top: 1px solid #eee;\n}\n.vc-sketch-presets-color {\n  border-radius: 3px;\n  overflow: hidden;\n  position: relative;\n  display: inline-block;\n  margin: 0 10px 10px 0;\n  vertical-align: top;\n  cursor: pointer;\n  width: 16px;\n  height: 16px;\n  box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);\n}\n", ""]);
 
 // exports
 
@@ -4963,6 +4957,10 @@ var _Alpha = __webpack_require__(7);
 
 var _Alpha2 = _interopRequireDefault(_Alpha);
 
+var _Checkboard = __webpack_require__(8);
+
+var _Checkboard2 = _interopRequireDefault(_Checkboard);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var presetColors = ['#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF'];
@@ -4974,15 +4972,21 @@ exports.default = {
     saturation: _Saturation2.default,
     hue: _Hue2.default,
     alpha: _Alpha2.default,
-    'ed-in': _EditableInput2.default
+    'ed-in': _EditableInput2.default,
+    checkboard: _Checkboard2.default
   },
-  data: function data() {
-    return {
-      presetColors: presetColors
-    };
+  props: {
+    presetColors: {
+      type: Array,
+      default: function _default() {
+        return presetColors;
+      }
+    }
   },
-
   computed: {
+    hex: function hex() {
+      return this.colors.hex.replace('#', '');
+    },
     activeColor: function activeColor() {
       var rgba = this.colors.rgba;
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')';
@@ -5078,94 +5082,65 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     style: ({
       background: _vm.activeColor
     })
-  })])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('checkboard')], 1)]), _vm._v(" "), _c('div', {
     staticClass: "vc-sketch-field"
   }, [_c('div', {
     staticClass: "vc-sketch-field--double"
   }, [_c('ed-in', {
     attrs: {
-      "label": "hex"
+      "label": "hex",
+      "value": _vm.hex
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.hex),
-      callback: function($$v) {
-        _vm.colors.hex = $$v
-      },
-      expression: "colors.hex"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "vc-sketch-field--single"
   }, [_c('ed-in', {
     attrs: {
-      "label": "r"
+      "label": "r",
+      "value": _vm.colors.rgba.r
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.rgba.r),
-      callback: function($$v) {
-        _vm.colors.rgba.r = $$v
-      },
-      expression: "colors.rgba.r"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "vc-sketch-field--single"
   }, [_c('ed-in', {
     attrs: {
-      "label": "g"
+      "label": "g",
+      "value": _vm.colors.rgba.g
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.rgba.g),
-      callback: function($$v) {
-        _vm.colors.rgba.g = $$v
-      },
-      expression: "colors.rgba.g"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "vc-sketch-field--single"
   }, [_c('ed-in', {
     attrs: {
-      "label": "b"
+      "label": "b",
+      "value": _vm.colors.rgba.b
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.rgba.b),
-      callback: function($$v) {
-        _vm.colors.rgba.b = $$v
-      },
-      expression: "colors.rgba.b"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "vc-sketch-field--single"
   }, [_c('ed-in', {
     attrs: {
       "label": "a",
+      "value": _vm.colors.a,
       "arrow-offset": 0.01,
       "max": 1
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.a),
-      callback: function($$v) {
-        _vm.colors.a = $$v
-      },
-      expression: "colors.a"
     }
   })], 1)]), _vm._v(" "), _c('div', {
     staticClass: "vc-sketch-presets"
   }, _vm._l((_vm.presetColors), function(c) {
     return _c('div', {
+      key: c,
       staticClass: "vc-sketch-presets-color",
       style: ({
         background: c
@@ -5279,7 +5254,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.vc-chrome {\n  background: #fff;\n  border-radius: 2px;\n  box-shadow: 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3);\n  box-sizing: initial;\n  width: 225px;\n  font-family: Menlo;\n  background-color: #fff;\n}\n.vc-chrome-controls {\n  display: flex;\n}\n.vc-chrome-color-wrap {\n  width: 32px;\n}\n.vc-chrome-active-color {\n  margin-top: 6px;\n  width: 16px;\n  height: 16px;\n  border-radius: 8px;\n  position: relative;\n  overflow: hidden;\n}\n.vc-chrome-sliders {\n  flex: 1;\n}\n.vc-chrome-fields-wrap {\n  display: flex;\n  padding-top: 16px;\n}\n.vc-chrome-fields {\n  display: flex;\n  margin-left: -6px;\n  flex: 1;\n}\n.vc-chrome-field {\n  padding-left: 6px;\n  width: 100%;\n}\n.vc-chrome-toggle-btn {\n  width: 32px;\n  text-align: right;\n  position: relative;\n}\n.vc-chrome-toggle-icon {\n  margin-right: -4px;\n  margin-top: 12px;\n  cursor: pointer;\n  position: relative;\n  z-index: 2;\n}\n.vc-chrome-toggle-icon-highlight {\n  position: absolute;\n  width: 24px;\n  height: 28px;\n  background: #eee;\n  border-radius: 4px;\n  top: 10px;\n  left: 12px;\n}\n.vc-chrome-hue-wrap {\n  position: relative;\n  height: 10px;\n  margin-bottom: 8px;\n}\n.vc-chrome-alpha-wrap {\n  position: relative;\n  height: 10px;\n}\n.vc-chrome-hue-wrap .vc-hue {\n  border-radius: 2px;\n}\n.vc-chrome-alpha-wrap .vc-alpha-gradient {\n  border-radius: 2px;\n}\n.vc-chrome-hue-wrap .vc-hue-picker, .vc-chrome-alpha-wrap .vc-alpha-picker {\n  width: 12px;\n  height: 12px;\n  border-radius: 6px;\n  transform: translate(-6px, -2px);\n  background-color: rgb(248, 248, 248);\n  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);\n}\n.vc-chrome-body {\n  padding: 16px 16px 12px;\n  background-color: #fff;\n}\n.vc-chrome-saturation-wrap {\n  width: 100%;\n  padding-bottom: 55%;\n  position: relative;\n  border-radius: 2px 2px 0 0;\n  overflow: hidden;\n}\n.vc-chrome-saturation-wrap .vc-saturation-circle {\n  width: 12px;\n  height: 12px;\n}\n.vc-chrome-fields .vc-input__input {\n  font-size: 11px;\n  color: #333;\n  width: 100%;\n  border-radius: 2px;\n  border: none;\n  box-shadow: inset 0 0 0 1px #dadada;\n  height: 21px;\n  text-align: center;\n}\n.vc-chrome-fields .vc-input__label {\n  text-transform: uppercase;\n  font-size: 11px;\n  line-height: 11px;\n  color: #969696;\n  text-align: center;\n  display: block;\n  margin-top: 12px;\n}\n", ""]);
+exports.push([module.i, "\n.vc-chrome {\n  background: #fff;\n  border-radius: 2px;\n  box-shadow: 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3);\n  box-sizing: initial;\n  width: 225px;\n  font-family: Menlo;\n  background-color: #fff;\n}\n.vc-chrome-controls {\n  display: flex;\n}\n.vc-chrome-color-wrap {\n  position: relative;\n  width: 36px;\n}\n.vc-chrome-active-color {\n  position: relative;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  overflow: hidden;\n  z-index: 1;\n}\n.vc-chrome-color-wrap .vc-checkerboard {\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  background-size: auto;\n}\n.vc-chrome-sliders {\n  flex: 1;\n}\n.vc-chrome-fields-wrap {\n  display: flex;\n  padding-top: 16px;\n}\n.vc-chrome-fields {\n  display: flex;\n  margin-left: -6px;\n  flex: 1;\n}\n.vc-chrome-field {\n  padding-left: 6px;\n  width: 100%;\n}\n.vc-chrome-toggle-btn {\n  width: 32px;\n  text-align: right;\n  position: relative;\n}\n.vc-chrome-toggle-icon {\n  margin-right: -4px;\n  margin-top: 12px;\n  cursor: pointer;\n  position: relative;\n  z-index: 2;\n}\n.vc-chrome-toggle-icon-highlight {\n  position: absolute;\n  width: 24px;\n  height: 28px;\n  background: #eee;\n  border-radius: 4px;\n  top: 10px;\n  left: 12px;\n}\n.vc-chrome-hue-wrap {\n  position: relative;\n  height: 10px;\n  margin-bottom: 8px;\n}\n.vc-chrome-alpha-wrap {\n  position: relative;\n  height: 10px;\n}\n.vc-chrome-hue-wrap .vc-hue {\n  border-radius: 2px;\n}\n.vc-chrome-alpha-wrap .vc-alpha-gradient {\n  border-radius: 2px;\n}\n.vc-chrome-hue-wrap .vc-hue-picker, .vc-chrome-alpha-wrap .vc-alpha-picker {\n  width: 12px;\n  height: 12px;\n  border-radius: 6px;\n  transform: translate(-6px, -2px);\n  background-color: rgb(248, 248, 248);\n  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);\n}\n.vc-chrome-body {\n  padding: 16px 16px 12px;\n  background-color: #fff;\n}\n.vc-chrome-saturation-wrap {\n  width: 100%;\n  padding-bottom: 55%;\n  position: relative;\n  border-radius: 2px 2px 0 0;\n  overflow: hidden;\n}\n.vc-chrome-saturation-wrap .vc-saturation-circle {\n  width: 12px;\n  height: 12px;\n}\n.vc-chrome-fields .vc-input__input {\n  font-size: 11px;\n  color: #333;\n  width: 100%;\n  border-radius: 2px;\n  border: none;\n  box-shadow: inset 0 0 0 1px #dadada;\n  height: 21px;\n  text-align: center;\n}\n.vc-chrome-fields .vc-input__label {\n  text-transform: uppercase;\n  font-size: 11px;\n  line-height: 11px;\n  color: #969696;\n  text-align: center;\n  display: block;\n  margin-top: 12px;\n}\n", ""]);
 
 // exports
 
@@ -5315,6 +5290,10 @@ var _Alpha = __webpack_require__(7);
 
 var _Alpha2 = _interopRequireDefault(_Alpha);
 
+var _Checkboard = __webpack_require__(8);
+
+var _Checkboard2 = _interopRequireDefault(_Checkboard);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -5325,7 +5304,8 @@ exports.default = {
     saturation: _Saturation2.default,
     hue: _Hue2.default,
     alpha: _Alpha2.default,
-    'ed-in': _EditableInput2.default
+    'ed-in': _EditableInput2.default,
+    checkboard: _Checkboard2.default
   },
   data: function data() {
     return {
@@ -5336,6 +5316,18 @@ exports.default = {
   },
 
   computed: {
+    hsl: function hsl() {
+      var _colors$hsl = this.colors.hsl,
+          h = _colors$hsl.h,
+          s = _colors$hsl.s,
+          l = _colors$hsl.l;
+
+      return {
+        h: h.toFixed(),
+        s: (s * 100).toFixed() + '%',
+        l: (l * 100).toFixed() + '%'
+      };
+    },
     activeColor: function activeColor() {
       var rgba = this.colors.rgba;
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')';
@@ -5367,6 +5359,16 @@ exports.default = {
           b: data.b || this.colors.rgba.b,
           a: data.a || this.colors.rgba.a,
           source: 'rgba'
+        });
+      } else if (data.h || data.s || data.l) {
+        var s = data.s ? data.s.replace('%', '') / 100 : this.colors.hsl.s;
+        var l = data.l ? data.l.replace('%', '') / 100 : this.colors.hsl.l;
+
+        this.colorChange({
+          h: data.h || this.colors.hsl.h,
+          s: s,
+          l: l,
+          source: 'hsl'
         });
       }
     },
@@ -5418,7 +5420,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     style: ({
       background: _vm.activeColor
     })
-  })]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('checkboard')], 1), _vm._v(" "), _c('div', {
     staticClass: "vc-chrome-sliders"
   }, [_c('div', {
     staticClass: "vc-chrome-hue-wrap"
@@ -5460,17 +5462,11 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "vc-chrome-field"
   }, [_c('ed-in', {
     attrs: {
-      "label": "hex"
+      "label": "hex",
+      "value": _vm.colors.hex
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.hex),
-      callback: function($$v) {
-        _vm.colors.hex = $$v
-      },
-      expression: "colors.hex"
     }
   })], 1)]), _vm._v(" "), _c('div', {
     directives: [{
@@ -5484,67 +5480,43 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "vc-chrome-field"
   }, [_c('ed-in', {
     attrs: {
-      "label": "r"
+      "label": "r",
+      "value": _vm.colors.rgba.r
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.rgba.r),
-      callback: function($$v) {
-        _vm.colors.rgba.r = $$v
-      },
-      expression: "colors.rgba.r"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "vc-chrome-field"
   }, [_c('ed-in', {
     attrs: {
-      "label": "g"
+      "label": "g",
+      "value": _vm.colors.rgba.g
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.rgba.g),
-      callback: function($$v) {
-        _vm.colors.rgba.g = $$v
-      },
-      expression: "colors.rgba.g"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "vc-chrome-field"
   }, [_c('ed-in', {
     attrs: {
-      "label": "b"
+      "label": "b",
+      "value": _vm.colors.rgba.b
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.rgba.b),
-      callback: function($$v) {
-        _vm.colors.rgba.b = $$v
-      },
-      expression: "colors.rgba.b"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "vc-chrome-field"
   }, [_c('ed-in', {
     attrs: {
       "label": "a",
+      "value": _vm.colors.a,
       "arrow-offset": 0.01,
       "max": 1
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.a),
-      callback: function($$v) {
-        _vm.colors.a = $$v
-      },
-      expression: "colors.a"
     }
   })], 1)]), _vm._v(" "), _c('div', {
     directives: [{
@@ -5558,67 +5530,43 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     staticClass: "vc-chrome-field"
   }, [_c('ed-in', {
     attrs: {
-      "label": "h"
+      "label": "h",
+      "value": _vm.hsl.h
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.hsl.h),
-      callback: function($$v) {
-        _vm.colors.hsl.h = $$v
-      },
-      expression: "colors.hsl.h"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "vc-chrome-field"
   }, [_c('ed-in', {
     attrs: {
-      "label": "s"
+      "label": "s",
+      "value": _vm.hsl.s
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.hsl.s),
-      callback: function($$v) {
-        _vm.colors.hsl.s = $$v
-      },
-      expression: "colors.hsl.s"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "vc-chrome-field"
   }, [_c('ed-in', {
     attrs: {
-      "label": "l"
+      "label": "l",
+      "value": _vm.hsl.l
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.hsl.l),
-      callback: function($$v) {
-        _vm.colors.hsl.l = $$v
-      },
-      expression: "colors.hsl.l"
     }
   })], 1), _vm._v(" "), _c('div', {
     staticClass: "vc-chrome-field"
   }, [_c('ed-in', {
     attrs: {
       "label": "a",
+      "value": _vm.colors.a,
       "arrow-offset": 0.01,
       "max": 1
     },
     on: {
       "change": _vm.inputChange
-    },
-    model: {
-      value: (_vm.colors.a),
-      callback: function($$v) {
-        _vm.colors.a = $$v
-      },
-      expression: "colors.a"
     }
   })], 1)]), _vm._v(" "), _c('div', {
     staticClass: "vc-chrome-toggle-btn",
