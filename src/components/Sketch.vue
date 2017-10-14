@@ -1,5 +1,5 @@
 <template>
-  <div class="vc-sketch">
+  <div :class="['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']">
     <div class="vc-sketch-saturation-wrap">
       <saturation v-model="colors" @change="childChange"></saturation>
     </div>
@@ -8,7 +8,7 @@
         <div class="vc-sketch-hue-wrap">
           <hue v-model="colors" @change="childChange"></hue>  
         </div>
-        <div class="vc-sketch-alpha-wrap">
+        <div class="vc-sketch-alpha-wrap" v-if="!disableAlpha">
           <alpha v-model="colors" @change="childChange"></alpha>
         </div>
       </div>
@@ -31,7 +31,7 @@
       <div class="vc-sketch-field--single">
         <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
       </div>
-      <div class="vc-sketch-field--single">
+      <div class="vc-sketch-field--single" v-if="!disableAlpha">
         <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
       </div>
     </div>
@@ -76,6 +76,10 @@ export default {
       default () {
         return presetColors
       }
+    },
+    disableAlpha: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -224,5 +228,9 @@ export default {
   width: 16px;
   height: 16px;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);
+}
+
+.vc-sketch__disable-alpha .vc-sketch-color-wrap {
+  height: 10px;
 }
 </style>
