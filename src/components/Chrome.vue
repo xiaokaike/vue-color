@@ -90,7 +90,7 @@ export default {
     disableAlpha: {
       type: Boolean,
       default: false
-    },
+    }
   },
   components: {
     saturation,
