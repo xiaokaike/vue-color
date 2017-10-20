@@ -27,16 +27,21 @@ var colorMap = [
   'indigo', 'blue', 'lightBlue', 'cyan',
   'teal', 'green', 'lightGreen', 'lime',
   'yellow', 'amber', 'orange', 'deepOrange',
-  'brown', 'blueGrey'
+  'brown', 'blueGrey', 'black'
 ]
 var colorLevel = ['900', '700', '500', '300', '100']
 var defaultColors = (() => {
   var colors = []
   colorMap.forEach((type) => {
     var typeColor = []
-    colorLevel.forEach((level) => {
-      typeColor.push(material[type][level].toUpperCase())
-    })
+    if (type.toLowerCase() === 'black' || type.toLowerCase() === 'white') {
+      typeColor = typeColor.concat(['#000000', '#FFFFFF'])
+    } else {
+      colorLevel.forEach((level) => {
+        const color = material[type][level]
+        typeColor.push(color.toUpperCase())
+      })
+    }
     colors.push(typeColor)
   })
   return colors
