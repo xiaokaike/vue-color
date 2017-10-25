@@ -1,14 +1,14 @@
 <template>
   <div class="vc-slider">
     <div class="vc-slider-hue-warp">
-      <hue v-model="colors" @change="hueChange"></hue>
+      <hue :color="$data._color" @change="hueChange"></hue>
     </div>
     <div class="vc-slider-swatches">
-      <div class="vc-slider-swatch" v-for="(offset, index) in swatches" :data-index="index"
-        @click="handleSwClick(index, offset)">
+      <div class="vc-slider-swatch" v-for="(offset, index) in swatches" :key="index" :data-index="index"
+           @click="handleSwClick(index, offset)">
         <div class="vc-slider-swatch-picker"
         :class="{'vc-slider-swatch-picker--active': offset == activeOffset}"
-        :style="{background: 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
+        :style="{background: 'hsl(' + $data._color.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
         ></div>
       </div>
     </div>
@@ -30,8 +30,8 @@ export default {
   },
   computed: {
     activeOffset () {
-      if (Math.round(this.colors.hsl.s * 100) / 100 === 0.50) {
-        return Math.round(this.colors.hsl.l * 100) / 100
+      if (Math.round(this.$data._color.hsl.s * 100) / 100 === 0.50) {
+        return Math.round(this.$data._color.hsl.l * 100) / 100
       }
       return 0
     }
@@ -47,7 +47,7 @@ export default {
     },
     handleSwClick (index, offset) {
       this.colorChange({
-        h: this.colors.hsl.h,
+        h: this.$data._color.hsl.h,
         s: 0.5,
         l: offset,
         source: 'hsl'

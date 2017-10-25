@@ -1,25 +1,23 @@
 <template>
-
   <div class="vc-material">
-    <ed-in class="vc-material-hex" label="hex" v-model="colors.hex"
-      :style="{ borderColor: colors.hex }" @change="onChange"></ed-in>
+    <ed-in class="vc-material-hex" label="hex" :value="$data._color.hex"
+      :style="{ borderColor: $data._color.hex }" @change="onChange"></ed-in>
 
     <div class="vc-material-split">
       <div class="vc-material-third">
-        <ed-in label="r" v-model="colors.rgba.r"
+        <ed-in label="r" :value="$data._color.rgba.r"
         @change="onChange"></ed-in>
       </div>
       <div class="vc-material-third">
-        <ed-in label="g" v-model="colors.rgba.g"
+        <ed-in label="g" :value="$data._color.rgba.g"
         @change="onChange"></ed-in>
       </div>
       <div class="vc-material-third">
-        <ed-in label="b" v-model="colors.rgba.b"
+        <ed-in label="b" :value="$data._color.rgba.b"
         @change="onChange"></ed-in>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -44,10 +42,10 @@ export default {
         })
       } else if (data.r || data.g || data.b) {
         this.colorChange({
-          r: data.r || this.colors.rgba.r,
-          g: data.g || this.colors.rgba.g,
-          b: data.b || this.colors.rgba.b,
-          a: data.a || this.colors.rgba.a,
+          r: data.r || this.$data._color.rgba.r,
+          g: data.g || this.$data._color.rgba.g,
+          b: data.b || this.$data._color.rgba.b,
+          a: data.a || this.$data._color.rgba.a,
           source: 'rgba'
         })
       }

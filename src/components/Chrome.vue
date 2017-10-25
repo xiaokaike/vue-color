@@ -1,7 +1,7 @@
 <template>
   <div :class="['vc-chrome', disableAlpha ? 'vc-chrome__disable-alpha' : '']">
     <div class="vc-chrome-saturation-wrap">
-      <saturation v-model="colors" @change="childChange"></saturation>
+      <saturation :color="$data._color" @change="childChange"></saturation>
     </div>
     <div class="vc-chrome-body">
       <div class="vc-chrome-controls">
@@ -12,10 +12,10 @@
 
         <div class="vc-chrome-sliders">
           <div class="vc-chrome-hue-wrap">
-            <hue v-model="colors" @change="childChange"></hue>
+            <hue :color="$data._color" @change="childChange"></hue>
           </div>
-          <div class="vc-chrome-alpha-wrap" v-if="!disableAlpha">
-            <alpha v-model="colors" @change="childChange"></alpha>
+          <div class="vc-chrome-alpha-wrap">
+            <alpha :color="$data._color" @change="childChange"></alpha>
           </div>
         </div>
       </div>
@@ -24,19 +24,19 @@
         <div class="vc-chrome-fields" v-show="fieldsIndex === 0">
           <!-- hex -->
           <div class="vc-chrome-field">
-            <ed-in label="hex" :value="colors.hex" @change="inputChange"></ed-in>  
+            <ed-in label="hex" :value="$data._color.hex" @change="inputChange"></ed-in>  
           </div>
         </div>
         <div class="vc-chrome-fields" v-show="fieldsIndex === 1">
           <!-- rgba -->
           <div class="vc-chrome-field">
-            <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
+            <ed-in label="r" :value="$data._color.rgba.r" @change="inputChange"></ed-in>
           </div>
           <div class="vc-chrome-field">
-            <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
+            <ed-in label="g" :value="$data._color.rgba.g" @change="inputChange"></ed-in>
           </div>
           <div class="vc-chrome-field">
-            <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
+            <ed-in label="b" :value="$data._color.rgba.b" @change="inputChange"></ed-in>
           </div>
           <div class="vc-chrome-field" v-if="!disableAlpha">
             <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
@@ -108,7 +108,7 @@ export default {
   },
   computed: {
     hsl () {
-      const { h, s, l } = this.colors.hsl
+      const { h, s, l } = this.$data._color.hsl
       return {
         h: h.toFixed(),
         s: `${(s * 100).toFixed()}%`,
@@ -116,8 +116,10 @@ export default {
       }
     },
     activeColor () {
-      const rgba = this.colors.rgba
-      return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
+      if (this.$data._color && this.$data._color.rgba) {
+        var rgba = this.$data._color.rgba
+        return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
+      }
     }
   },
   watch: {
@@ -129,12 +131,6 @@ export default {
     }
   },
   methods: {
-    handlePreset (c) {
-      this.colorChange({
-        hex: c,
-        source: 'hex'
-      })
-    },
     childChange (data) {
       this.colorChange(data)
     },
@@ -149,18 +145,18 @@ export default {
         })
       } else if (data.r || data.g || data.b || data.a) {
         this.colorChange({
-          r: data.r || this.colors.rgba.r,
-          g: data.g || this.colors.rgba.g,
-          b: data.b || this.colors.rgba.b,
-          a: data.a || this.colors.rgba.a,
+          r: data.r || this.$data._color.rgba.r,
+          g: data.g || this.$data._color.rgba.g,
+          b: data.b || this.$data._color.rgba.b,
+          a: data.a || this.$data._color.rgba.a,
           source: 'rgba'
         })
       } else if (data.h || data.s || data.l) {
-        const s = data.s ? (data.s.replace('%', '') / 100) : this.colors.hsl.s
-        const l = data.l ? (data.l.replace('%', '') / 100) : this.colors.hsl.l
+        const s = data.s ? (data.s.replace('%', '') / 100) : this.$data._color.hsl.s
+        const l = data.l ? (data.l.replace('%', '') / 100) : this.$data._color.hsl.l
 
         this.colorChange({
-          h: data.h || this.colors.hsl.h,
+          h: data.h || this.$data._color.hsl.h,
           s,
           l,
           source: 'hsl'
