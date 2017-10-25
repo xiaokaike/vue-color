@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="demo-item">
-          <chrome-picker :color="color.hex" @change="updateValue"></chrome-picker>
+          <chrome-picker :color="color" @change="updateValue"></chrome-picker>
           <h6>Chrome</h6>
         </div>
       </header>
@@ -20,31 +20,31 @@
     <div class="demo-container">
       <div class="demo-list">
         <div class="demo-item">
-          <sketch-picker :color="color.hex" @change="updateValue"></sketch-picker>
+          <sketch-picker :color="color" @change="updateValue"></sketch-picker>
           <h6>Sketch</h6>
         </div>
         <div class="demo-item">
-          <photoshop-picker :color="color.hex" @ok="onOk" @cancel="onCancel" @change="updateValue"></photoshop-picker>
+          <photoshop-picker :color="color" @ok="onOk" @cancel="onCancel" @change="updateValue"></photoshop-picker>
           <h6>Photoshop</h6>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <material-picker :color="color.hex" @change="updateValue"></material-picker>
+          <material-picker :color="color" @change="updateValue"></material-picker>
           <h6>Material</h6>
         </div>
         <div class="demo-item">
-          <slider-picker :color="color.hex" @change="updateValue"></slider-picker>
+          <slider-picker :color="color" @change="updateValue"></slider-picker>
           <h6>Slider</h6>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <compact-picker :color="color.hex" @change="updateValue"></compact-picker>
+          <compact-picker :color="color" @change="updateValue"></compact-picker>
           <h6>Compact</h6>
         </div>
         <div class="demo-item">
-          <swatches-picker :color="color.hex" @change="updateValue"></swatches-picker>
+          <swatches-picker :color="color" @change="updateValue"></swatches-picker>
           <h6>Swatches</h6>
         </div>
       </div>

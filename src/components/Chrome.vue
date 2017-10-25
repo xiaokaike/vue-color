@@ -14,7 +14,7 @@
           <div class="vc-chrome-hue-wrap">
             <hue :color="$data._color" @change="childChange"></hue>
           </div>
-          <div class="vc-chrome-alpha-wrap">
+          <div class="vc-chrome-alpha-wrap" v-if="!disableAlpha">
             <alpha :color="$data._color" @change="childChange"></alpha>
           </div>
         </div>
@@ -39,7 +39,7 @@
             <ed-in label="b" :value="$data._color.rgba.b" @change="inputChange"></ed-in>
           </div>
           <div class="vc-chrome-field" v-if="!disableAlpha">
-            <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
+            <ed-in label="a" :value="$data._color.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
         <div class="vc-chrome-fields" v-show="fieldsIndex === 2">
@@ -54,7 +54,7 @@
             <ed-in label="l" :value="hsl.l" @change="inputChange"></ed-in>
           </div>
           <div class="vc-chrome-field" v-if="!disableAlpha">
-            <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
+            <ed-in label="a" :value="$data._color.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
         <!-- btn -->
@@ -117,13 +117,13 @@ export default {
     },
     activeColor () {
       if (this.$data._color && this.$data._color.rgba) {
-        var rgba = this.$data._color.rgba
+        const rgba = this.$data._color.rgba
         return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
       }
     }
   },
   watch: {
-    colors (newVal) {
+    '$data._color' (newVal) {
       const { a } = newVal
       if (a < 1 && this.fieldsIndex === 0) {
         this.fieldsIndex = 1
@@ -165,7 +165,7 @@ export default {
     },
     toggleViews () {
       if (this.fieldsIndex >= 2) {
-        this.fieldsIndex = this.colors.a < 1 ? 1 : 0
+        this.fieldsIndex = this.$data._color.a < 1 ? 1 : 0
         return
       }
       this.fieldsIndex ++

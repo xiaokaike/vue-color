@@ -8,7 +8,7 @@
         <div class="vc-sketch-hue-wrap">
           <hue :color="$data._color" @change="childChange"></hue>  
         </div>
-        <div class="vc-sketch-alpha-wrap">
+        <div class="vc-sketch-alpha-wrap" v-if="!disableAlpha">
           <alpha :color="$data._color" @change="childChange"></alpha>
         </div>
       </div>
@@ -31,7 +31,7 @@
       <div class="vc-sketch-field--single">
         <ed-in label="b" :value="$data._color.rgba.b" @change="inputChange"></ed-in>
       </div>
-      <div class="vc-sketch-field--single">
+      <div class="vc-sketch-field--single" v-if="!disableAlpha">
         <ed-in label="a" :value="$data._color.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
       </div>
     </div>
