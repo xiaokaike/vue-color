@@ -116,6 +116,18 @@ OR
 <chrome-picker :value="colors" @input="updateValue"></chrome-picker>
 ```
 
+OR
+
+```html
+<swatches-picker 
+  :value="colors" 
+  :colorLevels="['900', '500', '300']" 
+  :colorMap="['red','orange','yellow','green','blue','indigo','purple']" 
+  :removeColors="['#FFFFFF', '#B71C1C']" 
+  @input="updateValue">
+</swatches-picker>
+```
+
 ## Customizable props
 Swatches can be provided:
 - `colorLevels` - an Array of values indicating intensity of each color
