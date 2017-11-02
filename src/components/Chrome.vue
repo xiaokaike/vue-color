@@ -19,8 +19,8 @@
           </div>
         </div>
       </div>
-      
-      <div class="vc-chrome-fields-wrap">
+
+      <div class="vc-chrome-fields-wrap" v-if="!disableFields">
         <div class="vc-chrome-fields" v-show="fieldsIndex === 0">
           <!-- hex -->
           <div class="vc-chrome-field">
@@ -88,6 +88,10 @@ export default {
   mixins: [colorMixin],
   props: {
     disableAlpha: {
+      type: Boolean,
+      default: false
+    },
+    disableFields: {
       type: Boolean,
       default: false
     }
