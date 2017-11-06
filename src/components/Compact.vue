@@ -1,34 +1,13 @@
 <template>
-  <div class="c-compact">
-    <ul class="colors">
-      <li class="color-item" v-for="c in defaultColors" :key="c"
+  <div class="vc-compact">
+    <ul class="vc-compact-colors">
+      <li class="vc-compact-color-item" v-for="c in palette" :key="c"
         @click="handlerClick(c)"
-        :class="{'color-item--white': c === '#FFFFFF' }"
+        :class="{'vc-compact-color-item--white': c === '#FFFFFF' }"
         :style="{background: c}">
-        <div class="dot" v-show="c === pick"></div>
+        <div class="vc-compact-dot" v-show="c === pick"></div>
       </li>
     </ul>
-    <!-- <div class="vue-color__compact__fields">
-      <div class="vue-color__compact__pick-color" :style="{background: pick}"></div>
-      <div class="vue_color__compact__col-hex">
-        <ed-in label="vue-color__compact__hex"
-        :val.sync="colors.hex"
-        :style="{ borderColor: colors.hex }"
-        :change="onChange"></ed-in>
-      </div>
-      <div class="vue-color__compact__col-3">
-        <ed-in label="r" :val.sync="colors.rgba.r"
-        :change="onChange"></ed-in>
-      </div>
-      <div class="vue-color__compact__col-3">
-        <ed-in label="g" :val.sync="colors.rgba.g"
-        :change="onChange"></ed-in>
-      </div>
-      <div class="vue-color__compact__col-3">
-        <ed-in label="b" :val.sync="colors.rgba.b"
-        :change="onChange"></ed-in>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -49,6 +28,12 @@ export default {
   name: 'Compact',
   mixins: [colorMixin],
   props: {
+    palette: {
+      type: Array,
+      default () {
+        return defaultColors
+      }
+    }
   },
   components: {
     'ed-in': editableInput
@@ -58,44 +43,20 @@ export default {
       return this.colors.hex
     }
   },
-  data () {
-    return {
-      defaultColors: defaultColors
-    }
-  },
   methods: {
     handlerClick (c) {
       this.colorChange({
         hex: c,
         source: 'hex'
       })
-    },
-    onChange (data) {
-      if (!data) {
-        return
-      }
-      if (data.hex) {
-        this.isValidHex(data.hex) && this.colorChange({
-          hex: data.hex,
-          source: 'hex'
-        })
-      } else if (data.r || data.g || data.b) {
-        this.colorChange({
-          r: data.r || this.colors.rgba.r,
-          g: data.g || this.colors.rgba.g,
-          b: data.b || this.colors.rgba.b,
-          a: data.a || this.colors.rgba.a,
-          source: 'rgba'
-        })
-      }
     }
   }
 }
 
 </script>
 
-<style scoped>
-.c-compact {
+<style>
+.vc-compact {
   padding-top: 5px;
   padding-left: 5px;
   width: 240px;
@@ -103,12 +64,12 @@ export default {
   box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
   background-color: #fff;
 }
-.colors {
+.vc-compact-colors {
   overflow: hidden;
   padding: 0;
   margin: 0;
 }
-.color-item {
+.vc-compact-color-item {
   list-style: none;
   width: 15px;
   height: 15px;
@@ -118,14 +79,14 @@ export default {
   position: relative;
   cursor: pointer;
 }
-.color-item--white {
+.vc-compact-color-item--white {
   box-shadow: inset 0 0 0 1px #ddd;
 }
-.color-item--white .dot {
+.vc-compact-color-item--white .vc-compact-dot {
   background: #000;
 }
   
-.dot {
+.vc-compact-dot {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -135,40 +96,4 @@ export default {
   opacity: 1;
   background: #fff;
 }
-/* .vue-color__compact__fields
-  display: flex;
-  position: relative;
-  padding-bottom: 6px;
-  padding-right: 5px;
-  position: relative;
-  .vue-color__editable-input__input
-    width: 70%;
-    padding-left: 30%;
-    background: none;
-    font-size: 12px;
-    color: #333;
-    height: 16px;
-  .vue-color__editable-input__label
-    position: absolute;
-    top: 3px;
-    left: 0;
-    line-height: 16px;
-    text-transform: uppercase;
-    font-size: 12px;
-    color: #999;
-.vue-color__compact__pick-color
-  position: absolute;
-  top: 6px;
-  left: 5px;
-  height: 9px;
-  width: 9px;
-.vue-color__compact__col-3
-  flex: 1;
-.vue_color__compact__col-hex
-  flex: 2;
-  .vue-color__editable-input__input
-    width: 80%;
-    padding-left: 20%;
-  .vue-color__editable-input__label
-    display: none; */
 </style>

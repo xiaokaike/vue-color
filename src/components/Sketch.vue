@@ -1,42 +1,44 @@
 <template>
-  <div class="c-sketch">
-    <div class="saturation-wrap">
+  <div :class="['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']">
+    <div class="vc-sketch-saturation-wrap">
       <saturation v-model="colors" @change="childChange"></saturation>
     </div>
-    <div class="controls">
-      <div class="sliders">
-        <div class="hue-wrap">
+    <div class="vc-sketch-controls">
+      <div class="vc-sketch-sliders">
+        <div class="vc-sketch-hue-wrap">
           <hue v-model="colors" @change="childChange"></hue>  
         </div>
-        <div class="alpha-wrap">
+        <div class="vc-sketch-alpha-wrap" v-if="!disableAlpha">
           <alpha v-model="colors" @change="childChange"></alpha>
         </div>
       </div>
-      <div class="color-wrap">
-        <div class="active-color" :style="{background: activeColor}"></div>
+      <div class="vc-sketch-color-wrap">
+        <div class="vc-sketch-active-color" :style="{background: activeColor}"></div>
+        <checkboard></checkboard>
       </div>
     </div>
-    <div class="field">
+    <div class="vc-sketch-field">
       <!-- rgba -->
-      <div class="field--double">
-        <ed-in label="hex" v-model="colors.hex" @change="inputChange"></ed-in>  
+      <div class="vc-sketch-field--double">
+        <ed-in label="hex" :value="hex" @change="inputChange"></ed-in>  
       </div>
-      <div class="field--single">
-        <ed-in label="r" v-model="colors.rgba.r" @change="inputChange"></ed-in>
+      <div class="vc-sketch-field--single">
+        <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
       </div>
-      <div class="field--single">
-        <ed-in label="g" v-model="colors.rgba.g" @change="inputChange"></ed-in>
+      <div class="vc-sketch-field--single">
+        <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
       </div>
-      <div class="field--single">
-        <ed-in label="b" v-model="colors.rgba.b" @change="inputChange"></ed-in>
+      <div class="vc-sketch-field--single">
+        <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
       </div>
-      <div class="field--single">
-        <ed-in label="a" v-model="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
+      <div class="vc-sketch-field--single" v-if="!disableAlpha">
+        <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
       </div>
     </div>
-    <div class="presets">
-      <div class="presets-color"
+    <div class="vc-sketch-presets">
+      <div class="vc-sketch-presets-color"
         v-for="c in presetColors"
+        :key="c"
         :style="{background: c}"
         @click="handlePreset(c)">
       </div>
@@ -50,6 +52,7 @@ import editableInput from './common/EditableInput.vue'
 import saturation from './common/Saturation.vue'
 import hue from './common/Hue.vue'
 import alpha from './common/Alpha.vue'
+import checkboard from './common/Checkboard.vue'
 
 const presetColors = [
   '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321',
@@ -64,14 +67,25 @@ export default {
     saturation,
     hue,
     alpha,
-    'ed-in': editableInput
+    'ed-in': editableInput,
+    checkboard
   },
-  data () {
-    return {
-      presetColors: presetColors
+  props: {
+    presetColors: {
+      type: Array,
+      default () {
+        return presetColors
+      }
+    },
+    disableAlpha: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
+    hex () {
+      return this.colors.hex.replace('#', '')
+    },
     activeColor () {
       var rgba = this.colors.rgba
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
@@ -110,8 +124,8 @@ export default {
 }
 </script>
 
-<style scoped>
-.c-sketch {
+<style>
+.vc-sketch {
   position: relative;
   width: 200px;
   padding: 10px 10px 0;
@@ -120,34 +134,34 @@ export default {
   border-radius: 4px;
   box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.15);
 }
-.saturation-wrap {
+.vc-sketch-saturation-wrap {
   width: 100%;
   padding-bottom: 75%;
   position: relative;
   overflow: hidden;
 }
-.controls {
+.vc-sketch-controls {
   display: flex;
 }
-.sliders {
+.vc-sketch-sliders {
   padding: 4px 0;
   flex: 1;
 }
-.sliders >>> .c-hue,
-.sliders >>> .__gradient {
+.vc-sketch-sliders .vc-hue,
+.vc-sketch-sliders .vc-alpha-gradient {
   border-radius: 2px;
 }
-.hue-wrap {
+.vc-sketch-hue-wrap {
   position: relative;
   height: 10px;
 }
-.alpha-wrap {
+.vc-sketch-alpha-wrap {
   position: relative;
   height: 10px;
   margin-top: 4px;
   overflow: hidden;
 }
-.color-wrap {
+.vc-sketch-color-wrap {
   width: 24px;
   height: 24px;
   position: relative;
@@ -155,7 +169,7 @@ export default {
   margin-left: 4px;
   border-radius: 3px;
 }
-.active-color {
+.vc-sketch-active-color {
   position: absolute;
   top: 0;
   left: 0;
@@ -165,18 +179,22 @@ export default {
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25);
   z-index: 2;
 }
-.field {
+.vc-sketch-color-wrap .vc-checkerboard {
+  background-size: auto;
+}
+
+.vc-sketch-field {
   display: flex;
   padding-top: 4px;
 }
-.field >>> .input__input {
+.vc-sketch-field .vc-input__input {
   width: 80%;
   padding: 4px 10% 3px;
   border: none;
   box-shadow: inset 0 0 0 1px #ccc;
   font-size: 11px;
 }
-.field >>> .input__label {
+.vc-sketch-field .vc-input__label {
   display: block;
   text-align: center;
   font-size: 11px;
@@ -185,21 +203,21 @@ export default {
   padding-bottom: 4px;
   text-transform: capitalize;
 }
-.field--single {
+.vc-sketch-field--single {
   flex: 1;
   padding-left: 6px;
 }
-.field--double {
+.vc-sketch-field--double {
   flex: 2;
 }
-.presets {
+.vc-sketch-presets {
   margin-right: -10px;
   margin-left: -10px;
   padding-left: 10px;
   padding-top: 10px;
   border-top: 1px solid #eee;
 }
-.presets-color {
+.vc-sketch-presets-color {
   border-radius: 3px;
   overflow: hidden;
   position: relative;
@@ -210,5 +228,9 @@ export default {
   width: 16px;
   height: 16px;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);
+}
+
+.vc-sketch__disable-alpha .vc-sketch-color-wrap {
+  height: 10px;
 }
 </style>

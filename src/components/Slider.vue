@@ -1,13 +1,13 @@
 <template>
-  <div class="c-slider">
-    <div class="hue-warp">
+  <div class="vc-slider">
+    <div class="vc-slider-hue-warp">
       <hue v-model="colors" @change="hueChange"></hue>
     </div>
-    <div class="swatches">
-      <div class="swatch" v-for="(offset, index) in swatches" :data-index="index"
+    <div class="vc-slider-swatches">
+      <div class="vc-slider-swatch" v-for="(offset, index) in swatches" :data-index="index"
         @click="handleSwClick(index, offset)">
-        <div class="swatch-picker"
-        :class="{'swatch-picker--active': offset == activeOffset}"
+        <div class="vc-slider-swatch-picker"
+        :class="{'vc-slider-swatch-picker--active': offset == activeOffset}"
         :style="{background: 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
         ></div>
       </div>
@@ -57,16 +57,16 @@ export default {
 }
 </script>
 
-<style scoped>
-.c-slider {
+<style>
+.vc-slider {
   position: relative;
   width: 410px;
 }
-.hue-warp {
+.vc-slider-hue-warp {
   height: 12px;
   position: relative;
 }
- .hue-warp >>> .picker {
+.vc-slider-hue-warp .vc-hue-picker {
   width: 14px;
   height: 14px;
   border-radius: 6px;
@@ -74,32 +74,32 @@ export default {
   background-color: rgb(248, 248, 248);
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
 } 
-.swatches {
+.vc-slider-swatches {
   display: flex;
   margin-top: 20px;
 }
-.swatch {
+.vc-slider-swatch {
   margin-right: 1px;
   flex: 1;
   width: 20%;
 }
-.swatch:first-child {
+.vc-slider-swatch:first-child {
   margin-right: 1px;
 }
-.swatch:first-child .swatch-picker {
+.vc-slider-swatch:first-child .vc-slider-swatch-picker {
   border-radius: 2px 0px 0px 2px;
 }
-.swatch:last-child {
+.vc-slider-swatch:last-child {
   margin-right: 0;
 }
-.swatch:last-child .swatch-picker {
+.vc-slider-swatch:last-child .vc-slider-swatch-picker {
   border-radius: 0px 2px 2px 0px;
 }
-.swatch-picker {
+.vc-slider-swatch-picker {
   cursor: pointer;
   height: 12px;
 }
-.swatch-picker--active {
+.vc-slider-swatch-picker--active {
   transform: scaleY(1.8);
   border-radius: 3.6px/2px;
 }
