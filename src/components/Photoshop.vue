@@ -1,5 +1,5 @@
 <template>
-  <div class="vc-photoshop">
+  <div :class="['vc-photoshop', disableFields ? 'vc-photoshop__disable-fields' : '']">
     <div class="vc-ps-head">{{head}}</div>
     <div class="vc-ps-body">
       <div class="vc-ps-saturation-wrap">
@@ -12,7 +12,7 @@
           </div>
         </hue>
       </div>
-      <div class="vc-ps-controls">
+      <div :class="['vc-ps-controls', disableFields ? 'vc-ps-controls__disable-fields' : '']">
         <div class="vc-ps-previews">
           <div class="vc-ps-previews__label">new</div>
           <div class="vc-ps-previews__swatches">
@@ -21,7 +21,7 @@
           </div>
           <div class="vc-ps-previews__label">current</div>
         </div>
-        <div class="vc-ps-actions">
+        <div class="vc-ps-actions" v-if="!disableFields">
           <div class="vc-ps-ac-btn" @click="handleAccept">OK</div>
           <div class="vc-ps-ac-btn" @click="handleCancel">Cancel</div>
           <div class="vc-ps-fields">
@@ -59,6 +59,10 @@ export default {
     head: {
       type: String,
       default: 'Color Picker'
+    },
+    disableFields: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
@@ -145,6 +149,9 @@ export default {
   width: 513px;
   font-family: Roboto;
 }
+.vc-photoshop__disable-fields {
+  width: 390px;
+}
 .vc-ps-head {
   background-image: linear-gradient(-180deg, #F0F0F0 0%, #D4D4D4 100%);
   border-bottom: 1px solid #B1B1B1;
@@ -218,6 +225,9 @@ export default {
   width: 180px;
   margin-left: 10px;
   display: flex;
+}
+.vc-ps-controls__disable-fields {
+  width: auto;
 }
 
 .vc-ps-actions {

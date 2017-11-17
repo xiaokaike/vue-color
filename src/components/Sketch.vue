@@ -17,7 +17,7 @@
         <checkboard></checkboard>
       </div>
     </div>
-    <div class="vc-sketch-field">
+    <div class="vc-sketch-field" v-if="!disableFields">
       <!-- rgba -->
       <div class="vc-sketch-field--double">
         <ed-in label="hex" :value="hex" @change="inputChange"></ed-in>  
@@ -78,6 +78,10 @@ export default {
       }
     },
     disableAlpha: {
+      type: Boolean,
+      default: false
+    },
+    disableFields: {
       type: Boolean,
       default: false
     }
