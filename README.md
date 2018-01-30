@@ -81,6 +81,17 @@ var defaultProps = {
   a: 1
 }
 
+// or defaultProps can be
+var defaultProps = '#194d33'
+// or 
+var defaultProps = {
+  h: 150,
+  s: 0.66,
+  v: 0.30
+}
+// or a object of rgb or hsl 
+
+
 new Vue({
   el: '#app',
   components: {
