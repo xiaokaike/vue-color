@@ -2,7 +2,9 @@
   <div class="vc-saturation"
     :style="{background: bgColor}"
     ref="container"
-    @mousedown="handleMouseDown">
+    @mousedown="handleMouseDown"
+    @touchmove="handleChange"
+    @touchstart="handleChange">
     <div class="vc-saturation--white"></div>
     <div class="vc-saturation--black"></div>
     <div class="vc-saturation-pointer" :style="{top: pointerTop, left: pointerLeft}">
