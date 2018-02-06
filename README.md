@@ -56,30 +56,23 @@ npm run dev
 ```
 
 ## Usage
+
 ```js
 
-var defaultProps = {
+var colors = {
   hex: '#194d33',
-  hsl: {
-    h: 150,
-    s: 0.5,
-    l: 0.2,
-    a: 1
-  },
-  hsv: {
-    h: 150,
-    s: 0.66,
-    v: 0.30,
-    a: 1
-  },
-  rgba: {
-    r: 25,
-    g: 77,
-    b: 51,
-    a: 1
-  },
+  hsl: { h: 150, s: 0.5, l: 0.2, a: 1 },
+  hsv: { h: 150, s: 0.66, v: 0.30, a: 1 },
+  rgba: { r: 25, g: 77, b: 51, a: 1 },
   a: 1
 }
+// or
+var colors = '#194d33'
+// or 
+var colors = { h: 150, s: 0.66, v: 0.30 }
+// or 
+var colors = { r: 255, g: 0, b: 0 }
+// etc...
 
 new Vue({
   el: '#app',
@@ -92,12 +85,16 @@ new Vue({
     'chrome-picker': chrome,
     'photoshop-picker': photoshop
   },
-  data: {
-    colors: defaultProps
+  data () {
+    return {
+      colors
+    }
   }
 })
 
 ```
+
+`colors` accepts either a string of a hex color '#333' or a object of rgb or hsl values `{ r: 51, g: 51, b: 51 }` or `{ h: 0, s: 0, l: .10 }`, whatever [tinycolor2](https://www.npmjs.com/package/tinycolor2) accepts as an input.
 
 ```html
 <!-- suppose you have the data 'colors' in your component -->
@@ -115,12 +112,6 @@ OR
 ```html
 <chrome-picker :value="colors" @input="updateValue"></chrome-picker>
 ```
-
-
-## TODO
--[] docs
--[] more components
-
 
 ## License
 
