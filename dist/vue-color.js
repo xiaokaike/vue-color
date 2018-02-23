@@ -525,16 +525,6 @@ function _colorChange(data, oldHue) {
     hsv.h = hsl.h = data.h || data.hsl && data.hsl.h || oldHue || 0;
   }
 
-  if (hsv.v < 0.0164) {
-    hsv.h = data.h || data.hsv && data.hsv.h || 0;
-    hsv.s = data.s || data.hsv && data.hsv.s || 0;
-  }
-
-  if (hsl.l < 0.01) {
-    hsl.h = data.h || data.hsl && data.hsl.h || 0;
-    hsl.s = data.s || data.hsl && data.hsl.s || 0;
-  }
-
   return {
     hsl: hsl,
     hex: color.toHexString().toUpperCase(),
@@ -947,7 +937,7 @@ var _color2 = _interopRequireDefault(_color);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var VueColor = {
-  version: '2.4.3',
+  version: '2.4.4',
   Compact: _Compact2.default,
   Material: _Material2.default,
   Slider: _Slider2.default,
@@ -4453,7 +4443,11 @@ var render = function() {
       ref: "container",
       staticClass: "vc-saturation",
       style: { background: _vm.bgColor },
-      on: { mousedown: _vm.handleMouseDown }
+      on: {
+        mousedown: _vm.handleMouseDown,
+        touchmove: _vm.handleChange,
+        touchstart: _vm.handleChange
+      }
     },
     [
       _c("div", { staticClass: "vc-saturation--white" }),
