@@ -1,4 +1,5 @@
 import Compact from './components/Compact.vue'
+import Grayscale from './components/Grayscale.vue'
 import Material from './components/Material.vue'
 import Slider from './components/Slider.vue'
 import Swatches from './components/Swatches.vue'
@@ -15,6 +16,7 @@ import ColorMixin from './mixin/color.js'
 const VueColor = {
   version: '2.4.4',
   Compact,
+  Grayscale,
   Material,
   Slider,
   Swatches,
