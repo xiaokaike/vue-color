@@ -1,6 +1,7 @@
 <template>
   <div class="vc-editable-input">
     <input class="vc-input__input"
+      :aria-label="value"
       v-model="val"
       @keydown="handleKeyDown"
       @input="update"
