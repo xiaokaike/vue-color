@@ -2063,7 +2063,7 @@ var _color2 = _interopRequireDefault(_color);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var VueColor = {
-  version: '2.4.5',
+  version: '2.4.6',
   Compact: _Compact2.default,
   Grayscale: _Grayscale2.default,
   Material: _Material2.default,
@@ -3471,6 +3471,7 @@ var render = function() {
       ],
       ref: "input",
       staticClass: "vc-input__input",
+      attrs: { "aria-label": _vm.value },
       domProps: { value: _vm.val },
       on: {
         keydown: _vm.handleKeyDown,
