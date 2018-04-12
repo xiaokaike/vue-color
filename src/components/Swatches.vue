@@ -3,6 +3,7 @@
     <div class="vc-swatches-box">
       <div class="vc-swatches-color-group" v-for="(group, $idx) in palette" :key="$idx">
         <div :class="['vc-swatches-color-it', {'vc-swatches-color--white': c === '#FFFFFF' }]"
+          :aria-label="'color:' + c"
           v-for="c in group" :key="c"
           :data-color="c"
           :style="{background: c}"
