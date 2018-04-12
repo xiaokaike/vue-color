@@ -58,7 +58,7 @@
           </div>
         </div>
         <!-- btn -->
-        <div class="vc-chrome-toggle-btn" @click="toggleViews">
+        <div class="vc-chrome-toggle-btn" aria-label="toggleViews" @click="toggleViews">
           <div class="vc-chrome-toggle-icon">
             <svg style="width:24px; height:24px" viewBox="0 0 24 24" 
               @mouseover="showHighlight" 

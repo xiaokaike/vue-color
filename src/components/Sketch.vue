@@ -37,6 +37,7 @@
     </div>
     <div class="vc-sketch-presets">
       <div class="vc-sketch-presets-color"
+        :aria-label="'color:'+c"
         v-for="c in presetColors"
         :key="c"
         :style="{background: c}"

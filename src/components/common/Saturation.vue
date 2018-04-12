@@ -1,5 +1,5 @@
 <template>
-  <div class="vc-saturation"
+  <div role="saturationPanel" class="vc-saturation"
     :style="{background: bgColor}"
     ref="container"
     @mousedown="handleMouseDown"
@@ -7,7 +7,7 @@
     @touchstart="handleChange">
     <div class="vc-saturation--white"></div>
     <div class="vc-saturation--black"></div>
-    <div class="vc-saturation-pointer" :style="{top: pointerTop, left: pointerLeft}">
+    <div role="currentSaturationPointer" class="vc-saturation-pointer" :style="{top: pointerTop, left: pointerLeft}">
       <div class="vc-saturation-circle"></div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="vc-editable-input">
     <input class="vc-input__input"
-      :aria-label="value"
+      :aria-label="desc?label+'('+desc+')':label"
       v-model="val"
       @keydown="handleKeyDown"
       @input="update"
@@ -53,9 +53,10 @@ export default {
         this.$emit('change', data)
       }
     },
-    handleBlur (e) {
-      console.log(e)
-    },
+    // **** unused 
+    // handleBlur (e) {
+    //   console.log(e)
+    // },
     handleKeyDown (e) {
       let val = this.val
       let number = Number(val)
@@ -77,13 +78,14 @@ export default {
           e.preventDefault()
         }
       }
-    },
-    handleDrag (e) {
-      console.log(e)
-    },
-    handleMouseDown (e) {
-      console.log(e)
     }
+    // **** unused 
+    // handleDrag (e) {
+    //   console.log(e)
+    // },
+    // handleMouseDown (e) {
+    //   console.log(e)
+    // }
   }
 }
 </script>

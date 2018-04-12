@@ -16,14 +16,14 @@
         <div class="vc-ps-previews">
           <div class="vc-ps-previews__label">new</div>
           <div class="vc-ps-previews__swatches">
-            <div class="vc-ps-previews__pr-color" :style="{background: colors.hex}"></div>
-            <div class="vc-ps-previews__pr-color" :style="{background: currentColor}" @click="clickCurrentColor"></div>
+            <div class="vc-ps-previews__pr-color" :aria-label="'newColor:' + colors.hex" :style="{background: colors.hex}"></div>
+            <div class="vc-ps-previews__pr-color" :aria-label="'currentColor:' + currentColor" :style="{background: currentColor}" @click="clickCurrentColor"></div>
           </div>
           <div class="vc-ps-previews__label">current</div>
         </div>
         <div class="vc-ps-actions" v-if="!disableFields">
-          <div class="vc-ps-ac-btn" @click="handleAccept">OK</div>
-          <div class="vc-ps-ac-btn" @click="handleCancel">Cancel</div>
+          <div class="vc-ps-ac-btn" aria-label="confirm" @click="handleAccept">OK</div>
+          <div class="vc-ps-ac-btn" aria-label="cancel" @click="handleCancel">Cancel</div>
           <div class="vc-ps-fields">
             <!-- hsla -->
             <ed-in label="h" desc="°" :value="hsv.h" @change="inputChange"></ed-in>

@@ -2,6 +2,7 @@
   <div class="vc-grayscale">
     <ul class="vc-grayscale-colors">
       <li class="vc-grayscale-color-item" v-for="c in palette" :key="c"
+        :aria-label="'color:' + c"
         @click="handlerClick(c)"
         :class="{'vc-grayscale-color-item--white': c == '#FFFFFF'}"
         :style="{background: c}">

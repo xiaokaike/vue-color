@@ -2,6 +2,7 @@
   <div class="vc-compact">
     <ul class="vc-compact-colors">
       <li class="vc-compact-color-item" v-for="c in palette" :key="c"
+        :aria-label="'color:' + c"
         @click="handlerClick(c)"
         :class="{'vc-compact-color-item--white': c === '#FFFFFF' }"
         :style="{background: c}">

@@ -5,7 +5,7 @@
       @touchmove="handleChange"
       @touchstart="handleChange">
       <div class="vc-hue-pointer" :style="{top: pointerTop, left: pointerLeft}">
-        <div class="vc-hue-picker"></div>
+        <div role="huePicker" class="vc-hue-picker"></div>
       </div>  
     </div>
   </div>
