@@ -53,7 +53,7 @@ export default {
         this.$emit('change', data)
       }
     },
-    // **** unused 
+    // **** unused
     // handleBlur (e) {
     //   console.log(e)
     // },
@@ -79,7 +79,7 @@ export default {
         }
       }
     }
-    // **** unused 
+    // **** unused
     // handleDrag (e) {
     //   console.log(e)
     // },
