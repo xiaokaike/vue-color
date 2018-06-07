@@ -86,12 +86,12 @@
 </template>
 
 <script>
-import colorMixin from 'vue-color/src/mixin/color'
-import editableInput from 'vue-color/src/components/common/EditableInput.vue'
-import saturation from 'vue-color/src/components/common/Saturation.vue'
-import hue from 'vue-color/src/components/common/Hue.vue'
-import alpha from 'vue-color/src/components/common/Alpha.vue'
-import checkboard from 'vue-color/src/components/common/Checkboard.vue'
+import colorMixin from '../mixin/color'
+import editableInput from './common/EditableInput.vue'
+import saturation from './common/Saturation.vue'
+import hue from './common/Hue.vue'
+import alpha from './common/Alpha.vue'
+import checkboard from './common/Checkboard.vue'
 
 export default {
   name: 'Chrome',
