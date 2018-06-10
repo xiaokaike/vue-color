@@ -72,9 +72,12 @@
         <!-- btn -->
       </div>
     </div>
-    <div class="vc-iconscout-defaults">
+    <div
+      v-if="defaultPalette.length"
+      class="vc-iconscout-defaults"
+    >
       <button
-        v-for="(color, index) in defaultColors"
+        v-for="(color, index) in defaultPalette"
         :key="index"
         :class="['vc-iconscout-button', (color === 'transparent' || color === 'white') ? `vc-iconscout-color-${color}` : '']"
         :style="{ backgroundColor: color }"
@@ -104,6 +107,10 @@ export default {
     disableFields: {
       type: Boolean,
       default: false
+    },
+    defaultPalette: {
+      type: Array,
+      default: () => []
     }
   },
   components: {
@@ -117,21 +124,7 @@ export default {
     return {
       fields: ['hex', 'rgba', 'hsla'],
       fieldsIndex: 0,
-      highlight: false,
-      defaultColors: [
-        '#000',
-        '#818181',
-        'white',
-        'transparent',
-        '#FF475E',
-        '#FFB438',
-        '#FFEF2B',
-        '#75C81B',
-        '#2FD4C9',
-        '#6597FF',
-        '#A851FF',
-        '#FF5AB4'
-      ]
+      highlight: false
     }
   },
   computed: {

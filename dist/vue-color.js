@@ -2062,6 +2062,12 @@ exports.default = {
     disableFields: {
       type: Boolean,
       default: false
+    },
+    defaultPalette: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
     }
   },
   components: {
@@ -2075,8 +2081,7 @@ exports.default = {
     return {
       fields: ['hex', 'rgba', 'hsla'],
       fieldsIndex: 0,
-      highlight: false,
-      defaultColors: ['#000', '#818181', 'white', 'transparent', '#FF475E', '#FFB438', '#FFEF2B', '#75C81B', '#2FD4C9', '#6597FF', '#A851FF', '#FF5AB4']
+      highlight: false
     };
   },
 
@@ -6779,27 +6784,29 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "vc-iconscout-defaults" },
-        _vm._l(_vm.defaultColors, function(color, index) {
-          return _c("button", {
-            key: index,
-            class: [
-              "vc-iconscout-button",
-              color === "transparent" || color === "white"
-                ? "vc-iconscout-color-" + color
-                : ""
-            ],
-            style: { backgroundColor: color },
-            on: {
-              click: function($event) {
-                _vm.inputChange({ hex: color })
-              }
-            }
-          })
-        })
-      )
+      _vm.defaultPalette.length
+        ? _c(
+            "div",
+            { staticClass: "vc-iconscout-defaults" },
+            _vm._l(_vm.defaultPalette, function(color, index) {
+              return _c("button", {
+                key: index,
+                class: [
+                  "vc-iconscout-button",
+                  color === "transparent" || color === "white"
+                    ? "vc-iconscout-color-" + color
+                    : ""
+                ],
+                style: { backgroundColor: color },
+                on: {
+                  click: function($event) {
+                    _vm.inputChange({ hex: color })
+                  }
+                }
+              })
+            })
+          )
+        : _vm._e()
     ]
   )
 }
