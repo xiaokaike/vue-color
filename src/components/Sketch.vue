@@ -44,6 +44,9 @@
         @click="handlePreset(c)">
       </div>
     </div>
+    <div class="vc-sketch-field">
+      <slot/>
+    </div>
   </div>
 </template>
 
