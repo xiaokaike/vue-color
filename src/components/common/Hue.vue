@@ -150,11 +150,11 @@ export default {
       if (this.direction === 'vertical') {
         return 0
       } else {
-        if (this.value.hsl.h === 0 && this.pullDirection === 'right') return '100%'
-          return (this.value.hsl.h * 100) / 360 + '%'
-        }
-	  }
+      if (this.value.hsl.h === 0 && this.pullDirection === 'right') return '100%'
+        return (this.value.hsl.h * 100) / 360 + '%'
+      }
     }
+  }
 }
 </script>
 
