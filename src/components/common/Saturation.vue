@@ -21,6 +21,12 @@ export default {
   props: {
     value: Object
   },
+  data() {
+    return {
+      top: (-(this.value.hsv.v * 100) + 1) + 100,
+      left: this.value.hsv.s * 100
+    }
+  },
   computed: {
     colors () {
       return this.value
@@ -29,10 +35,10 @@ export default {
       return `hsl(${this.colors.hsv.h}, 100%, 50%)`
     },
     pointerTop () {
-      return (-(this.colors.hsv.v * 100) + 1) + 100 + '%'
+      return this.top + 'px'
     },
     pointerLeft () {
-      return this.colors.hsv.s * 100 + '%'
+      return this.left + 'px'
     }
   },
   methods: {
@@ -65,6 +71,10 @@ export default {
       } else if (top > containerHeight) {
         top = containerHeight
       }
+
+      // update pointer
+      this.top = top;
+      this.left = left;
 
       var saturation = left / containerWidth
       var bright = -(top / containerHeight) + 1

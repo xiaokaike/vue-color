@@ -25,7 +25,21 @@ export default {
   data () {
     return {
       oldHue: 0,
-      pullDirection: ''
+      pullDirection: '',
+      top: 0,
+      left: 0,
+    }
+  },
+  mounted() {
+    const h = this.value.hsl.h
+	if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
+    if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
+    this.oldHue = h
+
+    if (this.direction == 'horizontal') {
+        this.left = this.calcPointerLeft();
+    } else {
+        this.top = this.calcPointerTop();
     }
   },
   computed: {
@@ -44,20 +58,10 @@ export default {
       }
     },
     pointerTop () {
-      if (this.direction === 'vertical') {
-        if (this.colors.hsl.h === 0 && this.pullDirection === 'right') return 0
-        return -((this.colors.hsl.h * 100) / 360) + 100 + '%'
-      } else {
-        return 0
-      }
+      return this.top
     },
     pointerLeft () {
-      if (this.direction === 'vertical') {
-        return 0
-      } else {
-        if (this.colors.hsl.h === 0 && this.pullDirection === 'right') return '100%'
-        return (this.colors.hsl.h * 100) / 360 + '%'
-      }
+      return this.left
     }
   },
   methods: {
@@ -88,6 +92,8 @@ export default {
           h = (360 * percent / 100)
         }
 
+        this.top = top + 'px';
+
         if (this.colors.hsl.h !== h) {
           this.$emit('change', {
             h: h,
@@ -106,6 +112,8 @@ export default {
           percent = left * 100 / containerWidth
           h = (360 * percent / 100)
         }
+
+        this.left = left + 'px';
 
         if (this.colors.hsl.h !== h) {
           this.$emit('change', {
@@ -129,8 +137,24 @@ export default {
     unbindEventListeners () {
       window.removeEventListener('mousemove', this.handleChange)
       window.removeEventListener('mouseup', this.handleMouseUp)
+    },
+    calcPointerTop () {
+      if (this.direction === 'vertical') {
+        if (this.value.hsl.h === 0 && this.pullDirection === 'right') return 0
+          return -((this.value.hsl.h * 100) / 360) + 100 + '%'
+        } else {
+          return 0
+      }
+    },
+    calcPointerLeft () {
+      if (this.direction === 'vertical') {
+        return 0
+      } else {
+        if (this.value.hsl.h === 0 && this.pullDirection === 'right') return '100%'
+          return (this.value.hsl.h * 100) / 360 + '%'
+        }
+	  }
     }
-  }
 }
 </script>
 
