@@ -6,7 +6,7 @@
     <div class="vc-sketch-controls">
       <div class="vc-sketch-sliders">
         <div class="vc-sketch-hue-wrap">
-          <hue v-model="colors" @change="childChange"></hue>  
+          <hue v-model="colors" @change="childChange"></hue>
         </div>
         <div class="vc-sketch-alpha-wrap" v-if="!disableAlpha">
           <alpha v-model="colors" @change="childChange"></alpha>
@@ -20,7 +20,7 @@
     <div class="vc-sketch-field" v-if="!disableFields">
       <!-- rgba -->
       <div class="vc-sketch-field--double">
-        <ed-in label="hex" :value="hex" @change="inputChange"></ed-in>  
+        <ed-in label="hex" :value="hex" @change="inputChange"></ed-in>
       </div>
       <div class="vc-sketch-field--single">
         <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
@@ -36,13 +36,22 @@
       </div>
     </div>
     <div class="vc-sketch-presets">
-      <div class="vc-sketch-presets-color"
-        :aria-label="'color:'+c"
-        v-for="c in presetColors"
-        :key="c"
-        :style="{background: c}"
-        @click="handlePreset(c)">
-      </div>
+      <template v-for="c in presetColors">
+        <div
+          class="vc-sketch-presets-color"
+          v-if="!colorIsTransparent(c)"
+          :aria-label="'color:'+c"
+          :key="c"
+          :style="{background: c}"
+          @click="handlePreset(c)">
+        </div>
+        <div
+          class="vc-sketch-presets-color"
+          v-else
+          @click="handlePreset(c)">
+          <checkboard/>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -54,11 +63,13 @@ import saturation from './common/Saturation.vue'
 import hue from './common/Hue.vue'
 import alpha from './common/Alpha.vue'
 import checkboard from './common/Checkboard.vue'
+import tinycolor from 'tinycolor2'
 
 const presetColors = [
   '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321',
   '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2',
-  '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF'
+  '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF',
+  'rgba(0,0,0,0)'
 ]
 
 export default {
@@ -103,6 +114,9 @@ export default {
         source: 'hex'
       })
     },
+    colorIsTransparent (c) {
+      return tinycolor(c).getAlpha() === 0;
+    },
     childChange (data) {
       this.colorChange(data)
     },
@@ -137,35 +151,42 @@ export default {
   box-sizing: initial;
   background: #fff;
   border-radius: 4px;
-  box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.15);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .15), 0 8px 16px rgba(0, 0, 0, .15);
 }
+
 .vc-sketch-saturation-wrap {
   width: 100%;
   padding-bottom: 75%;
   position: relative;
   overflow: hidden;
 }
+
 .vc-sketch-controls {
   display: flex;
 }
+
 .vc-sketch-sliders {
   padding: 4px 0;
   flex: 1;
 }
+
 .vc-sketch-sliders .vc-hue,
 .vc-sketch-sliders .vc-alpha-gradient {
   border-radius: 2px;
 }
+
 .vc-sketch-hue-wrap {
   position: relative;
   height: 10px;
 }
+
 .vc-sketch-alpha-wrap {
   position: relative;
   height: 10px;
   margin-top: 4px;
   overflow: hidden;
 }
+
 .vc-sketch-color-wrap {
   width: 24px;
   height: 24px;
@@ -174,6 +195,7 @@ export default {
   margin-left: 4px;
   border-radius: 3px;
 }
+
 .vc-sketch-active-color {
   position: absolute;
   top: 0;
@@ -181,9 +203,10 @@ export default {
   right: 0;
   bottom: 0;
   border-radius: 2px;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15), inset 0 0 4px rgba(0, 0, 0, .25);
   z-index: 2;
 }
+
 .vc-sketch-color-wrap .vc-checkerboard {
   background-size: auto;
 }
@@ -192,6 +215,7 @@ export default {
   display: flex;
   padding-top: 4px;
 }
+
 .vc-sketch-field .vc-input__input {
   width: 80%;
   padding: 4px 10% 3px;
@@ -199,6 +223,7 @@ export default {
   box-shadow: inset 0 0 0 1px #ccc;
   font-size: 11px;
 }
+
 .vc-sketch-field .vc-input__label {
   display: block;
   text-align: center;
@@ -208,13 +233,16 @@ export default {
   padding-bottom: 4px;
   text-transform: capitalize;
 }
+
 .vc-sketch-field--single {
   flex: 1;
   padding-left: 6px;
 }
+
 .vc-sketch-field--double {
   flex: 2;
 }
+
 .vc-sketch-presets {
   margin-right: -10px;
   margin-left: -10px;
@@ -222,6 +250,7 @@ export default {
   padding-top: 10px;
   border-top: 1px solid #eee;
 }
+
 .vc-sketch-presets-color {
   border-radius: 3px;
   overflow: hidden;
@@ -232,7 +261,12 @@ export default {
   cursor: pointer;
   width: 16px;
   height: 16px;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15);
+}
+
+.vc-sketch-presets-color .vc-checkerboard {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15);
+  border-radius: 3px;
 }
 
 .vc-sketch__disable-alpha .vc-sketch-color-wrap {
