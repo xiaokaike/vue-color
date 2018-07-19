@@ -1,7 +1,7 @@
 <template>
   <div class="vc-grayscale">
     <ul class="vc-grayscale-colors">
-      <li class="vc-grayscale-color-item" v-for="c in palette" :key="c"
+      <li class="vc-grayscale-color-item" v-for="c in paletteUpperCase(palette)" :key="c"
         :aria-label="'color:' + c"
         @click="handlerClick(c)"
         :class="{'vc-grayscale-color-item--white': c == '#FFFFFF'}"
@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     pick () {
-      return this.colors.hex
+      return this.colors.hex.toUpperCase()
     }
   },
   methods: {
