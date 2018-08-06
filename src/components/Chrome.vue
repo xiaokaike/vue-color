@@ -70,7 +70,10 @@
           <div class="vc-chrome-toggle-icon-highlight" v-show="highlight"></div>
         </div>
         <!-- btn -->
-      </div>      
+      </div>
+      <div class="vc-chrome-fields-wrap">
+        <slot/>
+      </div>
     </div>
   </div>
 </template>

@@ -53,6 +53,9 @@
         </div>
       </template>
     </div>
+    <div class="vc-sketch-field">
+      <slot/>
+    </div>
   </div>
 </template>
 
