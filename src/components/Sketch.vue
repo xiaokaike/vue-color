@@ -39,13 +39,14 @@
       <template v-for="c in presetColors">
         <div
           class="vc-sketch-presets-color"
-          v-if="!colorIsTransparent(c)"
+          v-if="!isTransparent(c)"
           :aria-label="'color:'+c"
           :key="c"
           :style="{background: c}"
           @click="handlePreset(c)">
         </div>
         <div
+          :key="c"
           class="vc-sketch-presets-color"
           v-else
           @click="handlePreset(c)">
@@ -63,7 +64,6 @@ import saturation from './common/Saturation.vue'
 import hue from './common/Hue.vue'
 import alpha from './common/Alpha.vue'
 import checkboard from './common/Checkboard.vue'
-import tinycolor from 'tinycolor2'
 
 const presetColors = [
   '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321',
@@ -113,9 +113,6 @@ export default {
         hex: c,
         source: 'hex'
       })
-    },
-    colorIsTransparent (c) {
-      return tinycolor(c).getAlpha() === 0;
     },
     childChange (data) {
       this.colorChange(data)
