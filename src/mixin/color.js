@@ -99,6 +99,9 @@ export default {
       if (checked === passed) {
         return data
       }
+    },
+    paletteUpperCase (palette) {
+      return palette.map(c => c.toUpperCase())
     }
   }
 }
