@@ -105,7 +105,6 @@ export default {
   },
   data () {
     return {
-      fields: ['hex', 'rgba', 'hsla'],
       fieldsIndex: 0,
       highlight: false
     }
