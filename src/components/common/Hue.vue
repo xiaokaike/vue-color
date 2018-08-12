@@ -1,11 +1,11 @@
 <template>
-  <div :class="['vc-hue', directionClass]">
+  <div role="HuePanel" :class="['vc-hue', directionClass]">
     <div class="vc-hue-container" ref="container"
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
       @touchstart="handleChange">
-      <div class="vc-hue-pointer" :style="{top: pointerTop, left: pointerLeft}">
-        <div role="huePicker" class="vc-hue-picker"></div>
+      <div role="CurrentHuePointer" class="vc-hue-pointer" :style="{top: pointerTop, left: pointerLeft}">
+        <div class="vc-hue-picker"></div>
       </div>  
     </div>
   </div>

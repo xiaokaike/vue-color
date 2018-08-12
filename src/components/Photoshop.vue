@@ -1,5 +1,5 @@
 <template>
-  <div :class="['vc-photoshop', disableFields ? 'vc-photoshop__disable-fields' : '']">
+  <div role="PhotoShopColorPicker" :class="['vc-photoshop', disableFields ? 'vc-photoshop__disable-fields' : '']">
     <div class="vc-ps-head">{{head}}</div>
     <div class="vc-ps-body">
       <div class="vc-ps-saturation-wrap">
@@ -16,14 +16,14 @@
         <div class="vc-ps-previews">
           <div class="vc-ps-previews__label">new</div>
           <div class="vc-ps-previews__swatches">
-            <div class="vc-ps-previews__pr-color" :aria-label="'newColor:' + colors.hex" :style="{background: colors.hex}"></div>
-            <div class="vc-ps-previews__pr-color" :aria-label="'currentColor:' + currentColor" :style="{background: currentColor}" @click="clickCurrentColor"></div>
+            <div class="vc-ps-previews__pr-color" :aria-label="'NewColor:' + colors.hex" :style="{background: colors.hex}"></div>
+            <div class="vc-ps-previews__pr-color" :aria-label="'CurrentColor:' + currentColor" :style="{background: currentColor}" @click="clickCurrentColor"></div>
           </div>
           <div class="vc-ps-previews__label">current</div>
         </div>
         <div class="vc-ps-actions" v-if="!disableFields">
-          <div class="vc-ps-ac-btn" aria-label="confirm" @click="handleAccept">{{ acceptLabel }}</div>
-          <div class="vc-ps-ac-btn" aria-label="cancel" @click="handleCancel">{{ cancelLabel }}</div>
+          <div class="vc-ps-ac-btn" role="button" aria-label="Confirm" @click="handleAccept">{{ acceptLabel }}</div>
+          <div class="vc-ps-ac-btn" role="button" aria-label="Cancel" @click="handleCancel">{{ cancelLabel }}</div>
 
           <div class="vc-ps-fields">
             <!-- hsla -->

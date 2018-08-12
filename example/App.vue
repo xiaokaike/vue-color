@@ -3,53 +3,53 @@
     <a class="github-fork-ribbon" href="https://github.com/xiaokaike/vue-color" title="Fork me on GitHub">Fork me on GitHub</a>
     <div class="header-container">
       <div class="header-bg" :style="{'background-color': bgc}"></div>
-      <header class="header">
+      <div class="header">
         <div class="intro-wrap">
           <div class="intro">
             <h1>Vue-color</h1>
-            <p>A Collection of Color Pickers from Sketch, Photoshop, Chrome, Github, Twitter, Material Design & more</p>
+            <p role="presentation">A Collection of Color Pickers from Sketch, Photoshop, Chrome, Github, Twitter, Material Design & more</p>
           </div>
         </div>
         <div class="demo-item">
           <chrome-picker :value="colors" @input="updateValue"></chrome-picker>
-          <h6>Chrome</h6>
+          <h2>Chrome</h2>
         </div>
-      </header>
+      </div>
     </div>
 
     <div class="demo-container">
       <div class="demo-list">
         <div class="demo-item">
           <sketch-picker v-model="colors"></sketch-picker>
-          <h6>Sketch</h6>
+          <h2>Sketch</h2>
         </div>
         <div class="demo-item">
           <photoshop-picker v-model="colors" @ok="onOk" @cancel="onCancel"></photoshop-picker>
-          <h6>Photoshop</h6>
+          <h2>Photoshop</h2>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
           <material-picker v-model="colors"></material-picker>
-          <h6>Material</h6>
+          <h2>Material</h2>
         </div>
         <div class="demo-item">
           <slider-picker v-model="colors"></slider-picker>
-          <h6>Slider</h6>
+          <h2>Slider</h2>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
           <compact-picker v-model="colors"></compact-picker>
-          <h6>Compact</h6>
+          <h2>Compact</h2>
           <br>
           <br>
           <grayscale-picker :value="colors" @input="updateValue"></grayscale-picker>
-          <h6>Grayscale</h6>
+          <h2>Grayscale</h2>
         </div>
         <div class="demo-item">
           <swatches-picker v-model="colors"></swatches-picker>
-          <h6>Swatches</h6>
+          <h2>Swatches</h2>
         </div>
       </div>
 
@@ -192,9 +192,11 @@ html {
   margin: 0 10px 0 10px;
   z-index: 2;
 }
-.demo-item h6 {
+.demo-item h2 {
   margin: 0;
   padding: 5px 0;
   color: #666;
+  font-size: 16px;
+  font-weight: normal;
 }
 </style>

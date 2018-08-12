@@ -1,12 +1,14 @@
 <template>
   <div class="vc-editable-input">
-    <input class="vc-input__input"
-      :aria-label="desc?label+'('+desc+')':label"
+    <input
+      :aria-label="desc ? label + '(' + desc + ')' : label"
+      class="vc-input__input"
       v-model="val"
       @keydown="handleKeyDown"
       @input="update"
-      ref="input">
-    <span class="vc-input__label">{{label}}</span>
+      ref="input"
+    >
+    <span :for="label" class="vc-input__label">{{label}}</span>
     <span class="vc-input__desc">{{desc}}</span>
   </div>
 </template>

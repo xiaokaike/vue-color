@@ -102,6 +102,9 @@ export default {
     },
     paletteUpperCase (palette) {
       return palette.map(c => c.toUpperCase())
+    },
+    isTransparent (color) {
+      return tinycolor(color).getAlpha() === 0
     }
   }
 }
