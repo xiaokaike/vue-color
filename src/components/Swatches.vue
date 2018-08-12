@@ -1,9 +1,9 @@
 <template>
-  <div class="vc-swatches" :data-pick="pick">
-    <div class="vc-swatches-box">
+  <div role="SwatchesColorPicker" class="vc-swatches" :data-pick="pick">
+    <div class="vc-swatches-box" role="group">
       <div class="vc-swatches-color-group" v-for="(group, $idx) in palette" :key="$idx">
         <div :class="['vc-swatches-color-it', {'vc-swatches-color--white': c === '#FFFFFF' }]"
-          :aria-label="'color:' + c"
+          :aria-label="'Color:' + c"
           v-for="c in group" :key="c"
           :data-color="c"
           :style="{background: c}"

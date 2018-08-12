@@ -1,11 +1,15 @@
 <template>
-  <div class="vc-grayscale">
-    <ul class="vc-grayscale-colors">
-      <li class="vc-grayscale-color-item" v-for="c in paletteUpperCase(palette)" :key="c"
-        :aria-label="'color:' + c"
-        @click="handlerClick(c)"
+  <div role="GrayscaleColorPicker" class="vc-grayscale">
+    <ul class="vc-grayscale-colors" role="option">
+      <li
+        v-for="c in paletteUpperCase(palette)"
+        :key="c"
+        :aria-label="'Color:' + c"
+        class="vc-grayscale-color-item"
         :class="{'vc-grayscale-color-item--white': c == '#FFFFFF'}"
-        :style="{background: c}">
+        :style="{background: c}"
+        @click="handlerClick(c)"
+      >
         <div class="vc-grayscale-dot" v-show="c === pick"></div>
       </li>
     </ul>

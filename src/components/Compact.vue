@@ -1,11 +1,15 @@
 <template>
-  <div class="vc-compact">
-    <ul class="vc-compact-colors">
-      <li class="vc-compact-color-item" v-for="c in paletteUpperCase(palette)" :key="c"
-        :aria-label="'color:' + c"
-        @click="handlerClick(c)"
+  <div role="CompactColorPicker" class="vc-compact">
+    <ul class="vc-compact-colors" role="option">
+      <li 
+        class="vc-compact-color-item"
+        v-for="c in paletteUpperCase(palette)"
+        :key="c"
+        :aria-label="'Color:' + c"
         :class="{'vc-compact-color-item--white': c === '#FFFFFF' }"
-        :style="{background: c}">
+        :style="{background: c}"
+        @click="handlerClick(c)"
+      >
         <div class="vc-compact-dot" v-show="c === pick"></div>
       </li>
     </ul>

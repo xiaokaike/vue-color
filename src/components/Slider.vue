@@ -1,15 +1,16 @@
 <template>
-  <div class="vc-slider">
+  <div role="SliderColorPicker" class="vc-slider">
     <div class="vc-slider-hue-warp">
       <hue v-model="colors" @change="hueChange"></hue>
     </div>
-    <div class="vc-slider-swatches">
+    <div class="vc-slider-swatches" role="group">
       <div class="vc-slider-swatch" v-for="(offset, index) in swatches" :key="index" :data-index="index"
         @click="handleSwClick(index, offset)">
-        <div class="vc-slider-swatch-picker"
-        :aria-label="'color:' + 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'"
-        :class="{'vc-slider-swatch-picker--active': offset == activeOffset}"
-        :style="{background: 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
+        <div
+          class="vc-slider-swatch-picker"
+          :aria-label="'color:' + 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'"
+          :class="{'vc-slider-swatch-picker--active': offset == activeOffset}"
+          :style="{background: 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
         ></div>
       </div>
     </div>

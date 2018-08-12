@@ -1,6 +1,5 @@
 <template>
-
-  <div class="vc-material">
+  <div role="MaterialColorPicker" class="vc-material">
     <ed-in class="vc-material-hex" label="hex" v-model="colors.hex"
       :style="{ borderColor: colors.hex }" @change="onChange"></ed-in>
 
@@ -19,7 +18,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>

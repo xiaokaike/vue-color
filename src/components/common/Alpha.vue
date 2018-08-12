@@ -1,5 +1,5 @@
 <template>
-  <div class="vc-alpha">
+  <div role="HuePanel" class="vc-alpha">
     <div class="vc-alpha-checkboard-wrap">
       <checkboard></checkboard>
     </div>
@@ -8,7 +8,7 @@
         @mousedown="handleMouseDown"
         @touchmove="handleChange"
         @touchstart="handleChange">
-      <div class="vc-alpha-pointer" :style="{left: colors.a * 100 + '%'}">
+      <div role="CurrentAlphaPointer" class="vc-alpha-pointer" :style="{left: colors.a * 100 + '%'}">
         <div class="vc-alpha-picker"></div>
       </div>
     </div>
