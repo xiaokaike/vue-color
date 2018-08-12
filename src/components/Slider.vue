@@ -9,7 +9,7 @@
         <div
           class="vc-slider-swatch-picker"
           :aria-label="'color:' + 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'"
-          :class="{'vc-slider-swatch-picker--active': offset == activeOffset}"
+          :class="{'vc-slider-swatch-picker--active': offset == activeOffset, 'vc-slider-swatch-picker--white': offset === '1'}"
           :style="{background: 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
         ></div>
       </div>
@@ -25,22 +25,30 @@ export default {
   name: 'Slider',
   mixins: [colorMixin],
   props: {
-    direction: String
+    swatches: {
+      type: Array,
+      default () {
+        return ['.80', '.65', '.50', '.35', '.20']
+      }
+    }
   },
   components: {
     hue
   },
   computed: {
     activeOffset () {
-      if (Math.round(this.colors.hsl.s * 100) / 100 === 0.50) {
-        return Math.round(this.colors.hsl.l * 100) / 100
+      const hasBlack = this.swatches.includes('0')
+      const hasWhite = this.swatches.includes('1')
+      const hsl = this.colors.hsl
+
+      if (Math.round(hsl.s * 100) / 100 === 0.50) {
+        return Math.round(hsl.l * 100) / 100
+      } else if (hasBlack && hsl.l === 0) {
+        return 0;
+      } else if (hasWhite && hsl.l === 1) {
+        return 1;
       }
-      return 0
-    }
-  },
-  data () {
-    return {
-      swatches: ['.80', '.65', '.50', '.35', '.20']
+      return -1;
     }
   },
   methods: {
@@ -104,5 +112,11 @@ export default {
 .vc-slider-swatch-picker--active {
   transform: scaleY(1.8);
   border-radius: 3.6px/2px;
+}
+.vc-slider-swatch-picker--white {
+  box-shadow: inset 0 0 0 1px #ddd;
+}
+.vc-slider-swatch-picker--active.vc-slider-swatch-picker--white {
+  box-shadow: inset 0 0 0 0.6px #ddd;
 }
 </style>
