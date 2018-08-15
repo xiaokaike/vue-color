@@ -101,7 +101,13 @@ export default {
   },
   computed: {
     hex () {
-      return this.colors.hex.replace('#', '')
+      let hex;
+      if (this.colors.a < 1) {
+        hex = this.colors.hex8
+      } else {
+        hex = this.colors.hex
+      }
+      return hex.replace('#', '')
     },
     activeColor () {
       var rgba = this.colors.rgba
@@ -215,11 +221,11 @@ export default {
 }
 
 .vc-sketch-field .vc-input__input {
-  width: 80%;
-  padding: 4px 10% 3px;
+  width: 90%;
+  padding: 4px 0 3px 10%;
   border: none;
   box-shadow: inset 0 0 0 1px #ccc;
-  font-size: 11px;
+  font-size: 10px;
 }
 
 .vc-sketch-field .vc-input__label {

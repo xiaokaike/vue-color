@@ -24,7 +24,8 @@
         <div class="vc-chrome-fields" v-show="fieldsIndex === 0">
           <!-- hex -->
           <div class="vc-chrome-field">
-            <ed-in label="hex" :value="colors.hex" @change="inputChange"></ed-in>  
+            <ed-in v-if="!hasAlpha" label="hex" :value="colors.hex" @change="inputChange"></ed-in>
+            <ed-in v-if="hasAlpha" label="hex" :value="colors.hex8" @change="inputChange"></ed-in>  
           </div>
         </div>
         <div class="vc-chrome-fields" v-show="fieldsIndex === 1">
@@ -121,23 +122,12 @@ export default {
     activeColor () {
       const rgba = this.colors.rgba
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
-    }
-  },
-  watch: {
-    colors (newVal) {
-      const { a } = newVal
-      if (a < 1 && this.fieldsIndex === 0) {
-        this.fieldsIndex = 1
-      }
+    },
+    hasAlpha () {
+      return this.colors.a < 1;
     }
   },
   methods: {
-    handlePreset (c) {
-      this.colorChange({
-        hex: c,
-        source: 'hex'
-      })
-    },
     childChange (data) {
       this.colorChange(data)
     },
@@ -172,7 +162,7 @@ export default {
     },
     toggleViews () {
       if (this.fieldsIndex >= 2) {
-        this.fieldsIndex = this.colors.a < 1 ? 1 : 0
+        this.fieldsIndex = 0
         return
       }
       this.fieldsIndex ++
