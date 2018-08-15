@@ -101,7 +101,7 @@ export default {
   },
   computed: {
     hex () {
-      let hex;
+      let hex
       if (this.colors.a < 1) {
         hex = this.colors.hex8
       } else {

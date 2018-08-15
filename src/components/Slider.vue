@@ -44,11 +44,11 @@ export default {
       if (Math.round(hsl.s * 100) / 100 === 0.50) {
         return Math.round(hsl.l * 100) / 100
       } else if (hasBlack && hsl.l === 0) {
-        return 0;
+        return 0
       } else if (hasWhite && hsl.l === 1) {
-        return 1;
+        return 1
       }
-      return -1;
+      return -1
     }
   },
   methods: {

@@ -124,7 +124,7 @@ export default {
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
     },
     hasAlpha () {
-      return this.colors.a < 1;
+      return this.colors.a < 1
     }
   },
   methods: {
