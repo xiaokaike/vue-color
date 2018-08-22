@@ -39,7 +39,12 @@
           <h2>Sketch</h2>
         </div>
         <div class="demo-item">
-          <!-- <photoshop-picker v-model="colors" @ok="onOk" @cancel="onCancel"></photoshop-picker> -->
+          <photoshop-picker
+            :color="color"
+            @change="updateValue"
+            @ok="onOk"
+            @cancel="onCancel"
+          />
           <h2>Photoshop</h2>
         </div>
       </div>
@@ -79,7 +84,7 @@
 // import slider from '../src/components/Slider.vue'
 import sketch from '../src/components/Sketch.vue'
 import chrome from '../src/components/Chrome.vue'
-// import photoshop from '../src/components/Photoshop.vue'
+import photoshop from '../src/components/Photoshop.vue'
 
 let defaultProps = {
   hex: '#194d33e6',
@@ -111,9 +116,9 @@ export default {
     // 'grayscale-picker': grayscale,
     // 'swatches-picker': swatches,
     // 'slider-picker': slider,
-    // 'sketch-picker': sketch,
+    'sketch-picker': sketch,
     'chrome-picker': chrome,
-    // 'photoshop-picker': photoshop
+    'photoshop-picker': photoshop
   },
   data () {
     return {
