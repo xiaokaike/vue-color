@@ -52,8 +52,6 @@
           <h2>Swatches</h2>
         </div>
       </div>
-
-
     </div>
   </div>
 </template>
