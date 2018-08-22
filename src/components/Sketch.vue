@@ -1,56 +1,107 @@
 <template>
-  <div role="SketchColorPicker" :class="['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']">
+  <div
+    role="SketchColorPicker"
+    :class="['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']"
+  >
     <div class="vc-sketch-saturation-wrap">
-      <saturation v-model="colors" @change="childChange"></saturation>
+      <saturation
+        :colors="colors"
+        @change="childChange"
+      />
     </div>
     <div class="vc-sketch-controls">
       <div class="vc-sketch-sliders">
         <div class="vc-sketch-hue-wrap">
-          <hue v-model="colors" @change="childChange"></hue>
+          <hue
+            :colors="colors"
+            @change="childChange"
+          />
         </div>
-        <div class="vc-sketch-alpha-wrap" v-if="!disableAlpha">
-          <alpha v-model="colors" @change="childChange"></alpha>
+        <div
+          v-if="!disableAlpha"
+          class="vc-sketch-alpha-wrap"
+        >
+          <alpha
+            :colors="colors"
+            @change="childChange"
+          />
         </div>
       </div>
       <div class="vc-sketch-color-wrap">
-        <div :aria-label="'CurrentColor:' + activeColor" class="vc-sketch-active-color" :style="{background: activeColor}"></div>
-        <checkboard></checkboard>
+        <div
+          :aria-label="'CurrentColor:' + activeColor"
+          class="vc-sketch-active-color"
+          :style="{background: activeColor}"
+        />
+        <checkboard />
       </div>
     </div>
-    <div class="vc-sketch-field" v-if="!disableFields">
+    <div
+      v-if="!disableFields"
+      class="vc-sketch-field"
+    >
       <!-- rgba -->
       <div class="vc-sketch-field--double">
-        <ed-in label="hex" :value="hex" @change="inputChange"></ed-in>
+        <ed-in
+          label="hex"
+          :value="hex"
+          @change="inputChange"
+        />
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
+        <ed-in
+          label="r"
+          :value="colors.rgba.r"
+          @change="inputChange"
+        />
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
+        <ed-in
+          label="g"
+          :value="colors.rgba.g"
+          @change="inputChange"
+        />
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
+        <ed-in
+          label="b"
+          :value="colors.rgba.b"
+          @change="inputChange"
+        />
       </div>
-      <div class="vc-sketch-field--single" v-if="!disableAlpha">
-        <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
+      <div
+        v-if="!disableAlpha"
+        class="vc-sketch-field--single"
+      >
+        <ed-in
+          label="a"
+          :value="colors.a"
+          :arrow-offset="0.01"
+          :max="1"
+          @change="inputChange"
+        />
       </div>
     </div>
-    <div class="vc-sketch-presets" role="group">
+    <div
+      class="vc-sketch-presets"
+      role="group"
+    >
       <template v-for="c in presetColors">
         <div
           v-if="!isTransparent(c)"
+          :key="c"
           class="vc-sketch-presets-color"
           :aria-label="'Color:' + c"
-          :key="c"
           :style="{background: c}"
-          @click="handlePreset(c)">
-        </div>
+          @click="handlePreset(c)"
+        />
         <div
           v-else
           :key="c"
           :aria-label="'Color:' + c"
           class="vc-sketch-presets-color"
-          @click="handlePreset(c)">
+          @click="handlePreset(c)"
+        >
           <checkboard />
         </div>
       </template>
@@ -75,7 +126,6 @@ const presetColors = [
 
 export default {
   name: 'Sketch',
-  mixins: [colorMixin],
   components: {
     saturation,
     hue,
@@ -83,6 +133,7 @@ export default {
     'ed-in': editableInput,
     checkboard
   },
+  mixins: [colorMixin],
   props: {
     presetColors: {
       type: Array,

@@ -22,7 +22,7 @@
         <div class="demo-item">
           <chrome-picker
             :color="color"
-            @input="updateValue"
+            @change="updateValue"
           />
           <h2>Chrome</h2>
         </div>
@@ -32,7 +32,10 @@
     <div class="demo-container">
       <div class="demo-list">
         <div class="demo-item">
-          <!-- <sketch-picker v-model="colors"></sketch-picker> -->
+          <sketch-picker
+            :color="color"
+            @change="updateValue"
+          />
           <h2>Sketch</h2>
         </div>
         <div class="demo-item">
@@ -74,7 +77,7 @@
 // import grayscale from '../src/components/Grayscale.vue'
 // import swatches from '../src/components/Swatches.vue'
 // import slider from '../src/components/Slider.vue'
-// import sketch from '../src/components/Sketch.vue'
+import sketch from '../src/components/Sketch.vue'
 import chrome from '../src/components/Chrome.vue'
 // import photoshop from '../src/components/Photoshop.vue'
 

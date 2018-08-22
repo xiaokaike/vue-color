@@ -53,9 +53,14 @@ function _colorChange (data, oldHue) {
 
 export default {
   props: ['color'],
-  data () {
-    return {
-      colors: _colorChange(this.color)
+  computed: {
+    colors: {
+      get () {
+        return _colorChange(this.color)
+      },
+      set (color) {
+        this.$emit('change', color)
+      }
     }
   },
   methods: {
