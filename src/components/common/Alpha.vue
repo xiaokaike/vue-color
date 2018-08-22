@@ -1,15 +1,28 @@
 <template>
-  <div role="HuePanel" class="vc-alpha">
+  <div
+    role="HuePanel"
+    class="vc-alpha"
+  >
     <div class="vc-alpha-checkboard-wrap">
-      <checkboard></checkboard>
+      <checkboard />
     </div>
-    <div class="vc-alpha-gradient" :style="{background: gradientColor}"></div>
-    <div class="vc-alpha-container" ref="container"
-        @mousedown="handleMouseDown"
-        @touchmove="handleChange"
-        @touchstart="handleChange">
-      <div role="CurrentAlphaPointer" class="vc-alpha-pointer" :style="{left: colors.a * 100 + '%'}">
-        <div class="vc-alpha-picker"></div>
+    <div
+      class="vc-alpha-gradient"
+      :style="{background: gradientColor}"
+    />
+    <div
+      ref="container"
+      class="vc-alpha-container"
+      @mousedown="handleMouseDown"
+      @touchmove="handleChange"
+      @touchstart="handleChange"
+    >
+      <div
+        role="CurrentAlphaPointer"
+        class="vc-alpha-pointer"
+        :style="{left: colors.a * 100 + '%'}"
+      >
+        <div class="vc-alpha-picker" />
       </div>
     </div>
   </div>
@@ -20,17 +33,14 @@ import checkboard from './Checkboard.vue'
 
 export default {
   name: 'Alpha',
-  props: {
-    value: Object,
-    onChange: Function
-  },
   components: {
     checkboard
   },
+  props: {
+    colors: Object,
+    onChange: Function
+  },
   computed: {
-    colors () {
-      return this.value
-    },
     gradientColor () {
       var rgba = this.colors.rgba
       var rgbStr = [rgba.r, rgba.g, rgba.b].join(',')

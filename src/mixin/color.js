@@ -52,26 +52,10 @@ function _colorChange (data, oldHue) {
 }
 
 export default {
-  props: ['value'],
+  props: ['color'],
   data () {
     return {
-      val: _colorChange(this.value)
-    }
-  },
-  computed: {
-    colors: {
-      get () {
-        return this.val
-      },
-      set (newVal) {
-        this.val = newVal
-        this.$emit('input', newVal)
-      }
-    }
-  },
-  watch: {
-    value (newVal) {
-      this.val = _colorChange(newVal)
+      colors: _colorChange(this.color)
     }
   },
   methods: {

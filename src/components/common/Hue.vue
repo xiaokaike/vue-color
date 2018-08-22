@@ -1,12 +1,22 @@
 <template>
-  <div role="HuePanel" :class="['vc-hue', directionClass]">
-    <div class="vc-hue-container" ref="container"
+  <div
+    role="HuePanel"
+    :class="['vc-hue', directionClass]"
+  >
+    <div
+      ref="container"
+      class="vc-hue-container"
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
-      @touchstart="handleChange">
-      <div role="CurrentHuePointer" class="vc-hue-pointer" :style="{top: pointerTop, left: pointerLeft}">
-        <div class="vc-hue-picker"></div>
-      </div>  
+      @touchstart="handleChange"
+    >
+      <div
+        role="CurrentHuePointer"
+        class="vc-hue-pointer"
+        :style="{top: pointerTop, left: pointerLeft}"
+      >
+        <div class="vc-hue-picker" />
+      </div>
     </div>
   </div>
 </template>
@@ -15,7 +25,7 @@
 export default {
   name: 'Hue',
   props: {
-    value: Object,
+    colors: Object,
     direction: {
       type: String,
       // [horizontal | vertical]
@@ -29,14 +39,6 @@ export default {
     }
   },
   computed: {
-    colors () {
-      const h = this.value.hsl.h
-      if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
-      if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
-      this.oldHue = h
-
-      return this.value
-    },
     directionClass () {
       return {
         'vc-hue--horizontal': this.direction === 'horizontal',
@@ -58,6 +60,15 @@ export default {
         if (this.colors.hsl.h === 0 && this.pullDirection === 'right') return '100%'
         return (this.colors.hsl.h * 100) / 360 + '%'
       }
+    }
+  },
+
+  watch: {
+    colors () {
+      const h = this.colors.hsl.h
+      if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
+      if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
+      this.oldHue = h
     }
   },
   methods: {
@@ -123,7 +134,7 @@ export default {
       window.addEventListener('mousemove', this.handleChange)
       window.addEventListener('mouseup', this.handleMouseUp)
     },
-    handleMouseUp (e) {
+    handleMouseUp (/*e*/) {
       this.unbindEventListeners()
     },
     unbindEventListeners () {

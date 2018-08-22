@@ -1,8 +1,17 @@
 <template>
   <div id="app">
-    <a class="github-fork-ribbon" href="https://github.com/xiaokaike/vue-color" title="Fork me on GitHub">Fork me on GitHub</a>
+    <a
+      class="github-fork-ribbon"
+      href="https://github.com/xiaokaike/vue-color"
+      title="Fork me on GitHub"
+    >
+      Fork me on GitHub
+    </a>
     <div class="header-container">
-      <div class="header-bg" :style="{'background-color': bgc}"></div>
+      <div
+        class="header-bg"
+        :style="{'background-color': bgc}"
+      />
       <div class="header">
         <div class="intro-wrap">
           <div class="intro">
@@ -11,7 +20,10 @@
           </div>
         </div>
         <div class="demo-item">
-          <chrome-picker :value="colors" @input="updateValue"></chrome-picker>
+          <chrome-picker
+            :color="color"
+            @input="updateValue"
+          />
           <h2>Chrome</h2>
         </div>
       </div>
@@ -20,35 +32,35 @@
     <div class="demo-container">
       <div class="demo-list">
         <div class="demo-item">
-          <sketch-picker v-model="colors"></sketch-picker>
+          <!-- <sketch-picker v-model="colors"></sketch-picker> -->
           <h2>Sketch</h2>
         </div>
         <div class="demo-item">
-          <photoshop-picker v-model="colors" @ok="onOk" @cancel="onCancel"></photoshop-picker>
+          <!-- <photoshop-picker v-model="colors" @ok="onOk" @cancel="onCancel"></photoshop-picker> -->
           <h2>Photoshop</h2>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <material-picker v-model="colors"></material-picker>
+          <!-- <material-picker v-model="colors"></material-picker> -->
           <h2>Material</h2>
         </div>
         <div class="demo-item">
-          <slider-picker v-model="colors"></slider-picker>
+          <!-- <slider-picker v-model="colors"></slider-picker> -->
           <h2>Slider</h2>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <compact-picker v-model="colors"></compact-picker>
+          <!-- <compact-picker v-model="colors"></compact-picker> -->
           <h2>Compact</h2>
           <br>
           <br>
-          <grayscale-picker :value="colors" @input="updateValue"></grayscale-picker>
+          <!-- <grayscale-picker :value="colors" @input="updateValue"></grayscale-picker> -->
           <h2>Grayscale</h2>
         </div>
         <div class="demo-item">
-          <swatches-picker v-model="colors"></swatches-picker>
+          <!-- <swatches-picker v-model="colors"></swatches-picker> -->
           <h2>Swatches</h2>
         </div>
       </div>
@@ -57,14 +69,14 @@
 </template>
 
 <script>
-import material from '../src/components/Material.vue'
-import compact from '../src/components/Compact.vue'
-import grayscale from '../src/components/Grayscale.vue'
-import swatches from '../src/components/Swatches.vue'
-import slider from '../src/components/Slider.vue'
-import sketch from '../src/components/Sketch.vue'
+// import material from '../src/components/Material.vue'
+// import compact from '../src/components/Compact.vue'
+// import grayscale from '../src/components/Grayscale.vue'
+// import swatches from '../src/components/Swatches.vue'
+// import slider from '../src/components/Slider.vue'
+// import sketch from '../src/components/Sketch.vue'
 import chrome from '../src/components/Chrome.vue'
-import photoshop from '../src/components/Photoshop.vue'
+// import photoshop from '../src/components/Photoshop.vue'
 
 let defaultProps = {
   hex: '#194d33e6',
@@ -91,23 +103,23 @@ let defaultProps = {
 
 export default {
   components: {
-    'material-picker': material,
-    'compact-picker': compact,
-    'grayscale-picker': grayscale,
-    'swatches-picker': swatches,
-    'slider-picker': slider,
-    'sketch-picker': sketch,
+    // 'material-picker': material,
+    // 'compact-picker': compact,
+    // 'grayscale-picker': grayscale,
+    // 'swatches-picker': swatches,
+    // 'slider-picker': slider,
+    // 'sketch-picker': sketch,
     'chrome-picker': chrome,
-    'photoshop-picker': photoshop
+    // 'photoshop-picker': photoshop
   },
   data () {
     return {
-      colors: defaultProps
+      color: defaultProps
     }
   },
   computed: {
     bgc () {
-      return this.colors.hex
+      return this.color.hex
     }
   },
   methods: {
@@ -118,11 +130,9 @@ export default {
       console.log('cancel')
     },
     updateValue (value) {
-      this.colors = value
+      this.color = value
     }
   },
-  created () {
-  }
 }
 </script>
 

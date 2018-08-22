@@ -1,7 +1,7 @@
 <template>
   <div role="CompactColorPicker" class="vc-compact">
     <ul class="vc-compact-colors" role="option">
-      <li 
+      <li
         class="vc-compact-color-item"
         v-for="c in paletteUpperCase(palette)"
         :key="c"
@@ -90,7 +90,7 @@ export default {
 .vc-compact-color-item--white .vc-compact-dot {
   background: #000;
 }
-  
+
 .vc-compact-dot {
   position: absolute;
   top: 5px;

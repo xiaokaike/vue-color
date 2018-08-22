@@ -1,14 +1,21 @@
 <template>
-  <div role="SaturationPanel" class="vc-saturation"
-    :style="{background: bgColor}"
+  <div
     ref="container"
+    role="SaturationPanel"
+    class="vc-saturation"
+    :style="{background: bgColor}"
     @mousedown="handleMouseDown"
     @touchmove="handleChange"
-    @touchstart="handleChange">
-    <div class="vc-saturation--white"></div>
-    <div class="vc-saturation--black"></div>
-    <div role="CurrentSaturationPointer" class="vc-saturation-pointer" :style="{top: pointerTop, left: pointerLeft}">
-      <div class="vc-saturation-circle"></div>
+    @touchstart="handleChange"
+  >
+    <div class="vc-saturation--white" />
+    <div class="vc-saturation--black" />
+    <div
+      role="CurrentSaturationPointer"
+      class="vc-saturation-pointer"
+      :style="{top: pointerTop, left: pointerLeft}"
+    >
+      <div class="vc-saturation-circle" />
     </div>
   </div>
 </template>
@@ -19,12 +26,9 @@ import throttle from 'lodash.throttle'
 export default {
   name: 'Saturation',
   props: {
-    value: Object
+    colors: Object
   },
   computed: {
-    colors () {
-      return this.value
-    },
     bgColor () {
       return `hsl(${this.colors.hsv.h}, 100%, 50%)`
     },
@@ -83,13 +87,13 @@ export default {
     onChange (param) {
       this.$emit('change', param)
     },
-    handleMouseDown (e) {
+    handleMouseDown (/*e*/) {
       // this.handleChange(e, true)
       window.addEventListener('mousemove', this.handleChange)
       window.addEventListener('mouseup', this.handleChange)
       window.addEventListener('mouseup', this.handleMouseUp)
     },
-    handleMouseUp (e) {
+    handleMouseUp (/*e*/) {
       this.unbindEventListeners()
     },
     unbindEventListeners () {
