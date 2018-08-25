@@ -77,7 +77,10 @@
           <h2>Grayscale</h2>
         </div>
         <div class="demo-item">
-          <!-- <swatches-picker v-model="color"></swatches-picker> -->
+          <swatches-picker
+            :color="color"
+            @change="updateValue"
+          />
           <h2>Swatches</h2>
         </div>
       </div>
@@ -89,7 +92,7 @@
 import material from '../src/components/Material.vue'
 import compact from '../src/components/Compact.vue'
 // import grayscale from '../src/components/Grayscale.vue'
-// import swatches from '../src/components/Swatches.vue'
+import swatches from '../src/components/Swatches.vue'
 import slider from '../src/components/Slider.vue'
 import sketch from '../src/components/Sketch.vue'
 import chrome from '../src/components/Chrome.vue'
@@ -123,7 +126,7 @@ export default {
     'material-picker': material,
     'compact-picker': compact,
     // 'grayscale-picker': grayscale,
-    // 'swatches-picker': swatches,
+    'swatches-picker': swatches,
     'slider-picker': slider,
     'sketch-picker': sketch,
     'chrome-picker': chrome,
