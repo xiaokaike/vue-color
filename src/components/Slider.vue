@@ -5,7 +5,7 @@
   >
     <div class="vc-slider-hue-warp">
       <hue
-        :colors="colors"
+        :color="tc"
         @change="hueChange"
       />
     </div>
@@ -22,9 +22,9 @@
       >
         <div
           class="vc-slider-swatch-picker"
-          :aria-label="'color:' + 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'"
+          :aria-label="'color:' + 'hsl(' + tc.hsl.h + ', 50%, ' + (offset * 100) + '%)'"
           :class="{'vc-slider-swatch-picker--active': offset == activeOffset, 'vc-slider-swatch-picker--white': offset === '1'}"
-          :style="{background: 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
+          :style="{background: 'hsl(' + tc.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
         />
       </div>
     </div>
@@ -50,10 +50,13 @@ export default {
     }
   },
   computed: {
+    hsl () {
+      return this.tc.hsl;
+    },
     activeOffset () {
       const hasBlack = this.swatches.includes('0')
       const hasWhite = this.swatches.includes('1')
-      const hsl = this.colors.hsl
+      const hsl = this.hsl;
 
       if (Math.round(hsl.s * 100) / 100 === 0.50) {
         return Math.round(hsl.l * 100) / 100
@@ -71,7 +74,7 @@ export default {
     },
     handleSwClick (index, offset) {
       this.colorChange({
-        h: this.colors.hsl.h,
+        h: this.hsl.h,
         s: 0.5,
         l: offset,
         source: 'hsl'

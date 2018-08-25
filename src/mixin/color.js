@@ -52,9 +52,17 @@ function _colorChange (data, oldHue) {
 }
 
 export default {
-  props: ['color'],
+  props: {
+    color: {
+      type: [String, Object],
+      required: true,
+      default: '#fff',
+      validator: color => tinycolor(color).isValid
+    }
+  },
   computed: {
-    colors: {
+    // `tc` stands for tinycolor
+    tc: {
       get () {
         return _colorChange(this.color)
       },
@@ -65,30 +73,11 @@ export default {
   },
   methods: {
     colorChange (data, oldHue) {
-      this.oldHue = this.colors.hsl.h
-      this.colors = _colorChange(data, oldHue || this.oldHue)
+      this.oldHue = this.tc.hsl.h
+      this.tc = _colorChange(data, oldHue || this.oldHue)
     },
     isValidHex (hex) {
       return tinycolor(hex).isValid()
-    },
-    simpleCheckForValidColor (data) {
-      var keysToCheck = ['r', 'g', 'b', 'a', 'h', 's', 'l', 'v']
-      var checked = 0
-      var passed = 0
-
-      for (var i = 0; i < keysToCheck.length; i++) {
-        var letter = keysToCheck[i]
-        if (data[letter]) {
-          checked++
-          if (!isNaN(data[letter])) {
-            passed++
-          }
-        }
-      }
-
-      if (checked === passed) {
-        return data
-      }
     },
     paletteUpperCase (palette) {
       return palette.map(c => c.toUpperCase())

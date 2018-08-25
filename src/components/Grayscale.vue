@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     pick () {
-      return this.colors.hex.toUpperCase()
+      return this.tc.hex.toUpperCase()
     }
   },
   methods: {
