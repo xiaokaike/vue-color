@@ -66,7 +66,10 @@
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <!-- <compact-picker v-model="color"></compact-picker> -->
+          <compact-picker
+            :color="color"
+            @change="updateValue"
+          />
           <h2>Compact</h2>
           <br>
           <br>
@@ -84,7 +87,7 @@
 
 <script>
 import material from '../src/components/Material.vue'
-// import compact from '../src/components/Compact.vue'
+import compact from '../src/components/Compact.vue'
 // import grayscale from '../src/components/Grayscale.vue'
 // import swatches from '../src/components/Swatches.vue'
 import slider from '../src/components/Slider.vue'
@@ -118,7 +121,7 @@ let defaultProps = {
 export default {
   components: {
     'material-picker': material,
-    // 'compact-picker': compact,
+    'compact-picker': compact,
     // 'grayscale-picker': grayscale,
     // 'swatches-picker': swatches,
     'slider-picker': slider,
