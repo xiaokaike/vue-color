@@ -50,7 +50,7 @@
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <!-- <material-picker v-model="colors"></material-picker> -->
+          <material-picker :color="color" />
           <h2>Material</h2>
         </div>
         <div class="demo-item">
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-// import material from '../src/components/Material.vue'
+import material from '../src/components/Material.vue'
 // import compact from '../src/components/Compact.vue'
 // import grayscale from '../src/components/Grayscale.vue'
 // import swatches from '../src/components/Swatches.vue'
@@ -111,7 +111,7 @@ let defaultProps = {
 
 export default {
   components: {
-    // 'material-picker': material,
+    'material-picker': material,
     // 'compact-picker': compact,
     // 'grayscale-picker': grayscale,
     // 'swatches-picker': swatches,

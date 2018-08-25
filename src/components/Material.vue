@@ -1,20 +1,37 @@
 <template>
-  <div role="MaterialColorPicker" class="vc-material">
-    <ed-in class="vc-material-hex" label="hex" v-model="colors.hex"
-      :style="{ borderColor: colors.hex }" @change="onChange"></ed-in>
+  <div
+    role="MaterialColorPicker"
+    class="vc-material"
+  >
+    <ed-in
+      class="vc-material-hex"
+      label="hex"
+      :style="{ borderColor: colors.hex }"
+      :value="colors.hex"
+      @change="onChange"
+    />
 
     <div class="vc-material-split">
       <div class="vc-material-third">
-        <ed-in label="r" v-model="colors.rgba.r"
-        @change="onChange"></ed-in>
+        <ed-in
+          label="r"
+          :value="colors.rgba.r"
+          @change="onChange"
+        />
       </div>
       <div class="vc-material-third">
-        <ed-in label="g" v-model="colors.rgba.g"
-        @change="onChange"></ed-in>
+        <ed-in
+          label="g"
+          :value="colors.rgba.g"
+          @change="onChange"
+        />
       </div>
       <div class="vc-material-third">
-        <ed-in label="b" v-model="colors.rgba.b"
-        @change="onChange"></ed-in>
+        <ed-in
+          label="b"
+          :value="colors.rgba.b"
+          @change="onChange"
+        />
       </div>
     </div>
   </div>
@@ -26,10 +43,10 @@ import colorMixin from '../mixin/color'
 
 export default {
   name: 'Material',
-  mixins: [colorMixin],
   components: {
     'ed-in': editableInput
   },
+  mixins: [colorMixin],
   methods: {
     onChange (data) {
       if (!data) {
