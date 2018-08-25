@@ -142,15 +142,23 @@ export default {
   },
   computed: {
     bgc () {
-      return this.color.hex
+      if (this.color.hex8) {
+        return this.color.hex8;
+      } else if (this.color.hex) {
+        return this.color.hex
+      } else {
+        return this.color;
+      }
     }
   },
   methods: {
     onOk () {
+      /* eslint-disable*/
       console.log('ok')
     },
     onCancel () {
       console.log('cancel')
+      /* eslint-enable*/
     },
     updateValue (value) {
       this.color = value
