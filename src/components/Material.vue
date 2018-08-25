@@ -1,20 +1,37 @@
 <template>
-  <div class="vc-material">
-    <ed-in class="vc-material-hex" label="hex" :value="$data._color.hex"
-      :style="{ borderColor: $data._color.hex }" @change="onChange"></ed-in>
+  <div
+    role="MaterialColorPicker"
+    class="vc-material"
+  >
+    <ed-in
+      class="vc-material-hex"
+      label="hex"
+      :style="{ borderColor: colors.hex }"
+      :value="colors.hex"
+      @change="onChange"
+    />
 
     <div class="vc-material-split">
       <div class="vc-material-third">
-        <ed-in label="r" :value="$data._color.rgba.r"
-        @change="onChange"></ed-in>
+        <ed-in
+          label="r"
+          :value="colors.rgba.r"
+          @change="onChange"
+        />
       </div>
       <div class="vc-material-third">
-        <ed-in label="g" :value="$data._color.rgba.g"
-        @change="onChange"></ed-in>
+        <ed-in
+          label="g"
+          :value="colors.rgba.g"
+          @change="onChange"
+        />
       </div>
       <div class="vc-material-third">
-        <ed-in label="b" :value="$data._color.rgba.b"
-        @change="onChange"></ed-in>
+        <ed-in
+          label="b"
+          :value="colors.rgba.b"
+          @change="onChange"
+        />
       </div>
     </div>
   </div>
@@ -26,10 +43,10 @@ import colorMixin from '../mixin/color'
 
 export default {
   name: 'Material',
-  mixins: [colorMixin],
   components: {
     'ed-in': editableInput
   },
+  mixins: [colorMixin],
   methods: {
     onChange (data) {
       if (!data) {
@@ -42,10 +59,10 @@ export default {
         })
       } else if (data.r || data.g || data.b) {
         this.colorChange({
-          r: data.r || this.$data._color.rgba.r,
-          g: data.g || this.$data._color.rgba.g,
-          b: data.b || this.$data._color.rgba.b,
-          a: data.a || this.$data._color.rgba.a,
+          r: data.r || this.colors.rgba.r,
+          g: data.g || this.colors.rgba.g,
+          b: data.b || this.colors.rgba.b,
+          a: data.a || this.colors.rgba.a,
           source: 'rgba'
         })
       }

@@ -1,14 +1,35 @@
 <template>
-  <div class="vc-swatches" :data-pick="pick">
-    <div class="vc-swatches-box">
-      <div class="vc-swatches-color-group" v-for="(group, $idx) in palette" :key="$idx">
-        <div :class="['vc-swatches-color-it', {'vc-swatches-color--white': c === '#FFFFFF' }]"
-          v-for="c in group" :key="c"
+  <div
+    role="SwatchesColorPicker"
+    class="vc-swatches"
+    :data-pick="pick"
+  >
+    <div
+      role="group"
+      class="vc-swatches-box"
+    >
+      <div
+        v-for="(group, $idx) in palette"
+        :key="$idx"
+        class="vc-swatches-color-group"
+      >
+        <div
+          v-for="c in group"
+          :key="c"
+          :aria-label="'Color:' + c"
+          :class="['vc-swatches-color-it', {'vc-swatches-color--white': c === '#FFFFFF' }]"
           :data-color="c"
           :style="{background: c}"
-          @click="handlerClick(c)">
-          <div class="vc-swatches-pick" v-show="equal(c)">
-            <svg style="width: 24px; height:24px;" viewBox="0 0 24 24">
+          @click="handlerClick(c)"
+        >
+          <div
+            v-show="equal(c)"
+            class="vc-swatches-pick"
+          >
+            <svg
+              style="width: 24px; height:24px;"
+              viewBox="0 0 24 24"
+            >
               <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
             </svg>
           </div>
@@ -116,7 +137,7 @@ export default {
 .vc-swatches-pick {
   fill: rgb(255, 255, 255);
   margin-left: 8px;
-  display: block; 
+  display: block;
 }
 .vc-swatches-color--white .vc-swatches-pick {
   fill: rgb(51, 51, 51);

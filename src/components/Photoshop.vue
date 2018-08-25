@@ -1,14 +1,25 @@
 <template>
-  <div :class="['vc-photoshop', disableFields ? 'vc-photoshop__disable-fields' : '']">
-    <div class="vc-ps-head">{{head}}</div>
+  <div
+    role="PhotoShopColorPicker"
+    :class="['vc-photoshop', disableFields ? 'vc-photoshop__disable-fields' : '']"
+  >
+    <div class="vc-ps-head">{{ head }}</div>
     <div class="vc-ps-body">
       <div class="vc-ps-saturation-wrap">
-        <saturation :color="$data._color" @change="childChange"></saturation>
+        <saturation
+          :colors="colors"
+          @change="childChange"
+        />
       </div>
       <div class="vc-ps-hue-wrap">
-        <hue :color="$data._color" @change="childChange" direction="vertical">
+        <hue
+          :colors="colors"
+          direction="vertical"
+          @change="childChange"
+        >
           <div class="vc-ps-hue-pointer">
-            <i class="vc-ps-hue-pointer--left"></i><i class="vc-ps-hue-pointer--right"></i>
+            <i class="vc-ps-hue-pointer--left" />
+            <i class="vc-ps-hue-pointer--right" />
           </div>
         </hue>
       </div>
@@ -16,29 +27,98 @@
         <div class="vc-ps-previews">
           <div class="vc-ps-previews__label">new</div>
           <div class="vc-ps-previews__swatches">
-            <div class="vc-ps-previews__pr-color" :style="{background: $data._color.hex}"></div>
-            <div class="vc-ps-previews__pr-color" :style="{background: currentColor}" @click="clickCurrentColor"></div>
+            <div
+              class="vc-ps-previews__pr-color"
+              :aria-label="'NewColor:' + colors.hex"
+              :style="{background: colors.hex}"
+            />
+            <div
+              class="vc-ps-previews__pr-color"
+              :aria-label="'CurrentColor:' + currentColor"
+              :style="{background: currentColor}"
+              @click="clickCurrentColor"
+            />
           </div>
           <div class="vc-ps-previews__label">current</div>
         </div>
-        <div class="vc-ps-actions" v-if="!disableFields">
-          <div class="vc-ps-ac-btn" @click="handleAccept">OK</div>
-          <div class="vc-ps-ac-btn" @click="handleCancel">Cancel</div>
-          <div class="vc-ps-fields">
-            <!-- hsla -->
-            <ed-in label="h" desc="°" :value="hsv.h" @change="inputChange"></ed-in>
-            <ed-in label="s" desc="%" :value="hsv.s" :max="100" @change="inputChange"></ed-in>
-            <ed-in label="v" desc="%" :value="hsv.v" :max="100" @change="inputChange"></ed-in>
-            <div class="vc-ps-fields__divider"></div>
-            <!-- rgba -->
-            <ed-in label="r" :value="$data._color.rgba.r" @change="inputChange"></ed-in>
-            <ed-in label="g" :value="$data._color.rgba.g" @change="inputChange"></ed-in>
-            <ed-in label="b" :value="$data._color.rgba.b" @change="inputChange"></ed-in>
-            <div class="vc-ps-fields__divider"></div>
-            <!-- hex -->
-            <ed-in label="#" class="vc-ps-fields__hex" :value="hex" @change="inputChange"></ed-in>
+        <div
+          v-if="!disableFields"
+          class="vc-ps-actions"
+        >
+          <div
+            class="vc-ps-ac-btn"
+            role="button"
+            aria-label="Confirm"
+            @click="handleAccept"
+          >
+            {{ acceptLabel }}
+          </div>
+          <div
+            class="vc-ps-ac-btn"
+            role="button"
+            aria-label="Cancel"
+            @click="handleCancel"
+          >
+            {{ cancelLabel }}
           </div>
 
+          <div class="vc-ps-fields">
+            <!-- hsla -->
+            <ed-in
+              label="h"
+              desc="°"
+              :value="hsv.h"
+              @change="inputChange"
+            />
+            <ed-in
+              label="s"
+              desc="%"
+              :value="hsv.s"
+              :max="100"
+              @change="inputChange"
+            />
+            <ed-in
+              label="v"
+              desc="%"
+              :value="hsv.v"
+              :max="100"
+              @change="inputChange"
+            />
+            <div class="vc-ps-fields__divider" />
+            <!-- rgba -->
+            <ed-in
+              label="r"
+              :value="colors.rgba.r"
+              @change="inputChange"
+            />
+            <ed-in
+              label="g"
+              :value="colors.rgba.g"
+              @change="inputChange"
+            />
+            <ed-in
+              label="b"
+              :value="colors.rgba.b"
+              @change="inputChange"
+            />
+            <div class="vc-ps-fields__divider" />
+            <!-- hex -->
+            <ed-in
+              label="#"
+              class="vc-ps-fields__hex"
+              :value="hex"
+              @change="inputChange"
+            />
+          </div>
+
+          <div
+            v-if="hasResetButton"
+            class="vc-ps-ac-btn"
+            aria-label="reset"
+            @click="handleReset"
+          >
+            {{ resetLabel }}
+          </div>
         </div>
       </div>
     </div>
@@ -50,10 +130,14 @@ import colorMixin from '../mixin/color'
 import editableInput from './common/EditableInput.vue'
 import saturation from './common/Saturation.vue'
 import hue from './common/Hue.vue'
-import alpha from './common/Alpha.vue'
 
 export default {
   name: 'Photoshop',
+  components: {
+    saturation,
+    hue,
+    'ed-in': editableInput
+  },
   mixins: [colorMixin],
   props: {
     head: {
@@ -63,13 +147,23 @@ export default {
     disableFields: {
       type: Boolean,
       default: false
+    },
+    hasResetButton: {
+      type: Boolean,
+      default: false
+    },
+    acceptLabel: {
+      type: String,
+      default: 'OK'
+    },
+    cancelLabel: {
+      type: String,
+      default: 'Cancel'
+    },
+    resetLabel: {
+      type: String,
+      default: 'Reset'
     }
-  },
-  components: {
-    saturation,
-    hue,
-    alpha,
-    'ed-in': editableInput
   },
   data () {
     return {
@@ -78,7 +172,7 @@ export default {
   },
   computed: {
     hsv () {
-      const hsv = this.$data._color.hsv
+      const hsv = this.colors.hsv
       return {
         h: hsv.h.toFixed(),
         s: (hsv.s * 100).toFixed(),
@@ -86,12 +180,12 @@ export default {
       }
     },
     hex () {
-      const hex = this.$data._color.hex
+      const hex = this.colors.hex
       return hex && hex.replace('#', '')
     }
   },
   created () {
-    this.currentColor = this.$data._color.hex
+    this.currentColor = this.colors.hex
   },
   methods: {
     childChange (data) {
@@ -108,17 +202,17 @@ export default {
         })
       } else if (data.r || data.g || data.b || data.a) {
         this.colorChange({
-          r: data.r || this.$data._color.rgba.r,
-          g: data.g || this.$data._color.rgba.g,
-          b: data.b || this.$data._color.rgba.b,
-          a: data.a || this.$data._color.rgba.a,
+          r: data.r || this.colors.rgba.r,
+          g: data.g || this.colors.rgba.g,
+          b: data.b || this.colors.rgba.b,
+          a: data.a || this.colors.rgba.a,
           source: 'rgba'
         })
       } else if (data.h || data.s || data.v) {
         this.colorChange({
-          h: data.h || this.$data._color.hsv.h,
-          s: (data.s / 100) || this.$data._color.hsv.s,
-          v: (data.v / 100) || this.$data._color.hsv.v,
+          h: data.h || this.colors.hsv.h,
+          s: (data.s / 100) || this.colors.hsv.s,
+          v: (data.v / 100) || this.colors.hsv.v,
           source: 'hsv'
         })
       }
@@ -134,6 +228,9 @@ export default {
     },
     handleCancel () {
       this.$emit('cancel')
+    },
+    handleReset () {
+      this.$emit('reset')
     }
   }
 

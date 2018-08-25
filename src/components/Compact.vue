@@ -1,11 +1,25 @@
 <template>
-  <div class="vc-compact">
-    <ul class="vc-compact-colors">
-      <li class="vc-compact-color-item" v-for="c in palette" :key="c"
-        @click="handlerClick(c)"
+  <div
+    role="CompactColorPicker"
+    class="vc-compact"
+  >
+    <ul
+      role="option"
+      class="vc-compact-colors"
+    >
+      <li
+        v-for="c in paletteUpperCase(palette)"
+        :key="c"
+        :aria-label="'Color:' + c"
+        class="vc-compact-color-item"
         :class="{'vc-compact-color-item--white': c === '#FFFFFF' }"
-        :style="{background: c}">
-        <div class="vc-compact-dot" v-show="c === pick"></div>
+        :style="{background: c}"
+        @click="handlerClick(c)"
+      >
+        <div
+          v-show="c === pick"
+          class="vc-compact-dot"
+        />
       </li>
     </ul>
   </div>
@@ -13,7 +27,6 @@
 
 <script>
 import colorMixin from '../mixin/color'
-import editableInput from './common/EditableInput.vue'
 
 const defaultColors = [
   '#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FCDC00',
@@ -35,12 +48,9 @@ export default {
       }
     }
   },
-  components: {
-    'ed-in': editableInput
-  },
   computed: {
     pick () {
-      return this.$data._color.hex
+      return this.colors.hex.toUpperCase()
     }
   },
   methods: {
@@ -85,7 +95,7 @@ export default {
 .vc-compact-color-item--white .vc-compact-dot {
   background: #000;
 }
-  
+
 .vc-compact-dot {
   position: absolute;
   top: 5px;

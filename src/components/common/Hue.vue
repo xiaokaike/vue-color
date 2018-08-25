@@ -1,12 +1,22 @@
 <template>
-  <div :class="['vc-hue', directionClass]">
-    <div class="vc-hue-container" ref="container"
+  <div
+    role="HuePanel"
+    :class="['vc-hue', directionClass]"
+  >
+    <div
+      ref="container"
+      class="vc-hue-container"
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
-      @touchstart="handleChange">
-      <div class="vc-hue-pointer" :style="{top: pointerTop, left: pointerLeft}">
-        <div class="vc-hue-picker"></div>
-      </div>  
+      @touchstart="handleChange"
+    >
+      <div
+        role="CurrentHuePointer"
+        class="vc-hue-pointer"
+        :style="{top: pointerTop, left: pointerLeft}"
+      >
+        <div class="vc-hue-picker" />
+      </div>
     </div>
   </div>
 </template>
@@ -15,7 +25,7 @@
 export default {
   name: 'Hue',
   props: {
-    color: Object,
+    colors: Object,
     direction: {
       type: String,
       // [horizontal | vertical]
@@ -28,14 +38,6 @@ export default {
       pullDirection: ''
     }
   },
-  watch: {
-    color () {
-      const h = this.color.hsl.h
-      if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
-      if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
-      this.oldHue = h
-    }
-  },
   computed: {
     directionClass () {
       return {
@@ -45,8 +47,8 @@ export default {
     },
     pointerTop () {
       if (this.direction === 'vertical') {
-        if (this.color.hsl.h === 0 && this.pullDirection === 'right') return 0
-        return -((this.color.hsl.h * 100) / 360) + 100 + '%'
+        if (this.colors.hsl.h === 0 && this.pullDirection === 'right') return 0
+        return -((this.colors.hsl.h * 100) / 360) + 100 + '%'
       } else {
         return 0
       }
@@ -55,9 +57,18 @@ export default {
       if (this.direction === 'vertical') {
         return 0
       } else {
-        if (this.color.hsl.h === 0 && this.pullDirection === 'right') return '100%'
-        return (this.color.hsl.h * 100) / 360 + '%'
+        if (this.colors.hsl.h === 0 && this.pullDirection === 'right') return '100%'
+        return (this.colors.hsl.h * 100) / 360 + '%'
       }
+    }
+  },
+
+  watch: {
+    colors () {
+      const h = this.colors.hsl.h
+      if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
+      if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
+      this.oldHue = h
     }
   },
   methods: {
@@ -88,12 +99,12 @@ export default {
           h = (360 * percent / 100)
         }
 
-        if (this.color.hsl.h !== h) {
+        if (this.colors.hsl.h !== h) {
           this.$emit('change', {
             h: h,
-            s: this.color.hsl.s,
-            l: this.color.hsl.l,
-            a: this.color.hsl.a,
+            s: this.colors.hsl.s,
+            l: this.colors.hsl.l,
+            a: this.colors.hsl.a,
             source: 'hsl'
           })
         }
@@ -107,12 +118,12 @@ export default {
           h = (360 * percent / 100)
         }
 
-        if (this.color.hsl.h !== h) {
+        if (this.colors.hsl.h !== h) {
           this.$emit('change', {
             h: h,
-            s: this.color.hsl.s,
-            l: this.color.hsl.l,
-            a: this.color.hsl.a,
+            s: this.colors.hsl.s,
+            l: this.colors.hsl.l,
+            a: this.colors.hsl.a,
             source: 'hsl'
           })
         }
@@ -123,7 +134,7 @@ export default {
       window.addEventListener('mousemove', this.handleChange)
       window.addEventListener('mouseup', this.handleMouseUp)
     },
-    handleMouseUp (e) {
+    handleMouseUp (/*e*/) {
       this.unbindEventListeners()
     },
     unbindEventListeners () {

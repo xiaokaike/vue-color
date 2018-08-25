@@ -42,6 +42,7 @@ function _colorChange (data, oldHue) {
   return {
     hsl: hsl,
     hex: color.toHexString().toUpperCase(),
+    hex8: color.toHex8String().toUpperCase(),
     rgba: color.toRgb(),
     hsv: hsv,
     oldHue: data.h || oldHue || hsl.h,
@@ -51,30 +52,21 @@ function _colorChange (data, oldHue) {
 }
 
 export default {
-  props: {
-    color: {
-      type: [String, Object],
-      default () {
-        return '#194d33'
+  props: ['color'],
+  computed: {
+    colors: {
+      get () {
+        return _colorChange(this.color)
+      },
+      set (color) {
+        this.$emit('change', color)
       }
-    }
-  },
-  data () {
-    const _color = _colorChange(this.color)
-    return {
-      _color
-    }
-  },
-  watch: {
-    color () {
-      this.$data._color = _colorChange(this.color)
     }
   },
   methods: {
     colorChange (data, oldHue) {
-      this.oldHue = this.$data._color.hsl.h
-      this.$data._color = _colorChange(data, oldHue || this.oldHue)
-      this.$emit('change', this.$data._color)
+      this.oldHue = this.colors.hsl.h
+      this.colors = _colorChange(data, oldHue || this.oldHue)
     },
     isValidHex (hex) {
       return tinycolor(hex).isValid()
@@ -97,6 +89,12 @@ export default {
       if (checked === passed) {
         return data
       }
+    },
+    paletteUpperCase (palette) {
+      return palette.map(c => c.toUpperCase())
+    },
+    isTransparent (color) {
+      return tinycolor(color).getAlpha() === 0
     }
   }
 }

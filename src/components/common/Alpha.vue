@@ -1,15 +1,28 @@
 <template>
-  <div class="vc-alpha">
+  <div
+    role="HuePanel"
+    class="vc-alpha"
+  >
     <div class="vc-alpha-checkboard-wrap">
-      <checkboard></checkboard>
+      <checkboard />
     </div>
-    <div class="vc-alpha-gradient" :style="{background: gradientColor}"></div>
-    <div class="vc-alpha-container" ref="container"
-        @mousedown="handleMouseDown"
-        @touchmove="handleChange"
-        @touchstart="handleChange">
-      <div class="vc-alpha-pointer" :style="{left: color.a * 100 + '%'}">
-        <div class="vc-alpha-picker"></div>
+    <div
+      class="vc-alpha-gradient"
+      :style="{background: gradientColor}"
+    />
+    <div
+      ref="container"
+      class="vc-alpha-container"
+      @mousedown="handleMouseDown"
+      @touchmove="handleChange"
+      @touchstart="handleChange"
+    >
+      <div
+        role="CurrentAlphaPointer"
+        class="vc-alpha-pointer"
+        :style="{left: colors.a * 100 + '%'}"
+      >
+        <div class="vc-alpha-picker" />
       </div>
     </div>
   </div>
@@ -20,15 +33,16 @@ import checkboard from './Checkboard.vue'
 
 export default {
   name: 'Alpha',
-  props: {
-    color: Object
-  },
   components: {
     checkboard
   },
+  props: {
+    colors: Object,
+    onChange: Function
+  },
   computed: {
     gradientColor () {
-      var rgba = this.color.rgba
+      var rgba = this.colors.rgba
       var rgbStr = [rgba.r, rgba.g, rgba.b].join(',')
       return 'linear-gradient(to right, rgba(' + rgbStr + ', 0) 0%, rgba(' + rgbStr + ', 1) 100%)'
     }
@@ -52,11 +66,11 @@ export default {
         a = Math.round(left * 100 / containerWidth) / 100
       }
 
-      if (this.color.a !== a) {
+      if (this.colors.a !== a) {
         this.$emit('change', {
-          h: this.color.hsl.h,
-          s: this.color.hsl.s,
-          l: this.color.hsl.l,
+          h: this.colors.hsl.h,
+          s: this.colors.hsl.s,
+          l: this.colors.hsl.l,
           a: a,
           source: 'rgba'
         })

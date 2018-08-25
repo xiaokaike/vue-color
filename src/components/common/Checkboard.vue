@@ -1,5 +1,8 @@
 <template>
-  <div class="vc-checkerboard" :style="bgStyle"></div>
+  <div
+    class="vc-checkerboard"
+    :style="bgStyle"
+  />
 </template>
 
 <script>

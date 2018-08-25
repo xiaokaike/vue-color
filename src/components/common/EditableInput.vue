@@ -1,18 +1,24 @@
 <template>
   <div class="vc-editable-input">
-    <input class="vc-input__input"
-      v-model="val"
+    <input
+      ref="input"
+      :aria-label="desc ? label + '(' + desc + ')' : label"
+      class="vc-input__input"
+      :value="val"
       @keydown="handleKeyDown"
-      @input="update"
-      ref="input">
-    <span class="vc-input__label">{{label}}</span>
-    <span class="vc-input__desc">{{desc}}</span>
+      @change="update"
+    >
+    <span
+      :for="label"
+      class="vc-input__label"
+    >{{ label }}</span>
+    <span class="vc-input__desc">{{ desc }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'editableInput',
+  name: 'EditableInput',
   props: {
     label: String,
     desc: String,
@@ -52,9 +58,6 @@ export default {
         this.$emit('change', data)
       }
     },
-    handleBlur (e) {
-      console.log(e)
-    },
     handleKeyDown (e) {
       let val = this.val
       let number = Number(val)
@@ -76,12 +79,6 @@ export default {
           e.preventDefault()
         }
       }
-    },
-    handleDrag (e) {
-      console.log(e)
-    },
-    handleMouseDown (e) {
-      console.log(e)
     }
   }
 }

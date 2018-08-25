@@ -1,14 +1,21 @@
 <template>
-  <div class="vc-saturation"
-    :style="{background: bgColor}"
+  <div
     ref="container"
+    role="SaturationPanel"
+    class="vc-saturation"
+    :style="{background: bgColor}"
     @mousedown="handleMouseDown"
     @touchmove="handleChange"
-    @touchstart="handleChange">
-    <div class="vc-saturation--white"></div>
-    <div class="vc-saturation--black"></div>
-    <div class="vc-saturation-pointer" :style="{top: pointerTop, left: pointerLeft}">
-      <div class="vc-saturation-circle"></div>
+    @touchstart="handleChange"
+  >
+    <div class="vc-saturation--white" />
+    <div class="vc-saturation--black" />
+    <div
+      role="CurrentSaturationPointer"
+      class="vc-saturation-pointer"
+      :style="{top: pointerTop, left: pointerLeft}"
+    >
+      <div class="vc-saturation-circle" />
     </div>
   </div>
 </template>
@@ -19,20 +26,17 @@ import throttle from 'lodash.throttle'
 export default {
   name: 'Saturation',
   props: {
-    color: {
-      type: Object,
-      required: true
-    }
+    colors: Object
   },
   computed: {
     bgColor () {
-      return `hsl(${this.color.hsv.h}, 100%, 50%)`
+      return `hsl(${this.colors.hsv.h}, 100%, 50%)`
     },
     pointerTop () {
-      return (-(this.color.hsv.v * 100) + 1) + 100 + '%'
+      return (-(this.colors.hsv.v * 100) + 1) + 100 + '%'
     },
     pointerLeft () {
-      return this.color.hsv.s * 100 + '%'
+      return this.colors.hsv.s * 100 + '%'
     }
   },
   methods: {
@@ -73,23 +77,23 @@ export default {
       bright = bright > 1 ? 1 : bright
 
       this.throttle(this.onChange, {
-        h: this.color.hsv.h,
+        h: this.colors.hsv.h,
         s: saturation,
         v: bright,
-        a: this.color.hsv.a,
+        a: this.colors.hsv.a,
         source: 'hsva'
       })
     },
     onChange (param) {
       this.$emit('change', param)
     },
-    handleMouseDown (e) {
+    handleMouseDown (/*e*/) {
       // this.handleChange(e, true)
       window.addEventListener('mousemove', this.handleChange)
       window.addEventListener('mouseup', this.handleChange)
       window.addEventListener('mouseup', this.handleMouseUp)
     },
-    handleMouseUp (e) {
+    handleMouseUp (/*e*/) {
       this.unbindEventListeners()
     },
     unbindEventListeners () {
