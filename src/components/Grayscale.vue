@@ -1,6 +1,12 @@
 <template>
-  <div role="GrayscaleColorPicker" class="vc-grayscale">
-    <ul class="vc-grayscale-colors" role="option">
+  <div
+    role="GrayscaleColorPicker"
+    class="vc-grayscale"
+  >
+    <ul
+      role="option"
+      class="vc-grayscale-colors"
+    >
       <li
         v-for="c in paletteUpperCase(palette)"
         :key="c"
@@ -10,7 +16,10 @@
         :style="{background: c}"
         @click="handlerClick(c)"
       >
-        <div class="vc-grayscale-dot" v-show="c === pick"></div>
+        <div
+          v-show="c === pick"
+          class="vc-grayscale-dot"
+        />
       </li>
     </ul>
   </div>
@@ -35,9 +44,6 @@ export default {
         return defaultColors
       }
     }
-  },
-  components: {
-
   },
   computed: {
     pick () {
