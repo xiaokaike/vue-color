@@ -12,6 +12,7 @@
     "dev": "node build/dev-server.js",
     "gh": "npm run example && node build/deploy",
     "lint": "eslint --ext .js,.vue src",
+    "test": "jest",
     "release": "npm run lint && webpack --progress --hide-modules --config  ./build/webpack.release.js && webpack --progress --hide-modules --config  ./build/webpack.release.min.js"
   },
   "repository": {
@@ -25,7 +26,9 @@
     "tinycolor2": "^1.1.2"
   },
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.24",
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-preset-env": "^1.7.0",
@@ -33,6 +36,7 @@
     "chalk": "^2.4.1",
     "css-loader": "^0.28.11",
     "eslint": "^5.4.0",
+    "eslint-plugin-jest": "^21.22.0",
     "eslint-plugin-vue": "^5.0.0-beta.3",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.16.3",
@@ -42,17 +46,37 @@
     "gh-pages": "^1.1.0",
     "html-webpack-plugin": "^3.2.0",
     "http-proxy-middleware": "^0.18.0",
+    "jest": "^23.5.0",
+    "jest-serializer-vue": "^2.0.2",
     "ora": "^1.4.0",
     "shelljs": "^0.8.2",
     "url-loader": "^1.1.1",
     "vue": "^2.5.17",
+    "vue-jest": "^2.6.0",
     "vue-loader": "^13.7.1",
     "vue-style-loader": "^3.1.2",
-    "vue-template-compiler": "^2.5.16",
+    "vue-template-compiler": "^2.5.17",
     "webpack": "^3.11.0",
     "webpack-dev-middleware": "^1.12.2",
     "webpack-hot-middleware": "^2.22.1",
     "webpack-merge": "^4.1.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
+    ]
   },
   "license": "MIT"
 }
