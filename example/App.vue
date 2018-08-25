@@ -50,25 +50,31 @@
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <material-picker :color="color" />
+          <material-picker
+            :color="color"
+            @change="updateValue"
+          />
           <h2>Material</h2>
         </div>
         <div class="demo-item">
-          <!-- <slider-picker v-model="colors"></slider-picker> -->
+          <slider-picker
+            :color="color"
+            @change="updateValue"
+          />
           <h2>Slider</h2>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <!-- <compact-picker v-model="colors"></compact-picker> -->
+          <!-- <compact-picker v-model="color"></compact-picker> -->
           <h2>Compact</h2>
           <br>
           <br>
-          <!-- <grayscale-picker :value="colors" @input="updateValue"></grayscale-picker> -->
+          <!-- <grayscale-picker :value="color" @input="updateValue"></grayscale-picker> -->
           <h2>Grayscale</h2>
         </div>
         <div class="demo-item">
-          <!-- <swatches-picker v-model="colors"></swatches-picker> -->
+          <!-- <swatches-picker v-model="color"></swatches-picker> -->
           <h2>Swatches</h2>
         </div>
       </div>
@@ -81,7 +87,7 @@ import material from '../src/components/Material.vue'
 // import compact from '../src/components/Compact.vue'
 // import grayscale from '../src/components/Grayscale.vue'
 // import swatches from '../src/components/Swatches.vue'
-// import slider from '../src/components/Slider.vue'
+import slider from '../src/components/Slider.vue'
 import sketch from '../src/components/Sketch.vue'
 import chrome from '../src/components/Chrome.vue'
 import photoshop from '../src/components/Photoshop.vue'
@@ -115,7 +121,7 @@ export default {
     // 'compact-picker': compact,
     // 'grayscale-picker': grayscale,
     // 'swatches-picker': swatches,
-    // 'slider-picker': slider,
+    'slider-picker': slider,
     'sketch-picker': sketch,
     'chrome-picker': chrome,
     'photoshop-picker': photoshop
