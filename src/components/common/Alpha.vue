@@ -20,7 +20,7 @@
       <div
         role="CurrentAlphaPointer"
         class="vc-alpha-pointer"
-        :style="{left: colors.a * 100 + '%'}"
+        :style="{left: color.a * 100 + '%'}"
       >
         <div class="vc-alpha-picker" />
       </div>
@@ -37,12 +37,12 @@ export default {
     checkboard
   },
   props: {
-    colors: Object,
+    color: Object,
     onChange: Function
   },
   computed: {
     gradientColor () {
-      var rgba = this.colors.rgba
+      var rgba = this.color.rgba
       var rgbStr = [rgba.r, rgba.g, rgba.b].join(',')
       return 'linear-gradient(to right, rgba(' + rgbStr + ', 0) 0%, rgba(' + rgbStr + ', 1) 100%)'
     }
@@ -66,11 +66,11 @@ export default {
         a = Math.round(left * 100 / containerWidth) / 100
       }
 
-      if (this.colors.a !== a) {
+      if (this.color.a !== a) {
         this.$emit('change', {
-          h: this.colors.hsl.h,
-          s: this.colors.hsl.s,
-          l: this.colors.hsl.l,
+          h: this.color.hsl.h,
+          s: this.color.hsl.s,
+          l: this.color.hsl.l,
           a: a,
           source: 'rgba'
         })

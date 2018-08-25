@@ -5,7 +5,7 @@
   >
     <div class="vc-sketch-saturation-wrap">
       <saturation
-        :colors="colors"
+        :color="tc"
         @change="childChange"
       />
     </div>
@@ -13,7 +13,7 @@
       <div class="vc-sketch-sliders">
         <div class="vc-sketch-hue-wrap">
           <hue
-            :colors="colors"
+            :color="tc"
             @change="childChange"
           />
         </div>
@@ -22,7 +22,7 @@
           class="vc-sketch-alpha-wrap"
         >
           <alpha
-            :colors="colors"
+            :color="tc"
             @change="childChange"
           />
         </div>
@@ -51,21 +51,21 @@
       <div class="vc-sketch-field--single">
         <ed-in
           label="r"
-          :value="colors.rgba.r"
+          :value="tc.rgba.r"
           @change="inputChange"
         />
       </div>
       <div class="vc-sketch-field--single">
         <ed-in
           label="g"
-          :value="colors.rgba.g"
+          :value="tc.rgba.g"
           @change="inputChange"
         />
       </div>
       <div class="vc-sketch-field--single">
         <ed-in
           label="b"
-          :value="colors.rgba.b"
+          :value="tc.rgba.b"
           @change="inputChange"
         />
       </div>
@@ -75,7 +75,7 @@
       >
         <ed-in
           label="a"
-          :value="colors.a"
+          :value="tc.a"
           :arrow-offset="0.01"
           :max="1"
           @change="inputChange"
@@ -153,15 +153,15 @@ export default {
   computed: {
     hex () {
       let hex
-      if (this.colors.a < 1) {
-        hex = this.colors.hex8
+      if (this.tc.a < 1) {
+        hex = this.tc.hex8
       } else {
-        hex = this.colors.hex
+        hex = this.tc.hex
       }
       return hex.replace('#', '')
     },
     activeColor () {
-      var rgba = this.colors.rgba
+      var rgba = this.tc.rgba
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
     }
   },
@@ -186,10 +186,10 @@ export default {
         })
       } else if (data.r || data.g || data.b || data.a) {
         this.colorChange({
-          r: data.r || this.colors.rgba.r,
-          g: data.g || this.colors.rgba.g,
-          b: data.b || this.colors.rgba.b,
-          a: data.a || this.colors.rgba.a,
+          r: data.r || this.tc.rgba.r,
+          g: data.g || this.tc.rgba.g,
+          b: data.b || this.tc.rgba.b,
+          a: data.a || this.tc.rgba.a,
           source: 'rgba'
         })
       }

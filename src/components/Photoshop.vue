@@ -7,13 +7,13 @@
     <div class="vc-ps-body">
       <div class="vc-ps-saturation-wrap">
         <saturation
-          :colors="colors"
+          :color="tc"
           @change="childChange"
         />
       </div>
       <div class="vc-ps-hue-wrap">
         <hue
-          :colors="colors"
+          :color="tc"
           direction="vertical"
           @change="childChange"
         >
@@ -29,8 +29,8 @@
           <div class="vc-ps-previews__swatches">
             <div
               class="vc-ps-previews__pr-color"
-              :aria-label="'NewColor:' + colors.hex"
-              :style="{background: colors.hex}"
+              :aria-label="'NewColor:' + tc.hex"
+              :style="{background: tc.hex}"
             />
             <div
               class="vc-ps-previews__pr-color"
@@ -88,17 +88,17 @@
             <!-- rgba -->
             <ed-in
               label="r"
-              :value="colors.rgba.r"
+              :value="tc.rgba.r"
               @change="inputChange"
             />
             <ed-in
               label="g"
-              :value="colors.rgba.g"
+              :value="tc.rgba.g"
               @change="inputChange"
             />
             <ed-in
               label="b"
-              :value="colors.rgba.b"
+              :value="tc.rgba.b"
               @change="inputChange"
             />
             <div class="vc-ps-fields__divider" />
@@ -172,7 +172,7 @@ export default {
   },
   computed: {
     hsv () {
-      const hsv = this.colors.hsv
+      const hsv = this.tc.hsv
       return {
         h: hsv.h.toFixed(),
         s: (hsv.s * 100).toFixed(),
@@ -180,12 +180,12 @@ export default {
       }
     },
     hex () {
-      const hex = this.colors.hex
+      const hex = this.tc.hex
       return hex && hex.replace('#', '')
     }
   },
   created () {
-    this.currentColor = this.colors.hex
+    this.currentColor = this.tc.hex
   },
   methods: {
     childChange (data) {
@@ -202,17 +202,17 @@ export default {
         })
       } else if (data.r || data.g || data.b || data.a) {
         this.colorChange({
-          r: data.r || this.colors.rgba.r,
-          g: data.g || this.colors.rgba.g,
-          b: data.b || this.colors.rgba.b,
-          a: data.a || this.colors.rgba.a,
+          r: data.r || this.tc.rgba.r,
+          g: data.g || this.tc.rgba.g,
+          b: data.b || this.tc.rgba.b,
+          a: data.a || this.tc.rgba.a,
           source: 'rgba'
         })
       } else if (data.h || data.s || data.v) {
         this.colorChange({
-          h: data.h || this.colors.hsv.h,
-          s: (data.s / 100) || this.colors.hsv.s,
-          v: (data.v / 100) || this.colors.hsv.v,
+          h: data.h || this.tc.hsv.h,
+          s: (data.s / 100) || this.tc.hsv.s,
+          v: (data.v / 100) || this.tc.hsv.v,
           source: 'hsv'
         })
       }

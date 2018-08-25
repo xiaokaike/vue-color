@@ -81,12 +81,12 @@ export default {
   },
   computed: {
     pick () {
-      return this.$data._color.hex
+      return this.tc.hex
     }
   },
   methods: {
     equal (color) {
-      return color.toLowerCase() === this.$data._color.hex.toLowerCase()
+      return color.toLowerCase() === this.tc.hex.toLowerCase()
     },
     handlerClick (c) {
       this.colorChange({

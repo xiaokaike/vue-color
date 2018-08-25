@@ -6,8 +6,8 @@
     <ed-in
       class="vc-material-hex"
       label="hex"
-      :style="{ borderColor: colors.hex }"
-      :value="colors.hex"
+      :style="{ borderColor: tc.hex }"
+      :value="tc.hex"
       @change="onChange"
     />
 
@@ -15,21 +15,21 @@
       <div class="vc-material-third">
         <ed-in
           label="r"
-          :value="colors.rgba.r"
+          :value="tc.rgba.r"
           @change="onChange"
         />
       </div>
       <div class="vc-material-third">
         <ed-in
           label="g"
-          :value="colors.rgba.g"
+          :value="tc.rgba.g"
           @change="onChange"
         />
       </div>
       <div class="vc-material-third">
         <ed-in
           label="b"
-          :value="colors.rgba.b"
+          :value="tc.rgba.b"
           @change="onChange"
         />
       </div>
@@ -59,10 +59,10 @@ export default {
         })
       } else if (data.r || data.g || data.b) {
         this.colorChange({
-          r: data.r || this.colors.rgba.r,
-          g: data.g || this.colors.rgba.g,
-          b: data.b || this.colors.rgba.b,
-          a: data.a || this.colors.rgba.a,
+          r: data.r || this.tc.rgba.r,
+          g: data.g || this.tc.rgba.g,
+          b: data.b || this.tc.rgba.b,
+          a: data.a || this.tc.rgba.a,
           source: 'rgba'
         })
       }

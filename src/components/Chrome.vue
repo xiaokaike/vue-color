@@ -5,7 +5,7 @@
   >
     <div class="vc-chrome-saturation-wrap">
       <saturation
-        :colors="colors"
+        :color="tc"
         @change="childChange"
       />
     </div>
@@ -22,7 +22,7 @@
         <div class="vc-chrome-sliders">
           <div class="vc-chrome-hue-wrap">
             <hue
-              :colors="colors"
+              :color="tc"
               @change="childChange"
             />
           </div>
@@ -31,7 +31,7 @@
             class="vc-chrome-alpha-wrap"
           >
             <alpha
-              :colors="colors"
+              :color="tc"
               @change="childChange"
             />
           </div>
@@ -51,13 +51,13 @@
             <ed-in
               v-if="!hasAlpha"
               label="hex"
-              :value="colors.hex"
+              :value="tc.hex"
               @change="inputChange"
             />
             <ed-in
               v-if="hasAlpha"
               label="hex"
-              :value="colors.hex8"
+              :value="tc.hex8"
               @change="inputChange"
             />
           </div>
@@ -70,21 +70,21 @@
           <div class="vc-chrome-field">
             <ed-in
               label="r"
-              :value="colors.rgba.r"
+              :value="rgba.r"
               @change="inputChange"
             />
           </div>
           <div class="vc-chrome-field">
             <ed-in
               label="g"
-              :value="colors.rgba.g"
+              :value="rgba.g"
               @change="inputChange"
             />
           </div>
           <div class="vc-chrome-field">
             <ed-in
               label="b"
-              :value="colors.rgba.b"
+              :value="rgba.b"
               @change="inputChange"
             />
           </div>
@@ -94,7 +94,7 @@
           >
             <ed-in
               label="a"
-              :value="colors.rgba.a"
+              :value="rgba.a"
               :arrow-offset="0.01"
               :max="1"
               @change="inputChange"
@@ -133,7 +133,7 @@
           >
             <ed-in
               label="a"
-              :value="colors.a"
+              :value="tc.a"
               :arrow-offset="0.01"
               :max="1"
               @change="inputChange"
@@ -207,8 +207,11 @@ export default {
     }
   },
   computed: {
+    rgba () {
+      return this.tc.rgba
+    },
     hsl () {
-      const { h, s, l } = this.colors.hsl
+      const { h, s, l } = this.tc.hsl
       return {
         h: h.toFixed(),
         s: `${(s * 100).toFixed()}%`,
@@ -216,11 +219,11 @@ export default {
       }
     },
     activeColor () {
-      const rgba = this.colors.rgba
+      const rgba = this.rgba
       return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
     },
     hasAlpha () {
-      return this.colors.a < 1
+      return this.tc.a < 1
     }
   },
   methods: {
@@ -238,18 +241,18 @@ export default {
         })
       } else if (data.r || data.g || data.b || data.a) {
         this.colorChange({
-          r: data.r || this.colors.rgba.r,
-          g: data.g || this.colors.rgba.g,
-          b: data.b || this.colors.rgba.b,
-          a: data.a || this.colors.rgba.a,
+          r: data.r || this.rgba.r,
+          g: data.g || this.rgba.g,
+          b: data.b || this.rgba.b,
+          a: data.a || this.rgba.a,
           source: 'rgba'
         })
       } else if (data.h || data.s || data.l) {
-        const s = data.s ? (data.s.replace('%', '') / 100) : this.colors.hsl.s
-        const l = data.l ? (data.l.replace('%', '') / 100) : this.colors.hsl.l
+        const s = data.s ? (data.s.replace('%', '') / 100) : this.tc.hsl.s
+        const l = data.l ? (data.l.replace('%', '') / 100) : this.tc.hsl.l
 
         this.colorChange({
-          h: data.h || this.colors.hsl.h,
+          h: data.h || this.tc.hsl.h,
           s,
           l,
           source: 'hsl'
