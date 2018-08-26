@@ -49,41 +49,49 @@ export default {
       }
     },
     pointerTop () {
+      let top = 0;
       if (this.direction === 'vertical') {
-        if (this.hsl.h === 0 && this.pullDirection === 'right') return 0
-        return -((this.hsl.h * 100) / 360) + 100 + '%'
-      } else {
-        return 0
+        if (this.hsl.h === 0 && this.pullDirection === 'right') {
+          top = 0
+        } else {
+          top = -((this.hsl.h * 100) / 360) + 100
+        }
       }
+      return `${top}%`;
     },
     pointerLeft () {
-      if (this.direction === 'vertical') {
-        return 0
-      } else {
-        if (this.hsl.h === 0 && this.pullDirection === 'right') return '100%'
-        return (this.hsl.h * 100) / 360 + '%'
+      let left = 0;
+      if (this.direction === 'horizontal') {
+        if (this.hsl.h === 0 && this.pullDirection === 'right') {
+          left = 100
+        } else {
+          left = (this.hsl.h * 100) / 360
+        }
       }
+      return `${left}%`;
     }
   },
-
   watch: {
-    colors () {
+    color () {
       const h = this.hsl.h
       if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
       if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
       this.oldHue = h
     }
   },
+  mounted() {
+    const $container = this.$refs.container
+    this.containerWidth = $container.clientWidth
+    this.containerHeight = $container.clientHeight
+
+    this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset
+    this.yOffset = $container.getBoundingClientRect().top + window.pageYOffset
+  },
   methods: {
     handleChange (e, skip) {
       !skip && e.preventDefault()
 
-      var container = this.$refs.container
-      var containerWidth = container.clientWidth
-      var containerHeight = container.clientHeight
-
-      var xOffset = container.getBoundingClientRect().left + window.pageXOffset
-      var yOffset = container.getBoundingClientRect().top + window.pageYOffset
+      const { containerWidth, containerHeight, xOffset, yOffset } = this;
       var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
       var pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
       var left = pageX - xOffset
@@ -181,6 +189,9 @@ export default {
   height: 8px;
   box-shadow: 0 0 2px rgba(0, 0, 0, .6);
   background: #fff;
-  transform: translateX(-2px) ;
+  transform: translateX(-2px);
+}
+.vc-hue--vertical .vc-hue-picker {
+  transform: translateX(-2px) translateY(-50%);
 }
 </style>
