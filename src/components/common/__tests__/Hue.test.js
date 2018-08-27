@@ -30,7 +30,7 @@ describe('Hue.vue', () => {
     expect(wrapper.classes()).toContain('vc-hue--vertical')
   })
 
-  test('in horizontal mode should exceed the range', () => {
+  test('in horizontal mode should not exceed the range', () => {
     color.hsl.h = 0;
     wrapper.setProps({
       color: JSON.parse(JSON.stringify(color))
@@ -50,7 +50,7 @@ describe('Hue.vue', () => {
     expect(wrapper.vm.pointerLeft).toBe('100%');
   })
 
-  test('in vertical mode should exceed the range', () => {
+  test('in vertical mode should not exceed the range', () => {
     color.hsl.h = 0;
     wrapper.setProps({
       direction: 'vertical',
