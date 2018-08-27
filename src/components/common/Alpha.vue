@@ -20,7 +20,7 @@
       <div
         role="CurrentAlphaPointer"
         class="vc-alpha-pointer"
-        :style="{left: color.a * 100 + '%'}"
+        :style="{left: pointerLeft}"
       >
         <div class="vc-alpha-picker" />
       </div>
@@ -41,17 +41,24 @@ export default {
     onChange: Function
   },
   computed: {
+    pointerLeft () {
+      return `${this.color.a * 100}%`;
+    },
     gradientColor () {
       var rgba = this.color.rgba
       var rgbStr = [rgba.r, rgba.g, rgba.b].join(',')
       return 'linear-gradient(to right, rgba(' + rgbStr + ', 0) 0%, rgba(' + rgbStr + ', 1) 100%)'
     }
   },
+  mounted () {
+    const $container = this.$refs.container
+    this.containerWidth = $container.clientWidth
+  },
   methods: {
     handleChange (e, skip) {
       !skip && e.preventDefault()
-      var container = this.$refs.container
-      var containerWidth = container.clientWidth
+      const container = this.$refs.container
+      const { containerWidth } = this;
 
       var xOffset = container.getBoundingClientRect().left + window.pageXOffset
       var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
