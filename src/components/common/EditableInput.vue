@@ -2,11 +2,11 @@
   <div class="vc-editable-input">
     <input
       ref="input"
+      :value="value"
       :aria-label="desc ? label + '(' + desc + ')' : label"
       class="vc-input__input"
-      :value="val"
       @keydown="handleKeyDown"
-      @change="update"
+      @input="handleInput"
     >
     <span
       :for="label"
@@ -17,52 +17,53 @@
 </template>
 
 <script>
+function validate(v, max, min){
+  const vv = +v;
+  if (isNaN(vv)) {
+    return v;
+  }
+  return vv <= max && min >= 0 ? vv : vv > max ? max : min
+}
+const validators = {
+  r: (v) => validate(v, 255, 0),
+  g: (v) => validate(v, 255, 0),
+  b: (v) => validate(v, 255, 0),
+  a: (v) => validate(v, 1, 0),
+  h: (v) => validate(v, 360, 0),
+  s: (v) => validate(v, 100, 0),
+  l: (v) => validate(v, 100, 0),
+  v: (v) => validate(v, 100, 0),
+}
+
 export default {
   name: 'EditableInput',
   props: {
     label: String,
     desc: String,
     value: [String, Number],
-    max: Number,
-    min: Number,
     arrowOffset: {
       type: Number,
       default: 1
     }
   },
-  computed: {
-    val: {
-      get () {
-        return this.value
-      },
-      set (v) {
-        // TODO: min
-        if (!(this.max === undefined) && +v > this.max) {
-          this.$refs.input.value = this.max
-        } else {
-          return v
-        }
-      }
-    }
-  },
   methods: {
-    update (e) {
+    handleChange (newVal) {
+      const { label } = this;
+      let data = {}
+      newVal = validators[label] ? validators[label](newVal) : newVal
+      data[label] = newVal
+      this.$emit('change', data)
+      this.$refs.input.value = newVal
+    },
+    handleInput(e) {
       this.handleChange(e.target.value)
     },
-    handleChange (newVal) {
-      let data = {}
-      data[this.label] = newVal
-      if (data.hex === undefined && data['#'] === undefined) {
-        this.$emit('change', data)
-      } else if (newVal.length > 5) {
-        this.$emit('change', data)
-      }
-    },
     handleKeyDown (e) {
-      let val = this.val
+      let val = e.target.value
+
       let number = Number(val)
 
-      if (number) {
+      if (!isNaN(number)) {
         let amount = this.arrowOffset || 1
 
         // Up
