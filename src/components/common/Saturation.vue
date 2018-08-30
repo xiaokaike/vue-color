@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import clamp from 'clamp'
 import throttle from 'lodash.throttle'
 
 export default {
@@ -53,24 +54,10 @@ export default {
       var yOffset = container.getBoundingClientRect().top + window.pageYOffset
       var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
       var pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
-      var left = pageX - xOffset
-      var top = pageY - yOffset
-
-      if (left < 0) {
-        left = 0
-      } else if (left > containerWidth) {
-        left = containerWidth
-      } else if (top < 0) {
-        top = 0
-      } else if (top > containerHeight) {
-        top = containerHeight
-      }
-
+      var left = clamp(pageX - xOffset, 0, containerWidth)
+      var top = clamp(pageY - yOffset, 0, containerHeight)
       var saturation = left / containerWidth
-      var bright = -(top / containerHeight) + 1
-
-      bright = bright > 0 ? bright : 0
-      bright = bright > 1 ? 1 : bright
+      var bright = clamp(-(top / containerHeight) + 1, 0, 1)
 
       this.throttle(this.onChange, {
         h: this.colors.hsv.h,
