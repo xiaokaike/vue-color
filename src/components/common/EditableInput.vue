@@ -22,7 +22,7 @@ function validate(v, max, min){
   if (isNaN(vv)) {
     return v;
   }
-  return vv <= max && min >= 0 ? vv : vv > max ? max : min
+  return vv <= max && vv >= min ? vv : vv > max ? max : min
 }
 const validators = {
   r: (v) => validate(v, 255, 0),
