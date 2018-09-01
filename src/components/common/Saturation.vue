@@ -39,6 +39,14 @@ export default {
       return this.color.hsv.s * 100 + '%'
     }
   },
+  mounted() {
+    const $container = this.$refs.container
+    this.containerWidth = $container.clientWidth
+    this.containerHeight = $container.clientHeight
+
+    this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset
+    this.yOffset = $container.getBoundingClientRect().top + window.pageYOffset
+  },
   methods: {
     throttle: throttle((fn, data) => {
       fn(data)
@@ -49,16 +57,12 @@ export default {
       }),
     handleChange (e, skip) {
       !skip && e.preventDefault()
-      var container = this.$refs.container
-      var containerWidth = container.clientWidth
-      var containerHeight = container.clientHeight
 
-      var xOffset = container.getBoundingClientRect().left + window.pageXOffset
-      var yOffset = container.getBoundingClientRect().top + window.pageYOffset
-      var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
-      var pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
-      var left = pageX - xOffset
-      var top = pageY - yOffset
+      const { containerWidth, containerHeight, xOffset, yOffset } = this;
+      const pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
+      const pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
+      let left = pageX - xOffset
+      let top = pageY - yOffset
 
       if (left < 0) {
         left = 0
@@ -70,8 +74,8 @@ export default {
         top = containerHeight
       }
 
-      var saturation = left / containerWidth
-      var bright = -(top / containerHeight) + 1
+      let saturation = left / containerWidth
+      let bright = -(top / containerHeight) + 1
 
       bright = bright > 0 ? bright : 0
       bright = bright > 1 ? 1 : bright
