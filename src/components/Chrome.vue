@@ -121,7 +121,7 @@
           </div>
           <div class="vc-chrome-field">
             <ed-in
-              label="h"
+              label="l"
               :value="hsl.l"
               @change="inputChange"
             />
