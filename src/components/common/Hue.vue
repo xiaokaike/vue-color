@@ -92,13 +92,13 @@ export default {
       !skip && e.preventDefault()
 
       const { containerWidth, containerHeight, xOffset, yOffset } = this;
-      var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
-      var pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
-      var left = pageX - xOffset
-      var top = pageY - yOffset
+      const pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
+      const pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
+      const left = pageX - xOffset
+      const top = pageY - yOffset
 
-      var h
-      var percent
+      let h
+      let percent
 
       if (this.direction === 'vertical') {
         if (top < 0) {

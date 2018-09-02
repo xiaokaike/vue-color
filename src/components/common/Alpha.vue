@@ -53,16 +53,15 @@ export default {
   mounted () {
     const $container = this.$refs.container
     this.containerWidth = $container.clientWidth
+    this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset
   },
   methods: {
     handleChange (e, skip) {
       !skip && e.preventDefault()
-      const container = this.$refs.container
-      const { containerWidth } = this;
+      const { containerWidth, xOffset } = this;
 
-      var xOffset = container.getBoundingClientRect().left + window.pageXOffset
-      var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
-      var left = pageX - xOffset
+      const pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
+      const left = pageX - xOffset
 
       var a
       if (left < 0) {
