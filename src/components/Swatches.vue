@@ -106,7 +106,7 @@ export default {
   overflow-y: scroll;
   background-color: #fff;
   box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
- }
+}
 .vc-swatches-box {
   padding: 16px 0 6px 16px;
   overflow: hidden;
