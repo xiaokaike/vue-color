@@ -2,7 +2,7 @@ import { shallowMount } from '@vue/test-utils'
 import Grayscale from '@/components/Grayscale'
 import randomInt from 'random-int'
 
-describe('Slider', () => {
+describe('Grayscale', () => {
   let wrapper
   beforeEach(() => {
     wrapper = shallowMount(Grayscale, {
@@ -12,7 +12,7 @@ describe('Slider', () => {
     })
   })
 
-  test('Swatch pops up when the color is picked', () => {
+  test('Swatch has a dot when the color is picked', () => {
     const color = '#4078BF';
     wrapper.setProps({
       palette: [color],
