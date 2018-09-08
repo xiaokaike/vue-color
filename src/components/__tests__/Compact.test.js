@@ -28,7 +28,7 @@ describe('Compact', () => {
 
   test('handleClick', () => {
     const palette = wrapper.props().palette;
-    const rnd = randomInt(palette.length);
+    const rnd = randomInt(palette.length-1);
     const color = palette[rnd];
 
     const handlerClick = jest.fn();
@@ -39,5 +39,15 @@ describe('Compact', () => {
     const item = wrapper.findAll('.vc-compact-color-item').at(rnd);
     item.trigger('click');
     expect(handlerClick).toBeCalledWith(color)
+  })
+
+  test('emit', () => {
+    const palette = wrapper.props().palette;
+    const rnd = randomInt(palette.length-1);
+    const color = palette[rnd];
+
+    const item = wrapper.findAll('.vc-compact-color-item').at(rnd);
+    item.trigger('click');
+    expect(wrapper.emitted().change[0][0].hex).toBe(color)
   })
 })
