@@ -48,6 +48,7 @@
     "html-webpack-plugin": "^3.2.0",
     "http-proxy-middleware": "^0.18.0",
     "jest": "^23.5.0",
+    "jest-canvas-mock": "^1.1.0",
     "jest-serializer-vue": "^2.0.2",
     "ora": "^1.4.0",
     "random-int": "^1.0.0",
@@ -78,7 +79,8 @@
     },
     "snapshotSerializers": [
       "<rootDir>/node_modules/jest-serializer-vue"
-    ]
+    ],
+    "setupFiles": ["jest-canvas-mock"]
   },
   "license": "MIT"
 }
