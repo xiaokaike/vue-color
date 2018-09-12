@@ -1,8 +1,12 @@
 import { mount } from '@vue/test-utils'
-import Chrome from '@/components/Chrome'
 // import randomInt from 'random-int'
+
+import Chrome from '@/components/Chrome'
 import Checkboard from '../common/Checkboard.vue';
 import Alpha from '../common/Alpha.vue';
+import Hue from '../common/Hue.vue';
+import Saturation from '../common/Saturation.vue';
+import EditableInput from '../common/EditableInput.vue';
 
 describe('Chrome', () => {
   let wrapper
@@ -10,7 +14,7 @@ describe('Chrome', () => {
     wrapper = mount(Chrome, {
       propsData: {
         color: 'red'
-      },
+      }
     })
   })
 
@@ -39,5 +43,61 @@ describe('Chrome', () => {
     })
 
     expect(wrapper.contains('.vc-chrome-fields-wrap')).toBe(false)
+  })
+
+  test('display `hsl` in a proper way', () => {
+    expect(wrapper.vm.hsl).toEqual({ h: '0', s: '100%', l:'50%' })
+
+    // FIXME: TypeError: Cannot read property '_transitionClasses' of undefined
+    // https://github.com/vuejs/vue-test-utils/issues/829
+    // wrapper.setProps({
+    //   color: '#439CA7'
+    // })
+
+    // expect(wrapper.vm.hsl).toEqual({ h: '187', s: '43%', l:'46%' })
+  })
+
+  test('trigger `colorChange` event when child components change the color', () => {
+    const stub = jest.fn();
+    wrapper.setMethods({ colorChange: stub });
+
+    wrapper.find(Saturation).vm.$emit('change', 'red')
+    expect(stub).toBeCalledWith('red')
+
+    wrapper.find(Hue).vm.$emit('change', 'red')
+    expect(stub).toBeCalledWith('red')
+
+    wrapper.find(Alpha).vm.$emit('change', 'red')
+    expect(stub).toBeCalledWith('red')
+  })
+
+  test('trigger `colorChange` event when inputs change', () => {
+    const stub = jest.fn();
+    wrapper.setMethods({ colorChange: stub });
+
+    wrapper.find(EditableInput).vm.$emit('change', { hex: '#fff' })
+    expect(stub).toBeCalledWith({
+      hex: '#fff',
+      source: 'hex'
+    })
+  })
+
+  test('`inputChange` method handles data correctly', () => {
+    const stub = jest.fn();
+    wrapper.setMethods({ colorChange: stub });
+
+    // empty input
+    wrapper.vm.inputChange();
+    expect(stub).not.toBeCalled();
+
+    // not valid data
+    wrapper.vm.inputChange('red');
+    expect(stub).not.toBeCalled();
+
+    // handle hex
+
+    // handle rgba
+
+    // handle hsl
   })
 })
