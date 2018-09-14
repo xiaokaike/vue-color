@@ -90,14 +90,37 @@ describe('Chrome', () => {
     wrapper.vm.inputChange();
     expect(stub).not.toBeCalled();
 
-    // not valid data
+    // invalid data
     wrapper.vm.inputChange('red');
     expect(stub).not.toBeCalled();
 
+    // handle invalid hex
+    wrapper.vm.inputChange({hex: '#ooo'});
+    expect(stub).not.toBeCalled();
+
     // handle hex
+    wrapper.vm.inputChange({hex: '#333'});
+    expect(stub).toBeCalledWith({ hex: '#333', source: 'hex' });
 
     // handle rgba
+    const rgba = wrapper.vm.rgba;
+    const r = 100;
+    const data = { ...rgba, r };
+    wrapper.vm.inputChange({ r });
+    expect(stub).toBeCalledWith({ ...data, source: 'rgba' });
 
     // handle hsl
+    const hsl = wrapper.vm.tc.hsl;
+    const h = 100;
+    const data1 = { ...hsl, h };
+    delete data1.a;
+    wrapper.vm.inputChange({ h });
+    expect(stub).toBeCalledWith({ ...data1, source: 'hsl' });
+
+    const s = '50%';
+    const data2 = { ...hsl, s: 0.5 };
+    delete data2.a;
+    wrapper.vm.inputChange({ s });
+    expect(stub).toBeCalledWith({ ...data2, source: 'hsl' });
   })
 })
