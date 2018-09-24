@@ -4,14 +4,17 @@ module.exports = {
     'browser': true,
     'node': true
   },
+  plugins: ["jest"],
   parserOptions: {
+    'parser': "babel-eslint",
     'ecmaVersion': 6,
     'sourceType': 'module',
   },
   extends: [
     // add more generic rule sets here, such as:
     'eslint:recommended',
-    'plugin:vue/recommended'
+    'plugin:vue/recommended',
+    'plugin:jest/recommended'
   ],
   // add your custom rules here
   'rules': {

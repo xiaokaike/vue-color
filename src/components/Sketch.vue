@@ -77,7 +77,6 @@
           label="a"
           :value="tc.a"
           :arrow-offset="0.01"
-          :max="1"
           @change="inputChange"
         />
       </div>

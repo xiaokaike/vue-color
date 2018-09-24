@@ -96,7 +96,6 @@
               label="a"
               :value="rgba.a"
               :arrow-offset="0.01"
-              :max="1"
               @change="inputChange"
             />
           </div>
@@ -122,7 +121,7 @@
           </div>
           <div class="vc-chrome-field">
             <ed-in
-              label="h"
+              label="l"
               :value="hsl.l"
               @change="inputChange"
             />
@@ -135,7 +134,6 @@
               label="a"
               :value="tc.a"
               :arrow-offset="0.01"
-              :max="1"
               @change="inputChange"
             />
           </div>

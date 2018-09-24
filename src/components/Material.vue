@@ -62,7 +62,7 @@ export default {
           r: data.r || this.tc.rgba.r,
           g: data.g || this.tc.rgba.g,
           b: data.b || this.tc.rgba.b,
-          a: data.a || this.tc.rgba.a,
+          a: this.tc.rgba.a,
           source: 'rgba'
         })
       }

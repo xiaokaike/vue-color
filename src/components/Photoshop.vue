@@ -200,12 +200,12 @@ export default {
           hex: data['#'],
           source: 'hex'
         })
-      } else if (data.r || data.g || data.b || data.a) {
+      } else if (data.r || data.g || data.b) {
         this.colorChange({
           r: data.r || this.tc.rgba.r,
           g: data.g || this.tc.rgba.g,
           b: data.b || this.tc.rgba.b,
-          a: data.a || this.tc.rgba.a,
+          a: this.tc.rgba.a,
           source: 'rgba'
         })
       } else if (data.h || data.s || data.v) {
