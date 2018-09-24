@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: ["jest"],
   parserOptions: {
+    'parser': "babel-eslint",
     'ecmaVersion': 6,
     'sourceType': 'module',
   },
