@@ -167,8 +167,7 @@ export default {
   methods: {
     handlePreset (c) {
       this.colorChange({
-        hex: c,
-        source: 'hex'
+        hex: c
       })
     },
     childChange (data) {
@@ -180,16 +179,14 @@ export default {
       }
       if (data.hex) {
         this.isValidHex(data.hex) && this.colorChange({
-          hex: data.hex,
-          source: 'hex'
+          hex: data.hex
         })
       } else if (data.r || data.g || data.b || data.a) {
         this.colorChange({
           r: data.r || this.tc.rgba.r,
           g: data.g || this.tc.rgba.g,
           b: data.b || this.tc.rgba.b,
-          a: data.a || this.tc.rgba.a,
-          source: 'rgba'
+          a: data.a || this.tc.rgba.a
         })
       }
     }

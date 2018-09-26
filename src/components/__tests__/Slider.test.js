@@ -44,6 +44,6 @@ describe('Slider', () => {
 
     const rnd = randomInt(0, 6);
     wrapper.findAll('.vc-slider-swatch').at(rnd).trigger('click')
-    expect(colorChange).toBeCalledWith({ h: 0, s: 0.5, l: swatches[rnd], source: 'hsl' })
+    expect(colorChange).toBeCalledWith({ h: 0, s: 0.5, l: swatches[rnd] })
   })
 })

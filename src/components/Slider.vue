@@ -76,8 +76,7 @@ export default {
       this.colorChange({
         h: this.hsl.h,
         s: 0.5,
-        l: offset,
-        source: 'hsl'
+        l: offset
       })
     }
   }

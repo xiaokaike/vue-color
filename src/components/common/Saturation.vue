@@ -70,8 +70,7 @@ export default {
         h: this.color.hsv.h,
         s: saturation,
         v: bright,
-        a: this.color.hsv.a,
-        source: 'hsva'
+        a: this.color.hsv.a
       })
     },
     onChange (param) {

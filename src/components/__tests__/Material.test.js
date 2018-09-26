@@ -57,7 +57,7 @@ describe('Material', () => {
 
     // handle hex
     wrapper.vm.onChange({hex: '#333'});
-    expect(colorChange).toBeCalledWith({ hex: '#333', source: 'hex' });
+    expect(colorChange).toBeCalledWith({ hex: '#333' });
 
     // handle rgba
     const rgba = wrapper.vm.tc.rgba;
@@ -65,7 +65,7 @@ describe('Material', () => {
       const val = { [field]: 100 };
       const data = { ...rgba, ...val };
       wrapper.vm.onChange(val);
-      expect(colorChange).toBeCalledWith({ ...data, source: 'rgba' });
+      expect(colorChange).toBeCalledWith({ ...data });
     })
   })
 })

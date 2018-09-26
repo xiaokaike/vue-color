@@ -105,7 +105,6 @@ describe('Photoshop', () => {
       inputs.at(i).vm.$emit('change', { '#': '#fff' });
       expect(colorChange).toHaveBeenNthCalledWith(i+1, {
         hex: '#fff',
-        source: 'hex'
       })
     }
   })
@@ -117,8 +116,7 @@ describe('Photoshop', () => {
     wrapper.findAll('.vc-ps-previews__pr-color').at(1).trigger('click');
 
     expect(colorChange).toBeCalledWith({
-      hex: currentColor,
-      source: 'hex'
+      hex: currentColor
     });
   })
 
@@ -140,7 +138,7 @@ describe('Photoshop', () => {
 
     // handle hex
     wrapper.vm.inputChange({'#': '#333'});
-    expect(colorChange).toBeCalledWith({ hex: '#333', source: 'hex' });
+    expect(colorChange).toBeCalledWith({ hex: '#333' });
 
     // handle rgba
     const rgba = wrapper.vm.tc.rgba;
@@ -148,7 +146,7 @@ describe('Photoshop', () => {
       const val = { [field]: 100 };
       const data = { ...rgba, ...val };
       wrapper.vm.inputChange(val);
-      expect(colorChange).toBeCalledWith({ ...data, source: 'rgba' });
+      expect(colorChange).toBeCalledWith({ ...data });
     })
 
     // handle hsv
@@ -162,7 +160,7 @@ describe('Photoshop', () => {
 
       val[key] = processor(100);
       const data = { ...hsv, ...val };
-      expect(colorChange).toBeCalledWith({ ...data, source: 'hsv' });
+      expect(colorChange).toBeCalledWith({ ...data });
     })
   })
 })

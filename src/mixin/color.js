@@ -46,7 +46,6 @@ function _colorChange (data, oldHue) {
     rgba: color.toRgb(),
     hsv: hsv,
     oldHue: data.h || oldHue || hsl.h,
-    source: data.source,
     a: data.a || color.getAlpha()
   }
 }
@@ -56,7 +55,6 @@ export default {
     color: {
       type: [String, Object],
       required: true,
-      default: '#fff',
       validator: color => tinycolor(color).isValid
     }
   },
@@ -80,7 +78,9 @@ export default {
       return tinycolor(hex).isValid()
     },
     paletteUpperCase (palette) {
-      return palette.map(c => c.toUpperCase())
+      if (palette) {
+        return palette.map(c => c.toUpperCase())
+      }
     },
     isTransparent (color) {
       return tinycolor(color).getAlpha() === 0

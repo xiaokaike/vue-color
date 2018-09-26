@@ -115,8 +115,7 @@ export default {
             h: h,
             s: this.hsl.s,
             l: this.hsl.l,
-            a: this.hsl.a,
-            source: 'hsl'
+            a: this.hsl.a
           })
         }
       } else {
@@ -134,8 +133,7 @@ export default {
             h: h,
             s: this.hsl.s,
             l: this.hsl.l,
-            a: this.hsl.a,
-            source: 'hsl'
+            a: this.hsl.a
           })
         }
       }

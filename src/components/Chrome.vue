@@ -234,16 +234,14 @@ export default {
       }
       if (data.hex) {
         this.isValidHex(data.hex) && this.colorChange({
-          hex: data.hex,
-          source: 'hex'
+          hex: data.hex
         })
       } else if (data.r || data.g || data.b || data.a) {
         this.colorChange({
           r: data.r || this.rgba.r,
           g: data.g || this.rgba.g,
           b: data.b || this.rgba.b,
-          a: data.a || this.rgba.a,
-          source: 'rgba'
+          a: data.a || this.rgba.a
         })
       } else if (data.h || data.s || data.l) {
         const s = data.s ? (data.s.replace('%', '') / 100) : this.tc.hsl.s
@@ -252,8 +250,7 @@ export default {
         this.colorChange({
           h: data.h || this.tc.hsl.h,
           s,
-          l,
-          source: 'hsl'
+          l
         })
       }
     },

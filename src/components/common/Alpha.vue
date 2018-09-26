@@ -78,7 +78,6 @@ export default {
           s: this.color.hsl.s,
           l: this.color.hsl.l,
           a: a,
-          source: 'rgba'
         })
       }
     },

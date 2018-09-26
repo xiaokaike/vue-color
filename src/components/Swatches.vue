@@ -90,8 +90,7 @@ export default {
     },
     handlerClick (c) {
       this.colorChange({
-        hex: c,
-        source: 'hex'
+        hex: c
       })
     }
   }

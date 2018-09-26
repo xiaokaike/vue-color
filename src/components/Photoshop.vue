@@ -197,30 +197,26 @@ export default {
       }
       if (data['#']) {
         this.isValidHex(data['#']) && this.colorChange({
-          hex: data['#'],
-          source: 'hex'
+          hex: data['#']
         })
       } else if (data.r || data.g || data.b) {
         this.colorChange({
           r: data.r || this.tc.rgba.r,
           g: data.g || this.tc.rgba.g,
           b: data.b || this.tc.rgba.b,
-          a: this.tc.rgba.a,
-          source: 'rgba'
+          a: this.tc.rgba.a
         })
       } else if (data.h || data.s || data.v) {
         this.colorChange({
           h: data.h || this.tc.hsv.h,
           s: (data.s / 100) || this.tc.hsv.s,
-          v: (data.v / 100) || this.tc.hsv.v,
-          source: 'hsv'
+          v: (data.v / 100) || this.tc.hsv.v
         })
       }
     },
     clickCurrentColor () {
       this.colorChange({
-        hex: this.currentColor,
-        source: 'hex'
+        hex: this.currentColor
       })
     },
     handleAccept () {

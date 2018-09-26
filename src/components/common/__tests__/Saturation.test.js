@@ -82,7 +82,6 @@ describe('Saturation.vue', () => {
       s: 0,
       v: 1,
       a: 1,
-      source: 'hsva'
     })
 
     jest.runAllTimers();
@@ -96,8 +95,7 @@ describe('Saturation.vue', () => {
       h,
       s: 1,
       v: 0,
-      a: 1,
-      source: 'hsva'
+      a: 1
     })
 
     jest.runAllTimers();
@@ -111,8 +109,7 @@ describe('Saturation.vue', () => {
       h,
       s: 0.6,
       v: 0.4,
-      a: 1,
-      source: 'hsva'
+      a: 1
     })
   })
 

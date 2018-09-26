@@ -58,7 +58,7 @@ describe('Sketch', () => {
         expect(color.element.style.background).toBeFalsy();
       }
       color.trigger('click');
-      expect(colorChange).toHaveBeenNthCalledWith(i + 1, { hex: c, source: 'hex' });
+      expect(colorChange).toHaveBeenNthCalledWith(i + 1, { hex: c });
     });
   })
 
@@ -127,7 +127,6 @@ describe('Sketch', () => {
       inputs.at(i).vm.$emit('change', { hex: '#fff' });
       expect(colorChange).toHaveBeenNthCalledWith(i+1, {
         hex: '#fff',
-        source: 'hex'
       })
     }
   })
@@ -150,7 +149,7 @@ describe('Sketch', () => {
 
     // handle hex
     wrapper.vm.inputChange({hex: '#333'});
-    expect(colorChange).toBeCalledWith({ hex: '#333', source: 'hex' });
+    expect(colorChange).toBeCalledWith({ hex: '#333' });
 
     // handle rgba
     const rgba = wrapper.vm.tc.rgba;
@@ -158,7 +157,7 @@ describe('Sketch', () => {
       const val = { [field]: 100 };
       const data = { ...rgba, ...val };
       wrapper.vm.inputChange(val);
-      expect(colorChange).toBeCalledWith({ ...data, source: 'rgba' });
+      expect(colorChange).toBeCalledWith({ ...data });
     })
   })
 })

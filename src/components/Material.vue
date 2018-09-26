@@ -54,16 +54,14 @@ export default {
       }
       if (data.hex) {
         this.isValidHex(data.hex) && this.colorChange({
-          hex: data.hex,
-          source: 'hex'
+          hex: data.hex
         })
       } else if (data.r || data.g || data.b) {
         this.colorChange({
           r: data.r || this.tc.rgba.r,
           g: data.g || this.tc.rgba.g,
           b: data.b || this.tc.rgba.b,
-          a: this.tc.rgba.a,
-          source: 'rgba'
+          a: this.tc.rgba.a
         })
       }
     }

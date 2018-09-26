@@ -77,8 +77,7 @@ describe('Chrome', () => {
 
     wrapper.find(EditableInput).vm.$emit('change', { hex: '#fff' })
     expect(stub).toBeCalledWith({
-      hex: '#fff',
-      source: 'hex'
+      hex: '#fff'
     })
   })
 
@@ -100,14 +99,14 @@ describe('Chrome', () => {
 
     // handle hex
     wrapper.vm.inputChange({hex: '#333'});
-    expect(stub).toBeCalledWith({ hex: '#333', source: 'hex' });
+    expect(stub).toBeCalledWith({ hex: '#333' });
 
     // handle rgba
     const rgba = wrapper.vm.rgba;
     const r = 100;
     const data = { ...rgba, r };
     wrapper.vm.inputChange({ r });
-    expect(stub).toBeCalledWith({ ...data, source: 'rgba' });
+    expect(stub).toBeCalledWith({ ...data });
 
     // handle hsl
     const hsl = wrapper.vm.tc.hsl;
@@ -115,12 +114,12 @@ describe('Chrome', () => {
     const data1 = { ...hsl, h };
     delete data1.a;
     wrapper.vm.inputChange({ h });
-    expect(stub).toBeCalledWith({ ...data1, source: 'hsl' });
+    expect(stub).toBeCalledWith({ ...data1 });
 
     const s = '50%';
     const data2 = { ...hsl, s: 0.5 };
     delete data2.a;
     wrapper.vm.inputChange({ s });
-    expect(stub).toBeCalledWith({ ...data2, source: 'hsl' });
+    expect(stub).toBeCalledWith({ ...data2 });
   })
 })
