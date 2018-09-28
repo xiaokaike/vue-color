@@ -1,5 +1,5 @@
 <template>
-  <div role="SliderColorPicker" class="vc-slider">
+  <div role="application" aria-label="SliderColorPicker" class="vc-slider">
     <div class="vc-slider-hue-warp">
       <hue v-model="colors" @change="hueChange"></hue>
     </div>
@@ -83,7 +83,7 @@ export default {
   transform: translate(-7px, -2px);
   background-color: rgb(248, 248, 248);
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
-} 
+}
 .vc-slider-swatches {
   display: flex;
   margin-top: 20px;

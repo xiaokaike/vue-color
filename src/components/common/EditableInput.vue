@@ -1,14 +1,14 @@
 <template>
   <div class="vc-editable-input">
     <input
-      :aria-label="desc ? label + '(' + desc + ')' : label"
+      :aria-labelledby="labelId"
       class="vc-input__input"
       v-model="val"
       @keydown="handleKeyDown"
       @input="update"
       ref="input"
     >
-    <span :for="label" class="vc-input__label">{{label}}</span>
+    <span :for="label" class="vc-input__label" :id="labelId">{{label}}</span>
     <span class="vc-input__desc">{{desc}}</span>
   </div>
 </template>
@@ -40,6 +40,9 @@ export default {
           return v
         }
       }
+    },
+    labelId() {
+      return `input__label__${this.label}__${Math.random().toString().slice(2, 5)}`;
     }
   },
   methods: {

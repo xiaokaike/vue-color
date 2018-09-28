@@ -1,5 +1,5 @@
 <template>
-  <div role="SwatchesColorPicker" class="vc-swatches" :data-pick="pick">
+  <div role="application" aria-label="SwatchesColorPicker" class="vc-swatches" :data-pick="pick">
     <div class="vc-swatches-box" role="group">
       <div class="vc-swatches-color-group" v-for="(group, $idx) in palette" :key="$idx">
         <div :class="['vc-swatches-color-it', {'vc-swatches-color--white': c === '#FFFFFF' }]"
@@ -117,7 +117,7 @@ export default {
 .vc-swatches-pick {
   fill: rgb(255, 255, 255);
   margin-left: 8px;
-  display: block; 
+  display: block;
 }
 .vc-swatches-color--white .vc-swatches-pick {
   fill: rgb(51, 51, 51);

@@ -1,6 +1,6 @@
 <template>
-  <div role="PhotoShopColorPicker" :class="['vc-photoshop', disableFields ? 'vc-photoshop__disable-fields' : '']">
-    <div class="vc-ps-head">{{head}}</div>
+  <div role="application" aria-label="PhotoShopColorPicker" :class="['vc-photoshop', disableFields ? 'vc-photoshop__disable-fields' : '']">
+    <div role="heading" class="vc-ps-head">{{head}}</div>
     <div class="vc-ps-body">
       <div class="vc-ps-saturation-wrap">
         <saturation v-model="colors" @change="childChange"></saturation>

@@ -1,12 +1,12 @@
 <template>
-  <div role="HuePanel" :class="['vc-hue', directionClass]">
+  <div role="application" aria-label="HuePanel" :class="['vc-hue', directionClass]">
     <div class="vc-hue-container" ref="container"
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
       @touchstart="handleChange">
-      <div role="CurrentHuePointer" class="vc-hue-pointer" :style="{top: pointerTop, left: pointerLeft}">
+      <div class="vc-hue-pointer" :style="{top: pointerTop, left: pointerLeft}">
         <div class="vc-hue-picker"></div>
-      </div>  
+      </div>
     </div>
   </div>
 </template>
