@@ -1,5 +1,5 @@
 <template>
-  <div aria-label="HuePanel" class="vc-alpha">
+  <div class="vc-alpha">
     <div class="vc-alpha-checkboard-wrap">
       <checkboard></checkboard>
     </div>

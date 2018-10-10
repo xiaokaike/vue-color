@@ -1,5 +1,5 @@
 <template>
-  <div aria-label="SaturationPanel" class="vc-saturation"
+  <div class="vc-saturation"
     :style="{background: bgColor}"
     ref="container"
     @mousedown="handleMouseDown"

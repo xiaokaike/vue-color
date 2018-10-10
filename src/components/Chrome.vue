@@ -1,12 +1,12 @@
 <template>
-  <div role="application" aria-label="ChromeColorPicker" :class="['vc-chrome', disableAlpha ? 'vc-chrome__disable-alpha' : '']">
+  <div role="application" aria-label="Chrome color picker" :class="['vc-chrome', disableAlpha ? 'vc-chrome__disable-alpha' : '']">
     <div class="vc-chrome-saturation-wrap">
       <saturation v-model="colors" @change="childChange"></saturation>
     </div>
     <div class="vc-chrome-body">
       <div class="vc-chrome-controls">
         <div class="vc-chrome-color-wrap">
-          <div class="vc-chrome-active-color" :style="{background: activeColor}"></div>
+          <div :aria-label="`current color is ${colors.hex}`" class="vc-chrome-active-color" :style="{background: activeColor}"></div>
           <checkboard v-if="!disableAlpha"></checkboard>
         </div>
 
