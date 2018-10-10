@@ -42,11 +42,11 @@ export default {
         }
       }
     },
-    labelId() {
-      return `input__label__${this.label}__${Math.random().toString().slice(2, 5)}`;
+    labelId () {
+      return `input__label__${this.label}__${Math.random().toString().slice(2, 5)}`
     },
-    labelSpanText() {
-      return this.labelText || this.label;
+    labelSpanText () {
+      return this.labelText || this.label
     }
   },
   methods: {
