@@ -1,10 +1,12 @@
 <template>
-  <div role="GrayscaleColorPicker" class="vc-grayscale">
-    <ul class="vc-grayscale-colors" role="option">
+  <div role="application" aria-label="Grayscale color picker" class="vc-grayscale">
+    <ul class="vc-grayscale-colors" role="listbox">
       <li
         v-for="c in paletteUpperCase(palette)"
-        :key="c"
+        role="option"
         :aria-label="'Color:' + c"
+        :aria-selected="c === pick"
+        :key="c"
         class="vc-grayscale-color-item"
         :class="{'vc-grayscale-color-item--white': c == '#FFFFFF'}"
         :style="{background: c}"

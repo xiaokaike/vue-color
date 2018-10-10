@@ -1,12 +1,17 @@
 <template>
-  <div role="HuePanel" :class="['vc-hue', directionClass]">
-    <div class="vc-hue-container" ref="container"
+  <div :class="['vc-hue', directionClass]">
+    <div class="vc-hue-container"
+      role="slider"
+      :aria-valuenow="colors.hsl.h"
+      aria-valuemin="0"
+      aria-valuemax="360"
+      ref="container"
       @mousedown="handleMouseDown"
       @touchmove="handleChange"
       @touchstart="handleChange">
-      <div role="CurrentHuePointer" class="vc-hue-pointer" :style="{top: pointerTop, left: pointerLeft}">
+      <div class="vc-hue-pointer" :style="{top: pointerTop, left: pointerLeft}" role="presentation">
         <div class="vc-hue-picker"></div>
-      </div>  
+      </div>
     </div>
   </div>
 </template>

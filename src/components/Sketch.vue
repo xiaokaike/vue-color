@@ -1,5 +1,5 @@
 <template>
-  <div role="SketchColorPicker" :class="['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']">
+  <div role="application" aria-label="Sketch color picker" :class="['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']">
     <div class="vc-sketch-saturation-wrap">
       <saturation v-model="colors" @change="childChange"></saturation>
     </div>
@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="vc-sketch-color-wrap">
-        <div :aria-label="'CurrentColor:' + activeColor" class="vc-sketch-active-color" :style="{background: activeColor}"></div>
+        <div :aria-label="`Current color is ${activeColor}`" class="vc-sketch-active-color" :style="{background: activeColor}"></div>
         <checkboard></checkboard>
       </div>
     </div>
@@ -35,7 +35,7 @@
         <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
       </div>
     </div>
-    <div class="vc-sketch-presets" role="group">
+    <div class="vc-sketch-presets" role="group" aria-label="A color preset, pick one to set as current color">
       <template v-for="c in presetColors">
         <div
           v-if="!isTransparent(c)"

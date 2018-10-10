@@ -1,9 +1,11 @@
 <template>
-  <div role="SwatchesColorPicker" class="vc-swatches" :data-pick="pick">
-    <div class="vc-swatches-box" role="group">
+  <div role="application" aria-label="Swatches color picker" class="vc-swatches" :data-pick="pick">
+    <div class="vc-swatches-box" role="listbox">
       <div class="vc-swatches-color-group" v-for="(group, $idx) in palette" :key="$idx">
         <div :class="['vc-swatches-color-it', {'vc-swatches-color--white': c === '#FFFFFF' }]"
+          role="option"
           :aria-label="'Color:' + c"
+          :aria-selected="equal(c)"
           v-for="c in group" :key="c"
           :data-color="c"
           :style="{background: c}"
@@ -117,7 +119,7 @@ export default {
 .vc-swatches-pick {
   fill: rgb(255, 255, 255);
   margin-left: 8px;
-  display: block; 
+  display: block;
 }
 .vc-swatches-color--white .vc-swatches-pick {
   fill: rgb(51, 51, 51);

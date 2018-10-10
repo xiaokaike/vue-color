@@ -1,11 +1,13 @@
 <template>
-  <div role="CompactColorPicker" class="vc-compact">
-    <ul class="vc-compact-colors" role="option">
-      <li 
-        class="vc-compact-color-item"
+  <div role="application" aria-label="Compact color picker" class="vc-compact">
+    <ul class="vc-compact-colors" role="listbox">
+      <li
         v-for="c in paletteUpperCase(palette)"
+        role="option"
+        :aria-label="'color:' + c"
+        :aria-selected="c === pick"
+        class="vc-compact-color-item"
         :key="c"
-        :aria-label="'Color:' + c"
         :class="{'vc-compact-color-item--white': c === '#FFFFFF' }"
         :style="{background: c}"
         @click="handlerClick(c)"
@@ -90,7 +92,7 @@ export default {
 .vc-compact-color-item--white .vc-compact-dot {
   background: #000;
 }
-  
+
 .vc-compact-dot {
   position: absolute;
   top: 5px;
