@@ -8,7 +8,7 @@
       @input="update"
       ref="input"
     >
-    <span :for="label" class="vc-input__label" :id="labelId">{{label}}</span>
+    <span :for="label" class="vc-input__label" :id="labelId">{{labelSpanText}}</span>
     <span class="vc-input__desc">{{desc}}</span>
   </div>
 </template>
@@ -18,6 +18,7 @@ export default {
   name: 'editableInput',
   props: {
     label: String,
+    labelText: String,
     desc: String,
     value: [String, Number],
     max: Number,
@@ -43,6 +44,9 @@ export default {
     },
     labelId() {
       return `input__label__${this.label}__${Math.random().toString().slice(2, 5)}`;
+    },
+    labelSpanText() {
+      return this.labelText || this.label;
     }
   },
   methods: {

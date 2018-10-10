@@ -14,12 +14,12 @@
       </div>
       <div :class="['vc-ps-controls', disableFields ? 'vc-ps-controls__disable-fields' : '']">
         <div class="vc-ps-previews">
-          <div class="vc-ps-previews__label">new</div>
+          <div class="vc-ps-previews__label">{{ newLabel }}</div>
           <div class="vc-ps-previews__swatches">
             <div class="vc-ps-previews__pr-color" :aria-label="`New color is ${colors.hex}`" :style="{background: colors.hex}"></div>
             <div class="vc-ps-previews__pr-color" :aria-label="`Current color is ${currentColor}`" :style="{background: currentColor}" @click="clickCurrentColor"></div>
           </div>
-          <div class="vc-ps-previews__label">current</div>
+          <div class="vc-ps-previews__label">{{ currentLabel }}</div>
         </div>
         <div class="vc-ps-actions" v-if="!disableFields">
           <div class="vc-ps-ac-btn" role="button" :aria-label="acceptLabel" @click="handleAccept">{{ acceptLabel }}</div>
@@ -81,6 +81,14 @@ export default {
     resetLabel: {
       type: String,
       default: 'Reset'
+    },
+    newLabel: {
+      type: String,
+      default: 'new'
+    },
+    currentLabel: {
+      type: String,
+      default: 'current'
     }
   },
   components: {
