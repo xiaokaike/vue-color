@@ -28,5 +28,10 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
+  },
+
+  node: {
+    // prevent webpack from injecting an global polyfill that includes Function(return this) and eval(this)
+    global: false
   }
 }
