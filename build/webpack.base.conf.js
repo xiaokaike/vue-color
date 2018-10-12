@@ -69,5 +69,10 @@ module.exports = {
       /handsontable\.(full\.)?js/,
       /plotly\.js/
     ]
+  },
+
+  node: {
+    // prevent webpack from injecting an global polyfill that includes Function(return this) and eval(this)
+    global: false
   }
 }
