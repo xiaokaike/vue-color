@@ -113,6 +113,26 @@ OR
 <chrome-picker :value="colors" @input="updateValue"></chrome-picker>
 ```
 
+In some cases you can give the component a predefined set of colors with the property `presetColors` (for `Sketch` only) or `palette` (for `Compact` and `Grayscale`), by simply passing it an array with the color values as strings in any css compatible format.
+
+```html
+<sketch-picker 
+  @input="updateValue"
+  :value="colors"
+  :presetColors="[ 
+    '#f00', '#00ff00', '#00ff0055', 'rgb(201, 76, 76)', 'rgba(0,0,255,1)', 'hsl(89, 43%, 51%)', 'hsla(89, 43%, 51%, 0.6)'
+  ]"
+></sketch-picker>
+
+<compact-picker 
+  @input="updateValue"
+  :value="colors"
+  :palette="[ 
+    '#f00', '#00ff00', '#00ff0055', 'rgb(201, 76, 76)', 'rgba(0,0,255,1)', 'hsl(89, 43%, 51%)', 'hsla(89, 43%, 51%, 0.6)'
+  ]"
+></compact-picker>
+```
+
 ## License
 
 vue-color is licensed under [The MIT License](LICENSE).
