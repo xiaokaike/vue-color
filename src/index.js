@@ -1,12 +1,13 @@
-import Compact from './components/Compact.vue'
-import Grayscale from './components/Grayscale.vue'
-import Material from './components/Material.vue'
-import Slider from './components/Slider.vue'
-import Swatches from './components/Swatches.vue'
-import Photoshop from './components/Photoshop.vue'
-import Sketch from './components/Sketch.vue'
-import Chrome from './components/Chrome.vue'
+// import Compact from './components/Compact.vue'
+// import Grayscale from './components/Grayscale.vue'
+// import Material from './components/Material.vue'
+// import Slider from './components/Slider.vue'
+// import Swatches from './components/Swatches.vue'
+// import Photoshop from './components/Photoshop.vue'
+// import Sketch from './components/Sketch.vue'
+// import Chrome from './components/Chrome.vue'
 import IconscoutColorPicker from './components/IconscoutColorPicker.vue'
+import Iconscout from './components/Iconscout.vue'
 import Alpha from './components/common/Alpha.vue'
 import Checkboard from './components/common/Checkboard.vue'
 import EditableInput from './components/common/EditableInput.vue'
@@ -16,15 +17,16 @@ import ColorMixin from './mixin/color.js'
 
 const VueColor = {
   version: '2.4.6',
-  Compact,
-  Grayscale,
-  Material,
-  Slider,
-  Swatches,
-  Photoshop,
-  Sketch,
-  Chrome,
+  // Compact,
+  // Grayscale,
+  // Material,
+  // Slider,
+  // Swatches,
+  // Photoshop,
+  // Sketch,
+  // Chrome,
   IconscoutColorPicker,
+  Iconscout,
   Alpha,
   Checkboard,
   EditableInput,

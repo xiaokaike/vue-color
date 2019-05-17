@@ -1,65 +1,65 @@
 <template>
-  <div :class="['vc-iconscout', disableAlpha ? 'vc-iconscout__disable-alpha' : '']">
-    <div class="vc-iconscout-saturation-wrap">
+  <div :class="['vc-iconscout-c', disableAlpha ? 'vc-iconscout-c__disable-alpha' : '']">
+    <div class="vc-iconscout-c-saturation-wrap">
       <saturation v-model="colors" @change="childChange"></saturation>
     </div>
-    <div class="vc-iconscout-body">
-      <div class="vc-iconscout-controls">
-        <div class="vc-iconscout-color-wrap">
-          <div class="vc-iconscout-active-color" :style="{background: activeColor}"></div>
+    <div class="vc-iconscout-c-body">
+      <div class="vc-iconscout-c-controls">
+        <div class="vc-iconscout-c-color-wrap">
+          <div class="vc-iconscout-c-active-color" :style="{background: activeColor}"></div>
           <checkboard v-if="!disableAlpha"></checkboard>
         </div>
 
-        <div class="vc-iconscout-sliders">
-          <div class="vc-iconscout-hue-wrap">
+        <div class="vc-iconscout-c-sliders">
+          <div class="vc-iconscout-c-hue-wrap">
             <hue v-model="colors" @change="childChange"></hue>
           </div>
-          <div class="vc-iconscout-alpha-wrap" v-if="!disableAlpha">
+          <div class="vc-iconscout-c-alpha-wrap" v-if="!disableAlpha">
             <alpha v-model="colors" @change="childChange"></alpha>
           </div>
         </div>
       </div>
 
-      <div class="vc-iconscout-fields-wrap" v-if="!disableFields">
-        <div class="vc-iconscout-fields" v-show="fieldsIndex === 0">
+      <div class="vc-iconscout-c-fields-wrap" v-if="!disableFields">
+        <div class="vc-iconscout-c-fields" v-show="fieldsIndex === 0">
           <!-- hex -->
-          <div class="vc-iconscout-field">
+          <div class="vc-iconscout-c-field">
             <ed-in label="hex" :value="colors.hex" @change="inputChange"></ed-in>
           </div>
         </div>
-        <div class="vc-iconscout-fields" v-show="fieldsIndex === 1">
+        <div class="vc-iconscout-c-fields" v-show="fieldsIndex === 1">
           <!-- rgba -->
-          <div class="vc-iconscout-field">
+          <div class="vc-iconscout-c-field">
             <ed-in label="r" :value="colors.rgba.r" @change="inputChange"></ed-in>
           </div>
-          <div class="vc-iconscout-field">
+          <div class="vc-iconscout-c-field">
             <ed-in label="g" :value="colors.rgba.g" @change="inputChange"></ed-in>
           </div>
-          <div class="vc-iconscout-field">
+          <div class="vc-iconscout-c-field">
             <ed-in label="b" :value="colors.rgba.b" @change="inputChange"></ed-in>
           </div>
-          <div class="vc-iconscout-field" v-if="!disableAlpha">
+          <div class="vc-iconscout-c-field" v-if="!disableAlpha">
             <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
-        <div class="vc-iconscout-fields" v-show="fieldsIndex === 2">
+        <div class="vc-iconscout-c-fields" v-show="fieldsIndex === 2">
           <!-- hsla -->
-          <div class="vc-iconscout-field">
+          <div class="vc-iconscout-c-field">
             <ed-in label="h" :value="hsl.h" @change="inputChange"></ed-in>
           </div>
-          <div class="vc-iconscout-field">
+          <div class="vc-iconscout-c-field">
             <ed-in label="s" :value="hsl.s" @change="inputChange"></ed-in>
           </div>
-          <div class="vc-iconscout-field">
+          <div class="vc-iconscout-c-field">
             <ed-in label="l" :value="hsl.l" @change="inputChange"></ed-in>
           </div>
-          <div class="vc-iconscout-field" v-if="!disableAlpha">
+          <div class="vc-iconscout-c-field" v-if="!disableAlpha">
             <ed-in label="a" :value="colors.a" :arrow-offset="0.01" :max="1" @change="inputChange"></ed-in>
           </div>
         </div>
         <!-- btn -->
-        <div class="vc-iconscout-toggle-btn" @click="toggleViews">
-          <div class="vc-iconscout-toggle-icon">
+        <div class="vc-iconscout-c-toggle-btn" @click="toggleViews">
+          <div class="vc-iconscout-c-toggle-icon">
             <svg style="width:24px; height:24px" viewBox="0 0 24 24"
               @mouseover="showHighlight"
               @mouseenter="showHighlight"
@@ -67,19 +67,19 @@
               <path fill="#333" d="M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z" />
             </svg>
           </div>
-          <div class="vc-iconscout-toggle-icon-highlight" v-show="highlight"></div>
+          <div class="vc-iconscout-c-toggle-icon-highlight" v-show="highlight"></div>
         </div>
         <!-- btn -->
       </div>
     </div>
     <div
       v-if="defaultPalette.length"
-      class="vc-iconscout-defaults"
+      class="vc-iconscout-c-defaults"
     >
       <button
         v-for="(color, index) in defaultPalette"
         :key="index"
-        :class="['vc-iconscout-button', (color === 'transparent' || color === 'white') ? `vc-iconscout-color-${color}` : '']"
+        :class="['vc-iconscout-c-button', (color === 'transparent' || color === 'white') ? `vc-iconscout-c-color-${color}` : '']"
         :style="{ backgroundColor: color }"
         @click="inputChange({ hex: color })"
       >
@@ -206,21 +206,21 @@ export default {
 </script>
 
 <style>
-.vc-iconscout {
+.vc-iconscout-c {
   background: #fff;
   border-radius: 3px;
   box-sizing: initial;
   width: 225px;
   background-color: #fff;
 }
-.vc-iconscout-controls {
+.vc-iconscout-c-controls {
   display: flex;
 }
-.vc-iconscout-color-wrap {
+.vc-iconscout-c-color-wrap {
   position: relative;
   width: 36px;
 }
-.vc-iconscout-active-color {
+.vc-iconscout-c-active-color {
   position: relative;
   width: 30px;
   height: 30px;
@@ -228,41 +228,41 @@ export default {
   overflow: hidden;
   z-index: 1;
 }
-.vc-iconscout-color-wrap .vc-checkerboard {
+.vc-iconscout-c-color-wrap .vc-checkerboard {
   width: 30px;
   height: 30px;
   border-radius: 15px;
   background-size: auto;
 }
-.vc-iconscout-sliders {
+.vc-iconscout-c-sliders {
   flex: 1;
 }
-.vc-iconscout-fields-wrap {
+.vc-iconscout-c-fields-wrap {
   display: flex;
   padding-top: 16px;
 }
-.vc-iconscout-fields {
+.vc-iconscout-c-fields {
   display: flex;
   margin-left: -6px;
   flex: 1;
 }
-.vc-iconscout-field {
+.vc-iconscout-c-field {
   padding-left: 6px;
   width: 100%;
 }
-.vc-iconscout-toggle-btn {
+.vc-iconscout-c-toggle-btn {
   width: 32px;
   text-align: right;
   position: relative;
 }
-.vc-iconscout-toggle-icon {
+.vc-iconscout-c-toggle-icon {
   margin-right: -4px;
   margin-top: 12px;
   cursor: pointer;
   position: relative;
   z-index: 2;
 }
-.vc-iconscout-toggle-icon-highlight {
+.vc-iconscout-c-toggle-icon-highlight {
   position: absolute;
   width: 24px;
   height: 28px;
@@ -271,46 +271,46 @@ export default {
   top: 10px;
   left: 12px;
 }
-.vc-iconscout-hue-wrap {
+.vc-iconscout-c-hue-wrap {
   position: relative;
   height: 10px;
   margin-bottom: 8px;
 }
-.vc-iconscout-alpha-wrap {
+.vc-iconscout-c-alpha-wrap {
   position: relative;
   height: 10px;
 }
-.vc-iconscout-hue-wrap .vc-hue {
+.vc-iconscout-c-hue-wrap .vc-hue {
   border-radius: 2px;
 }
-.vc-iconscout-alpha-wrap .vc-alpha-gradient {
+.vc-iconscout-c-alpha-wrap .vc-alpha-gradient {
   border-radius: 2px;
 }
-.vc-iconscout-hue-wrap .vc-hue-picker, .vc-iconscout-alpha-wrap .vc-alpha-picker {
-  width: 12px;
-  height: 12px;
+.vc-iconscout-c-hue-wrap .vc-hue-picker, .vc-iconscout-c-alpha-wrap .vc-alpha-picker {
+  width: 8px;
+  height: 8px;
   border-radius: 6px;
   transform: translate(-6px, -2px);
   background-color: rgb(248, 248, 248);
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
 }
-.vc-iconscout-body {
+.vc-iconscout-c-body {
   padding: 16px 16px 12px;
   background-color: #fff;
 }
-.vc-iconscout-saturation-wrap {
+.vc-iconscout-c-saturation-wrap {
   width: 100%;
   padding-bottom: 55%;
   position: relative;
   border-radius: 2px 2px 0 0;
   overflow: hidden;
 }
-.vc-iconscout-saturation-wrap .vc-saturation-circle {
+.vc-iconscout-c-saturation-wrap .vc-saturation-circle {
   width: 12px;
   height: 12px;
 }
 
-.vc-iconscout-fields .vc-input__input {
+.vc-iconscout-c-fields .vc-input__input {
   font-size: 11px;
   color: #333;
   width: 100%;
@@ -320,7 +320,7 @@ export default {
   height: 21px;
   text-align: center;
 }
-.vc-iconscout-fields .vc-input__label {
+.vc-iconscout-c-fields .vc-input__label {
   text-transform: uppercase;
   font-size: 11px;
   line-height: 11px;
@@ -330,18 +330,18 @@ export default {
   margin-top: 12px;
 }
 
-.vc-iconscout__disable-alpha .vc-iconscout-active-color {
+.vc-iconscout-c__disable-alpha .vc-iconscout-c-active-color {
   width: 18px;
   height: 18px;
 }
-.vc-iconscout__disable-alpha .vc-iconscout-color-wrap {
+.vc-iconscout-c__disable-alpha .vc-iconscout-c-color-wrap {
   width: 30px;
 }
-.vc-iconscout__disable-alpha .vc-iconscout-hue-wrap {
+.vc-iconscout-c__disable-alpha .vc-iconscout-c-hue-wrap {
   margin-top: 4px;
   margin-bottom: 4px;
 }
-.vc-iconscout-defaults {
+.vc-iconscout-c-defaults {
   border: 2px solid white;
   background-color: #F8FAFF;
   padding: 10px;
@@ -351,7 +351,7 @@ export default {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-.vc-iconscout-button {
+.vc-iconscout-c-button {
   height: 22px;
   width: 22px;
   border: 1px solid transparent;
@@ -361,10 +361,10 @@ export default {
   outline: none !important;
   cursor: pointer;
 }
-.vc-iconscout-color-white {
+.vc-iconscout-c-color-white {
   border-color: #DBDBDB;
 }
-.vc-iconscout-color-transparent {
+.vc-iconscout-c-color-transparent {
   border-color: rgba(0, 0, 0, 0.5);
   background-color: #fff;
   background-image:

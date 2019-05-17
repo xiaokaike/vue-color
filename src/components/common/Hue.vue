@@ -141,7 +141,7 @@ export default {
   right: 0px;
   bottom: 0px;
   left: 0px;
-  border-radius: 2px;
+  border-radius: 8px;
 }
 .vc-hue--horizontal {
   background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
@@ -151,7 +151,6 @@ export default {
 }
 .vc-hue-container {
   cursor: pointer;
-  margin: 0 2px;
   position: relative;
   height: 100%;
 }
@@ -161,12 +160,10 @@ export default {
 }
 .vc-hue-picker {
   cursor: pointer;
-  margin-top: 1px;
-  width: 4px;
-  border-radius: 1px;
-  height: 8px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, .6);
-  background: #fff;
-  transform: translateX(-2px) ;
+  width: 10px;
+  height: 10px;
+  border: 4px solid #FFFFFF;
+  border-radius: 50%;
+  transform: translate(-2px, -50%);
 }
 </style>

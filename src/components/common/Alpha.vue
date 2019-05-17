@@ -1,5 +1,5 @@
 <template>
-  <div class="vc-alpha">
+  <div :class="['vc-alpha', directionClass]">
     <div class="vc-alpha-checkboard-wrap">
       <checkboard></checkboard>
     </div>
@@ -8,7 +8,10 @@
         @mousedown="handleMouseDown"
         @touchmove="handleChange"
         @touchstart="handleChange">
-      <div class="vc-alpha-pointer" :style="{left: colors.a * 100 + '%'}">
+      <div class="vc-alpha-pointer" :style="{
+        left: direction === 'horizontal' ? colors.a * 100 + '%' : 0,
+        top: direction === 'vertical' ? colors.a * 100 + '%' : 0
+      }">
         <div class="vc-alpha-picker"></div>
       </div>
     </div>
@@ -22,7 +25,12 @@ export default {
   name: 'Alpha',
   props: {
     value: Object,
-    onChange: Function
+    onChange: Function,
+    direction: {
+      type: String,
+      // [horizontal | vertical]
+      default: 'horizontal'
+    }
   },
   components: {
     checkboard
@@ -34,26 +42,42 @@ export default {
     gradientColor () {
       var rgba = this.colors.rgba
       var rgbStr = [rgba.r, rgba.g, rgba.b].join(',')
-      return 'linear-gradient(to right, rgba(' + rgbStr + ', 0) 0%, rgba(' + rgbStr + ', 1) 100%)'
+      return `linear-gradient(to ${this.direction === 'horizontal' ? 'right' : 'bottom'}, rgba(${rgbStr}, 0) 0%, rgba(${rgbStr}, 1) 100%)`
     }
   },
   methods: {
     handleChange (e, skip) {
       !skip && e.preventDefault()
       var container = this.$refs.container
-      var containerWidth = container.clientWidth
-
-      var xOffset = container.getBoundingClientRect().left + window.pageXOffset
-      var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
-      var left = pageX - xOffset
 
       var a
-      if (left < 0) {
-        a = 0
-      } else if (left > containerWidth) {
-        a = 1
+
+      if (this.direction === 'horizontal') {
+        var containerWidth = container.clientWidth
+        var xOffset = container.getBoundingClientRect().left + window.pageXOffset
+        var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
+        var left = pageX - xOffset
+
+        if (left < 0) {
+          a = 0
+        } else if (left > containerWidth) {
+          a = 1
+        } else {
+          a = Math.round(left * 100 / containerWidth) / 100
+        }
       } else {
-        a = Math.round(left * 100 / containerWidth) / 100
+        var containerHeight = container.clientHeight
+        var yOffset = container.getBoundingClientRect().top + window.pageYOffset
+        var pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
+        var top = pageY - yOffset
+
+        if (top < 0) {
+          a = 0
+        } else if (top > containerHeight) {
+          a = 1
+        } else {
+          a = Math.round(top * 100 / containerHeight) / 100
+        }
       }
 
       if (this.colors.a !== a) {
@@ -97,6 +121,7 @@ export default {
   right: 0px;
   bottom: 0px;
   left: 0px;
+  border-radius: 8px;
   overflow: hidden;
 }
 .vc-alpha-gradient {
@@ -105,13 +130,15 @@ export default {
   right: 0px;
   bottom: 0px;
   left: 0px;
+  border-radius: 8px;
 }
 .vc-alpha-container {
   cursor: pointer;
   position: relative;
   z-index: 2;
   height: 100%;
-  margin: 0 3px;
+  border-radius: 8px;
+  /* margin: 0 3px; */
 }
 .vc-alpha-pointer {
   z-index: 2;
@@ -119,12 +146,10 @@ export default {
 }
 .vc-alpha-picker {
   cursor: pointer;
-  width: 4px;
-  border-radius: 1px;
-  height: 8px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, .6);
-  background: #fff;
-  margin-top: 1px;
-  transform: translateX(-2px);
+  width: 10px;
+  height: 10px;
+  border: 4px solid #FFFFFF;
+  border-radius: 50%;
+  transform: translate(-2px, -50%);
 }
 </style>

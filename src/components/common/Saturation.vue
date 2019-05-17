@@ -111,6 +111,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+  border-radius: 5px;
 }
 
 .vc-saturation--white {
@@ -124,11 +125,11 @@ export default {
   position: absolute;
 }
 .vc-saturation-circle {
-  cursor: head;
-  width: 4px;
-  height: 4px;
-  box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(0,0,0,.4);
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  border: 4px solid #FFFFFF;
   border-radius: 50%;
-  transform: translate(-2px, -2px);
+  transform: translate(-50%, -50%);
 }
 </style>
