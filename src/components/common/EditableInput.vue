@@ -1,15 +1,15 @@
 <template>
   <div class="vc-editable-input">
     <input
-      :aria-labelledby="labelId"
       class="vc-input__input"
+      :id="labelId"
       v-model="val"
       @keydown="handleKeyDown"
       @input="update"
       ref="input"
     >
-    <span :for="label" class="vc-input__label" :id="labelId">{{labelSpanText}}</span>
-    <span class="vc-input__desc">{{desc}}</span>
+    <label :for="labelId" class="vc-input__label">{{labelSpanText}}</label>
+    <span v-if="desc" class="vc-input__desc">{{desc}}</span>
   </div>
 </template>
 
