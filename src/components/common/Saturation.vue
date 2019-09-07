@@ -8,7 +8,7 @@
     <div class="vc-saturation--white"></div>
     <div class="vc-saturation--black"></div>
     <div class="vc-saturation-pointer" :style="{top: pointerTop, left: pointerLeft}">
-      <div class="vc-saturation-circle"></div>
+      <div class="vc-saturation-circle" :style="{background: colors.hex}"></div>
     </div>
   </div>
 </template>
