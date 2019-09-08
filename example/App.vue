@@ -52,8 +52,12 @@
           <h2>Swatches</h2>
         </div>
       </div>
-
-
+      <div class="demo-list">
+        <div class="demo-item">
+          <paletto-picker class="paletto-picker" disable-alpha="true" v-model="colors"></paletto-picker>
+          <h2>Paletto</h2>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -67,6 +71,7 @@ import slider from '../src/components/Slider.vue'
 import sketch from '../src/components/Sketch.vue'
 import chrome from '../src/components/Chrome.vue'
 import photoshop from '../src/components/Photoshop.vue'
+import paletto from '../src/components/Paletto.vue'
 
 let defaultProps = {
   hex: '#194d33e6',
@@ -100,7 +105,8 @@ export default {
     'slider-picker': slider,
     'sketch-picker': sketch,
     'chrome-picker': chrome,
-    'photoshop-picker': photoshop
+    'photoshop-picker': photoshop,
+    'paletto-picker': paletto
   },
   data () {
     return {
@@ -198,5 +204,9 @@ html {
   color: #666;
   font-size: 16px;
   font-weight: normal;
+}
+
+.paletto-picker {
+  background: rgb(92, 89, 89);
 }
 </style>
