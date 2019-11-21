@@ -52,7 +52,12 @@
           <h2>Swatches</h2>
         </div>
       </div>
-
+      <div class="demo-list">
+        <div class="demo-item">
+          <twitter-picker :value="colors" @input="updateValue"></twitter-picker>
+          <h2>Twitter</h2>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -67,6 +72,7 @@ import slider from '../src/components/Slider.vue'
 import sketch from '../src/components/Sketch.vue'
 import chrome from '../src/components/Chrome.vue'
 import photoshop from '../src/components/Photoshop.vue'
+import twitter from '../src/components/Twitter.vue'
 
 let defaultProps = {
   hex: '#194d33e6',
@@ -100,7 +106,8 @@ export default {
     'slider-picker': slider,
     'sketch-picker': sketch,
     'chrome-picker': chrome,
-    'photoshop-picker': photoshop
+    'photoshop-picker': photoshop,
+    'twitter-picker': twitter
   },
   data () {
     return {
