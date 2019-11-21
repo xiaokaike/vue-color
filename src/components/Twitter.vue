@@ -83,8 +83,6 @@ export default {
       return hex && hex.replace('#', '')
     }
   },
-  mounted () {
-  },
   methods: {
     equal (color) {
       return color.toLowerCase() === this.colors.hex.toLowerCase()
