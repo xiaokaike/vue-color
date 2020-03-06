@@ -92,14 +92,7 @@
 </template>
 
 <script>
-import material from '../src/components/Material.vue'
-import compact from '../src/components/Compact.vue'
-import grayscale from '../src/components/Grayscale.vue'
-import swatches from '../src/components/Swatches.vue'
-import slider from '../src/components/Slider.vue'
-import sketch from '../src/components/Sketch.vue'
-import chrome from '../src/components/Chrome.vue'
-import photoshop from '../src/components/Photoshop.vue'
+import { Photoshop, Chrome, Sketch, Slider, Swatches, Grayscale, Compact, Material } from '../dist/vue-color.min.js';
 
 let defaultProps = {
   hex: '#194d33',
@@ -126,14 +119,7 @@ let defaultProps = {
 
 export default {
   components: {
-    'material-picker': material,
-    'compact-picker': compact,
-    'grayscale-picker': grayscale,
-    'swatches-picker': swatches,
-    'slider-picker': slider,
-    'sketch-picker': sketch,
-    'chrome-picker': chrome,
-    'photoshop-picker': photoshop
+    Photoshop, Chrome, Sketch, Slider, Swatches, Grayscale, Compact, Material
   },
   data () {
     return {
