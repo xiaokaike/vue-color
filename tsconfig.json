@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    // this aligns with Vue's browser support
+    "target": "es5",
+    // Process & infer types from .js files.
+    "allowJs": true,
+    // this enables stricter inference for data properties on `this`
+    "strict": true,
+    // if using webpack 2+ or rollup, to leverage tree shaking:
+    "module": "es2015",
+    "moduleResolution": "node",
+    // Import non-ES modules as default imports.
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "./src/**/__tests__"
+  ]
+}

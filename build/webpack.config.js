@@ -23,7 +23,8 @@ module.exports = {
       // this will apply to both plain `.js` files
       // AND `<script>` blocks in `.vue` files
       {
-        test: /\.js$/,
+        // Include ts, tsx, js, and jsx files.
+        test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
       },

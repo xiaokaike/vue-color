@@ -7,8 +7,8 @@
       ref="container"
       class="vc-hue-container"
       @mousedown="handleMouseDown"
-      @touchmove="handleChange"
-      @touchstart="handleChange"
+      @touchmove="handleTouchEvnet"
+      @touchstart="handleTouchEvnet"
     >
       <div
         role="CurrentHuePointer"
@@ -21,137 +21,149 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Hue',
-  props: {
-    color: Object,
-    direction: {
-      type: String,
-      // [horizontal | vertical]
-      default: 'horizontal'
-    }
-  },
-  data () {
+<script lang="ts">
+import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import Color from '../../mixin/color';
+
+@Component
+export default class Hue extends mixins(Color) {
+
+  @Prop({ default: 'horizontal' }) readonly direction!: 'horizontal' | 'vertical'
+
+  @Ref('container') readonly container!: HTMLDivElement
+
+  oldHue = 0;
+  pullDirection = '';
+  containerWidth = 0;
+  containerHeight = 0;
+  xOffset = 0;
+  yOffset = 0;
+
+  get hsl() {
+    return this.tc.toHsl();
+  }
+
+  get directionClass() {
     return {
-      oldHue: 0,
-      pullDirection: ''
+      'vc-hue--horizontal': this.direction === 'horizontal',
+      'vc-hue--vertical': this.direction === 'vertical'
     }
-  },
-  computed: {
-    hsl() {
-      return this.color.hsl
-    },
-    directionClass () {
-      return {
-        'vc-hue--horizontal': this.direction === 'horizontal',
-        'vc-hue--vertical': this.direction === 'vertical'
+  }
+
+  get pointerTop() {
+    let top = 0;
+    if (this.direction === 'vertical') {
+      if (this.hsl.h === 0 && this.pullDirection === 'right') {
+        top = 0
+      } else {
+        top = -((this.hsl.h * 100) / 360) + 100
       }
-    },
-    pointerTop () {
-      let top = 0;
-      if (this.direction === 'vertical') {
-        if (this.hsl.h === 0 && this.pullDirection === 'right') {
-          top = 0
-        } else {
-          top = -((this.hsl.h * 100) / 360) + 100
-        }
-      }
-      return `${top}%`;
-    },
-    pointerLeft () {
-      let left = 0;
-      if (this.direction === 'horizontal') {
-        if (this.hsl.h === 0 && this.pullDirection === 'right') {
-          left = 100
-        } else {
-          left = (this.hsl.h * 100) / 360
-        }
-      }
-      return `${left}%`;
     }
-  },
-  watch: {
-    color () {
-      const h = this.hsl.h
-      if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
-      if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
-      this.oldHue = h
+    return `${top}%`;
+  }
+
+  get pointerLeft() {
+    let left = 0;
+    if (this.direction === 'horizontal') {
+      if (this.hsl.h === 0 && this.pullDirection === 'right') {
+        left = 100
+      } else {
+        left = (this.hsl.h * 100) / 360
+      }
     }
-  },
+    return `${left}%`;
+  }
+
+  @Watch('hsl')
+  onHSLChanged(val: tinycolor.ColorFormats.HSLA) {
+    const h = val.h
+    if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'
+    if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'
+    this.oldHue = h
+  }
+
   mounted() {
-    const $container = this.$refs.container
+    const $container = this.container;
     this.containerWidth = $container.clientWidth
     this.containerHeight = $container.clientHeight
 
     this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset
     this.yOffset = $container.getBoundingClientRect().top + window.pageYOffset
-  },
-  methods: {
-    handleChange (e, skip) {
-      !skip && e.preventDefault()
+  }
 
-      const { containerWidth, containerHeight, xOffset, yOffset } = this;
-      const pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
-      const pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
-      const left = pageX - xOffset
-      const top = pageY - yOffset
+  handleChange(pageX: number, pageY: number) {
+    let h
+    let percent
+    const { containerWidth, containerHeight, xOffset, yOffset } = this;
+    const left = pageX - xOffset
+    const top = pageY - yOffset
 
-      let h
-      let percent
-
-      if (this.direction === 'vertical') {
-        if (top < 0) {
-          h = 360
-        } else if (top > containerHeight) {
-          h = 0
-        } else {
-          percent = -(top * 100 / containerHeight) + 100
-          h = (360 * percent / 100)
-        }
-
-        if (this.hsl.h !== h) {
-          this.$emit('change', {
-            h: h,
-            s: this.hsl.s,
-            l: this.hsl.l,
-            a: this.hsl.a,
-            source: 'hsl'
-          })
-        }
+    if (this.direction === 'vertical') {
+      if (top < 0) {
+        h = 360
+      } else if (top > containerHeight) {
+        h = 0
       } else {
-        if (left < 0) {
-          h = 0
-        } else if (left > containerWidth) {
-          h = 360
-        } else {
-          percent = left * 100 / containerWidth
-          h = (360 * percent / 100)
-        }
-
-        if (this.hsl.h !== h) {
-          this.$emit('change', {
-            h: h,
-            s: this.hsl.s,
-            l: this.hsl.l,
-            a: this.hsl.a,
-            source: 'hsl'
-          })
-        }
+        percent = -(top * 100 / containerHeight) + 100
+        h = (360 * percent / 100)
       }
-    },
-    handleMouseDown (e) {
-      this.handleChange(e, true)
-      window.addEventListener('mousemove', this.handleChange)
-      window.addEventListener('mouseup', this.handleMouseUp)
-    },
-    handleMouseUp (/*e*/) {
-      this.unbindEventListeners()
-    },
-    unbindEventListeners () {
-      window.removeEventListener('mousemove', this.handleChange)
-      window.removeEventListener('mouseup', this.handleMouseUp)
+
+      if (this.hsl.h !== h) {
+        // TODO: format
+        this.$emit('change', {
+          h: h,
+          s: this.hsl.s,
+          l: this.hsl.l,
+          a: this.hsl.a,
+          source: 'hsl'
+        })
+      }
+    } else {
+      if (left < 0) {
+        h = 0
+      } else if (left > containerWidth) {
+        h = 360
+      } else {
+        percent = left * 100 / containerWidth
+        h = (360 * percent / 100)
+      }
+
+      if (this.hsl.h !== h) {
+        // TODO: format
+        this.$emit('change', {
+          h: h,
+          s: this.hsl.s,
+          l: this.hsl.l,
+          a: this.hsl.a,
+          source: 'hsl'
+        })
+      }
     }
+  }
+
+  handleTouchEvnet(e: TouchEvent) {
+    e.preventDefault();
+    this.handleChange(e.touches ? e.touches[0].pageX : 0, e.touches ? e.touches[0].pageY : 0);
+  }
+
+  handleMouseDown(e: MouseEvent) {
+    this.handleChange(e.pageX, e.pageY);
+    window.addEventListener('mousemove', this.handleMouseMove)
+    window.addEventListener('mouseup', this.handleMouseUp)
+  }
+
+  handleMouseMove(e: MouseEvent) {
+    this.handleChange(e.pageX, e.pageY);
+  }
+
+  handleMouseUp (/*e*/) {
+    this.unbindEventListeners()
+  }
+
+  unbindEventListeners () {
+    window.removeEventListener('mousemove', this.handleMouseMove)
+    window.removeEventListener('mouseup', this.handleMouseUp)
   }
 }
 </script>
