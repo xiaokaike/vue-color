@@ -1,18 +1,17 @@
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const assetsRoot = path.resolve(__dirname, '../../example-dist');
 
 module.exports = {
-  mode: 'production',
-  // optimization: {
-  //   minimize: false
-  // },
   entry: {
-    'vue-color': './src/index.js'
+    app: './example/main.js'
   },
   output: {
-    filename: 'vue-color.min.js',
-    library: 'vueColor',
-    libraryTarget: 'umd',
+    path: assetsRoot,
+    filename: 'js/[name].[chunkhash].js',
+    chunkFilename: 'js/[id].[chunkhash].js'
   },
   module: {
     rules: [
@@ -40,6 +39,8 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new CleanWebpackPlugin(),
-  ]
+    new HtmlWebpackPlugin({
+      template: 'example/index.html'
+    }),
+  ],
 }

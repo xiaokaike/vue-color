@@ -1,34 +1,15 @@
-import Compact from './components/Compact.vue'
-import Grayscale from './components/Grayscale.vue'
-import Material from './components/Material.vue'
-import Slider from './components/Slider.vue'
-import Swatches from './components/Swatches.vue'
-import Photoshop from './components/Photoshop.vue'
-import Sketch from './components/Sketch.vue'
-import Chrome from './components/Chrome.vue'
-import Alpha from './components/common/Alpha.vue'
-import Checkboard from './components/common/Checkboard.vue'
-import EditableInput from './components/common/EditableInput.vue'
-import Hue from './components/common/Hue.vue'
-import Saturation from './components/common/Saturation.vue'
-import ColorMixin from './mixin/color.js'
+export { default as Compact } from './components/Compact.vue';
+export { default as Grayscale } from './components/Grayscale.vue';
+export { default as Material } from './components/Material.vue';
+export { default as Slider } from './components/Slider.vue';
+export { default as Swatches } from './components/Swatches.vue';
+export { default as Photoshop } from './components/Photoshop.vue';
+export { default as Sketch } from './components/Sketch.vue';
+export { default as Chrome } from './components/Chrome.vue';
+export { default as Alpha } from './components/common/Alpha.vue';
+export { default as Checkboard } from './components/common/Checkboard.vue';
+export { default as EditableInput } from './components/common/EditableInput.vue';
+export { default as Hue } from './components/common/Hue.vue';
+export { default as Saturation } from './components/common/Saturation.vue';
 
-const VueColor = {
-  version: '2.6.0',
-  Compact,
-  Grayscale,
-  Material,
-  Slider,
-  Swatches,
-  Photoshop,
-  Sketch,
-  Chrome,
-  Alpha,
-  Checkboard,
-  EditableInput,
-  Hue,
-  Saturation,
-  ColorMixin
-}
-
-module.exports = VueColor
+export const version = '2.6.0';

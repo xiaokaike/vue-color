@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="demo-item">
-          <chrome-picker
+          <Chrome
             :color="color"
             @change="updateValue"
           />
@@ -32,14 +32,14 @@
     <div class="demo-container">
       <div class="demo-list">
         <div class="demo-item">
-          <sketch-picker
+          <Sketch
             :color="color"
             @change="updateValue"
           />
           <h2>Sketch</h2>
         </div>
         <div class="demo-item">
-          <photoshop-picker
+          <Photoshop
             :color="color"
             @change="updateValue"
             @ok="onOk"
@@ -50,14 +50,14 @@
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <material-picker
+          <Material
             :color="color"
             @change="updateValue"
           />
           <h2>Material</h2>
         </div>
         <div class="demo-item">
-          <slider-picker
+          <Slider
             :color="color"
             @change="updateValue"
           />
@@ -66,21 +66,21 @@
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <compact-picker
+          <Compact
             :color="color"
             @change="updateValue"
           />
           <h2>Compact</h2>
           <br>
           <br>
-          <grayscale-picker
+          <Grayscale
             :color="color"
             @change="updateValue"
           />
           <h2>Grayscale</h2>
         </div>
         <div class="demo-item">
-          <swatches-picker
+          <Swatches
             :color="color"
             @change="updateValue"
           />
@@ -119,7 +119,14 @@ let defaultProps = {
 
 export default {
   components: {
-    Photoshop, Chrome, Sketch, Slider, Swatches, Grayscale, Compact, Material
+    Photoshop,
+    Chrome,
+    Sketch,
+    Slider,
+    Swatches,
+    Grayscale,
+    Compact,
+    Material
   },
   data () {
     return {
