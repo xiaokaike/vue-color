@@ -126,7 +126,7 @@ export default {
   cursor: pointer;
   height: 12px;
 }
-.vc-slider-swatch-picker--active {
+.vc-slider-swatch:nth-child(n) .vc-slider-swatch-picker.vc-slider-swatch-picker--active {
   transform: scaleY(1.8);
   border-radius: 3.6px/2px;
 }

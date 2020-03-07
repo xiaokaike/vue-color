@@ -9,6 +9,12 @@ function _colorChange (data, oldHue) {
     color = tinycolor(data.hsl)
   } else if (data && data.hex && data.hex.length > 0) {
     color = tinycolor(data.hex)
+  } else if (data && data.hsv) {
+    color = tinycolor(data.hsv)
+  } else if (data && data.rgba) {
+    color = tinycolor(data.rgba)
+  } else if (data && data.rgb) {
+    color = tinycolor(data.rgb)
   } else {
     color = tinycolor(data)
   }

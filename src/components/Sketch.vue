@@ -29,7 +29,7 @@
       </div>
       <div class="vc-sketch-color-wrap">
         <div
-          :aria-label="'CurrentColor:' + activeColor"
+          :aria-label"`Currentcolor: ${activeColor}`"
           class="vc-sketch-active-color"
           :style="{background: activeColor}"
         />
