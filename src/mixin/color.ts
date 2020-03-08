@@ -124,9 +124,9 @@ export default class Color extends Props {
   //     this.oldHue = this.tc.hsl.h
   //     this.tc = _colorChange(data, oldHue || this.oldHue)
   //   },
-  //   isValidHex (hex) {
-  //     return tinycolor(hex).isValid()
-  //   },
+  isValidHex(hex: string) {
+    return tinycolor(hex).isValid();
+  }
   //   paletteUpperCase (palette) {
   //     return palette.map(c => c.toUpperCase())
   //   },

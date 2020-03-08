@@ -3,70 +3,63 @@
     role="MaterialColorPicker"
     class="vc-material"
   >
-    <ed-in
+    <EditableInput
       class="vc-material-hex"
       label="hex"
       :style="{ borderColor: tc.hex }"
-      :value="tc.hex"
-      @change="onChange"
+      :value="hex"
+      @change="onChangeHex"
     />
 
     <div class="vc-material-split">
       <div class="vc-material-third">
-        <ed-in
+        <EditableInput
           label="r"
-          :value="tc.rgba.r"
-          @change="onChange"
+          :value="rgba.r"
+          @change="onChange('r', $event)"
         />
       </div>
       <div class="vc-material-third">
-        <ed-in
+        <EditableInput
           label="g"
-          :value="tc.rgba.g"
-          @change="onChange"
+          :value="rgba.g"
+          @change="onChange('g', $event)"
         />
       </div>
       <div class="vc-material-third">
-        <ed-in
+        <EditableInput
           label="b"
-          :value="tc.rgba.b"
-          @change="onChange"
+          :value="rgba.b"
+          @change="onChange('b', $event)"
         />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import editableInput from './common/EditableInput.vue'
-import colorMixin from '../mixin/color'
+<script lang="ts">
+import EditableInput from './common/EditableInput.vue';
+import Color from '../mixin/color';
+import { mixins } from 'vue-class-component';
+import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
 
-export default {
-  name: 'Material',
-  components: {
-    'ed-in': editableInput
-  },
-  mixins: [colorMixin],
-  methods: {
-    onChange (data) {
-      if (!data) {
-        return
-      }
-      if (data.hex) {
-        this.isValidHex(data.hex) && this.colorChange({
-          hex: data.hex,
-          source: 'hex'
-        })
-      } else if (data.r || data.g || data.b) {
-        this.colorChange({
-          r: data.r || this.tc.rgba.r,
-          g: data.g || this.tc.rgba.g,
-          b: data.b || this.tc.rgba.b,
-          a: this.tc.rgba.a,
-          source: 'rgba'
-        })
-      }
+@Component({
+  components: { EditableInput }
+})
+export default class Material extends mixins(Color) {
+  get hex() {
+    return this.tc.toHexString();
+  }
+  get rgba() {
+    return this.tc.toRgb();
+  }
+  onChangeHex(hex: string) {
+    if (this.isValidHex(hex) && hex.length === 7) {
+      this.onColorChange(hex);
     }
+  }
+  onChange(label: 'r' | 'g' | 'b', data: number) {
+    this.onColorChange({...this.rgba, ...{[label]: data }});
   }
 }
 </script>
