@@ -71,12 +71,29 @@ const Props = Vue.extend({
 //   }
 // }
 
+// TODO: 枚举 & fallback
+interface FormatMethodMap {
+  [key: string]: 'toHexString'
+}
+const formatMethodMap: FormatMethodMap = {
+  hex: 'toHexString'
+};
+
 @Component
 export default class Color extends Props {
+
+  // because default value is `#fff`
+  inputFormat: string = 'hex';
+
   // `tc` stands for tinycolor
   get tc () {
-    return tinycolor(this.value)
+    const tc = tinycolor(this.value);
+    this.inputFormat = tc.getFormat();
+    return tc;
   }
+  // set tc (value: tinycolor.ColorInput) {
+  //   this.
+  // }
   // props: {
   //   color: {
   //     type: [String, Object],
@@ -96,8 +113,11 @@ export default class Color extends Props {
   //     }
   //   }
   // },
-  handleColorChanged() {
-    // this.tc = color
+  onColorChange(value: tinycolor.ColorInput) {
+    const tc = tinycolor(value);
+    const formatMethod = formatMethodMap[this.inputFormat];
+    this.$emit('input', tc[formatMethod]());
+    this.$emit('change', tc[formatMethod]());
   }
   // methods: {
   //   colorChange (data, oldHue) {

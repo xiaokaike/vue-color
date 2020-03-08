@@ -8,7 +8,7 @@ export const ToStorybook = () => ({
   components: { Hue },
   data() {
     return {
-      color: '#fff'
+      color: '#36473f'
     }
   },
   methods: {
@@ -16,7 +16,7 @@ export const ToStorybook = () => ({
       console.log('hue changed ===> ', value);
     }
   },
-  template: '<Hue :value="color" @change="handleChange" />'
+  template: '<Hue v-model="color" @change="handleChange" />'
 });
 
 ToStorybook.story = {

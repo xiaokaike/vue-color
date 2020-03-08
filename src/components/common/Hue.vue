@@ -108,17 +108,6 @@ export default class Hue extends mixins(Color) {
         percent = -(top * 100 / containerHeight) + 100
         h = (360 * percent / 100)
       }
-
-      if (this.hsl.h !== h) {
-        // TODO: format
-        this.$emit('change', {
-          h: h,
-          s: this.hsl.s,
-          l: this.hsl.l,
-          a: this.hsl.a,
-          source: 'hsl'
-        })
-      }
     } else {
       if (left < 0) {
         h = 0
@@ -128,17 +117,10 @@ export default class Hue extends mixins(Color) {
         percent = left * 100 / containerWidth
         h = (360 * percent / 100)
       }
+    }
 
-      if (this.hsl.h !== h) {
-        // TODO: format
-        this.$emit('change', {
-          h: h,
-          s: this.hsl.s,
-          l: this.hsl.l,
-          a: this.hsl.a,
-          source: 'hsl'
-        })
-      }
+    if (this.hsl.h !== h) {
+      this.onColorChange({...this.hsl, ...{ h }});
     }
   }
 
