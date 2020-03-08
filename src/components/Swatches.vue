@@ -70,6 +70,7 @@ const defaultPalatte = (() => {
   return colors
 })()
 
+@Component
 export default class Swatches extends mixins(Color) {
   @Prop({default: defaultPalatte})
   readonly palette: string[][] = defaultPalatte;

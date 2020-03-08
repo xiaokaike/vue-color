@@ -16,71 +16,78 @@
   </div>
 </template>
 
-<script>
-import clamp from 'clamp'
+<script lang="ts">
+import clamp from 'clamp';
+import { Vue, Component, Prop, Ref } from 'vue-property-decorator';
 
-function validate(v, max, min){
-  const vv = +v;
-  if (isNaN(vv)) {
-    return v;
-  }
-  return clamp(vv, max, min)
-}
-const validators = {
-  r: (v) => validate(v, 255, 0),
-  g: (v) => validate(v, 255, 0),
-  b: (v) => validate(v, 255, 0),
-  a: (v) => validate(v, 1, 0),
-  h: (v) => validate(v, 360, 0),
-  s: (v) => validate(v, 100, 0),
-  l: (v) => validate(v, 100, 0),
-  v: (v) => validate(v, 100, 0),
+const clamps = {
+  r: (v: number) => clamp(v, 255, 0),
+  g: (v: number) => clamp(v, 255, 0),
+  b: (v: number) => clamp(v, 255, 0),
+  a: (v: number) => clamp(v, 1, 0),
+  h: (v: number) => clamp(v, 360, 0),
+  s: (v: number) => clamp(v, 100, 0),
+  l: (v: number) => clamp(v, 100, 0),
+  v: (v: number) => clamp(v, 100, 0),
 }
 
-export default {
-  name: 'EditableInput',
-  props: {
-    label: String,
-    desc: String,
-    value: [String, Number],
-    arrowOffset: {
-      type: Number,
-      default: 1
+type LabelsWithClamp = 'r' | 'g' | 'b' | 'a' | 'h' | 's' | 'l' | 'v';
+
+@Component
+export default class EditableInput extends Vue {
+  @Prop()
+  value !: string | number;
+  @Prop()
+  label?: LabelsWithClamp | string;
+  @Prop()
+  desc ?: string;
+  @Prop({ default: 1 })
+  step?: number;
+
+  @Ref()
+  readonly input!: HTMLInputElement;
+
+  handleChange (value: string | number) {
+    const { label } = this;
+    let v = value;
+    let numberedValue = +value;
+    if (!isNaN(numberedValue)) {
+      if (label === 'r' ||  label === 'g' ||  label === 'b' ||  label === 'a' ||  label === 'h' ||  label === 's' ||  label === 'l' ||  label === 'v') {
+        const clamp = clamps[label];
+        v = clamp(numberedValue);
+      }
     }
-  },
-  methods: {
-    handleChange (newVal) {
-      const { label } = this;
-      let data = {}
-      newVal = validators[label] ? validators[label](newVal) : newVal
-      data[label] = newVal
-      this.$emit('change', data)
-      this.$refs.input.value = newVal
-    },
-    handleInput(e) {
-      this.handleChange(e.target.value)
-    },
-    handleKeyDown (e) {
-      let val = e.target.value
+    this.$emit('change', v);
+    const $input = this.$refs.input as HTMLInputElement;
+    $input.value = v.toString();
+  }
 
-      let number = Number(val)
+  handleInput(e: Event) {
+    const target = e.target as HTMLInputElement;
+    e.target && this.handleChange(target.value);
+  }
 
-      if (!isNaN(number)) {
-        let amount = this.arrowOffset || 1
+  handleKeyDown(e: KeyboardEvent) {
+    const target = e.target as HTMLInputElement;
+    let val = target.value;
 
-        // Up
-        if (e.keyCode === 38) {
-          val = number + amount
-          this.handleChange(val)
-          e.preventDefault()
-        }
+    let number = Number(val)
 
-        // Down
-        if (e.keyCode === 40) {
-          val = number - amount
-          this.handleChange(val)
-          e.preventDefault()
-        }
+    if (!isNaN(number)) {
+      let amount = this.step || 1;
+
+      // Up
+      if (e.keyCode === 38) {
+        // TODO: 精度问题
+        this.handleChange(number + amount)
+        e.preventDefault()
+      }
+
+      // Down
+      if (e.keyCode === 40) {
+        // TODO: 精度问题
+        this.handleChange(number - amount)
+        e.preventDefault()
       }
     }
   }
