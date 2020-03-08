@@ -39,28 +39,30 @@
   </div>
 </template>
 
-<script>
-import material from 'material-colors'
-import colorMixin from '../mixin/color'
+<script lang="ts">
+import material from 'material-colors';
+import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import Color from '../mixin/color';
 
-var colorMap = [
+const colorMap = [
   'red', 'pink', 'purple', 'deepPurple',
   'indigo', 'blue', 'lightBlue', 'cyan',
   'teal', 'green', 'lightGreen', 'lime',
   'yellow', 'amber', 'orange', 'deepOrange',
   'brown', 'blueGrey', 'black'
-]
-var colorLevel = ['900', '700', '500', '300', '100']
-var defaultColors = (() => {
-  var colors = []
-  colorMap.forEach((type) => {
-    var typeColor = []
-    if (type.toLowerCase() === 'black' || type.toLowerCase() === 'white') {
+];
+const colorLevel = ['900', '700', '500', '300', '100'];
+const defaultPalatte = (() => {
+  const colors: string[][] = [];
+  colorMap.forEach((color) => {
+    let typeColor: string[] = [];
+    if (color.toLowerCase() === 'black' || color.toLowerCase() === 'white') {
       typeColor = typeColor.concat(['#000000', '#FFFFFF'])
     } else {
       colorLevel.forEach((level) => {
-        const color = material[type][level]
-        typeColor.push(color.toUpperCase())
+        const c = material[color][level]
+        typeColor.push(c.toUpperCase())
       })
     }
     colors.push(typeColor)
@@ -68,34 +70,21 @@ var defaultColors = (() => {
   return colors
 })()
 
-export default {
-  name: 'Swatches',
-  mixins: [colorMixin],
-  props: {
-    palette: {
-      type: Array,
-      default () {
-        return defaultColors
-      }
-    }
-  },
-  computed: {
-    pick () {
-      return this.tc.hex
-    }
-  },
-  methods: {
-    equal (color) {
-      return color.toLowerCase() === this.tc.hex.toLowerCase()
-    },
-    handlerClick (c) {
-      this.colorChange({
-        hex: c,
-        source: 'hex'
-      })
-    }
+export default class Swatches extends mixins(Color) {
+  @Prop({default: defaultPalatte})
+  readonly palette: string[][] = defaultPalatte;
+
+  get pick() {
+    return this.tc.toHexString()
   }
 
+  equal(color: string) {
+    return color.toLowerCase() === this.pick.toLowerCase();
+  }
+
+  handlerClick(value: string) {
+    this.onColorChange(value);
+  }
 }
 </script>
 
