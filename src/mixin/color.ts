@@ -2,15 +2,21 @@ import Vue, { PropOptions }  from 'vue'
 import tinycolor from 'tinycolor2';
 import Component from 'vue-class-component'
 
+const supportFormat = ['hex']
+
 // We declare the props separately
 // to make props types inferable.
 const Props = Vue.extend({
   props: {
     value: {
-      default: '#fff',
-      required: true,
+      // default: '#fff',
+      // required: true,
       validator(value){ return tinycolor(value).isValid() }
-    } as PropOptions<tinycolor.ColorInput>
+    } as PropOptions<tinycolor.ColorInput>,
+    outputFormat: {
+      type: String,
+      validator(value){ return supportFormat.indexOf(value) >= 0 }
+    }
   }
 })
 
@@ -87,6 +93,11 @@ export default class Color extends Props {
 
   // `tc` stands for tinycolor
   get tc () {
+    if (this.value === null) {
+      // TODO: warning, when outputFormat is undefined
+      this.inputFormat = this.outputFormat;
+      return null;
+    }
     const tc = tinycolor(this.value);
     this.inputFormat = tc.getFormat();
     return tc;
@@ -115,9 +126,10 @@ export default class Color extends Props {
   // },
   onColorChange(value: tinycolor.ColorInput) {
     const tc = tinycolor(value);
-    const formatMethod = formatMethodMap[this.inputFormat];
-    this.$emit('input', tc[formatMethod]());
-    this.$emit('change', tc[formatMethod]());
+    let formatMethod = formatMethodMap[this.inputFormat];
+    const res = formatMethod ? tc[formatMethod]() : tc;
+    this.$emit('input', res);
+    this.$emit('change', res);
   }
   // methods: {
   //   colorChange (data, oldHue) {

@@ -6,7 +6,7 @@
     <EditableInput
       class="vc-material-hex"
       label="hex"
-      :style="{ borderColor: tc.hex }"
+      :style="{ borderColor: hex }"
       :value="hex"
       @change="onChangeHex"
     />
@@ -15,21 +15,21 @@
       <div class="vc-material-third">
         <EditableInput
           label="r"
-          :value="rgba.r"
+          :value="rgba && rgba.r"
           @change="onChange('r', $event)"
         />
       </div>
       <div class="vc-material-third">
         <EditableInput
           label="g"
-          :value="rgba.g"
+          :value="rgba && rgba.g"
           @change="onChange('g', $event)"
         />
       </div>
       <div class="vc-material-third">
         <EditableInput
           label="b"
-          :value="rgba.b"
+          :value="rgba && rgba.b"
           @change="onChange('b', $event)"
         />
       </div>
@@ -48,9 +48,15 @@ import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
 })
 export default class Material extends mixins(Color) {
   get hex() {
+    if (this.tc === null) {
+      return null;
+    }
     return this.tc.toHexString();
   }
   get rgba() {
+    if (this.tc === null) {
+      return null;
+    }
     return this.tc.toRgb();
   }
   onChangeHex(hex: string) {
@@ -59,6 +65,9 @@ export default class Material extends mixins(Color) {
     }
   }
   onChange(label: 'r' | 'g' | 'b', data: number) {
+    if (this.rgba === null) {
+      return
+    }
     this.onColorChange({...this.rgba, ...{[label]: data }});
   }
 }

@@ -4,11 +4,11 @@ export default {
   title: 'Common/EditableInput',
 };
 
-const Input = (label) => ({
+const Input = (label, value) => ({
   components: { EditableInput },
   data() {
     return {
-      value: 100
+      value
     }
   },
   methods: {
@@ -19,17 +19,17 @@ const Input = (label) => ({
   template: `<EditableInput label="${label}" v-model="value" @change="handleChange" />`
 })
 
-export const R = () => Input('r');
+export const R = () => Input('r', 100);
 R.story = {
   name: 'R',
 };
 
-export const G = () => Input('g');
+export const G = () => Input('g', 100);
 G.story = {
   name: 'G',
 };
 
-export const B = () => Input('b');
+export const B = () => Input('b', 100);
 B.story = {
   name: 'B',
 };
@@ -54,42 +54,32 @@ A.story = {
   name: 'A',
 };
 
-export const H = () => Input('h');
+export const H = () => Input('h', 360);
 H.story = {
   name: 'H',
 };
 
-export const S = () => Input('s');
+export const S = () => Input('s', 100);
 S.story = {
   name: 'S',
 };
 
-export const L = () => Input('l');
+export const L = () => Input('l', 100);
 L.story = {
   name: 'L',
 };
 
-export const V = () => Input('v');
+export const V = () => Input('v', 100);
 V.story = {
   name: 'V',
 };
 
-export const Hex = () => (
-  {
-    components: { EditableInput },
-    data() {
-      return {
-        value: '#ffffff'
-      }
-    },
-    methods: {
-      handleChange(value) {
-        console.log(`EditableInput changed ===>`, value);
-      }
-    },
-    template: `<EditableInput v-model="value" @change="handleChange" />`
-  }
-);
+export const Hex = () => Input('hex', '#ffffff');;
+Hex.story = {
+  name: 'Hex',
+};
+
+export const WithoutDefaultValue = () => Input('r', null);;
 Hex.story = {
   name: 'Hex',
 };

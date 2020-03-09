@@ -8,7 +8,7 @@ export const ToStorybook = () => ({
   components: { Material },
   data() {
     return {
-      color: '#36473f'
+      color: null
     }
   },
   methods: {
@@ -16,7 +16,7 @@ export const ToStorybook = () => ({
       console.log('Material changed ===> ', value);
     }
   },
-  template: '<Material v-model="color" @change="handleChange" />'
+  template: '<Material v-model="color" @change="handleChange" output-format="hex" />'
 });
 
 ToStorybook.story = {
