@@ -53,7 +53,7 @@ const colorMap = [
   'brown', 'blueGrey', 'black'
 ];
 const colorLevel = ['900', '700', '500', '300', '100'];
-const defaultPalatte = (() => {
+const defaultPalatte = () => {
   const colors: string[][] = [];
   colorMap.forEach((color) => {
     let typeColor: string[] = [];
@@ -68,15 +68,18 @@ const defaultPalatte = (() => {
     colors.push(typeColor)
   })
   return colors
-})()
+}
 
 @Component
 export default class Swatches extends mixins(Color) {
   @Prop({default: defaultPalatte})
-  readonly palette: string[][] = defaultPalatte;
+  readonly palette!: string[][];
 
   get pick() {
-    return this.tc.toHexString()
+    if (this.tc === null) {
+      return '';
+    }
+    return this.tc.toHexString();
   }
 
   equal(color: string) {
