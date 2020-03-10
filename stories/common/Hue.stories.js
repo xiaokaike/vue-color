@@ -1,7 +1,7 @@
 import Hue from '../../src/components/common/Hue';
 
 export default {
-  title: 'Common',
+  title: 'Common/Hue',
 };
 
 export const ToStorybook = () => ({

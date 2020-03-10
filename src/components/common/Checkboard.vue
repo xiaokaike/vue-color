@@ -5,31 +5,45 @@
   />
 </template>
 
-<script>
-let _checkboardCache = {}
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
-export default {
-  name: 'Checkboard',
-  props: {
-    size: {
-      type: [Number, String],
-      default: 8
-    },
-    white: {
-      type: String,
-      default: '#fff'
-    },
-    grey: {
-      type: String,
-      default: '#e6e6e6'
+let _checkboardCache: {[key: string]: string} = {};
+
+@Component
+export default class Checkboard extends Vue {
+  @Prop({default: 8})
+  readonly size!: number;
+
+  @Prop({default: '#fff'})
+  readonly white!: string;
+
+  @Prop({default: '#e6e6e6'})
+  readonly grey!: string;
+
+  get bgStyle() {
+    return {
+      'background-image': 'url(' + getCheckboard(this.white, this.grey, this.size) + ')'
     }
-  },
-  computed: {
-    bgStyle () {
-      return {
-        'background-image': 'url(' + getCheckboard(this.white, this.grey, this.size) + ')'
-      }
-    }
+  }
+}
+
+/**
+ * get checkboard base data and cache
+ *
+ * @param {String} c1 hex color
+ * @param {String} c2 hex color
+ * @param {Number} size
+ */
+function getCheckboard (c1: string, c2: string, size: number) {
+  var key = c1 + ',' + c2 + ',' + size
+
+  if (_checkboardCache[key]) {
+    return _checkboardCache[key]
+  } else {
+    var checkboard = renderCheckboard(c1, c2, size)
+    _checkboardCache[key] = checkboard
+    return checkboard
   }
 }
 
@@ -41,7 +55,7 @@ export default {
  * @param {Number} size
  */
 
-function renderCheckboard (c1, c2, size) {
+function renderCheckboard (c1: string, c2: string, size: number) {
   // Dont Render On Server
   if (typeof document === 'undefined') {
     return null
@@ -60,26 +74,6 @@ function renderCheckboard (c1, c2, size) {
   ctx.translate(size, size)
   ctx.fillRect(0, 0, size, size)
   return canvas.toDataURL()
-}
-
-/**
- * get checkboard base data and cache
- *
- * @param {String} c1 hex color
- * @param {String} c2 hex color
- * @param {Number} size
- */
-
-function getCheckboard (c1, c2, size) {
-  var key = c1 + ',' + c2 + ',' + size
-
-  if (_checkboardCache[key]) {
-    return _checkboardCache[key]
-  } else {
-    var checkboard = renderCheckboard(c1, c2, size)
-    _checkboardCache[key] = checkboard
-    return checkboard
-  }
 }
 
 </script>
