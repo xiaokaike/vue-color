@@ -23,7 +23,7 @@
           @click="handlerClick(c)"
         >
           <div
-            v-show="equal(c)"
+            v-show="equals(c)"
             class="vc-swatches-pick"
           >
             <svg
@@ -80,10 +80,6 @@ export default class Swatches extends mixins(Color) {
       return '';
     }
     return this.tc.toHexString();
-  }
-
-  equal(color: string) {
-    return color.toLowerCase() === this.pick.toLowerCase();
   }
 
   handlerClick(value: string) {

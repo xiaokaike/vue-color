@@ -8,7 +8,7 @@ export const ToStorybook = () => ({
   components: { Swatches },
   data() {
     return {
-      color: '#36473f'
+      color: '#689f38'
     }
   },
   methods: {
