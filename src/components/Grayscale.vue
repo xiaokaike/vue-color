@@ -8,7 +8,7 @@
       class="vc-grayscale-colors"
     >
       <li
-        v-for="c in paletteUpperCase(palette)"
+        v-for="c in palette"
         :key="c"
         :aria-label="'Color:' + c"
         class="vc-grayscale-color-item"
@@ -17,7 +17,7 @@
         @click="handlerClick(c)"
       >
         <div
-          v-show="c === pick"
+          v-show="equals(c)"
           class="vc-grayscale-dot"
         />
       </li>
@@ -25,38 +25,31 @@
   </div>
 </template>
 
-<script>
-import colorMixin from '../mixin/color'
+<script lang="ts">
+import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import Color from '../mixin/color';
 
-const defaultColors = [
+const defaultPalatte = [
   '#FFFFFF', '#F2F2F2', '#E6E6E6', '#D9D9D9', '#CCCCCC', '#BFBFBF', '#B3B3B3',
   '#A6A6A6', '#999999', '#8C8C8C', '#808080', '#737373', '#666666', '#595959',
   '#4D4D4D', '#404040', '#333333', '#262626', '#0D0D0D', '#000000'
 ]
 
-export default {
-  name: 'Grayscale',
-  mixins: [colorMixin],
-  props: {
-    palette: {
-      type: Array,
-      default () {
-        return defaultColors
-      }
+@Component
+export default class Grayscale extends mixins(Color) {
+  @Prop({default: () => defaultPalatte})
+  readonly palette!: string[][];
+
+  get pick() {
+    if (this.tc === null) {
+      return '';
     }
-  },
-  computed: {
-    pick () {
-      return this.tc.hex.toUpperCase()
-    }
-  },
-  methods: {
-    handlerClick (c) {
-      this.colorChange({
-        hex: c,
-        source: 'hex'
-      })
-    }
+    return this.tc.toHexString();
+  }
+
+  handlerClick(value: string) {
+    this.onColorChange(value);
   }
 }
 

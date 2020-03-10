@@ -139,9 +139,12 @@ export default class Color extends Props {
   isValidHex(hex: string) {
     return tinycolor(hex).isValid();
   }
-  //   paletteUpperCase (palette) {
-  //     return palette.map(c => c.toUpperCase())
-  //   },
+  equals(color: tinycolor.ColorInput) {
+    if (this.tc === null) {
+      return false;
+    }
+    return tinycolor.equals(this.tc, color);
+  }
   //   isTransparent (color) {
   //     return tinycolor(color).getAlpha() === 0
   //   }
