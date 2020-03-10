@@ -79,10 +79,11 @@ const Props = Vue.extend({
 
 // TODO: 枚举 & fallback
 interface FormatMethodMap {
-  [key: string]: 'toHexString'
+  [key: string]: 'toHexString' | 'toHex8String'
 }
 const formatMethodMap: FormatMethodMap = {
-  hex: 'toHexString'
+  hex: 'toHexString',
+  hex8: 'toHex8String'
 };
 
 @Component
