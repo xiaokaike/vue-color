@@ -29,10 +29,13 @@
 </template>
 
 <script lang="ts">
+import tinycolor from 'tinycolor2';
 import Checkboard from './Checkboard.vue';
 import { Component, Ref, Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import Color from '../../mixin/color';
+
+const DEFAULT_COLOR = 'black';
 
 @Component({
   components: {
@@ -45,39 +48,19 @@ export default class Alpha extends mixins(Color) {
 
   containerWidth = 0;
   xOffset = 0;
-  // pointerLeft: string = '0%';
-  // gradientColor: string = 'none';
-
-  // @Watch('tc')
-  // onTCChanged(color: tinycolor.Instance | null) {
-  //   console.log(' color ===> ', color);
-  //   if (color === null) {
-  //     this.pointerLeft = '0%';
-  //     return;
-  //   }
-  //   // console.log('this.tc.getAlpha() ==>', this.tc.getAlpha());
-  //   this.pointerLeft = `${color.getAlpha() * 100}%`;
-  // }
 
   get a() {
     if (this.tc === null) {
       return 1;
     }
-    //@ts-ignore
-    console.log('===a====', this.tc._a);
-    //@ts-ignore
-    return this.tc._a;
+    return this.tc.getAlpha();
   }
   get pointerLeft() {
-    // if (this.tc === null) {
-    //   return '0%';
-    // }
-    // console.log('this.tc.getAlpha() ==>', this.tc.getAlpha());
     return `${this.a * 100}%`;
   }
   gradientColor() {
     if (this.tc === null) {
-      /* TODO: */return 'black';
+      /* TODO: comfirm the way to treat null */return DEFAULT_COLOR;
     }
     const rgba = this.tc.toRgb();
     const rgbStr = [rgba.r, rgba.g, rgba.b].join(',');
@@ -89,9 +72,6 @@ export default class Alpha extends mixins(Color) {
     this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset
   }
   handleChange(pageX: number) {
-    if (this.tc === null) {
-      return;
-    }
 
     const { containerWidth, xOffset } = this;
     const left = pageX - xOffset;
@@ -105,10 +85,11 @@ export default class Alpha extends mixins(Color) {
       a = Math.round(left * 100 / containerWidth) / 100;
     }
 
-    console.log('==this.tc.getAlpha()==>', this.tc.getAlpha(), a);
-    if (this.tc.getAlpha() !== a) {
-      // TODO: 需要强行改变 format
-      this.onColorChange(this.tc.setAlpha(a));
+    if (this.a !== a) {
+      if (this.getOutputFormat() === 'hex') {
+        this.setOutputFormat('hex8')
+      }
+      this.onColorChange(this.tc === null ? (new tinycolor(DEFAULT_COLOR)).setAlpha(a) : this.tc.setAlpha(a));
     }
   }
   handleMouseDown(e: MouseEvent) {

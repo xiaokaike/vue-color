@@ -8,7 +8,7 @@ export const ToStorybook = () => ({
   components: { Alpha },
   data() {
     return {
-      color: '#36473f'
+      color: null
     }
   },
   methods: {
