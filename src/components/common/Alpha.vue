@@ -4,7 +4,7 @@
     class="vc-alpha"
   >
     <div class="vc-alpha-checkboard-wrap">
-      <checkboard />
+      <Checkboard />
     </div>
     <div
       class="vc-alpha-gradient"
@@ -14,8 +14,8 @@
       ref="container"
       class="vc-alpha-container"
       @mousedown="handleMouseDown"
-      @touchmove="handleChange"
-      @touchstart="handleChange"
+      @touchmove="handlTouchEvents"
+      @touchstart="handlTouchEvents"
     >
       <div
         role="CurrentAlphaPointer"
@@ -28,72 +28,89 @@
   </div>
 </template>
 
-<script>
-import checkboard from './Checkboard.vue'
+<script lang="ts">
+import tinycolor from 'tinycolor2';
+import Checkboard from './Checkboard.vue';
+import { Component, Ref, Watch } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import Color from '../../mixin/color';
 
-export default {
-  name: 'Alpha',
+const DEFAULT_COLOR = 'black';
+
+@Component({
   components: {
-    checkboard
-  },
-  props: {
-    color: Object,
-    onChange: Function
-  },
-  computed: {
-    pointerLeft () {
-      return `${this.color.a * 100}%`;
-    },
-    gradientColor () {
-      var rgba = this.color.rgba
-      var rgbStr = [rgba.r, rgba.g, rgba.b].join(',')
-      return 'linear-gradient(to right, rgba(' + rgbStr + ', 0) 0%, rgba(' + rgbStr + ', 1) 100%)'
+    Checkboard
+  }
+})
+export default class Alpha extends mixins(Color) {
+  @Ref()
+  readonly container!: HTMLDivElement;
+
+  containerWidth = 0;
+  xOffset = 0;
+
+  get a() {
+    if (this.tc === null) {
+      return 1;
     }
-  },
-  mounted () {
-    const $container = this.$refs.container
+    return this.tc.getAlpha();
+  }
+  get pointerLeft() {
+    return `${this.a * 100}%`;
+  }
+  gradientColor() {
+    if (this.tc === null) {
+      /* TODO: comfirm the way to treat null */return DEFAULT_COLOR;
+    }
+    const rgba = this.tc.toRgb();
+    const rgbStr = [rgba.r, rgba.g, rgba.b].join(',');
+    return `linear-gradient(to right, rgba(${rgbStr}, 0) 0%, rgba(${rgbStr}, 1) 100%)`;
+  }
+  mounted() {
+    const $container = this.$refs.container as HTMLDivElement;
     this.containerWidth = $container.clientWidth
     this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset
-  },
-  methods: {
-    handleChange (e, skip) {
-      !skip && e.preventDefault()
-      const { containerWidth, xOffset } = this;
+  }
+  handleChange(pageX: number) {
 
-      const pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
-      const left = pageX - xOffset
+    const { containerWidth, xOffset } = this;
+    const left = pageX - xOffset;
 
-      var a
-      if (left < 0) {
-        a = 0
-      } else if (left > containerWidth) {
-        a = 1
-      } else {
-        a = Math.round(left * 100 / containerWidth) / 100
-      }
-
-      if (this.color.a !== a) {
-        this.$emit('change', {
-          h: this.color.hsl.h,
-          s: this.color.hsl.s,
-          l: this.color.hsl.l,
-          a: a,
-          source: 'rgba'
-        })
-      }
-    },
-    handleMouseDown (e) {
-      this.handleChange(e, true)
-      window.addEventListener('mousemove', this.handleChange)
-      window.addEventListener('mouseup', this.handleMouseUp)
-    },
-    handleMouseUp () {
-      this.unbindEventListeners()
-    },
-    unbindEventListeners () {
-      window.removeEventListener('mousemove', this.handleChange)
-      window.removeEventListener('mouseup', this.handleMouseUp)
+    let a;
+    if (left < 0) {
+      a = 0;
+    } else if (left > containerWidth) {
+      a = 1;
+    } else {
+      a = Math.round(left * 100 / containerWidth) / 100;
     }
+
+    if (this.a !== a) {
+      if (this.getOutputFormat() === 'hex') {
+        this.setOutputFormat('hex8')
+      }
+      this.onColorChange(this.tc === null ? (new tinycolor(DEFAULT_COLOR)).setAlpha(a) : this.tc.setAlpha(a));
+    }
+  }
+  handleMouseDown(e: MouseEvent) {
+    e.preventDefault();
+    this.handleChange(e.pageX);
+    window.addEventListener('mousemove', this.handleMouseMove)
+    window.addEventListener('mouseup', this.handleMouseUp)
+  }
+  handleMouseMove(e: MouseEvent) {
+    this.handleChange(e.pageX);
+  }
+  handleMouseUp () {
+    this.unbindEventListeners()
+  }
+  unbindEventListeners () {
+    window.removeEventListener('mousemove', this.handleMouseMove)
+    window.removeEventListener('mouseup', this.handleMouseUp)
+  }
+  handlTouchEvents (e: TouchEvent) {
+    const pageX = e.touches ? e.touches[0].pageX : 0;
+    this.handleChange(pageX);
   }
 }
 
