@@ -48,13 +48,13 @@ import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
 })
 export default class Material extends mixins(Color) {
   get hex() {
-    if (this.tc === null) {
+    if (this.isInputEmpty) {
       return null;
     }
     return this.tc.toHexString();
   }
   get rgba() {
-    if (this.tc === null) {
+    if (this.isInputEmpty) {
       return null;
     }
     return this.tc.toRgb();

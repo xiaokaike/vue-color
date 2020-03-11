@@ -29,13 +29,10 @@
 </template>
 
 <script lang="ts">
-import tinycolor from 'tinycolor2';
 import Checkboard from './Checkboard.vue';
 import { Component, Ref, Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import Color from '../../mixin/color';
-
-const DEFAULT_COLOR = 'black';
 
 @Component({
   components: {
@@ -50,18 +47,12 @@ export default class Alpha extends mixins(Color) {
   xOffset = 0;
 
   get a() {
-    if (this.tc === null) {
-      return 1;
-    }
     return this.tc.getAlpha();
   }
   get pointerLeft() {
     return `${this.a * 100}%`;
   }
   gradientColor() {
-    if (this.tc === null) {
-      /* TODO: comfirm the way to treat null */return DEFAULT_COLOR;
-    }
     const rgba = this.tc.toRgb();
     const rgbStr = [rgba.r, rgba.g, rgba.b].join(',');
     return `linear-gradient(to right, rgba(${rgbStr}, 0) 0%, rgba(${rgbStr}, 1) 100%)`;
@@ -89,7 +80,7 @@ export default class Alpha extends mixins(Color) {
       if (this.getOutputFormat() === 'hex') {
         this.setOutputFormat('hex8')
       }
-      this.onColorChange(this.tc === null ? (new tinycolor(DEFAULT_COLOR)).setAlpha(a) : this.tc.setAlpha(a));
+      this.onColorChange(this.tc.setAlpha(a));
     }
   }
   handleMouseDown(e: MouseEvent) {

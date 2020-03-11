@@ -1,6 +1,7 @@
 import Vue, { PropOptions }  from 'vue'
 import tinycolor from 'tinycolor2';
 import Component from 'vue-class-component'
+import { DEFAULT_COLOR } from '../config';
 
 // TODO: 枚举 & fallback
 const supportFormat = ['hex', 'hex8']
@@ -33,17 +34,20 @@ const formatMethodMap: FormatMethodMap = {
 @Component
 export default class Color extends Props {
 
-  // because default value is `#fff`
+  // because default value is `#000`
   private _outputFormat: string = 'hex';
 
+  get isInputEmpty() {
+    return this.value === null;
+  }
   // `tc` stands for tinycolor
   get tc () {
     if (this.value === null) {
       // TODO: warning, when outputFormat is undefined
       this._outputFormat = this.outputFormat;
-      return null;
+      return new tinycolor(DEFAULT_COLOR);
     }
-    const tc = tinycolor(this.value);
+    const tc = new tinycolor(this.value);
     this._outputFormat = tc.getFormat();
     return tc;
   }
@@ -54,10 +58,9 @@ export default class Color extends Props {
     this._outputFormat = format;
   }
   onColorChange(value: tinycolor.ColorInput) {
-    const tc = tinycolor(value);
+    const tc = new tinycolor(value);
     let formatMethod = formatMethodMap[this._outputFormat];
     const res = formatMethod ? tc[formatMethod]() : tc;
-    console.log(" color onColorChange ===>", res);
     this.$emit('input', res);
     this.$emit('change', res);
   }
@@ -65,7 +68,7 @@ export default class Color extends Props {
     return tinycolor(hex).isValid();
   }
   equals(color: tinycolor.ColorInput) {
-    if (this.tc === null) {
+    if (this.isInputEmpty) {
       return false;
     }
     return tinycolor.equals(this.tc, color);

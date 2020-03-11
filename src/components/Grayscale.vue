@@ -42,9 +42,6 @@ export default class Grayscale extends mixins(Color) {
   readonly palette!: string[][];
 
   get pick() {
-    if (this.tc === null) {
-      return '';
-    }
     return this.tc.toHexString();
   }
 
