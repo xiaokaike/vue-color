@@ -5,8 +5,8 @@
     class="vc-saturation"
     :style="{background: bgColor}"
     @mousedown="handleMouseDown"
-    @touchmove="handleChange"
-    @touchstart="handleChange"
+    @touchmove="handleTouchEvents"
+    @touchstart="handleTouchEvents"
   >
     <div class="vc-saturation--white" />
     <div class="vc-saturation--black" />
@@ -20,77 +20,87 @@
   </div>
 </template>
 
-<script>
-import clamp from 'clamp'
-import throttle from 'lodash.throttle'
+<script lang="ts">
+import { Vue, Component, Ref } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import Color from '../../mixin/color';
+import clamp from 'clamp';
+import throttle from 'lodash.throttle';
 
-export default {
-  name: 'Saturation',
-  props: {
-    color: Object
-  },
-  computed: {
-    bgColor () {
-      return `hsl(${this.color.hsv.h}, 100%, 50%)`
-    },
-    pointerTop () {
-      return (-(this.color.hsv.v * 100) + 1) + 100 + '%'
-    },
-    pointerLeft () {
-      return this.color.hsv.s * 100 + '%'
-    }
-  },
+@Component
+export default class Saturation extends mixins(Color) {
+  containerWidth = 0;
+  containerHeight = 0;
+  xOffset = 0;
+  yOffset = 0;
+
+  throttle = throttle((fn, data) => {
+    fn(data)
+  }, 20,
+  {
+    'leading': true,
+    'trailing': false
+  })
+
+  @Ref('container')
+  readonly container!: HTMLDivElement
+
+  get hsv() {
+    return this.tc.toHsv();
+  }
+  get bgColor() {
+    return `hsl(${this.hsv.h}, 100%, 50%)`
+  }
+  get pointerTop () {
+    return (-(this.hsv.v * 100) + 1) + 100 + '%'
+  }
+  get pointerLeft () {
+    return this.hsv.s * 100 + '%'
+  }
   mounted() {
-    const $container = this.$refs.container
+    const $container = this.$refs.container as HTMLDivElement;
     this.containerWidth = $container.clientWidth
     this.containerHeight = $container.clientHeight
 
     this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset
     this.yOffset = $container.getBoundingClientRect().top + window.pageYOffset
-  },
-  methods: {
-    throttle: throttle((fn, data) => {
-      fn(data)
-    }, 20,
-      {
-        'leading': true,
-        'trailing': false
-      }),
-    handleChange (e, skip) {
-      !skip && e.preventDefault()
-      const { containerWidth, containerHeight, xOffset, yOffset } = this;
-      const pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
-      const pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
-      const left = clamp(pageX - xOffset, 0, containerWidth)
-      const top = clamp(pageY - yOffset, 0, containerHeight)
-      const saturation = left / containerWidth
-      const bright = clamp(-(top / containerHeight) + 1, 0, 1)
+  }
+  handleChange (pageX: number, pageY: number) {
+    // !skip && e.preventDefault()
+    const { containerWidth, containerHeight, xOffset, yOffset } = this;
+    const left = clamp(pageX - xOffset, 0, containerWidth)
+    const top = clamp(pageY - yOffset, 0, containerHeight)
+    const saturation = left / containerWidth
+    const bright = clamp(-(top / containerHeight) + 1, 0, 1)
 
-      this.throttle(this.onChange, {
-        h: this.color.hsv.h,
+    this.throttle(this.onColorChange, {
+      ...this.hsv,
+      ... {
         s: saturation,
         v: bright,
-        a: this.color.hsv.a,
-        source: 'hsva'
-      })
-    },
-    onChange (param) {
-      this.$emit('change', param)
-    },
-    handleMouseDown (/*e*/) {
-      // this.handleChange(e, true)
-      window.addEventListener('mousemove', this.handleChange)
-      window.addEventListener('mouseup', this.handleChange)
-      window.addEventListener('mouseup', this.handleMouseUp)
-    },
-    handleMouseUp (/*e*/) {
-      this.unbindEventListeners()
-    },
-    unbindEventListeners () {
-      window.removeEventListener('mousemove', this.handleChange)
-      window.removeEventListener('mouseup', this.handleChange)
-      window.removeEventListener('mouseup', this.handleMouseUp)
-    }
+      }
+    })
+  }
+  handleMouseDown (/* e: MouseEvent */) {
+    window.addEventListener('mousemove', this.handleMouseEvents)
+    window.addEventListener('mouseup', this.handleMouseEvents)
+    window.addEventListener('mouseup', this.handleMouseUp)
+  }
+  handleMouseEvents(e: MouseEvent) {
+    this.handleChange(e.pageX, e.pageY);
+  }
+  handleMouseUp (/*e*/) {
+    this.unbindEventListeners()
+  }
+  unbindEventListeners () {
+    window.removeEventListener('mousemove', this.handleMouseEvents)
+    window.removeEventListener('mouseup', this.handleMouseEvents)
+    window.removeEventListener('mouseup', this.handleMouseUp)
+  }
+  handleTouchEvents(e: TouchEvent) {
+    const pageX = e.touches ? e.touches[0].pageX : 0;
+    const pageY = e.touches ? e.touches[0].pageY : 0;
+    this.handleChange(pageX, pageY);
   }
 }
 </script>

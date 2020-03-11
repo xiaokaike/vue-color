@@ -43,6 +43,7 @@
     "@storybook/addons": "^5.3.14",
     "@storybook/preset-typescript": "^2.1.0",
     "@storybook/vue": "^5.3.14",
+    "@types/lodash.throttle": "^4.1.6",
     "@typescript-eslint/parser": "^2.22.0",
     "@vue/test-utils": "^1.0.0-beta.31",
     "babel-loader": "^8.0.6",
