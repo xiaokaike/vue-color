@@ -22,8 +22,12 @@ export default class Checkboard extends Vue {
   readonly grey!: string;
 
   get bgStyle() {
+    const checkboard = getCheckboard(this.white, this.grey, this.size);
+    if (checkboard === null) {
+      return {};
+    }
     return {
-      'background-image': 'url(' + getCheckboard(this.white, this.grey, this.size) + ')'
+      'background-image': `url(${checkboard})`
     }
   }
 }
@@ -36,12 +40,15 @@ export default class Checkboard extends Vue {
  * @param {Number} size
  */
 function getCheckboard (c1: string, c2: string, size: number) {
-  var key = c1 + ',' + c2 + ',' + size
+  const key = c1 + ',' + c2 + ',' + size
 
   if (_checkboardCache[key]) {
     return _checkboardCache[key]
   } else {
-    var checkboard = renderCheckboard(c1, c2, size)
+    const checkboard = renderCheckboard(c1, c2, size);
+    if (checkboard === null) {
+      return null;
+    }
     _checkboardCache[key] = checkboard
     return checkboard
   }
