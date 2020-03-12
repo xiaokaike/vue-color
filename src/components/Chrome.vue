@@ -4,7 +4,7 @@
     :class="['vc-chrome', disableAlpha ? 'vc-chrome__disable-alpha' : '']"
   >
     <div class="vc-chrome-saturation-wrap">
-      <saturation
+      <Saturation
         :color="tc"
         @change="childChange"
       />
@@ -170,24 +170,21 @@
   </div>
 </template>
 
-<script>
-import colorMixin from '../mixin/color'
-import editableInput from './common/EditableInput.vue'
-import saturation from './common/Saturation.vue'
-import hue from './common/Hue.vue'
-import alpha from './common/Alpha.vue'
-import checkboard from './common/Checkboard.vue'
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import Color from '../mixin/color';
 
-export default {
-  name: 'Chrome',
-  components: {
-    saturation,
-    hue,
-    alpha,
-    'ed-in': editableInput,
-    checkboard
-  },
-  mixins: [colorMixin],
+import EditableInput from './common/EditableInput.vue'
+import Saturation from './common/Saturation.vue'
+import Hue from './common/Hue.vue'
+import Alpha from './common/Alpha.vue'
+import Checkboard from './common/Checkboard.vue'
+
+@Component({
+  components: { EditableInput, Saturation, Hue, Alpha, Checkboard }
+})
+export default class Chrome extends mixins(Color) {
   props: {
     disableAlpha: {
       type: Boolean,
