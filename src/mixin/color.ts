@@ -64,9 +64,6 @@ export default class Color extends Props {
     this.$emit('input', res);
     this.$emit('change', res);
   }
-  isValidHex(hex: string) {
-    return tinycolor(hex).isValid();
-  }
   equals(color: tinycolor.ColorInput) {
     if (this.isInputEmpty) {
       return false;

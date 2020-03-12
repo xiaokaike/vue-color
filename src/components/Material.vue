@@ -39,9 +39,10 @@
 
 <script lang="ts">
 import EditableInput from './common/EditableInput.vue';
-import Color from '../mixin/color';
 import { mixins } from 'vue-class-component';
 import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
+import Color from '../mixin/color';
+import { isValidHex } from '../utils';
 
 @Component({
   components: { EditableInput }
@@ -60,7 +61,7 @@ export default class Material extends mixins(Color) {
     return this.tc.toRgb();
   }
   onChangeHex(hex: string) {
-    if (this.isValidHex(hex) && hex.length === 7) {
+    if (isValidHex(hex) && hex.length === 7) {
       this.onColorChange(hex);
     }
   }
