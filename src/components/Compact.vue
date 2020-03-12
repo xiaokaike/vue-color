@@ -8,16 +8,16 @@
       class="vc-compact-colors"
     >
       <li
-        v-for="c in paletteUpperCase(palette)"
+        v-for="c in palette"
         :key="c"
         :aria-label="'Color:' + c"
         class="vc-compact-color-item"
         :class="{'vc-compact-color-item--white': c === '#FFFFFF' }"
         :style="{background: c}"
-        @click="handlerClick(c)"
+        @click="onColorChange(c)"
       >
         <div
-          v-show="c === pick"
+          v-show="equals(c)"
           class="vc-compact-dot"
         />
       </li>
@@ -25,8 +25,10 @@
   </div>
 </template>
 
-<script>
-import colorMixin from '../mixin/color'
+<script lang="ts">
+import { Component, Prop } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import Color from '../mixin/color';
 
 const defaultColors = [
   '#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FCDC00',
@@ -35,32 +37,12 @@ const defaultColors = [
   '#B0BC00', '#68BC00', '#16A5A5', '#009CE0', '#7B64FF', '#FA28FF',
   '#000000', '#666666', '#B3B3B3', '#9F0500', '#C45100', '#FB9E00',
   '#808900', '#194D33', '#0C797D', '#0062B1', '#653294', '#AB149E'
-]
+];
 
-export default {
-  name: 'Compact',
-  mixins: [colorMixin],
-  props: {
-    palette: {
-      type: Array,
-      default () {
-        return defaultColors
-      }
-    }
-  },
-  computed: {
-    pick () {
-      return this.tc.hex.toUpperCase()
-    }
-  },
-  methods: {
-    handlerClick (c) {
-      this.colorChange({
-        hex: c,
-        source: 'hex'
-      })
-    }
-  }
+@Component
+export default class Compact extends mixins(Color) {
+  @Prop({default: () => defaultColors})
+  palette !: string[];
 }
 
 </script>
