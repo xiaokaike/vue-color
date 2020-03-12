@@ -58,6 +58,7 @@ export default class EditableInput extends Vue {
       }
     }
     this.$emit('change', v);
+    this.$emit('input', v);
     const $input = this.$refs.input as HTMLInputElement;
     $input.value = v.toString();
   }

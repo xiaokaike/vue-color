@@ -4,10 +4,7 @@
     :class="['vc-chrome', disableAlpha ? 'vc-chrome__disable-alpha' : '']"
   >
     <div class="vc-chrome-saturation-wrap">
-      <Saturation
-        :color="tc"
-        @change="childChange"
-      />
+      <Saturation :value="tc" @change="onColorChange" />
     </div>
     <div class="vc-chrome-body">
       <div class="vc-chrome-controls">
@@ -16,24 +13,18 @@
             class="vc-chrome-active-color"
             :style="{background: activeColor}"
           />
-          <checkboard v-if="!disableAlpha" />
+          <Checkboard v-if="!disableAlpha" />
         </div>
 
         <div class="vc-chrome-sliders">
           <div class="vc-chrome-hue-wrap">
-            <hue
-              :color="tc"
-              @change="childChange"
-            />
+            <Hue :value="tc" @change="onColorChange" />
           </div>
           <div
             v-if="!disableAlpha"
             class="vc-chrome-alpha-wrap"
           >
-            <alpha
-              :color="tc"
-              @change="childChange"
-            />
+            <Alpha :value="tc" @change="onColorChange" />
           </div>
         </div>
       </div>
@@ -48,41 +39,42 @@
         >
           <!-- hex -->
           <div class="vc-chrome-field">
-            <ed-in
+            <EditableInput
               v-if="!hasAlpha"
               label="hex"
-              :value="tc.hex"
-              @change="inputChange"
+              :value="hex"
+              @change="onColorChange"
             />
-            <ed-in
+            <!-- <EditableInput
               v-if="hasAlpha"
               label="hex"
               :value="tc.hex8"
               @change="inputChange"
-            />
+            /> -->
           </div>
         </div>
         <div
           v-show="fieldsIndex === 1"
           class="vc-chrome-fields"
         >
+          rgba
           <!-- rgba -->
-          <div class="vc-chrome-field">
-            <ed-in
+          <!-- <div class="vc-chrome-field">
+            <EditableInput
               label="r"
               :value="rgba.r"
               @change="inputChange"
             />
           </div>
           <div class="vc-chrome-field">
-            <ed-in
+            <EditableInput
               label="g"
               :value="rgba.g"
               @change="inputChange"
             />
           </div>
           <div class="vc-chrome-field">
-            <ed-in
+            <EditableInput
               label="b"
               :value="rgba.b"
               @change="inputChange"
@@ -92,35 +84,36 @@
             v-if="!disableAlpha"
             class="vc-chrome-field"
           >
-            <ed-in
+            <EditableInput
               label="a"
               :value="rgba.a"
               :arrow-offset="0.01"
               @change="inputChange"
             />
-          </div>
+          </div> -->
         </div>
         <div
           v-show="fieldsIndex === 2"
           class="vc-chrome-fields"
         >
+          hsla
           <!-- hsla -->
-          <div class="vc-chrome-field">
-            <ed-in
+          <!-- <div class="vc-chrome-field">
+            <EditableInput
               label="h"
               :value="hsl.h"
               @change="inputChange"
             />
           </div>
           <div class="vc-chrome-field">
-            <ed-in
+            <EditableInput
               label="s"
               :value="hsl.s"
               @change="inputChange"
             />
           </div>
           <div class="vc-chrome-field">
-            <ed-in
+            <EditableInput
               label="l"
               :value="hsl.l"
               @change="inputChange"
@@ -130,13 +123,13 @@
             v-if="!disableAlpha"
             class="vc-chrome-field"
           >
-            <ed-in
+            <EditableInput
               label="a"
               :value="tc.a"
               :arrow-offset="0.01"
               @change="inputChange"
             />
-          </div>
+          </div> -->
         </div>
         <!-- btn -->
         <div
@@ -185,89 +178,86 @@ import Checkboard from './common/Checkboard.vue'
   components: { EditableInput, Saturation, Hue, Alpha, Checkboard }
 })
 export default class Chrome extends mixins(Color) {
-  props: {
-    disableAlpha: {
-      type: Boolean,
-      default: false
-    },
-    disableFields: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data () {
-    return {
-      fieldsIndex: 0,
-      highlight: false
-    }
-  },
-  computed: {
-    rgba () {
-      return this.tc.rgba
-    },
-    hsl () {
-      const { h, s, l } = this.tc.hsl
-      return {
-        h: h.toFixed(),
-        s: `${(s * 100).toFixed()}%`,
-        l: `${(l * 100).toFixed()}%`
-      }
-    },
-    activeColor () {
-      const rgba = this.rgba
-      return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
-    },
-    hasAlpha () {
-      return this.tc.a < 1
-    }
-  },
-  methods: {
-    childChange (data) {
-      this.colorChange(data)
-    },
-    inputChange (data) {
-      if (!data) {
-        return
-      }
-      if (data.hex) {
-        this.isValidHex(data.hex) && this.colorChange({
-          hex: data.hex,
-          source: 'hex'
-        })
-      } else if (data.r || data.g || data.b || data.a) {
-        this.colorChange({
-          r: data.r || this.rgba.r,
-          g: data.g || this.rgba.g,
-          b: data.b || this.rgba.b,
-          a: data.a || this.rgba.a,
-          source: 'rgba'
-        })
-      } else if (data.h || data.s || data.l) {
-        const s = data.s ? (data.s.replace('%', '') / 100) : this.tc.hsl.s
-        const l = data.l ? (data.l.replace('%', '') / 100) : this.tc.hsl.l
+  @Prop({default: false})
+  disableAlpha !: boolean;
 
-        this.colorChange({
-          h: data.h || this.tc.hsl.h,
-          s,
-          l,
-          source: 'hsl'
-        })
-      }
-    },
-    toggleViews () {
-      if (this.fieldsIndex >= 2) {
-        this.fieldsIndex = 0
-        return
-      }
-      this.fieldsIndex ++
-    },
-    showHighlight () {
-      this.highlight = true
-    },
-    hideHighlight () {
-      this.highlight = false
+  @Prop({default: false})
+  disableFields !: boolean;
+
+  fieldsIndex = 0;
+  highlight = false;
+
+  get hex() {
+    return this.tc.toHexString();
+  }
+
+  get rgba() {
+    return this.tc.toRgb();
+  }
+
+  get hsl() {
+    const { h, s, l } = this.tc.toHsl();
+    return {
+      h: h.toFixed(),
+      s: `${(s * 100).toFixed()}%`,
+      l: `${(l * 100).toFixed()}%`
     }
   }
+  get activeColor() {
+    return this.tc.toRgbString();
+  }
+  get hasAlpha() {
+    return this.tc.getAlpha() < 1;
+  }
+
+  toggleViews () {
+    if (this.fieldsIndex >= 2) {
+      this.fieldsIndex = 0;
+      return;
+    }
+    this.fieldsIndex ++;
+  }
+  showHighlight () {
+    this.highlight = true;
+  }
+  hideHighlight () {
+    this.highlight = false;
+  }
+
+  // methods: {
+    // childChange (data) {
+    //   this.colorChange(data)
+    // },
+    // inputChange (data) {
+    //   if (!data) {
+    //     return
+    //   }
+    //   if (data.hex) {
+    //     this.isValidHex(data.hex) && this.colorChange({
+    //       hex: data.hex,
+    //       source: 'hex'
+    //     })
+    //   } else if (data.r || data.g || data.b || data.a) {
+    //     this.colorChange({
+    //       r: data.r || this.rgba.r,
+    //       g: data.g || this.rgba.g,
+    //       b: data.b || this.rgba.b,
+    //       a: data.a || this.rgba.a,
+    //       source: 'rgba'
+    //     })
+    //   } else if (data.h || data.s || data.l) {
+    //     const s = data.s ? (data.s.replace('%', '') / 100) : this.tc.hsl.s
+    //     const l = data.l ? (data.l.replace('%', '') / 100) : this.tc.hsl.l
+
+    //     this.colorChange({
+    //       h: data.h || this.tc.hsl.h,
+    //       s,
+    //       l,
+    //       source: 'hsl'
+    //     })
+    //   }
+    // },
+  // }
 }
 </script>
 
