@@ -4,9 +4,9 @@
     class="vc-slider"
   >
     <div class="vc-slider-hue-warp">
-      <hue
-        :color="tc"
-        @change="hueChange"
+      <Hue
+        :value="tc"
+        @change="onColorChange"
       />
     </div>
     <div
@@ -18,68 +18,58 @@
         :key="index"
         :data-index="index"
         class="vc-slider-swatch"
-        @click="handleSwClick(index, offset)"
+        @click="handleSwClick(offset)"
       >
         <div
           class="vc-slider-swatch-picker"
-          :aria-label="'color:' + 'hsl(' + tc.hsl.h + ', 50%, ' + (offset * 100) + '%)'"
+          :aria-label="'color:' + 'hsl(' + hsl.h + ', 50%, ' + (offset * 100) + '%)'"
           :class="{'vc-slider-swatch-picker--active': offset == activeOffset, 'vc-slider-swatch-picker--white': offset === '1'}"
-          :style="{background: 'hsl(' + tc.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
+          :style="{background: 'hsl(' + hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
         />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import colorMixin from '../mixin/color'
-import hue from './common/Hue.vue'
+<script lang="ts">
+import { Component, Prop } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import Color from '../mixin/color';
 
-export default {
-  name: 'Slider',
-  components: {
-    hue
-  },
-  mixins: [colorMixin],
-  props: {
-    swatches: {
-      type: Array,
-      default () {
-        return ['.80', '.65', '.50', '.35', '.20']
-      }
-    }
-  },
-  computed: {
-    hsl () {
-      return this.tc.hsl;
-    },
-    activeOffset () {
-      const hasBlack = this.swatches.includes('0')
-      const hasWhite = this.swatches.includes('1')
-      const hsl = this.hsl;
+import Hue from './common/Hue.vue'
 
-      if (Math.round(hsl.s * 100) / 100 === 0.50) {
-        return Math.round(hsl.l * 100) / 100
-      } else if (hasBlack && hsl.l === 0) {
-        return 0
-      } else if (hasWhite && hsl.l === 1) {
-        return 1
-      }
-      return -1
+@Component({
+  components: { Hue }
+})
+export default class Slider extends mixins(Color) {
+  @Prop({default: () => ['.80', '.65', '.50', '.35', '.20']})
+  swatches!: string[];
+
+  get hsl() {
+    return this.tc.toHsl();
+  }
+
+  get activeOffset() {
+    const hasBlack = this.swatches.includes('0');
+    const hasWhite = this.swatches.includes('1');
+    const hsl = this.hsl;
+
+    if (Math.round(hsl.s * 100) / 100 === 0.50) {
+      return Math.round(hsl.l * 100) / 100;
+    } else if (hasBlack && hsl.l === 0) {
+      return 0;
+    } else if (hasWhite && hsl.l === 1) {
+      return 1;
     }
-  },
-  methods: {
-    hueChange (data) {
-      this.colorChange(data)
-    },
-    handleSwClick (index, offset) {
-      this.colorChange({
-        h: this.hsl.h,
-        s: 0.5,
-        l: offset,
-        source: 'hsl'
-      })
-    }
+    return -1;
+  }
+
+  handleSwClick(offset) {
+    this.onColorChange({
+      ...this.hsl,
+      s: 0.5,
+      l: offset
+    })
   }
 }
 </script>
