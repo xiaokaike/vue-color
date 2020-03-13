@@ -4,36 +4,36 @@
     :class="['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']"
   >
     <div class="vc-sketch-saturation-wrap">
-      <saturation
-        :color="tc"
-        @change="childChange"
+      <Saturation
+        :value="tc"
+        @change="onColorChange"
       />
     </div>
     <div class="vc-sketch-controls">
       <div class="vc-sketch-sliders">
         <div class="vc-sketch-hue-wrap">
-          <hue
-            :color="tc"
-            @change="childChange"
+          <Hue
+            :value="tc"
+            @change="onColorChange"
           />
         </div>
         <div
           v-if="!disableAlpha"
           class="vc-sketch-alpha-wrap"
         >
-          <alpha
-            :color="tc"
-            @change="childChange"
+          <Alpha
+            :value="tc"
+            @change="onAlphaChange"
           />
         </div>
       </div>
       <div class="vc-sketch-color-wrap">
         <div
-          :aria-label"`Currentcolor: ${activeColor}`"
+          :aria-label = "`Currentcolor: ${tc.toRgbString()}`"
           class="vc-sketch-active-color"
-          :style="{background: activeColor}"
+          :style="{background: tc.toRgbString()}"
         />
-        <checkboard />
+        <Checkboard />
       </div>
     </div>
     <div
@@ -42,42 +42,42 @@
     >
       <!-- rgba -->
       <div class="vc-sketch-field--double">
-        <ed-in
+        <EditableInput
           label="hex"
           :value="hex"
-          @change="inputChange"
+          @change="onColorChange"
         />
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in
+        <EditableInput
           label="r"
-          :value="tc.rgba.r"
-          @change="inputChange"
+          :value="rgba.r"
+          @change="onInputChange('r', $event)"
         />
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in
+        <EditableInput
           label="g"
-          :value="tc.rgba.g"
-          @change="inputChange"
+          :value="rgba.g"
+          @change="onInputChange('r', $event)"
         />
       </div>
       <div class="vc-sketch-field--single">
-        <ed-in
+        <EditableInput
           label="b"
-          :value="tc.rgba.b"
-          @change="inputChange"
+          :value="rgba.b"
+          @change="onInputChange('r', $event)"
         />
       </div>
       <div
         v-if="!disableAlpha"
         class="vc-sketch-field--single"
       >
-        <ed-in
+        <EditableInput
           label="a"
-          :value="tc.a"
-          :arrow-offset="0.01"
-          @change="inputChange"
+          :value="rgba.a"
+          :step="0.01"
+          @change="onInputChange('r', $event)"
         />
       </div>
     </div>
@@ -92,14 +92,14 @@
           class="vc-sketch-presets-color"
           :aria-label="'Color:' + c"
           :style="{background: c}"
-          @click="handlePreset(c)"
+          @click="onColorChange(c)"
         />
         <div
           v-else
           :key="c"
           :aria-label="'Color:' + c"
           class="vc-sketch-presets-color"
-          @click="handlePreset(c)"
+          @click="onColorChange(c)"
         >
           <checkboard />
         </div>
@@ -108,91 +108,64 @@
   </div>
 </template>
 
-<script>
-import colorMixin from '../mixin/color'
-import editableInput from './common/EditableInput.vue'
-import saturation from './common/Saturation.vue'
-import hue from './common/Hue.vue'
-import alpha from './common/Alpha.vue'
-import checkboard from './common/Checkboard.vue'
+<script lang="ts">
+import { Component, Prop } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import Color from '../mixin/color';
+import { hasAlpha, isTransparent } from '../utils';
+
+import EditableInput from './common/EditableInput.vue'
+import Saturation from './common/Saturation.vue'
+import Hue from './common/Hue.vue'
+import Alpha from './common/Alpha.vue'
+import Checkboard from './common/Checkboard.vue'
 
 const presetColors = [
   '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321',
   '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2',
   '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF',
   'rgba(0,0,0,0)'
-]
+];
 
-export default {
-  name: 'Sketch',
-  components: {
-    saturation,
-    hue,
-    alpha,
-    'ed-in': editableInput,
-    checkboard
-  },
-  mixins: [colorMixin],
-  props: {
-    presetColors: {
-      type: Array,
-      default () {
-        return presetColors
-      }
-    },
-    disableAlpha: {
-      type: Boolean,
-      default: false
-    },
-    disableFields: {
-      type: Boolean,
-      default: false
+@Component({
+  components: {EditableInput, Saturation, Hue, Alpha, Checkboard}
+})
+export default class Sketch extends mixins(Color) {
+  @Prop({default: () => presetColors})
+  presetColors!: string[];
+
+  @Prop({default: false})
+  disableAlpha!: boolean;
+
+  @Prop({default: false})
+  disableFields!: boolean;
+
+  get hex() {
+    if (hasAlpha(this.tc)) {
+      return this.tc.toHex8();
+    } else {
+      return this.tc.toHex();
     }
-  },
-  computed: {
-    hex () {
-      let hex
-      if (this.tc.a < 1) {
-        hex = this.tc.hex8
-      } else {
-        hex = this.tc.hex
-      }
-      return hex.replace('#', '')
-    },
-    activeColor () {
-      var rgba = this.tc.rgba
-      return 'rgba(' + [rgba.r, rgba.g, rgba.b, rgba.a].join(',') + ')'
+  }
+
+  get rgba() {
+    return this.tc.toRgb();
+  }
+
+  isTransparent = isTransparent;
+
+  onAlphaChange(color: string) {
+    if (hasAlpha(color)  && this.getOutputFormat() === 'hex') {
+      this.setOutputFormat('hex8')
     }
-  },
-  methods: {
-    handlePreset (c) {
-      this.colorChange({
-        hex: c,
-        source: 'hex'
-      })
-    },
-    childChange (data) {
-      this.colorChange(data)
-    },
-    inputChange (data) {
-      if (!data) {
-        return
-      }
-      if (data.hex) {
-        this.isValidHex(data.hex) && this.colorChange({
-          hex: data.hex,
-          source: 'hex'
-        })
-      } else if (data.r || data.g || data.b || data.a) {
-        this.colorChange({
-          r: data.r || this.tc.rgba.r,
-          g: data.g || this.tc.rgba.g,
-          b: data.b || this.tc.rgba.b,
-          a: data.a || this.tc.rgba.a,
-          source: 'rgba'
-        })
-      }
-    }
+    this.onColorChange(color);
+  }
+
+  onInputChange(label: 'r' | 'g' | 'b' | 'a', value: string) {
+    this.onColorChange({
+      ...this.rgba,
+      [label]: value
+    })
   }
 }
 </script>

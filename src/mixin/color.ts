@@ -70,9 +70,5 @@ export default class Color extends Props {
     }
     return tinycolor.equals(this.tc, color);
   }
-  //   isTransparent (color) {
-  //     return tinycolor(color).getAlpha() === 0
-  //   }
-  // }
 };
 
