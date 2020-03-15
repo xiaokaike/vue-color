@@ -6,16 +6,16 @@
     <div class="vc-ps-head">{{ head }}</div>
     <div class="vc-ps-body">
       <div class="vc-ps-saturation-wrap">
-        <saturation
-          :color="tc"
-          @change="childChange"
+        <Saturation
+          :value="tc"
+          @change="onColorChange"
         />
       </div>
       <div class="vc-ps-hue-wrap">
         <hue
-          :color="tc"
+          :value="tc"
           direction="vertical"
-          @change="childChange"
+          @change="onColorChange"
         >
           <div class="vc-ps-hue-pointer">
             <i class="vc-ps-hue-pointer--left" />
@@ -29,8 +29,8 @@
           <div class="vc-ps-previews__swatches">
             <div
               class="vc-ps-previews__pr-color"
-              :aria-label="'NewColor:' + tc.hex"
-              :style="{background: tc.hex}"
+              :aria-label="'NewColor:' + hex"
+              :style="{background: hex}"
             />
             <div
               class="vc-ps-previews__pr-color"
@@ -64,50 +64,50 @@
 
           <div class="vc-ps-fields">
             <!-- hsla -->
-            <ed-in
+            <EditableInput
               label="h"
               desc="°"
               :value="hsv.h"
-              @change="inputChange"
+              @change="inputChange('h', $event)"
             />
-            <ed-in
+            <EditableInput
               label="s"
               desc="%"
               :value="hsv.s"
               :max="100"
-              @change="inputChange"
+              @change="inputChange('s', $event)"
             />
-            <ed-in
+            <EditableInput
               label="v"
               desc="%"
               :value="hsv.v"
               :max="100"
-              @change="inputChange"
+              @change="inputChange('v', $event)"
             />
             <div class="vc-ps-fields__divider" />
             <!-- rgba -->
-            <ed-in
+            <EditableInput
               label="r"
-              :value="tc.rgba.r"
-              @change="inputChange"
+              :value="rgba.r"
+              @change="inputChange('r', $event)"
             />
-            <ed-in
+            <EditableInput
               label="g"
-              :value="tc.rgba.g"
-              @change="inputChange"
+              :value="rgba.g"
+              @change="inputChange('g', $event)"
             />
-            <ed-in
+            <EditableInput
               label="b"
-              :value="tc.rgba.b"
-              @change="inputChange"
+              :value="rgba.b"
+              @change="inputChange('b', $event)"
             />
             <div class="vc-ps-fields__divider" />
             <!-- hex -->
-            <ed-in
+            <EditableInput
               label="#"
               class="vc-ps-fields__hex"
-              :value="hex"
-              @change="inputChange"
+              :value="tc.toHex()"
+              @change="inputChange('hex', $event)"
             />
           </div>
 
@@ -125,115 +125,94 @@
   </div>
 </template>
 
-<script>
-import colorMixin from '../mixin/color'
-import editableInput from './common/EditableInput.vue'
-import saturation from './common/Saturation.vue'
-import hue from './common/Hue.vue'
+<script lang="ts">
+import { Component, Prop } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import Color from '../mixin/color';
+import { isValidHex } from '../utils';
+import EditableInput from './common/EditableInput.vue'
+import Saturation from './common/Saturation.vue'
+import Hue from './common/Hue.vue'
 
-export default {
-  name: 'Photoshop',
-  components: {
-    saturation,
-    hue,
-    'ed-in': editableInput
-  },
-  mixins: [colorMixin],
-  props: {
-    head: {
-      type: String,
-      default: 'Color Picker'
-    },
-    disableFields: {
-      type: Boolean,
-      default: false
-    },
-    hasResetButton: {
-      type: Boolean,
-      default: false
-    },
-    acceptLabel: {
-      type: String,
-      default: 'OK'
-    },
-    cancelLabel: {
-      type: String,
-      default: 'Cancel'
-    },
-    resetLabel: {
-      type: String,
-      default: 'Reset'
-    }
-  },
-  data () {
+@Component({
+  components: { Saturation, Hue, EditableInput },
+})
+export default class Photoshop extends mixins(Color) {
+  @Prop({default: 'Color Picker'})
+  head!: string;
+
+  @Prop({default: false})
+  disableFields!: boolean;
+
+  @Prop({default: false})
+  hasResetButton!: boolean;
+
+  @Prop({default: 'OK'})
+  acceptLabel!: string;
+
+  @Prop({default: 'Cancel'})
+  cancelLabel!: string;
+
+  @Prop({default: 'Reset'})
+  resetLabel!: string;
+
+  currentColor: null | string = null;
+
+  get hex() {
+    return this.tc.toHexString();
+  }
+
+  get rgba() {
+    return this.tc.toRgb();
+  }
+
+  get hsv () {
+    const hsv = this.tc.toHsv();
     return {
-      currentColor: '#FFF'
-    }
-  },
-  computed: {
-    hsv () {
-      const hsv = this.tc.hsv
-      return {
-        h: hsv.h.toFixed(),
-        s: (hsv.s * 100).toFixed(),
-        v: (hsv.v * 100).toFixed()
-      }
-    },
-    hex () {
-      const hex = this.tc.hex
-      return hex && hex.replace('#', '')
-    }
-  },
-  created () {
-    this.currentColor = this.tc.hex
-  },
-  methods: {
-    childChange (data) {
-      this.colorChange(data)
-    },
-    inputChange (data) {
-      if (!data) {
-        return
-      }
-      if (data['#']) {
-        this.isValidHex(data['#']) && this.colorChange({
-          hex: data['#'],
-          source: 'hex'
-        })
-      } else if (data.r || data.g || data.b) {
-        this.colorChange({
-          r: data.r || this.tc.rgba.r,
-          g: data.g || this.tc.rgba.g,
-          b: data.b || this.tc.rgba.b,
-          a: this.tc.rgba.a,
-          source: 'rgba'
-        })
-      } else if (data.h || data.s || data.v) {
-        this.colorChange({
-          h: data.h || this.tc.hsv.h,
-          s: (data.s / 100) || this.tc.hsv.s,
-          v: (data.v / 100) || this.tc.hsv.v,
-          source: 'hsv'
-        })
-      }
-    },
-    clickCurrentColor () {
-      this.colorChange({
-        hex: this.currentColor,
-        source: 'hex'
-      })
-    },
-    handleAccept () {
-      this.$emit('ok')
-    },
-    handleCancel () {
-      this.$emit('cancel')
-    },
-    handleReset () {
-      this.$emit('reset')
+      h: hsv.h.toFixed(),
+      s: (hsv.s * 100).toFixed(),
+      v: (hsv.v * 100).toFixed()
     }
   }
 
+  mounted() {
+    this.currentColor = this.tc.toHexString();
+  }
+
+  inputChange(label: 'r' | 'g' | 'b' | 'h' | 's' | 'v' | 'hex', color: string) {
+    if (label === 'hex' && isValidHex(color)) {
+      this.onColorChange(color);
+      return;
+    };
+    if (label === 'r' || label === 'g' || label === 'b') {
+      this.onColorChange({
+        ...this.rgba,
+        [label]: color
+      })
+      return;
+    }
+    if (label === 'h' || label === 's' || label === 'v') {
+      this.onColorChange({
+        ...this.tc.toHsv(),
+        [label]: color
+      });
+      return;
+    }
+  }
+  clickCurrentColor () {
+    if (this.currentColor) {
+      this.onColorChange(this.currentColor);
+    }
+  }
+  handleAccept() {
+    this.$emit('ok');
+  }
+  handleCancel() {
+    this.$emit('cancel');
+  }
+  handleReset() {
+    this.$emit('reset');
+  }
 }
 </script>
 
