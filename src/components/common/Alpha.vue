@@ -136,6 +136,7 @@ export default class Alpha extends mixins(Color) {
   z-index: 2;
   height: 100%;
   margin: 0 3px;
+  -webkit-tap-highlight-color: transparent; /* for removing the highlight */
 }
 .vc-alpha-pointer {
   z-index: 2;
