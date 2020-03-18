@@ -51,6 +51,7 @@ export default class Saturation extends mixins(Color) {
     return this.tc.toHsv();
   }
   get bgColor() {
+    console.log("bgColor ==>", this.hsv);
     return `hsl(${this.hsv.h}, 100%, 50%)`
   }
   get pointerTop () {
@@ -103,6 +104,7 @@ export default class Saturation extends mixins(Color) {
     window.removeEventListener('mouseup', this.handleMouseUp)
   }
   handleTouchEvents(e: TouchEvent) {
+    console.log(e.type);
     const pageX = e.touches ? e.touches[0].pageX : 0;
     const pageY = e.touches ? e.touches[0].pageY : 0;
     this.handleChange(pageX, pageY);
@@ -120,6 +122,7 @@ export default class Saturation extends mixins(Color) {
   left: 0;
   right: 0;
   bottom: 0;
+  -webkit-tap-highlight-color: transparent; /* for removing the highlight */
 }
 
 .vc-saturation--white {
