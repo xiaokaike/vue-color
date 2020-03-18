@@ -34,6 +34,8 @@ export default class Saturation extends mixins(Color) {
   xOffset = 0;
   yOffset = 0;
 
+  lastMouseEvent = '';
+
   throttle = throttle((fn, data) => {
     fn(data)
   }, 20,
@@ -82,19 +84,22 @@ export default class Saturation extends mixins(Color) {
     })
   }
   handleMouseDown (/* e: MouseEvent */) {
-    window.addEventListener('mousemove', this.handleMouseEvents)
-    window.addEventListener('mouseup', this.handleMouseEvents)
+    window.addEventListener('mousemove', this.handleMouseMove)
     window.addEventListener('mouseup', this.handleMouseUp)
   }
-  handleMouseEvents(e: MouseEvent) {
+  handleMouseMove(e: MouseEvent) {
+    this.lastMouseEvent = e.type;
     this.handleChange(e.pageX, e.pageY);
   }
-  handleMouseUp (/*e*/) {
+  handleMouseUp (e: MouseEvent) {
+    if (this.lastMouseEvent !== 'mousemove') {
+      this.handleChange(e.pageX, e.pageY);
+    }
+    this.lastMouseEvent = '';
     this.unbindEventListeners()
   }
   unbindEventListeners () {
-    window.removeEventListener('mousemove', this.handleMouseEvents)
-    window.removeEventListener('mouseup', this.handleMouseEvents)
+    window.removeEventListener('mousemove', this.handleMouseMove)
     window.removeEventListener('mouseup', this.handleMouseUp)
   }
   handleTouchEvents(e: TouchEvent) {

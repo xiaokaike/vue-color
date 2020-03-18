@@ -1,6 +1,7 @@
 import Vue, { PropOptions }  from 'vue'
 import tinycolor from 'tinycolor2';
-import Component from 'vue-class-component'
+import Component from 'vue-class-component';
+import debounce from 'lodash.debounce';
 import { DEFAULT_COLOR } from '../config';
 
 // TODO: 枚举 & fallback
@@ -34,6 +35,10 @@ const formatMethodMap: FormatMethodMap = {
 @Component
 export default class Color extends Props {
 
+  debounced = debounce((fn) => {
+    fn()
+  }, 100);
+
   // because default value is `#000`
   private _outputFormat: string = 'hex';
 
@@ -57,12 +62,21 @@ export default class Color extends Props {
   setOutputFormat(/*TODO: enum this type */format: string) {
     this._outputFormat = format;
   }
+
   onColorChange(value: tinycolor.ColorInput) {
     const tc = new tinycolor(value);
-    let formatMethod = formatMethodMap[this._outputFormat];
-    const res = formatMethod ? tc[formatMethod]() : tc;
-    this.$emit('input', res);
-    this.$emit('change', res);
+    // to support v-model
+    this.$emit('input', tc);
+    this.$emit('change', tc);
+    this.debounced(() => { this.$emit('change-complete', tc) });
+
+    // // to avoid precision lose, need to separate another method to provide identical output
+    // let formatMethod = formatMethodMap[this._outputFormat];
+    // if (formatMethod) {
+    //   const formatted = tc[formatMethod]();
+    //   this.$emit('identical-change', formatted);
+    //   // this.debounced(() => this.$emit('identical-change-complete', tc));
+    // }
   }
   equals(color: tinycolor.ColorInput) {
     if (this.isInputEmpty) {

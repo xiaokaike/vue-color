@@ -16,7 +16,11 @@ export const ToStorybook = () => ({
       console.log('hue changed ===> ', value);
     }
   },
-  template: '<Hue v-model="color" @change="handleChange" />'
+  template: `
+    <div :style="{position: 'relative', width: '360px', height: '10px'}">
+      <Hue v-model="color" @change="handleChange" />'
+    </div>
+  `
 });
 
 ToStorybook.story = {

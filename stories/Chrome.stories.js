@@ -12,11 +12,11 @@ export const ToStorybook = () => ({
     }
   },
   methods: {
-    handleChange(value) {
-      console.log('Chrome changed ===> ', value);
+    handleChangeComplete(value) {
+      console.log('Chrome change complete ===> ', value);
     }
   },
-  template: '<Chrome v-model="color" @change="handleChange" />'
+  template: '<Chrome v-model="color" @change-complete="handleChangeComplete" />'
 });
 
 ToStorybook.story = {
