@@ -32,7 +32,7 @@
 import Checkboard from './Checkboard.vue';
 import { Component, Ref, Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import Color from '../../mixin/color';
+import Color from '../../common/ColorMixin';
 
 @Component({
   components: {

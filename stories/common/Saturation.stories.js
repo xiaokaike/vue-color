@@ -6,6 +6,7 @@ export default {
 
 export const ToStorybook = () => ({
   components: { Saturation },
+
   data() {
     return {
       color: '#26489F',
@@ -13,22 +14,22 @@ export const ToStorybook = () => ({
         position: 'relative',
         width: '500px',
         height: '500px',
-      }
+      },
+      result: ''
     }
   },
   methods: {
     handleChange(value) {
-      console.log('Saturation changed ===> ', value.toHex());
+      this.result = value;
     },
     handleSubmit() {
-      // TODO: if the format is same with input's, that would be good #185
-      console.log('Saturation Submit ===> ', this.color);
+      console.log('Saturation Submit ===> ', this.result);
     }
   },
   template: `
     <div>
       <div :style="styleObject">
-        <Saturation v-model="color" @change-complete="handleChange" />
+        <Saturation v-model="color" @consistent-change-complete="handleChange" />
       </div>
       <button @click="handleSubmit">Submit</button>
     </div>`

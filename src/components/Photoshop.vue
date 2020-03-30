@@ -128,7 +128,7 @@
 <script lang="ts">
 import { Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import Color from '../mixin/color';
+import Color from '../common/ColorMixin';
 import { isValidHex } from '../utils';
 import EditableInput from './common/EditableInput.vue'
 import Saturation from './common/Saturation.vue'

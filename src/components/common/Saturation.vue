@@ -23,7 +23,7 @@
 <script lang="ts">
 import { Vue, Component, Ref } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import Color from '../../mixin/color';
+import Color from '../../common/ColorMixin';
 import clamp from 'clamp';
 import throttle from 'lodash.throttle';
 
@@ -51,7 +51,6 @@ export default class Saturation extends mixins(Color) {
     return this.tc.toHsv();
   }
   get bgColor() {
-    console.log("bgColor ==>", this.hsv);
     return `hsl(${this.hsv.h}, 100%, 50%)`
   }
   get pointerTop () {

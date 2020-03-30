@@ -41,7 +41,7 @@
 import EditableInput from './common/EditableInput.vue';
 import { mixins } from 'vue-class-component';
 import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
-import Color from '../mixin/color';
+import Color from '../common/ColorMixin';
 import { isValidHex } from '../utils';
 
 @Component({

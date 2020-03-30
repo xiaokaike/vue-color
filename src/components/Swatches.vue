@@ -43,7 +43,7 @@
 import material from 'material-colors';
 import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import Color from '../mixin/color';
+import Color from '../common/ColorMixin';
 
 const colorMap = [
   'red', 'pink', 'purple', 'deepPurple',

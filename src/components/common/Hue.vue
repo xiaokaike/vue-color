@@ -24,7 +24,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import Color from '../../mixin/color';
+import Color from '../../common/ColorMixin';
 
 @Component
 export default class Hue extends mixins(Color) {

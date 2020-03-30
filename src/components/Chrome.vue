@@ -164,7 +164,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import Color from '../mixin/color';
+import Color from '../common/ColorMixin';
 import { hasAlpha } from '../utils';
 
 import EditableInput from './common/EditableInput.vue'

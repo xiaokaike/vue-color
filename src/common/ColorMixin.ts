@@ -1,4 +1,4 @@
-import Vue, { PropOptions }  from 'vue'
+import Vue, { PropOptions, CreateElement }  from 'vue'
 import tinycolor from 'tinycolor2';
 import Component from 'vue-class-component';
 import debounce from 'lodash.debounce';
@@ -19,6 +19,10 @@ const Props = Vue.extend({
     outputFormat: {
       type: String,
       validator(value){ return supportFormat.indexOf(value) >= 0 }
+    },
+    consistent: {
+      type: Boolean,
+      default: true
     }
   }
 })
@@ -48,14 +52,20 @@ export default class Color extends Props {
   // `tc` stands for tinycolor
   get tc () {
     if (this.value === null) {
-      // TODO: warning, when outputFormat is undefined
-      this._outputFormat = this.outputFormat;
       return new tinycolor(DEFAULT_COLOR);
     }
     const tc = new tinycolor(this.value);
-    this._outputFormat = tc.getFormat();
     return tc;
   }
+
+  created() {
+    if (this.value === null) {
+      // TODO: warning, if `value` is `null`, outputFormat need to be undefined
+      this._outputFormat = this.outputFormat;
+    }
+    this._outputFormat = new tinycolor(this.value).getFormat();
+  }
+
   getOutputFormat() {
     return this._outputFormat;
   }
@@ -70,13 +80,13 @@ export default class Color extends Props {
     this.$emit('change', tc);
     this.debounced(() => { this.$emit('change-complete', tc) });
 
-    // // to avoid precision lose, need to separate another method to provide identical output
-    // let formatMethod = formatMethodMap[this._outputFormat];
-    // if (formatMethod) {
-    //   const formatted = tc[formatMethod]();
-    //   this.$emit('identical-change', formatted);
-    //   // this.debounced(() => this.$emit('identical-change-complete', tc));
-    // }
+    // to avoid precision lose, need to separate another method to provide identical output
+    let formatMethod = formatMethodMap[this._outputFormat];
+    if (formatMethod) {
+      const formatted = tc[formatMethod]();
+      this.$emit('consistent-change', formatted);
+      this.debounced(() => this.$emit('consistent-change-complete', formatted));
+    }
   }
   equals(color: tinycolor.ColorInput) {
     if (this.isInputEmpty) {

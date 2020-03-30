@@ -28,7 +28,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import Color from '../mixin/color';
+import Color from '../common/ColorMixin';
 
 const defaultPalatte = [
   '#FFFFFF', '#F2F2F2', '#E6E6E6', '#D9D9D9', '#CCCCCC', '#BFBFBF', '#B3B3B3',

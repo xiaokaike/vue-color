@@ -28,7 +28,7 @@
 <script lang="ts">
 import { Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import Color from '../mixin/color';
+import Color from '../common/ColorMixin';
 
 const defaultColors = [
   '#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FCDC00',
