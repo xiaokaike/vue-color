@@ -12,4 +12,5 @@ export { default as EditableInput } from './components/common/EditableInput.vue'
 export { default as Hue } from './components/common/Hue.vue';
 export { default as Saturation } from './components/common/Saturation.vue';
 
+// TODO: bump version automatically
 export const version = '2.6.0';

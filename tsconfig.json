@@ -13,11 +13,12 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "sourceMap": true,
+    "types": ["lodash.debounce", "lodash.throttle"]
   },
   "include": [
     "./src/**/*"
   ],
   "exclude": [
     "./src/**/__tests__"
-  ]
+  ],
 }

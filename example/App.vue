@@ -20,10 +20,7 @@
           </div>
         </div>
         <div class="demo-item">
-          <Chrome
-            :color="color"
-            @change="updateValue"
-          />
+          <Chrome v-model="color" />
           <h2>Chrome</h2>
         </div>
       </div>
@@ -32,58 +29,35 @@
     <div class="demo-container">
       <div class="demo-list">
         <div class="demo-item">
-          <Sketch
-            :color="color"
-            @change="updateValue"
-          />
+          <Sketch v-model="color" />
           <h2>Sketch</h2>
         </div>
         <div class="demo-item">
-          <Photoshop
-            :color="color"
-            @change="updateValue"
-            @ok="onOk"
-            @cancel="onCancel"
-          />
+          <Photoshop v-model="color" @ok="onOk" @cancel="onCancel" />
           <h2>Photoshop</h2>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <Material
-            :color="color"
-            @change="updateValue"
-          />
+          <Material v-model="color" />
           <h2>Material</h2>
         </div>
         <div class="demo-item">
-          <Slider
-            :color="color"
-            @change="updateValue"
-          />
+          <Slider v-model="color" />
           <h2>Slider</h2>
         </div>
       </div>
       <div class="demo-list">
         <div class="demo-item">
-          <Compact
-            :color="color"
-            @change="updateValue"
-          />
+          <Compact v-model="color" />
           <h2>Compact</h2>
           <br>
           <br>
-          <Grayscale
-            :color="color"
-            @change="updateValue"
-          />
+          <Grayscale v-model="color" />
           <h2>Grayscale</h2>
         </div>
         <div class="demo-item">
-          <Swatches
-            :color="color"
-            @change="updateValue"
-          />
+          <Swatches v-model="color" />
           <h2>Swatches</h2>
         </div>
       </div>
@@ -92,30 +66,7 @@
 </template>
 
 <script>
-import { Photoshop, Chrome, Sketch, Slider, Swatches, Grayscale, Compact, Material } from '../dist/vue-color.min.js';
-
-let defaultProps = {
-  hex: '#194d33',
-  hsl: {
-    h: 150,
-    s: 0.5,
-    l: 0.2,
-    a: 1
-  },
-  hsv: {
-    h: 150,
-    s: 0.66,
-    v: 0.30,
-    a: 1
-  },
-  rgba: {
-    r: 25,
-    g: 77,
-    b: 51,
-    a: 1
-  },
-  a: 1
-}
+import { Photoshop, Chrome, Sketch, Slider, Swatches, Grayscale, Compact, Material } from '../dist/vue-color.min.mjs';
 
 export default {
   components: {
@@ -130,18 +81,12 @@ export default {
   },
   data () {
     return {
-      color: defaultProps
+      color: '#194d33'
     }
   },
   computed: {
     bgc () {
-      if (this.color.hex8) {
-        return this.color.hex8;
-      } else if (this.color.hex) {
-        return this.color.hex
-      } else {
-        return this.color;
-      }
+      return typeof this.color === 'string' ? this.color : this.color.toHexString();
     }
   },
   methods: {
@@ -152,9 +97,6 @@ export default {
     onCancel () {
       console.log('cancel')
       /* eslint-enable*/
-    },
-    updateValue (value) {
-      this.color = value
     }
   },
 }
