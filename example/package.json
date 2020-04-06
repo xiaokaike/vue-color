@@ -1,0 +1,23 @@
+{
+  "name": "vue-color-demo",
+  "version": "1.0.0",
+  "description": "a demo for vue-color",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaokaike/vue-color.git"
+  },
+  "keywords": [
+    "vue",
+    "color"
+  ],
+  "author": "https://github.com/linx4200",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xiaokaike/vue-color/issues"
+  },
+  "homepage": "https://github.com/xiaokaike/vue-color#readme",
+  "sideEffects": [
+    "*.vue"
+  ]
+}

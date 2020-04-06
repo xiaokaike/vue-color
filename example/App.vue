@@ -19,35 +19,35 @@
             <p role="presentation">A Collection of Color Pickers from Sketch, Photoshop, Chrome, Github, Twitter, Material Design & more</p>
           </div>
         </div>
-        <div class="demo-item">
+        <!-- <div class="demo-item">
           <Chrome v-model="color" />
           <h2>Chrome</h2>
-        </div>
+        </div> -->
       </div>
     </div>
 
     <div class="demo-container">
       <div class="demo-list">
-        <div class="demo-item">
+        <!-- <div class="demo-item">
           <Sketch v-model="color" />
           <h2>Sketch</h2>
-        </div>
-        <div class="demo-item">
+        </div> -->
+        <!-- <div class="demo-item">
           <Photoshop v-model="color" @ok="onOk" @cancel="onCancel" />
           <h2>Photoshop</h2>
-        </div>
+        </div> -->
       </div>
       <div class="demo-list">
-        <div class="demo-item">
+        <!-- <div class="demo-item">
           <Material v-model="color" />
           <h2>Material</h2>
-        </div>
+        </div> -->
         <div class="demo-item">
           <Slider v-model="color" />
           <h2>Slider</h2>
         </div>
       </div>
-      <div class="demo-list">
+      <!-- <div class="demo-list">
         <div class="demo-item">
           <Compact v-model="color" />
           <h2>Compact</h2>
@@ -60,24 +60,24 @@
           <Swatches v-model="color" />
           <h2>Swatches</h2>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
-import { Photoshop, Chrome, Sketch, Slider, Swatches, Grayscale, Compact, Material } from '../dist/vue-color.min.mjs';
+import { Slider, /* Chrome, Sketch, Slider, Swatches, Grayscale, Compact, Material */ } from 'vue-color';
 
 export default {
   components: {
-    Photoshop,
-    Chrome,
-    Sketch,
     Slider,
-    Swatches,
-    Grayscale,
-    Compact,
-    Material
+    // Chrome,
+    // Sketch,
+    // Slider,
+    // Swatches,
+    // Grayscale,
+    // Compact,
+    // Material
   },
   data () {
     return {
