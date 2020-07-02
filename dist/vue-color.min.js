@@ -6,90 +6,52 @@
 
   Vue = Vue && Object.prototype.hasOwnProperty.call(Vue, 'default') ? Vue['default'] : Vue;
 
+  function _initializerDefineProperty(target, property, descriptor, context) {
+    if (!descriptor) return;
+    Object.defineProperty(target, property, {
+      enumerable: descriptor.enumerable,
+      configurable: descriptor.configurable,
+      writable: descriptor.writable,
+      value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+    });
+  }
+
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
   }
 
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+  function _assertThisInitialized(self) {
+    if (self === void 0) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
     }
+
+    return self;
   }
 
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    return Constructor;
-  }
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-      });
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function _typeof(obj) {
+        return typeof obj;
+      };
     } else {
-      obj[key] = value;
+      _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
     }
 
-    return obj;
+    return _typeof(obj);
   }
 
-  function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly) symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
-      keys.push.apply(keys, symbols);
+  function _possibleConstructorReturn(self, call) {
+    if (call && (_typeof(call) === "object" || typeof call === "function")) {
+      return call;
     }
 
-    return keys;
-  }
-
-  function _objectSpread2(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-      }
-    }
-
-    return target;
-  }
-
-  function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-      throw new TypeError("Super expression must either be null or a function");
-    }
-
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-      constructor: {
-        value: subClass,
-        writable: true,
-        configurable: true
-      }
-    });
-    if (superClass) _setPrototypeOf(subClass, superClass);
+    return _assertThisInitialized(self);
   }
 
   function _getPrototypeOf(o) {
@@ -108,60 +70,19 @@
     return _setPrototypeOf(o, p);
   }
 
-  function _isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-    if (Reflect.construct.sham) return false;
-    if (typeof Proxy === "function") return true;
-
-    try {
-      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  function _assertThisInitialized(self) {
-    if (self === void 0) {
-      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function");
     }
 
-    return self;
-  }
-
-  function _possibleConstructorReturn(self, call) {
-    if (call && (typeof call === "object" || typeof call === "function")) {
-      return call;
-    }
-
-    return _assertThisInitialized(self);
-  }
-
-  function _createSuper(Derived) {
-    return function () {
-      var Super = _getPrototypeOf(Derived),
-          result;
-
-      if (_isNativeReflectConstruct()) {
-        var NewTarget = _getPrototypeOf(this).constructor;
-
-        result = Reflect.construct(Super, arguments, NewTarget);
-      } else {
-        result = Super.apply(this, arguments);
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        writable: true,
+        configurable: true
       }
-
-      return _possibleConstructorReturn(this, result);
-    };
-  }
-
-  function _initializerDefineProperty(target, property, descriptor, context) {
-    if (!descriptor) return;
-    Object.defineProperty(target, property, {
-      enumerable: descriptor.enumerable,
-      configurable: descriptor.configurable,
-      writable: descriptor.writable,
-      value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
     });
+    if (superClass) _setPrototypeOf(subClass, superClass);
   }
 
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -199,21 +120,21 @@
     * @license MIT
     */
 
-  function _typeof(obj) {
+  function _typeof$1(obj) {
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function (obj) {
+      _typeof$1 = function (obj) {
         return typeof obj;
       };
     } else {
-      _typeof = function (obj) {
+      _typeof$1 = function (obj) {
         return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
       };
     }
 
-    return _typeof(obj);
+    return _typeof$1(obj);
   }
 
-  function _defineProperty$1(obj, key, value) {
+  function _defineProperty(obj, key, value) {
     if (key in obj) {
       Object.defineProperty(obj, key, {
         value: value,
@@ -308,7 +229,7 @@
     });
   }
   function isPrimitive(value) {
-    var type = _typeof(value);
+    var type = _typeof$1(value);
 
     return value == null || type !== 'object' && type !== 'function';
   }
@@ -400,7 +321,7 @@
           // typescript decorated data
           (options.mixins || (options.mixins = [])).push({
             data: function data() {
-              return _defineProperty$1({}, key, descriptor.value);
+              return _defineProperty({}, key, descriptor.value);
             }
           });
         }
@@ -578,6 +499,22 @@
               },
           };
       });
+  }
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
   }
 
   var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -2162,6 +2099,10 @@
 
   var _class, _temp;
 
+  function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
   var supportFormat = ['hex', 'hex8']; // We declare the props separately
   // to make props types inferable.
 
@@ -2290,6 +2231,10 @@
   }(Props), _temp)) || _class;
 
   var _dec, _class$1, _class2, _descriptor, _temp$1;
+
+  function _createSuper$1(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$1()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var defaultColors = ['#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FCDC00', '#DBDF00', '#A4DD00', '#68CCCA', '#73D8FF', '#AEA1FF', '#FDA1FF', '#333333', '#808080', '#CCCCCC', '#D33115', '#E27300', '#FCC400', '#B0BC00', '#68BC00', '#16A5A5', '#009CE0', '#7B64FF', '#FA28FF', '#000000', '#666666', '#B3B3B3', '#9F0500', '#C45100', '#FB9E00', '#808900', '#194D33', '#0C797D', '#0062B1', '#653294', '#AB149E'];
   var Compact = (_dec = Prop({
     "default": function _default() {
@@ -2298,7 +2243,7 @@
   }), Component(_class$1 = (_class2 = (_temp$1 = /*#__PURE__*/function (_mixins) {
     _inherits(Compact, _mixins);
 
-    var _super = _createSuper(Compact);
+    var _super = _createSuper$1(Compact);
 
     function Compact() {
       var _this;
@@ -2463,35 +2408,35 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
+    return _c('div', {
       staticClass: "vc-compact",
       attrs: {
-        role: "CompactColorPicker"
+        "role": "CompactColorPicker"
       }
-    }, [_c("ul", {
+    }, [_c('ul', {
       staticClass: "vc-compact-colors",
       attrs: {
-        role: "option"
+        "role": "option"
       }
     }, _vm._l(_vm.palette, function (c) {
-      return _c("li", {
+      return _c('li', {
         key: c,
         staticClass: "vc-compact-color-item",
         "class": {
-          "vc-compact-color-item--white": c === "#FFFFFF"
+          'vc-compact-color-item--white': c === '#FFFFFF'
         },
         style: {
           background: c
         },
         attrs: {
-          "aria-label": "Color:" + c
+          "aria-label": 'Color:' + c
         },
         on: {
-          click: function click($event) {
+          "click": function click($event) {
             return _vm.onColorChange(c);
           }
         }
-      }, [_c("div", {
+      }, [_c('div', {
         directives: [{
           name: "show",
           rawName: "v-show",
@@ -2504,21 +2449,13 @@
   };
 
   var __vue_staticRenderFns__ = [];
-  __vue_render__._withStripped = true;
   /* style */
 
   var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-1b607f64_0", {
-      source: "\n.vc-compact {\n  padding-top: 5px;\n  padding-left: 5px;\n  width: 240px;\n  border-radius: 2px;\n  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);\n  background-color: #fff;\n}\n.vc-compact-colors {\n  overflow: hidden;\n  padding: 0;\n  margin: 0;\n}\n.vc-compact-color-item {\n  list-style: none;\n  width: 15px;\n  height: 15px;\n  float: left;\n  margin-right: 5px;\n  margin-bottom: 5px;\n  position: relative;\n  cursor: pointer;\n}\n.vc-compact-color-item--white {\n  box-shadow: inset 0 0 0 1px #ddd;\n}\n.vc-compact-color-item--white .vc-compact-dot {\n  background: #000;\n}\n.vc-compact-dot {\n  position: absolute;\n  top: 5px;\n  right: 5px;\n  bottom: 5px;\n  left: 5px;\n  border-radius: 50%;\n  opacity: 1;\n  background: #fff;\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/Compact.vue"],
-        "names": [],
-        "mappings": ";AAkDA;EACA,gBAAA;EACA,iBAAA;EACA,YAAA;EACA,kBAAA;EACA,iEAAA;EACA,sBAAA;AACA;AACA;EACA,gBAAA;EACA,UAAA;EACA,SAAA;AACA;AACA;EACA,gBAAA;EACA,WAAA;EACA,YAAA;EACA,WAAA;EACA,iBAAA;EACA,kBAAA;EACA,kBAAA;EACA,eAAA;AACA;AACA;EACA,gCAAA;AACA;AACA;EACA,gBAAA;AACA;AAEA;EACA,kBAAA;EACA,QAAA;EACA,UAAA;EACA,WAAA;EACA,SAAA;EACA,kBAAA;EACA,UAAA;EACA,gBAAA;AACA",
-        "file": "Compact.vue",
-        "sourcesContent": ["<template>\n  <div\n    role=\"CompactColorPicker\"\n    class=\"vc-compact\"\n  >\n    <ul\n      role=\"option\"\n      class=\"vc-compact-colors\"\n    >\n      <li\n        v-for=\"c in palette\"\n        :key=\"c\"\n        :aria-label=\"'Color:' + c\"\n        class=\"vc-compact-color-item\"\n        :class=\"{'vc-compact-color-item--white': c === '#FFFFFF' }\"\n        :style=\"{background: c}\"\n        @click=\"onColorChange(c)\"\n      >\n        <div\n          v-show=\"equals(c)\"\n          class=\"vc-compact-dot\"\n        />\n      </li>\n    </ul>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport { Component, Prop } from 'vue-property-decorator';\nimport { mixins } from 'vue-class-component';\nimport Color from '../common/ColorMixin';\n\nconst defaultColors = [\n  '#4D4D4D', '#999999', '#FFFFFF', '#F44E3B', '#FE9200', '#FCDC00',\n  '#DBDF00', '#A4DD00', '#68CCCA', '#73D8FF', '#AEA1FF', '#FDA1FF',\n  '#333333', '#808080', '#CCCCCC', '#D33115', '#E27300', '#FCC400',\n  '#B0BC00', '#68BC00', '#16A5A5', '#009CE0', '#7B64FF', '#FA28FF',\n  '#000000', '#666666', '#B3B3B3', '#9F0500', '#C45100', '#FB9E00',\n  '#808900', '#194D33', '#0C797D', '#0062B1', '#653294', '#AB149E'\n];\n\n@Component\nexport default class Compact extends mixins(Color) {\n  @Prop({default: () => defaultColors})\n  palette !: string[];\n}\n\n</script>\n\n<style>\n.vc-compact {\n  padding-top: 5px;\n  padding-left: 5px;\n  width: 240px;\n  border-radius: 2px;\n  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);\n  background-color: #fff;\n}\n.vc-compact-colors {\n  overflow: hidden;\n  padding: 0;\n  margin: 0;\n}\n.vc-compact-color-item {\n  list-style: none;\n  width: 15px;\n  height: 15px;\n  float: left;\n  margin-right: 5px;\n  margin-bottom: 5px;\n  position: relative;\n  cursor: pointer;\n}\n.vc-compact-color-item--white {\n  box-shadow: inset 0 0 0 1px #ddd;\n}\n.vc-compact-color-item--white .vc-compact-dot {\n  background: #000;\n}\n\n.vc-compact-dot {\n  position: absolute;\n  top: 5px;\n  right: 5px;\n  bottom: 5px;\n  left: 5px;\n  border-radius: 50%;\n  opacity: 1;\n  background: #fff;\n}\n</style>\n"]
-      },
+    inject("data-v-219e7b26_0", {
+      source: ".vc-compact{padding-top:5px;padding-left:5px;width:240px;border-radius:2px;box-shadow:0 2px 10px rgba(0,0,0,.12),0 2px 5px rgba(0,0,0,.16);background-color:#fff}.vc-compact-colors{overflow:hidden;padding:0;margin:0}.vc-compact-color-item{list-style:none;width:15px;height:15px;float:left;margin-right:5px;margin-bottom:5px;position:relative;cursor:pointer}.vc-compact-color-item--white{box-shadow:inset 0 0 0 1px #ddd}.vc-compact-color-item--white .vc-compact-dot{background:#000}.vc-compact-dot{position:absolute;top:5px;right:5px;bottom:5px;left:5px;border-radius:50%;opacity:1;background:#fff}",
+      map: undefined,
       media: undefined
     });
   };
@@ -2542,6 +2479,10 @@
   }, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, createInjector, undefined, undefined);
 
   var _dec$1, _class$2, _class2$1, _descriptor$1, _temp$2;
+
+  function _createSuper$2(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$2()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$2() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var defaultPalatte = ['#FFFFFF', '#F2F2F2', '#E6E6E6', '#D9D9D9', '#CCCCCC', '#BFBFBF', '#B3B3B3', '#A6A6A6', '#999999', '#8C8C8C', '#808080', '#737373', '#666666', '#595959', '#4D4D4D', '#404040', '#333333', '#262626', '#0D0D0D', '#000000'];
   var Grayscale = (_dec$1 = Prop({
     "default": function _default() {
@@ -2550,7 +2491,7 @@
   }), Component(_class$2 = (_class2$1 = (_temp$2 = /*#__PURE__*/function (_mixins) {
     _inherits(Grayscale, _mixins);
 
-    var _super = _createSuper(Grayscale);
+    var _super = _createSuper$2(Grayscale);
 
     function Grayscale() {
       var _this;
@@ -2599,35 +2540,35 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
+    return _c('div', {
       staticClass: "vc-grayscale",
       attrs: {
-        role: "GrayscaleColorPicker"
+        "role": "GrayscaleColorPicker"
       }
-    }, [_c("ul", {
+    }, [_c('ul', {
       staticClass: "vc-grayscale-colors",
       attrs: {
-        role: "option"
+        "role": "option"
       }
     }, _vm._l(_vm.palette, function (c) {
-      return _c("li", {
+      return _c('li', {
         key: c,
         staticClass: "vc-grayscale-color-item",
         "class": {
-          "vc-grayscale-color-item--white": c == "#FFFFFF"
+          'vc-grayscale-color-item--white': c == '#FFFFFF'
         },
         style: {
           background: c
         },
         attrs: {
-          "aria-label": "Color:" + c
+          "aria-label": 'Color:' + c
         },
         on: {
-          click: function click($event) {
+          "click": function click($event) {
             return _vm.handlerClick(c);
           }
         }
-      }, [_c("div", {
+      }, [_c('div', {
         directives: [{
           name: "show",
           rawName: "v-show",
@@ -2640,21 +2581,13 @@
   };
 
   var __vue_staticRenderFns__$1 = [];
-  __vue_render__$1._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$1 = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-6056046b_0", {
-      source: "\n.vc-grayscale {\n  width: 125px;\n  border-radius: 2px;\n  box-shadow: 0 2px 15px rgba(0,0,0,.12), 0 2px 10px rgba(0,0,0,.16);\n  background-color: #fff;\n}\n.vc-grayscale-colors {\n  border-radius: 2px;\n  overflow: hidden;\n  padding: 0;\n  margin: 0;\n}\n.vc-grayscale-color-item {\n  list-style: none;\n  width: 25px;\n  height: 25px;\n  float: left;\n  position: relative;\n  cursor: pointer;\n}\n.vc-grayscale-color-item--white .vc-grayscale-dot {\n  background: #000;\n}\n.vc-grayscale-dot {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 6px;\n  height: 6px;\n  margin: -3px 0 0 -2px;\n  border-radius: 50%;\n  opacity: 1;\n  background: #fff;\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/Grayscale.vue"],
-        "names": [],
-        "mappings": ";AAuDA;EACA,YAAA;EACA,kBAAA;EACA,kEAAA;EACA,sBAAA;AACA;AACA;EACA,kBAAA;EACA,gBAAA;EACA,UAAA;EACA,SAAA;AACA;AACA;EACA,gBAAA;EACA,WAAA;EACA,YAAA;EACA,WAAA;EACA,kBAAA;EACA,eAAA;AACA;AACA;EACA,gBAAA;AACA;AAEA;EACA,kBAAA;EACA,QAAA;EACA,SAAA;EACA,UAAA;EACA,WAAA;EACA,qBAAA;EACA,kBAAA;EACA,UAAA;EACA,gBAAA;AACA",
-        "file": "Grayscale.vue",
-        "sourcesContent": ["<template>\n  <div\n    role=\"GrayscaleColorPicker\"\n    class=\"vc-grayscale\"\n  >\n    <ul\n      role=\"option\"\n      class=\"vc-grayscale-colors\"\n    >\n      <li\n        v-for=\"c in palette\"\n        :key=\"c\"\n        :aria-label=\"'Color:' + c\"\n        class=\"vc-grayscale-color-item\"\n        :class=\"{'vc-grayscale-color-item--white': c == '#FFFFFF'}\"\n        :style=\"{background: c}\"\n        @click=\"handlerClick(c)\"\n      >\n        <div\n          v-show=\"equals(c)\"\n          class=\"vc-grayscale-dot\"\n        />\n      </li>\n    </ul>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';\nimport { mixins } from 'vue-class-component';\nimport Color from '../common/ColorMixin';\n\nconst defaultPalatte = [\n  '#FFFFFF', '#F2F2F2', '#E6E6E6', '#D9D9D9', '#CCCCCC', '#BFBFBF', '#B3B3B3',\n  '#A6A6A6', '#999999', '#8C8C8C', '#808080', '#737373', '#666666', '#595959',\n  '#4D4D4D', '#404040', '#333333', '#262626', '#0D0D0D', '#000000'\n]\n\n@Component\nexport default class Grayscale extends mixins(Color) {\n  @Prop({default: () => defaultPalatte})\n  readonly palette!: string[][];\n\n  get pick() {\n    return this.tc.toHexString();\n  }\n\n  handlerClick(value: string) {\n    this.onColorChange(value);\n  }\n}\n\n</script>\n\n<style>\n.vc-grayscale {\n  width: 125px;\n  border-radius: 2px;\n  box-shadow: 0 2px 15px rgba(0,0,0,.12), 0 2px 10px rgba(0,0,0,.16);\n  background-color: #fff;\n}\n.vc-grayscale-colors {\n  border-radius: 2px;\n  overflow: hidden;\n  padding: 0;\n  margin: 0;\n}\n.vc-grayscale-color-item {\n  list-style: none;\n  width: 25px;\n  height: 25px;\n  float: left;\n  position: relative;\n  cursor: pointer;\n}\n.vc-grayscale-color-item--white .vc-grayscale-dot {\n  background: #000;\n}\n\n.vc-grayscale-dot {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 6px;\n  height: 6px;\n  margin: -3px 0 0 -2px;\n  border-radius: 50%;\n  opacity: 1;\n  background: #fff;\n}\n</style>\n"]
-      },
+    inject("data-v-ea26c37c_0", {
+      source: ".vc-grayscale{width:125px;border-radius:2px;box-shadow:0 2px 15px rgba(0,0,0,.12),0 2px 10px rgba(0,0,0,.16);background-color:#fff}.vc-grayscale-colors{border-radius:2px;overflow:hidden;padding:0;margin:0}.vc-grayscale-color-item{list-style:none;width:25px;height:25px;float:left;position:relative;cursor:pointer}.vc-grayscale-color-item--white .vc-grayscale-dot{background:#000}.vc-grayscale-dot{position:absolute;top:50%;left:50%;width:6px;height:6px;margin:-3px 0 0 -2px;border-radius:50%;opacity:1;background:#fff}",
+      map: undefined,
       media: undefined
     });
   };
@@ -2677,6 +2610,21 @@
     staticRenderFns: __vue_staticRenderFns__$1
   }, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, createInjector, undefined, undefined);
 
+  function _defineProperty$1(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
   var clamp_1 = clamp;
 
   function clamp(value, min, max) {
@@ -2686,6 +2634,10 @@
   }
 
   var _dec$2, _dec2, _dec3, _dec4, _dec5, _class$3, _class2$2, _descriptor$2, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _temp$3;
+
+  function _createSuper$3(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$3()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$3() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var clamps = {
     r: function r(v) {
       return clamp_1(v, 255, 0);
@@ -2717,7 +2669,7 @@
   }), _dec5 = Ref(), Component(_class$3 = (_class2$2 = (_temp$3 = /*#__PURE__*/function (_Vue) {
     _inherits(EditableInput, _Vue);
 
-    var _super = _createSuper(EditableInput);
+    var _super = _createSuper$3(EditableInput);
 
     function EditableInput() {
       var _this;
@@ -2833,47 +2785,39 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
+    return _c('div', {
       staticClass: "vc-editable-input"
-    }, [_c("input", {
+    }, [_c('input', {
       ref: "input",
       staticClass: "vc-input__input",
       attrs: {
-        "aria-label": _vm.desc ? _vm.label + "(" + _vm.desc + ")" : _vm.label
+        "aria-label": _vm.desc ? _vm.label + '(' + _vm.desc + ')' : _vm.label
       },
       domProps: {
-        value: _vm.value
+        "value": _vm.value
       },
       on: {
-        keydown: _vm.handleKeyDown,
-        input: _vm.handleInput
+        "keydown": _vm.handleKeyDown,
+        "input": _vm.handleInput
       }
-    }), _vm._v(" "), _c("span", {
+    }), _vm._v(" "), _c('span', {
       staticClass: "vc-input__label",
       attrs: {
         "for": _vm.label
       }
-    }, [_vm._v(_vm._s(_vm.label))]), _vm._v(" "), _c("span", {
+    }, [_vm._v(_vm._s(_vm.label))]), _vm._v(" "), _c('span', {
       staticClass: "vc-input__desc"
     }, [_vm._v(_vm._s(_vm.desc))])]);
   };
 
   var __vue_staticRenderFns__$2 = [];
-  __vue_render__$2._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$2 = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-47f63629_0", {
-      source: "\n.vc-editable-input {\n  position: relative;\n}\n.vc-input__input {\n  padding: 0;\n  border: 0;\n  outline: none;\n}\n.vc-input__label {\n  text-transform: capitalize;\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/common/EditableInput.vue"],
-        "names": [],
-        "mappings": ";AAkGA;EACA,kBAAA;AACA;AACA;EACA,UAAA;EACA,SAAA;EACA,aAAA;AACA;AACA;EACA,0BAAA;AACA",
-        "file": "EditableInput.vue",
-        "sourcesContent": ["<template>\n  <div class=\"vc-editable-input\">\n    <input\n      ref=\"input\"\n      :value=\"value\"\n      :aria-label=\"desc ? label + '(' + desc + ')' : label\"\n      class=\"vc-input__input\"\n      @keydown=\"handleKeyDown\"\n      @input=\"handleInput\"\n    >\n    <span\n      :for=\"label\"\n      class=\"vc-input__label\"\n    >{{ label }}</span>\n    <span class=\"vc-input__desc\">{{ desc }}</span>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport clamp from 'clamp';\nimport { Vue, Component, Prop, Ref } from 'vue-property-decorator';\n\nconst clamps = {\n  r: (v: number) => clamp(v, 255, 0),\n  g: (v: number) => clamp(v, 255, 0),\n  b: (v: number) => clamp(v, 255, 0),\n  a: (v: number) => clamp(v, 1, 0),\n  h: (v: number) => clamp(v, 360, 0),\n  s: (v: number) => clamp(v, 100, 0),\n  l: (v: number) => clamp(v, 100, 0),\n  v: (v: number) => clamp(v, 100, 0),\n}\n\ntype LabelsWithClamp = 'r' | 'g' | 'b' | 'a' | 'h' | 's' | 'l' | 'v';\n\n@Component\nexport default class EditableInput extends Vue {\n  @Prop()\n  value !: string | number;\n  @Prop()\n  label?: LabelsWithClamp | string;\n  @Prop()\n  desc ?: string;\n  @Prop({ default: 1 })\n  step?: number;\n\n  @Ref()\n  readonly input!: HTMLInputElement;\n\n  handleChange (value: string | number) {\n    const { label } = this;\n    let v = value;\n    let numberedValue = +value;\n    if (!isNaN(numberedValue)) {\n      if (label === 'r' ||  label === 'g' ||  label === 'b' ||  label === 'a' ||  label === 'h' ||  label === 's' ||  label === 'l' ||  label === 'v') {\n        const clamp = clamps[label];\n        v = clamp(numberedValue);\n      }\n    }\n    this.$emit('change', v);\n    this.$emit('input', v);\n    const $input = this.$refs.input as HTMLInputElement;\n    $input.value = v.toString();\n  }\n\n  handleInput(e: Event) {\n    const target = e.target as HTMLInputElement;\n    e.target && this.handleChange(target.value);\n  }\n\n  handleKeyDown(e: KeyboardEvent) {\n    const target = e.target as HTMLInputElement;\n    let val = target.value;\n\n    let number = Number(val)\n\n    if (!isNaN(number)) {\n      let amount = this.step || 1;\n\n      // Up\n      if (e.keyCode === 38) {\n        // TODO: 精度问题\n        this.handleChange(number + amount)\n        e.preventDefault()\n      }\n\n      // Down\n      if (e.keyCode === 40) {\n        // TODO: 精度问题\n        this.handleChange(number - amount)\n        e.preventDefault()\n      }\n    }\n  }\n}\n</script>\n\n<style>\n.vc-editable-input {\n  position: relative;\n}\n.vc-input__input {\n  padding: 0;\n  border: 0;\n  outline: none;\n}\n.vc-input__label {\n  text-transform: capitalize;\n}\n</style>\n"]
-      },
+    inject("data-v-1d9ea8fa_0", {
+      source: ".vc-editable-input{position:relative}.vc-input__input{padding:0;border:0;outline:0}.vc-input__label{text-transform:capitalize}",
+      map: undefined,
       media: undefined
     });
   };
@@ -2907,6 +2851,14 @@
   }
 
   var _dec$3, _class$4;
+
+  function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+  function _createSuper$4(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$4()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$4() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var Material = (_dec$3 = Component({
     components: {
       EditableInput: __vue_component__$2
@@ -2914,7 +2866,7 @@
   }), _dec$3(_class$4 = /*#__PURE__*/function (_mixins) {
     _inherits(Material, _mixins);
 
-    var _super = _createSuper(Material);
+    var _super = _createSuper$4(Material);
 
     function Material() {
       _classCallCheck(this, Material);
@@ -2936,7 +2888,7 @@
           return;
         }
 
-        this.onColorChange(_objectSpread2({}, this.rgba, {}, _defineProperty({}, label, data)));
+        this.onColorChange(_objectSpread({}, this.rgba, {}, _defineProperty$1({}, label, data)));
       }
     }, {
       key: "hex",
@@ -2972,80 +2924,72 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
+    return _c('div', {
       staticClass: "vc-material",
       attrs: {
-        role: "MaterialColorPicker"
+        "role": "MaterialColorPicker"
       }
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       staticClass: "vc-material-hex",
       style: {
         borderColor: _vm.hex
       },
       attrs: {
-        label: "hex",
-        value: _vm.hex
+        "label": "hex",
+        "value": _vm.hex
       },
       on: {
-        change: _vm.onChangeHex
+        "change": _vm.onChangeHex
       }
-    }), _vm._v(" "), _c("div", {
+    }), _vm._v(" "), _c('div', {
       staticClass: "vc-material-split"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-material-third"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "r",
-        value: _vm.rgba && _vm.rgba.r
+        "label": "r",
+        "value": _vm.rgba && _vm.rgba.r
       },
       on: {
-        change: function change($event) {
-          return _vm.onChange("r", $event);
+        "change": function change($event) {
+          return _vm.onChange('r', $event);
         }
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-material-third"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "g",
-        value: _vm.rgba && _vm.rgba.g
+        "label": "g",
+        "value": _vm.rgba && _vm.rgba.g
       },
       on: {
-        change: function change($event) {
-          return _vm.onChange("g", $event);
+        "change": function change($event) {
+          return _vm.onChange('g', $event);
         }
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-material-third"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "b",
-        value: _vm.rgba && _vm.rgba.b
+        "label": "b",
+        "value": _vm.rgba && _vm.rgba.b
       },
       on: {
-        change: function change($event) {
-          return _vm.onChange("b", $event);
+        "change": function change($event) {
+          return _vm.onChange('b', $event);
         }
       }
     })], 1)])], 1);
   };
 
   var __vue_staticRenderFns__$3 = [];
-  __vue_render__$3._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$3 = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-49921d68_0", {
-      source: "\n.vc-material {\n  width: 98px;\n  height: 98px;\n  padding: 16px;\n  font-family: \"Roboto\";\n  position: relative;\n  border-radius: 2px;\n  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);\n  background-color: #fff;\n}\n.vc-material .vc-input__input {\n  width: 100%;\n  margin-top: 12px;\n  font-size: 15px;\n  color: #333;\n  height: 30px;\n}\n.vc-material .vc-input__label {\n  position: absolute;\n  top: 0;\n  left: 0;\n  font-size: 11px;\n  color: #999;\n  text-transform: capitalize;\n}\n.vc-material-hex {\n  border-bottom-width: 2px;\n  border-bottom-style: solid;\n}\n.vc-material-split {\n  display: flex;\n  margin-right: -10px;\n  padding-top: 11px;\n}\n.vc-material-third {\n  flex: 1;\n  padding-right: 10px;\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/Material.vue"],
-        "names": [],
-        "mappings": ";AA6EA;EACA,WAAA;EACA,YAAA;EACA,aAAA;EACA,qBAAA;EACA,kBAAA;EACA,kBAAA;EACA,iEAAA;EACA,sBAAA;AACA;AAEA;EACA,WAAA;EACA,gBAAA;EACA,eAAA;EACA,WAAA;EACA,YAAA;AACA;AAEA;EACA,kBAAA;EACA,MAAA;EACA,OAAA;EACA,eAAA;EACA,WAAA;EACA,0BAAA;AACA;AAEA;EACA,wBAAA;EACA,0BAAA;AACA;AACA;EACA,aAAA;EACA,mBAAA;EACA,iBAAA;AACA;AACA;EACA,OAAA;EACA,mBAAA;AACA",
-        "file": "Material.vue",
-        "sourcesContent": ["<template>\n  <div\n    role=\"MaterialColorPicker\"\n    class=\"vc-material\"\n  >\n    <EditableInput\n      class=\"vc-material-hex\"\n      label=\"hex\"\n      :style=\"{ borderColor: hex }\"\n      :value=\"hex\"\n      @change=\"onChangeHex\"\n    />\n\n    <div class=\"vc-material-split\">\n      <div class=\"vc-material-third\">\n        <EditableInput\n          label=\"r\"\n          :value=\"rgba && rgba.r\"\n          @change=\"onChange('r', $event)\"\n        />\n      </div>\n      <div class=\"vc-material-third\">\n        <EditableInput\n          label=\"g\"\n          :value=\"rgba && rgba.g\"\n          @change=\"onChange('g', $event)\"\n        />\n      </div>\n      <div class=\"vc-material-third\">\n        <EditableInput\n          label=\"b\"\n          :value=\"rgba && rgba.b\"\n          @change=\"onChange('b', $event)\"\n        />\n      </div>\n    </div>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport EditableInput from './common/EditableInput.vue';\nimport { mixins } from 'vue-class-component';\nimport { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';\nimport Color from '../common/ColorMixin';\nimport { isValidHex } from '../utils';\n\n@Component({\n  components: { EditableInput }\n})\nexport default class Material extends mixins(Color) {\n  get hex() {\n    if (this.isInputEmpty) {\n      return null;\n    }\n    return this.tc.toHexString();\n  }\n  get rgba() {\n    if (this.isInputEmpty) {\n      return null;\n    }\n    return this.tc.toRgb();\n  }\n  onChangeHex(hex: string) {\n    if (isValidHex(hex) && hex.length === 7) {\n      this.onColorChange(hex);\n    }\n  }\n  onChange(label: 'r' | 'g' | 'b', data: number) {\n    if (this.rgba === null) {\n      return\n    }\n    this.onColorChange({...this.rgba, ...{[label]: data }});\n  }\n}\n</script>\n\n<style>\n.vc-material {\n  width: 98px;\n  height: 98px;\n  padding: 16px;\n  font-family: \"Roboto\";\n  position: relative;\n  border-radius: 2px;\n  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);\n  background-color: #fff;\n}\n\n.vc-material .vc-input__input {\n  width: 100%;\n  margin-top: 12px;\n  font-size: 15px;\n  color: #333;\n  height: 30px;\n}\n\n.vc-material .vc-input__label {\n  position: absolute;\n  top: 0;\n  left: 0;\n  font-size: 11px;\n  color: #999;\n  text-transform: capitalize;\n}\n\n.vc-material-hex {\n  border-bottom-width: 2px;\n  border-bottom-style: solid;\n}\n.vc-material-split {\n  display: flex;\n  margin-right: -10px;\n  padding-top: 11px;\n}\n.vc-material-third {\n  flex: 1;\n  padding-right: 10px;\n}\n</style>\n"]
-      },
+    inject("data-v-37c532a3_0", {
+      source: ".vc-material{width:98px;height:98px;padding:16px;font-family:Roboto;position:relative;border-radius:2px;box-shadow:0 2px 10px rgba(0,0,0,.12),0 2px 5px rgba(0,0,0,.16);background-color:#fff}.vc-material .vc-input__input{width:100%;margin-top:12px;font-size:15px;color:#333;height:30px}.vc-material .vc-input__label{position:absolute;top:0;left:0;font-size:11px;color:#999;text-transform:capitalize}.vc-material-hex{border-bottom-width:2px;border-bottom-style:solid}.vc-material-split{display:flex;margin-right:-10px;padding-top:11px}.vc-material-third{flex:1;padding-right:10px}",
+      map: undefined,
       media: undefined
     });
   };
@@ -3069,12 +3013,20 @@
   }, __vue_inject_styles__$3, __vue_script__$3, __vue_scope_id__$3, __vue_is_functional_template__$3, __vue_module_identifier__$3, false, createInjector, undefined, undefined);
 
   var _dec$4, _dec2$1, _dec3$1, _class$5, _class2$3, _descriptor$3, _descriptor2$1, _temp$4;
+
+  function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { _defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+  function _createSuper$5(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$5()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$5() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var Hue = (_dec$4 = Prop({
     "default": 'horizontal'
   }), _dec2$1 = Ref('container'), _dec3$1 = Watch('hsl'), Component(_class$5 = (_class2$3 = (_temp$4 = /*#__PURE__*/function (_mixins) {
     _inherits(Hue, _mixins);
 
-    var _super = _createSuper(Hue);
+    var _super = _createSuper$5(Hue);
 
     function Hue() {
       var _this;
@@ -3150,7 +3102,7 @@
         }
 
         if (this.hsl.h !== h) {
-          this.onColorChange(_objectSpread2({}, this.hsl, {}, {
+          this.onColorChange(_objectSpread$1({}, this.hsl, {}, {
             h: h
           }));
         }
@@ -3255,49 +3207,41 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
-      "class": ["vc-hue", _vm.directionClass],
+    return _c('div', {
+      "class": ['vc-hue', _vm.directionClass],
       attrs: {
-        role: "HuePanel"
+        "role": "HuePanel"
       }
-    }, [_c("div", {
+    }, [_c('div', {
       ref: "container",
       staticClass: "vc-hue-container",
       on: {
-        mousedown: _vm.handleMouseDown,
-        touchmove: _vm.handleTouchEvnet,
-        touchstart: _vm.handleTouchEvnet
+        "mousedown": _vm.handleMouseDown,
+        "touchmove": _vm.handleTouchEvnet,
+        "touchstart": _vm.handleTouchEvnet
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-hue-pointer",
       style: {
         top: _vm.pointerTop,
         left: _vm.pointerLeft
       },
       attrs: {
-        role: "CurrentHuePointer"
+        "role": "CurrentHuePointer"
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-hue-picker"
     })])])]);
   };
 
   var __vue_staticRenderFns__$4 = [];
-  __vue_render__$4._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$4 = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-e7898c56_0", {
-      source: "\n.vc-hue {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  border-radius: 2px;\n}\n.vc-hue--horizontal {\n  background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n}\n.vc-hue--vertical {\n  background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n}\n.vc-hue-container {\n  cursor: pointer;\n  margin: 0 2px;\n  position: relative;\n  height: 100%;\n}\n.vc-hue-pointer {\n  z-index: 2;\n  position: absolute;\n}\n.vc-hue-picker {\n  cursor: pointer;\n  margin-top: 1px;\n  width: 4px;\n  border-radius: 1px;\n  height: 8px;\n  box-shadow: 0 0 2px rgba(0, 0, 0, .6);\n  background: #fff;\n  transform: translateX(-2px);\n}\n.vc-hue--vertical .vc-hue-picker {\n  transform: translateX(-2px) translateY(-50%);\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/common/Hue.vue"],
-        "names": [],
-        "mappings": ";AAyJA;EACA,kBAAA;EACA,QAAA;EACA,UAAA;EACA,WAAA;EACA,SAAA;EACA,kBAAA;AACA;AACA;EACA,2GAAA;AACA;AACA;EACA,yGAAA;AACA;AACA;EACA,eAAA;EACA,aAAA;EACA,kBAAA;EACA,YAAA;AACA;AACA;EACA,UAAA;EACA,kBAAA;AACA;AACA;EACA,eAAA;EACA,eAAA;EACA,UAAA;EACA,kBAAA;EACA,WAAA;EACA,qCAAA;EACA,gBAAA;EACA,2BAAA;AACA;AACA;EACA,4CAAA;AACA",
-        "file": "Hue.vue",
-        "sourcesContent": ["<template>\n  <div\n    role=\"HuePanel\"\n    :class=\"['vc-hue', directionClass]\"\n  >\n    <div\n      ref=\"container\"\n      class=\"vc-hue-container\"\n      @mousedown=\"handleMouseDown\"\n      @touchmove=\"handleTouchEvnet\"\n      @touchstart=\"handleTouchEvnet\"\n    >\n      <div\n        role=\"CurrentHuePointer\"\n        class=\"vc-hue-pointer\"\n        :style=\"{top: pointerTop, left: pointerLeft}\"\n      >\n        <div class=\"vc-hue-picker\" />\n      </div>\n    </div>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';\nimport { mixins } from 'vue-class-component';\nimport Color from '../../common/ColorMixin';\n\n@Component\nexport default class Hue extends mixins(Color) {\n\n  @Prop({ default: 'horizontal' }) readonly direction!: 'horizontal' | 'vertical'\n\n  @Ref('container') readonly container!: HTMLDivElement\n\n  oldHue = 0;\n  pullDirection = '';\n  containerWidth = 0;\n  containerHeight = 0;\n  xOffset = 0;\n  yOffset = 0;\n\n  get hsl() {\n    return this.tc.toHsl();\n  }\n\n  get directionClass() {\n    return {\n      'vc-hue--horizontal': this.direction === 'horizontal',\n      'vc-hue--vertical': this.direction === 'vertical'\n    }\n  }\n\n  get pointerTop() {\n    let top = 0;\n    if (this.direction === 'vertical') {\n      if (this.hsl.h === 0 && this.pullDirection === 'right') {\n        top = 0\n      } else {\n        top = -((this.hsl.h * 100) / 360) + 100\n      }\n    }\n    return `${top}%`;\n  }\n\n  get pointerLeft() {\n    let left = 0;\n    if (this.direction === 'horizontal') {\n      if (this.hsl.h === 0 && this.pullDirection === 'right') {\n        left = 100\n      } else {\n        left = (this.hsl.h * 100) / 360\n      }\n    }\n    return `${left}%`;\n  }\n\n  @Watch('hsl')\n  onHSLChanged(val: tinycolor.ColorFormats.HSLA) {\n    const h = val.h\n    if (h !== 0 && h - this.oldHue > 0) this.pullDirection = 'right'\n    if (h !== 0 && h - this.oldHue < 0) this.pullDirection = 'left'\n    this.oldHue = h\n  }\n\n  mounted() {\n    const $container = this.container;\n    this.containerWidth = $container.clientWidth\n    this.containerHeight = $container.clientHeight\n\n    this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset\n    this.yOffset = $container.getBoundingClientRect().top + window.pageYOffset\n  }\n\n  handleChange(pageX: number, pageY: number) {\n    let h\n    let percent\n    const { containerWidth, containerHeight, xOffset, yOffset } = this;\n    const left = pageX - xOffset\n    const top = pageY - yOffset\n\n    if (this.direction === 'vertical') {\n      if (top < 0) {\n        h = 360\n      } else if (top > containerHeight) {\n        h = 0\n      } else {\n        percent = -(top * 100 / containerHeight) + 100\n        h = (360 * percent / 100)\n      }\n    } else {\n      if (left < 0) {\n        h = 0\n      } else if (left > containerWidth) {\n        h = 360\n      } else {\n        percent = left * 100 / containerWidth\n        h = (360 * percent / 100)\n      }\n    }\n\n    if (this.hsl.h !== h) {\n      this.onColorChange({...this.hsl, ...{ h }});\n    }\n  }\n\n  handleTouchEvnet(e: TouchEvent) {\n    e.preventDefault();\n    this.handleChange(e.touches ? e.touches[0].pageX : 0, e.touches ? e.touches[0].pageY : 0);\n  }\n\n  handleMouseDown(e: MouseEvent) {\n    this.handleChange(e.pageX, e.pageY);\n    window.addEventListener('mousemove', this.handleMouseMove)\n    window.addEventListener('mouseup', this.handleMouseUp)\n  }\n\n  handleMouseMove(e: MouseEvent) {\n    this.handleChange(e.pageX, e.pageY);\n  }\n\n  handleMouseUp (/*e*/) {\n    this.unbindEventListeners()\n  }\n\n  unbindEventListeners () {\n    window.removeEventListener('mousemove', this.handleMouseMove)\n    window.removeEventListener('mouseup', this.handleMouseUp)\n  }\n}\n</script>\n\n<style>\n.vc-hue {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  border-radius: 2px;\n}\n.vc-hue--horizontal {\n  background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n}\n.vc-hue--vertical {\n  background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n}\n.vc-hue-container {\n  cursor: pointer;\n  margin: 0 2px;\n  position: relative;\n  height: 100%;\n}\n.vc-hue-pointer {\n  z-index: 2;\n  position: absolute;\n}\n.vc-hue-picker {\n  cursor: pointer;\n  margin-top: 1px;\n  width: 4px;\n  border-radius: 1px;\n  height: 8px;\n  box-shadow: 0 0 2px rgba(0, 0, 0, .6);\n  background: #fff;\n  transform: translateX(-2px);\n}\n.vc-hue--vertical .vc-hue-picker {\n  transform: translateX(-2px) translateY(-50%);\n}\n</style>\n"]
-      },
+    inject("data-v-579123e4_0", {
+      source: ".vc-hue{position:absolute;top:0;right:0;bottom:0;left:0;border-radius:2px}.vc-hue--horizontal{background:linear-gradient(to right,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%)}.vc-hue--vertical{background:linear-gradient(to top,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red 100%)}.vc-hue-container{cursor:pointer;margin:0 2px;position:relative;height:100%}.vc-hue-pointer{z-index:2;position:absolute}.vc-hue-picker{cursor:pointer;margin-top:1px;width:4px;border-radius:1px;height:8px;box-shadow:0 0 2px rgba(0,0,0,.6);background:#fff;transform:translateX(-2px)}.vc-hue--vertical .vc-hue-picker{transform:translateX(-2px) translateY(-50%)}",
+      map: undefined,
       media: undefined
     });
   };
@@ -3321,6 +3265,14 @@
   }, __vue_inject_styles__$4, __vue_script__$4, __vue_scope_id__$4, __vue_is_functional_template__$4, __vue_module_identifier__$4, false, createInjector, undefined, undefined);
 
   var _dec$5, _dec2$2, _class$6, _class2$4, _descriptor$4, _temp$5;
+
+  function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { _defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+  function _createSuper$6(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$6()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$6() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var Slider = (_dec$5 = Component({
     components: {
       Hue: __vue_component__$4
@@ -3332,7 +3284,7 @@
   }), _dec$5(_class$6 = (_class2$4 = (_temp$5 = /*#__PURE__*/function (_mixins) {
     _inherits(Slider, _mixins);
 
-    var _super = _createSuper(Slider);
+    var _super = _createSuper$6(Slider);
 
     function Slider() {
       var _this;
@@ -3353,7 +3305,7 @@
     _createClass(Slider, [{
       key: "handleSwClick",
       value: function handleSwClick(offset) {
-        this.onColorChange(_objectSpread2({}, this.hsl, {
+        this.onColorChange(_objectSpread$2({}, this.hsl, {
           s: 0.5,
           l: offset
         }));
@@ -3401,69 +3353,61 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
+    return _c('div', {
       staticClass: "vc-slider",
       attrs: {
-        role: "SliderColorPicker"
+        "role": "SliderColorPicker"
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-slider-hue-warp"
-    }, [_c("Hue", {
+    }, [_c('Hue', {
       attrs: {
-        value: _vm.tc
+        "value": _vm.tc
       },
       on: {
-        change: _vm.onColorChange
+        "change": _vm.onColorChange
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-slider-swatches",
       attrs: {
-        role: "group"
+        "role": "group"
       }
     }, _vm._l(_vm.swatches, function (offset, index) {
-      return _c("div", {
+      return _c('div', {
         key: index,
         staticClass: "vc-slider-swatch",
         attrs: {
           "data-index": index
         },
         on: {
-          click: function click($event) {
+          "click": function click($event) {
             return _vm.handleSwClick(offset);
           }
         }
-      }, [_c("div", {
+      }, [_c('div', {
         staticClass: "vc-slider-swatch-picker",
         "class": {
-          "vc-slider-swatch-picker--active": offset == _vm.activeOffset,
-          "vc-slider-swatch-picker--white": offset === "1"
+          'vc-slider-swatch-picker--active': offset == _vm.activeOffset,
+          'vc-slider-swatch-picker--white': offset === '1'
         },
         style: {
-          background: "hsl(" + _vm.hsl.h + ", 50%, " + offset * 100 + "%)"
+          background: 'hsl(' + _vm.hsl.h + ', 50%, ' + offset * 100 + '%)'
         },
         attrs: {
-          "aria-label": "color:" + "hsl(" + _vm.hsl.h + ", 50%, " + offset * 100 + "%)"
+          "aria-label": 'color:' + 'hsl(' + _vm.hsl.h + ', 50%, ' + offset * 100 + '%)'
         }
       })]);
     }), 0)]);
   };
 
   var __vue_staticRenderFns__$5 = [];
-  __vue_render__$5._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$5 = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-ae3a2f14_0", {
-      source: "\n.vc-slider {\n  position: relative;\n  width: 410px;\n}\n.vc-slider-hue-warp {\n  height: 12px;\n  position: relative;\n}\n.vc-slider-hue-warp .vc-hue-picker {\n  width: 14px;\n  height: 14px;\n  border-radius: 6px;\n  transform: translate(-7px, -2px);\n  background-color: rgb(248, 248, 248);\n  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);\n}\n.vc-slider-swatches {\n  display: flex;\n  margin-top: 20px;\n}\n.vc-slider-swatch {\n  margin-right: 1px;\n  flex: 1;\n  width: 20%;\n}\n.vc-slider-swatch:first-child {\n  margin-right: 1px;\n}\n.vc-slider-swatch:first-child .vc-slider-swatch-picker {\n  border-radius: 2px 0px 0px 2px;\n}\n.vc-slider-swatch:last-child {\n  margin-right: 0;\n}\n.vc-slider-swatch:last-child .vc-slider-swatch-picker {\n  border-radius: 0px 2px 2px 0px;\n}\n.vc-slider-swatch-picker {\n  cursor: pointer;\n  height: 12px;\n}\n.vc-slider-swatch:nth-child(n) .vc-slider-swatch-picker.vc-slider-swatch-picker--active {\n  transform: scaleY(1.8);\n  border-radius: 3.6px/2px;\n}\n.vc-slider-swatch-picker--white {\n  box-shadow: inset 0 0 0 1px #ddd;\n}\n.vc-slider-swatch-picker--active.vc-slider-swatch-picker--white {\n  box-shadow: inset 0 0 0 0.6px #ddd;\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/Slider.vue"],
-        "names": [],
-        "mappings": ";AA6EA;EACA,kBAAA;EACA,YAAA;AACA;AACA;EACA,YAAA;EACA,kBAAA;AACA;AACA;EACA,WAAA;EACA,YAAA;EACA,kBAAA;EACA,gCAAA;EACA,oCAAA;EACA,2CAAA;AACA;AACA;EACA,aAAA;EACA,gBAAA;AACA;AACA;EACA,iBAAA;EACA,OAAA;EACA,UAAA;AACA;AACA;EACA,iBAAA;AACA;AACA;EACA,8BAAA;AACA;AACA;EACA,eAAA;AACA;AACA;EACA,8BAAA;AACA;AACA;EACA,eAAA;EACA,YAAA;AACA;AACA;EACA,sBAAA;EACA,wBAAA;AACA;AACA;EACA,gCAAA;AACA;AACA;EACA,kCAAA;AACA",
-        "file": "Slider.vue",
-        "sourcesContent": ["<template>\n  <div\n    role=\"SliderColorPicker\"\n    class=\"vc-slider\"\n  >\n    <div class=\"vc-slider-hue-warp\">\n      <Hue\n        :value=\"tc\"\n        @change=\"onColorChange\"\n      />\n    </div>\n    <div\n      role=\"group\"\n      class=\"vc-slider-swatches\"\n    >\n      <div\n        v-for=\"(offset, index) in swatches\"\n        :key=\"index\"\n        :data-index=\"index\"\n        class=\"vc-slider-swatch\"\n        @click=\"handleSwClick(offset)\"\n      >\n        <div\n          class=\"vc-slider-swatch-picker\"\n          :aria-label=\"'color:' + 'hsl(' + hsl.h + ', 50%, ' + (offset * 100) + '%)'\"\n          :class=\"{'vc-slider-swatch-picker--active': offset == activeOffset, 'vc-slider-swatch-picker--white': offset === '1'}\"\n          :style=\"{background: 'hsl(' + hsl.h + ', 50%, ' + (offset * 100) + '%)'}\"\n        />\n      </div>\n    </div>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport { Component, Prop } from 'vue-property-decorator';\nimport { mixins } from 'vue-class-component';\nimport Color from '../common/ColorMixin';\n\nimport Hue from './common/Hue.vue'\n\n@Component({\n  components: { Hue }\n})\nexport default class Slider extends mixins(Color) {\n  @Prop({default: () => ['.80', '.65', '.50', '.35', '.20']})\n  swatches!: string[];\n\n  get hsl() {\n    return this.tc.toHsl();\n  }\n\n  get activeOffset() {\n    const hasBlack = this.swatches.includes('0');\n    const hasWhite = this.swatches.includes('1');\n    const hsl = this.hsl;\n\n    if (Math.round(hsl.s * 100) / 100 === 0.50) {\n      return Math.round(hsl.l * 100) / 100;\n    } else if (hasBlack && hsl.l === 0) {\n      return 0;\n    } else if (hasWhite && hsl.l === 1) {\n      return 1;\n    }\n    return -1;\n  }\n\n  handleSwClick(offset) {\n    this.onColorChange({\n      ...this.hsl,\n      s: 0.5,\n      l: offset\n    })\n  }\n}\n</script>\n\n<style>\n.vc-slider {\n  position: relative;\n  width: 410px;\n}\n.vc-slider-hue-warp {\n  height: 12px;\n  position: relative;\n}\n.vc-slider-hue-warp .vc-hue-picker {\n  width: 14px;\n  height: 14px;\n  border-radius: 6px;\n  transform: translate(-7px, -2px);\n  background-color: rgb(248, 248, 248);\n  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);\n}\n.vc-slider-swatches {\n  display: flex;\n  margin-top: 20px;\n}\n.vc-slider-swatch {\n  margin-right: 1px;\n  flex: 1;\n  width: 20%;\n}\n.vc-slider-swatch:first-child {\n  margin-right: 1px;\n}\n.vc-slider-swatch:first-child .vc-slider-swatch-picker {\n  border-radius: 2px 0px 0px 2px;\n}\n.vc-slider-swatch:last-child {\n  margin-right: 0;\n}\n.vc-slider-swatch:last-child .vc-slider-swatch-picker {\n  border-radius: 0px 2px 2px 0px;\n}\n.vc-slider-swatch-picker {\n  cursor: pointer;\n  height: 12px;\n}\n.vc-slider-swatch:nth-child(n) .vc-slider-swatch-picker.vc-slider-swatch-picker--active {\n  transform: scaleY(1.8);\n  border-radius: 3.6px/2px;\n}\n.vc-slider-swatch-picker--white {\n  box-shadow: inset 0 0 0 1px #ddd;\n}\n.vc-slider-swatch-picker--active.vc-slider-swatch-picker--white {\n  box-shadow: inset 0 0 0 0.6px #ddd;\n}\n</style>\n"]
-      },
+    inject("data-v-7d76e88d_0", {
+      source: ".vc-slider{position:relative;width:410px}.vc-slider-hue-warp{height:12px;position:relative}.vc-slider-hue-warp .vc-hue-picker{width:14px;height:14px;border-radius:6px;transform:translate(-7px,-2px);background-color:#f8f8f8;box-shadow:0 1px 4px 0 rgba(0,0,0,.37)}.vc-slider-swatches{display:flex;margin-top:20px}.vc-slider-swatch{margin-right:1px;flex:1;width:20%}.vc-slider-swatch:first-child{margin-right:1px}.vc-slider-swatch:first-child .vc-slider-swatch-picker{border-radius:2px 0 0 2px}.vc-slider-swatch:last-child{margin-right:0}.vc-slider-swatch:last-child .vc-slider-swatch-picker{border-radius:0 2px 2px 0}.vc-slider-swatch-picker{cursor:pointer;height:12px}.vc-slider-swatch:nth-child(n) .vc-slider-swatch-picker.vc-slider-swatch-picker--active{transform:scaleY(1.8);border-radius:3.6px/2px}.vc-slider-swatch-picker--white{box-shadow:inset 0 0 0 1px #ddd}.vc-slider-swatch-picker--active.vc-slider-swatch-picker--white{box-shadow:inset 0 0 0 .6px #ddd}",
+      map: undefined,
       media: undefined
     });
   };
@@ -3541,6 +3485,10 @@
   };
 
   var _dec$6, _class$7, _class2$5, _descriptor$5, _temp$6;
+
+  function _createSuper$7(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$7()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$7() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var colorMap = ['red', 'pink', 'purple', 'deepPurple', 'indigo', 'blue', 'lightBlue', 'cyan', 'teal', 'green', 'lightGreen', 'lime', 'yellow', 'amber', 'orange', 'deepOrange', 'brown', 'blueGrey', 'black'];
   var colorLevel = ['900', '700', '500', '300', '100'];
 
@@ -3568,7 +3516,7 @@
   }), Component(_class$7 = (_class2$5 = (_temp$6 = /*#__PURE__*/function (_mixins) {
     _inherits(Swatches, _mixins);
 
-    var _super = _createSuper(Swatches);
+    var _super = _createSuper$7(Swatches);
 
     function Swatches() {
       var _this;
@@ -3621,40 +3569,40 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
+    return _c('div', {
       staticClass: "vc-swatches",
       attrs: {
-        role: "SwatchesColorPicker",
+        "role": "SwatchesColorPicker",
         "data-pick": _vm.pick
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-swatches-box",
       attrs: {
-        role: "group"
+        "role": "group"
       }
     }, _vm._l(_vm.palette, function (group, $idx) {
-      return _c("div", {
+      return _c('div', {
         key: $idx,
         staticClass: "vc-swatches-color-group"
       }, _vm._l(group, function (c) {
-        return _c("div", {
+        return _c('div', {
           key: c,
-          "class": ["vc-swatches-color-it", {
-            "vc-swatches-color--white": c === "#FFFFFF"
+          "class": ['vc-swatches-color-it', {
+            'vc-swatches-color--white': c === '#FFFFFF'
           }],
           style: {
             background: c
           },
           attrs: {
-            "aria-label": "Color:" + c,
+            "aria-label": 'Color:' + c,
             "data-color": c
           },
           on: {
-            click: function click($event) {
+            "click": function click($event) {
               return _vm.handlerClick(c);
             }
           }
-        }, [_c("div", {
+        }, [_c('div', {
           directives: [{
             name: "show",
             rawName: "v-show",
@@ -3662,17 +3610,17 @@
             expression: "equals(c)"
           }],
           staticClass: "vc-swatches-pick"
-        }, [_c("svg", {
+        }, [_c('svg', {
           staticStyle: {
-            width: "24px",
-            height: "24px"
+            "width": "24px",
+            "height": "24px"
           },
           attrs: {
-            viewBox: "0 0 24 24"
+            "viewBox": "0 0 24 24"
           }
-        }, [_c("path", {
+        }, [_c('path', {
           attrs: {
-            d: "M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+            "d": "M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
           }
         })])])]);
       }), 0);
@@ -3680,21 +3628,13 @@
   };
 
   var __vue_staticRenderFns__$6 = [];
-  __vue_render__$6._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$6 = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-1de4e1e7_0", {
-      source: "\n.vc-swatches {\n  width: 320px;\n  height: 240px;\n  overflow-y: scroll;\n  background-color: #fff;\n  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);\n}\n.vc-swatches-box {\n  padding: 16px 0 6px 16px;\n  overflow: hidden;\n}\n.vc-swatches-color-group {\n  padding-bottom: 10px;\n  width: 40px;\n  float: left;\n  margin-right: 10px;\n}\n.vc-swatches-color-it {\n  box-sizing: border-box;\n  width: 40px;\n  height: 24px;\n  cursor: pointer;\n  background: #880e4f;\n  margin-bottom: 1px;\n  overflow: hidden;\n  -ms-border-radius: 2px 2px 0 0;\n  -moz-border-radius: 2px 2px 0 0;\n  -o-border-radius: 2px 2px 0 0;\n  -webkit-border-radius: 2px 2px 0 0;\n  border-radius: 2px 2px 0 0;\n}\n.vc-swatches-color--white {\n  border: 1px solid #DDD;\n}\n.vc-swatches-pick {\n  fill: rgb(255, 255, 255);\n  margin-left: 8px;\n  display: block;\n}\n.vc-swatches-color--white .vc-swatches-pick {\n  fill: rgb(51, 51, 51);\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/Swatches.vue"],
-        "names": [],
-        "mappings": ";AA2FA;EACA,YAAA;EACA,aAAA;EACA,kBAAA;EACA,sBAAA;EACA,iEAAA;AACA;AACA;EACA,wBAAA;EACA,gBAAA;AACA;AACA;EACA,oBAAA;EACA,WAAA;EACA,WAAA;EACA,kBAAA;AACA;AACA;EACA,sBAAA;EACA,WAAA;EACA,YAAA;EACA,eAAA;EACA,mBAAA;EACA,kBAAA;EACA,gBAAA;EACA,8BAAA;EACA,+BAAA;EACA,6BAAA;EACA,kCAAA;EACA,0BAAA;AACA;AACA;EACA,sBAAA;AACA;AACA;EACA,wBAAA;EACA,gBAAA;EACA,cAAA;AACA;AACA;EACA,qBAAA;AACA",
-        "file": "Swatches.vue",
-        "sourcesContent": ["<template>\n  <div\n    role=\"SwatchesColorPicker\"\n    class=\"vc-swatches\"\n    :data-pick=\"pick\"\n  >\n    <div\n      role=\"group\"\n      class=\"vc-swatches-box\"\n    >\n      <div\n        v-for=\"(group, $idx) in palette\"\n        :key=\"$idx\"\n        class=\"vc-swatches-color-group\"\n      >\n        <div\n          v-for=\"c in group\"\n          :key=\"c\"\n          :aria-label=\"'Color:' + c\"\n          :class=\"['vc-swatches-color-it', {'vc-swatches-color--white': c === '#FFFFFF' }]\"\n          :data-color=\"c\"\n          :style=\"{background: c}\"\n          @click=\"handlerClick(c)\"\n        >\n          <div\n            v-show=\"equals(c)\"\n            class=\"vc-swatches-pick\"\n          >\n            <svg\n              style=\"width: 24px; height:24px;\"\n              viewBox=\"0 0 24 24\"\n            >\n              <path d=\"M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z\" />\n            </svg>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport material from 'material-colors';\nimport { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';\nimport { mixins } from 'vue-class-component';\nimport Color from '../common/ColorMixin';\n\nconst colorMap = [\n  'red', 'pink', 'purple', 'deepPurple',\n  'indigo', 'blue', 'lightBlue', 'cyan',\n  'teal', 'green', 'lightGreen', 'lime',\n  'yellow', 'amber', 'orange', 'deepOrange',\n  'brown', 'blueGrey', 'black'\n];\nconst colorLevel = ['900', '700', '500', '300', '100'];\nconst defaultPalatte = () => {\n  const colors: string[][] = [];\n  colorMap.forEach((color) => {\n    let typeColor: string[] = [];\n    if (color.toLowerCase() === 'black' || color.toLowerCase() === 'white') {\n      typeColor = typeColor.concat(['#000000', '#FFFFFF'])\n    } else {\n      colorLevel.forEach((level) => {\n        const c = material[color][level]\n        typeColor.push(c.toUpperCase())\n      })\n    }\n    colors.push(typeColor)\n  })\n  return colors\n}\n\n@Component\nexport default class Swatches extends mixins(Color) {\n  @Prop({default: defaultPalatte})\n  readonly palette!: string[][];\n\n  get pick() {\n    if (this.tc === null) {\n      return '';\n    }\n    return this.tc.toHexString();\n  }\n\n  handlerClick(value: string) {\n    this.onColorChange(value);\n  }\n}\n</script>\n\n<style>\n.vc-swatches {\n  width: 320px;\n  height: 240px;\n  overflow-y: scroll;\n  background-color: #fff;\n  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);\n}\n.vc-swatches-box {\n  padding: 16px 0 6px 16px;\n  overflow: hidden;\n}\n.vc-swatches-color-group {\n  padding-bottom: 10px;\n  width: 40px;\n  float: left;\n  margin-right: 10px;\n}\n.vc-swatches-color-it {\n  box-sizing: border-box;\n  width: 40px;\n  height: 24px;\n  cursor: pointer;\n  background: #880e4f;\n  margin-bottom: 1px;\n  overflow: hidden;\n  -ms-border-radius: 2px 2px 0 0;\n  -moz-border-radius: 2px 2px 0 0;\n  -o-border-radius: 2px 2px 0 0;\n  -webkit-border-radius: 2px 2px 0 0;\n  border-radius: 2px 2px 0 0;\n}\n.vc-swatches-color--white {\n  border: 1px solid #DDD;\n}\n.vc-swatches-pick {\n  fill: rgb(255, 255, 255);\n  margin-left: 8px;\n  display: block;\n}\n.vc-swatches-color--white .vc-swatches-pick {\n  fill: rgb(51, 51, 51);\n}\n</style>\n"]
-      },
+    inject("data-v-2b663370_0", {
+      source: ".vc-swatches{width:320px;height:240px;overflow-y:scroll;background-color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.12),0 2px 5px rgba(0,0,0,.16)}.vc-swatches-box{padding:16px 0 6px 16px;overflow:hidden}.vc-swatches-color-group{padding-bottom:10px;width:40px;float:left;margin-right:10px}.vc-swatches-color-it{box-sizing:border-box;width:40px;height:24px;cursor:pointer;background:#880e4f;margin-bottom:1px;overflow:hidden;-ms-border-radius:2px 2px 0 0;-moz-border-radius:2px 2px 0 0;-o-border-radius:2px 2px 0 0;-webkit-border-radius:2px 2px 0 0;border-radius:2px 2px 0 0}.vc-swatches-color--white{border:1px solid #ddd}.vc-swatches-pick{fill:#fff;margin-left:8px;display:block}.vc-swatches-color--white .vc-swatches-pick{fill:#333}",
+      map: undefined,
       media: undefined
     });
   };
@@ -4158,10 +4098,18 @@
   var lodash_throttle = throttle;
 
   var _dec$7, _class$8, _class2$6, _descriptor$6, _temp$7;
+
+  function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { _defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+  function _createSuper$8(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$8()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$8() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var Saturation = (_dec$7 = Ref('container'), Component(_class$8 = (_class2$6 = (_temp$7 = /*#__PURE__*/function (_mixins) {
     _inherits(Saturation, _mixins);
 
-    var _super = _createSuper(Saturation);
+    var _super = _createSuper$8(Saturation);
 
     function Saturation() {
       var _this;
@@ -4211,7 +4159,7 @@
         var top = clamp_1(pageY - yOffset, 0, containerHeight);
         var saturation = left / containerWidth;
         var bright = clamp_1(-(top / containerHeight) + 1, 0, 1);
-        this.throttle(this.onColorChange, _objectSpread2({}, this.hsv, {}, {
+        this.throttle(this.onColorChange, _objectSpread$3({}, this.hsv, {}, {
           s: saturation,
           v: bright
         }));
@@ -4295,54 +4243,46 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
+    return _c('div', {
       ref: "container",
       staticClass: "vc-saturation",
       style: {
         background: _vm.bgColor
       },
       attrs: {
-        role: "SaturationPanel"
+        "role": "SaturationPanel"
       },
       on: {
-        mousedown: _vm.handleMouseDown,
-        touchmove: _vm.handleTouchEvents,
-        touchstart: _vm.handleTouchEvents
+        "mousedown": _vm.handleMouseDown,
+        "touchmove": _vm.handleTouchEvents,
+        "touchstart": _vm.handleTouchEvents
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-saturation--white"
-    }), _vm._v(" "), _c("div", {
+    }), _vm._v(" "), _c('div', {
       staticClass: "vc-saturation--black"
-    }), _vm._v(" "), _c("div", {
+    }), _vm._v(" "), _c('div', {
       staticClass: "vc-saturation-pointer",
       style: {
         top: _vm.pointerTop,
         left: _vm.pointerLeft
       },
       attrs: {
-        role: "CurrentSaturationPointer"
+        "role": "CurrentSaturationPointer"
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-saturation-circle"
     })])]);
   };
 
   var __vue_staticRenderFns__$7 = [];
-  __vue_render__$7._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$7 = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-530d886b_0", {
-      source: "\n.vc-saturation,\n.vc-saturation--white,\n.vc-saturation--black {\n  cursor: pointer;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  -webkit-tap-highlight-color: transparent; /* for removing the highlight */\n}\n.vc-saturation--white {\n  background: linear-gradient(to right, #fff, rgba(255,255,255,0));\n}\n.vc-saturation--black {\n  background: linear-gradient(to top, #000, rgba(0,0,0,0));\n}\n.vc-saturation-pointer {\n  cursor: pointer;\n  position: absolute;\n}\n.vc-saturation-circle {\n  cursor: head;\n  width: 4px;\n  height: 4px;\n  box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(0,0,0,.4);\n  border-radius: 50%;\n  transform: translate(-2px, -2px);\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/common/Saturation.vue"],
-        "names": [],
-        "mappings": ";AAkHA;;;EAGA,eAAA;EACA,kBAAA;EACA,MAAA;EACA,OAAA;EACA,QAAA;EACA,SAAA;EACA,wCAAA,EAAA,+BAAA;AACA;AAEA;EACA,gEAAA;AACA;AACA;EACA,wDAAA;AACA;AACA;EACA,eAAA;EACA,kBAAA;AACA;AACA;EACA,YAAA;EACA,UAAA;EACA,WAAA;EACA,0FAAA;EACA,kBAAA;EACA,gCAAA;AACA",
-        "file": "Saturation.vue",
-        "sourcesContent": ["<template>\n  <div\n    ref=\"container\"\n    role=\"SaturationPanel\"\n    class=\"vc-saturation\"\n    :style=\"{background: bgColor}\"\n    @mousedown=\"handleMouseDown\"\n    @touchmove=\"handleTouchEvents\"\n    @touchstart=\"handleTouchEvents\"\n  >\n    <div class=\"vc-saturation--white\" />\n    <div class=\"vc-saturation--black\" />\n    <div\n      role=\"CurrentSaturationPointer\"\n      class=\"vc-saturation-pointer\"\n      :style=\"{top: pointerTop, left: pointerLeft}\"\n    >\n      <div class=\"vc-saturation-circle\" />\n    </div>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport { Vue, Component, Ref } from 'vue-property-decorator';\nimport { mixins } from 'vue-class-component';\nimport Color from '../../common/ColorMixin';\nimport clamp from 'clamp';\nimport throttle from 'lodash.throttle';\n\n@Component\nexport default class Saturation extends mixins(Color) {\n  containerWidth = 0;\n  containerHeight = 0;\n  xOffset = 0;\n  yOffset = 0;\n\n  lastMouseEvent = '';\n\n  throttle = throttle((fn, data) => {\n    fn(data)\n  }, 20,\n  {\n    'leading': true,\n    'trailing': false\n  })\n\n  @Ref('container')\n  readonly container!: HTMLDivElement\n\n  get hsv() {\n    return this.tc.toHsv();\n  }\n  get bgColor() {\n    return `hsl(${this.hsv.h}, 100%, 50%)`\n  }\n  get pointerTop () {\n    return (-(this.hsv.v * 100) + 1) + 100 + '%'\n  }\n  get pointerLeft () {\n    return this.hsv.s * 100 + '%'\n  }\n  mounted() {\n    const $container = this.$refs.container as HTMLDivElement;\n    this.containerWidth = $container.clientWidth\n    this.containerHeight = $container.clientHeight\n\n    this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset\n    this.yOffset = $container.getBoundingClientRect().top + window.pageYOffset\n  }\n  handleChange (pageX: number, pageY: number) {\n    // !skip && e.preventDefault()\n    const { containerWidth, containerHeight, xOffset, yOffset } = this;\n    const left = clamp(pageX - xOffset, 0, containerWidth)\n    const top = clamp(pageY - yOffset, 0, containerHeight)\n    const saturation = left / containerWidth\n    const bright = clamp(-(top / containerHeight) + 1, 0, 1)\n\n    this.throttle(this.onColorChange, {\n      ...this.hsv,\n      ... {\n        s: saturation,\n        v: bright,\n      }\n    })\n  }\n  handleMouseDown (/* e: MouseEvent */) {\n    window.addEventListener('mousemove', this.handleMouseMove)\n    window.addEventListener('mouseup', this.handleMouseUp)\n  }\n  handleMouseMove(e: MouseEvent) {\n    this.lastMouseEvent = e.type;\n    this.handleChange(e.pageX, e.pageY);\n  }\n  handleMouseUp (e: MouseEvent) {\n    if (this.lastMouseEvent !== 'mousemove') {\n      this.handleChange(e.pageX, e.pageY);\n    }\n    this.lastMouseEvent = '';\n    this.unbindEventListeners()\n  }\n  unbindEventListeners () {\n    window.removeEventListener('mousemove', this.handleMouseMove)\n    window.removeEventListener('mouseup', this.handleMouseUp)\n  }\n  handleTouchEvents(e: TouchEvent) {\n    console.log(e.type);\n    const pageX = e.touches ? e.touches[0].pageX : 0;\n    const pageY = e.touches ? e.touches[0].pageY : 0;\n    this.handleChange(pageX, pageY);\n  }\n}\n</script>\n\n<style>\n.vc-saturation,\n.vc-saturation--white,\n.vc-saturation--black {\n  cursor: pointer;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  -webkit-tap-highlight-color: transparent; /* for removing the highlight */\n}\n\n.vc-saturation--white {\n  background: linear-gradient(to right, #fff, rgba(255,255,255,0));\n}\n.vc-saturation--black {\n  background: linear-gradient(to top, #000, rgba(0,0,0,0));\n}\n.vc-saturation-pointer {\n  cursor: pointer;\n  position: absolute;\n}\n.vc-saturation-circle {\n  cursor: head;\n  width: 4px;\n  height: 4px;\n  box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(0,0,0,.4);\n  border-radius: 50%;\n  transform: translate(-2px, -2px);\n}\n</style>\n"]
-      },
+    inject("data-v-7500df3c_0", {
+      source: ".vc-saturation,.vc-saturation--black,.vc-saturation--white{cursor:pointer;position:absolute;top:0;left:0;right:0;bottom:0;-webkit-tap-highlight-color:transparent}.vc-saturation--white{background:linear-gradient(to right,#fff,rgba(255,255,255,0))}.vc-saturation--black{background:linear-gradient(to top,#000,rgba(0,0,0,0))}.vc-saturation-pointer{cursor:pointer;position:absolute}.vc-saturation-circle{cursor:head;width:4px;height:4px;box-shadow:0 0 0 1.5px #fff,inset 0 0 1px 1px rgba(0,0,0,.3),0 0 1px 2px rgba(0,0,0,.4);border-radius:50%;transform:translate(-2px,-2px)}",
+      map: undefined,
       media: undefined
     });
   };
@@ -4366,6 +4306,14 @@
   }, __vue_inject_styles__$7, __vue_script__$7, __vue_scope_id__$7, __vue_is_functional_template__$7, __vue_module_identifier__$7, false, createInjector, undefined, undefined);
 
   var _dec$8, _dec2$3, _dec3$2, _dec4$1, _dec5$1, _dec6, _dec7, _class$9, _class2$7, _descriptor$7, _descriptor2$2, _descriptor3$1, _descriptor4$1, _descriptor5$1, _descriptor6, _temp$8;
+
+  function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { _defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+  function _createSuper$9(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$9()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$9() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var Photoshop = (_dec$8 = Component({
     components: {
       Saturation: __vue_component__$7,
@@ -4387,7 +4335,7 @@
   }), _dec$8(_class$9 = (_class2$7 = (_temp$8 = /*#__PURE__*/function (_mixins) {
     _inherits(Photoshop, _mixins);
 
-    var _super = _createSuper(Photoshop);
+    var _super = _createSuper$9(Photoshop);
 
     function Photoshop() {
       var _this;
@@ -4430,12 +4378,12 @@
         }
 
         if (label === 'r' || label === 'g' || label === 'b') {
-          this.onColorChange(_objectSpread2({}, this.rgba, _defineProperty({}, label, color)));
+          this.onColorChange(_objectSpread$4({}, this.rgba, _defineProperty$1({}, label, color)));
           return;
         }
 
         if (label === 'h' || label === 's' || label === 'v') {
-          this.onColorChange(_objectSpread2({}, this.tc.toHsv(), _defineProperty({}, label, color)));
+          this.onColorChange(_objectSpread$4({}, this.tc.toHsv(), _defineProperty$1({}, label, color)));
           return;
         }
       }
@@ -4527,198 +4475,190 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
-      "class": ["vc-photoshop", _vm.disableFields ? "vc-photoshop__disable-fields" : ""],
+    return _c('div', {
+      "class": ['vc-photoshop', _vm.disableFields ? 'vc-photoshop__disable-fields' : ''],
       attrs: {
-        role: "PhotoShopColorPicker"
+        "role": "PhotoShopColorPicker"
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-ps-head"
-    }, [_vm._v(_vm._s(_vm.head))]), _vm._v(" "), _c("div", {
+    }, [_vm._v(_vm._s(_vm.head))]), _vm._v(" "), _c('div', {
       staticClass: "vc-ps-body"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-ps-saturation-wrap"
-    }, [_c("Saturation", {
+    }, [_c('Saturation', {
       attrs: {
-        value: _vm.tc
+        "value": _vm.tc
       },
       on: {
-        change: _vm.onColorChange
+        "change": _vm.onColorChange
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-ps-hue-wrap"
-    }, [_c("hue", {
+    }, [_c('hue', {
       attrs: {
-        value: _vm.tc,
-        direction: "vertical"
+        "value": _vm.tc,
+        "direction": "vertical"
       },
       on: {
-        change: _vm.onColorChange
+        "change": _vm.onColorChange
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-ps-hue-pointer"
-    }, [_c("i", {
+    }, [_c('i', {
       staticClass: "vc-ps-hue-pointer--left"
-    }), _vm._v(" "), _c("i", {
+    }), _vm._v(" "), _c('i', {
       staticClass: "vc-ps-hue-pointer--right"
-    })])])], 1), _vm._v(" "), _c("div", {
-      "class": ["vc-ps-controls", _vm.disableFields ? "vc-ps-controls__disable-fields" : ""]
-    }, [_c("div", {
+    })])])], 1), _vm._v(" "), _c('div', {
+      "class": ['vc-ps-controls', _vm.disableFields ? 'vc-ps-controls__disable-fields' : '']
+    }, [_c('div', {
       staticClass: "vc-ps-previews"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-ps-previews__label"
-    }, [_vm._v("new")]), _vm._v(" "), _c("div", {
+    }, [_vm._v("new")]), _vm._v(" "), _c('div', {
       staticClass: "vc-ps-previews__swatches"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-ps-previews__pr-color",
       style: {
         background: _vm.hex
       },
       attrs: {
-        "aria-label": "NewColor:" + _vm.hex
+        "aria-label": 'NewColor:' + _vm.hex
       }
-    }), _vm._v(" "), _c("div", {
+    }), _vm._v(" "), _c('div', {
       staticClass: "vc-ps-previews__pr-color",
       style: {
         background: _vm.currentColor
       },
       attrs: {
-        "aria-label": "CurrentColor:" + _vm.currentColor
+        "aria-label": 'CurrentColor:' + _vm.currentColor
       },
       on: {
-        click: _vm.clickCurrentColor
+        "click": _vm.clickCurrentColor
       }
-    })]), _vm._v(" "), _c("div", {
+    })]), _vm._v(" "), _c('div', {
       staticClass: "vc-ps-previews__label"
-    }, [_vm._v("current")])]), _vm._v(" "), !_vm.disableFields ? _c("div", {
+    }, [_vm._v("current")])]), _vm._v(" "), !_vm.disableFields ? _c('div', {
       staticClass: "vc-ps-actions"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-ps-ac-btn",
       attrs: {
-        role: "button",
+        "role": "button",
         "aria-label": "Confirm"
       },
       on: {
-        click: _vm.handleAccept
+        "click": _vm.handleAccept
       }
-    }, [_vm._v("\n          " + _vm._s(_vm.acceptLabel) + "\n        ")]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n          " + _vm._s(_vm.acceptLabel) + "\n        ")]), _vm._v(" "), _c('div', {
       staticClass: "vc-ps-ac-btn",
       attrs: {
-        role: "button",
+        "role": "button",
         "aria-label": "Cancel"
       },
       on: {
-        click: _vm.handleCancel
+        "click": _vm.handleCancel
       }
-    }, [_vm._v("\n          " + _vm._s(_vm.cancelLabel) + "\n        ")]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n          " + _vm._s(_vm.cancelLabel) + "\n        ")]), _vm._v(" "), _c('div', {
       staticClass: "vc-ps-fields"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "h",
-        desc: "°",
-        value: _vm.hsv.h
+        "label": "h",
+        "desc": "°",
+        "value": _vm.hsv.h
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("h", $event);
+        "change": function change($event) {
+          return _vm.inputChange('h', $event);
         }
       }
-    }), _vm._v(" "), _c("EditableInput", {
+    }), _vm._v(" "), _c('EditableInput', {
       attrs: {
-        label: "s",
-        desc: "%",
-        value: _vm.hsv.s,
-        max: 100
+        "label": "s",
+        "desc": "%",
+        "value": _vm.hsv.s,
+        "max": 100
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("s", $event);
+        "change": function change($event) {
+          return _vm.inputChange('s', $event);
         }
       }
-    }), _vm._v(" "), _c("EditableInput", {
+    }), _vm._v(" "), _c('EditableInput', {
       attrs: {
-        label: "v",
-        desc: "%",
-        value: _vm.hsv.v,
-        max: 100
+        "label": "v",
+        "desc": "%",
+        "value": _vm.hsv.v,
+        "max": 100
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("v", $event);
+        "change": function change($event) {
+          return _vm.inputChange('v', $event);
         }
       }
-    }), _vm._v(" "), _c("div", {
+    }), _vm._v(" "), _c('div', {
       staticClass: "vc-ps-fields__divider"
-    }), _vm._v(" "), _c("EditableInput", {
+    }), _vm._v(" "), _c('EditableInput', {
       attrs: {
-        label: "r",
-        value: _vm.rgba.r
+        "label": "r",
+        "value": _vm.rgba.r
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("r", $event);
+        "change": function change($event) {
+          return _vm.inputChange('r', $event);
         }
       }
-    }), _vm._v(" "), _c("EditableInput", {
+    }), _vm._v(" "), _c('EditableInput', {
       attrs: {
-        label: "g",
-        value: _vm.rgba.g
+        "label": "g",
+        "value": _vm.rgba.g
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("g", $event);
+        "change": function change($event) {
+          return _vm.inputChange('g', $event);
         }
       }
-    }), _vm._v(" "), _c("EditableInput", {
+    }), _vm._v(" "), _c('EditableInput', {
       attrs: {
-        label: "b",
-        value: _vm.rgba.b
+        "label": "b",
+        "value": _vm.rgba.b
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("b", $event);
+        "change": function change($event) {
+          return _vm.inputChange('b', $event);
         }
       }
-    }), _vm._v(" "), _c("div", {
+    }), _vm._v(" "), _c('div', {
       staticClass: "vc-ps-fields__divider"
-    }), _vm._v(" "), _c("EditableInput", {
+    }), _vm._v(" "), _c('EditableInput', {
       staticClass: "vc-ps-fields__hex",
       attrs: {
-        label: "#",
-        value: _vm.tc.toHex()
+        "label": "#",
+        "value": _vm.tc.toHex()
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("hex", $event);
+        "change": function change($event) {
+          return _vm.inputChange('hex', $event);
         }
       }
-    })], 1), _vm._v(" "), _vm.hasResetButton ? _c("div", {
+    })], 1), _vm._v(" "), _vm.hasResetButton ? _c('div', {
       staticClass: "vc-ps-ac-btn",
       attrs: {
         "aria-label": "reset"
       },
       on: {
-        click: _vm.handleReset
+        "click": _vm.handleReset
       }
     }, [_vm._v("\n          " + _vm._s(_vm.resetLabel) + "\n        ")]) : _vm._e()]) : _vm._e()])])]);
   };
 
   var __vue_staticRenderFns__$8 = [];
-  __vue_render__$8._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$8 = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-3f1005e3_0", {
-      source: "\n.vc-photoshop {\n  background: #DCDCDC;\n  border-radius: 4px;\n  box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 8px 16px rgba(0,0,0,.15);\n  box-sizing: initial;\n  width: 513px;\n  font-family: Roboto;\n}\n.vc-photoshop__disable-fields {\n  width: 390px;\n}\n.vc-ps-head {\n  background-image: linear-gradient(-180deg, #F0F0F0 0%, #D4D4D4 100%);\n  border-bottom: 1px solid #B1B1B1;\n  box-shadow: inset 0 1px 0 0 rgba(255,255,255,.2), inset 0 -1px 0 0 rgba(0,0,0,.02);\n  height: 23px;\n  line-height: 24px;\n  border-radius: 4px 4px 0 0;\n  font-size: 13px;\n  color: #4D4D4D;\n  text-align: center;\n}\n.vc-ps-body {\n  padding: 15px;\n  display: flex;\n}\n.vc-ps-saturation-wrap {\n  width: 256px;\n  height: 256px;\n  position: relative;\n  border: 2px solid #B3B3B3;\n  border-bottom: 2px solid #F0F0F0;\n  overflow: hidden;\n}\n.vc-ps-saturation-wrap .vc-saturation-circle {\n  width: 12px;\n  height: 12px;\n}\n.vc-ps-hue-wrap {\n  position: relative;\n  height: 256px;\n  width: 19px;\n  margin-left: 10px;\n  border: 2px solid #B3B3B3;\n  border-bottom: 2px solid #F0F0F0;\n}\n.vc-ps-hue-pointer {\n  position: relative;\n}\n.vc-ps-hue-pointer--left,\n.vc-ps-hue-pointer--right {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 5px 0 5px 8px;\n  border-color: transparent transparent transparent #555;\n}\n.vc-ps-hue-pointer--left:after,\n.vc-ps-hue-pointer--right:after {\n  content: \"\";\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 4px 0 4px 6px;\n  border-color: transparent transparent transparent #fff;\n  position: absolute;\n  top: 1px;\n  left: 1px;\n  transform: translate(-8px, -5px);\n}\n.vc-ps-hue-pointer--left {\n  transform: translate(-13px, -4px);\n}\n.vc-ps-hue-pointer--right {\n  transform: translate(20px, -4px) rotate(180deg);\n}\n.vc-ps-controls {\n  width: 180px;\n  margin-left: 10px;\n  display: flex;\n}\n.vc-ps-controls__disable-fields {\n  width: auto;\n}\n.vc-ps-actions {\n  margin-left: 20px;\n  flex: 1;\n}\n.vc-ps-ac-btn {\n  cursor: pointer;\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, #E6E6E6 100%);\n  border: 1px solid #878787;\n  border-radius: 2px;\n  height: 20px;\n  box-shadow: 0 1px 0 0 #EAEAEA;\n  font-size: 14px;\n  color: #000;\n  line-height: 20px;\n  text-align: center;\n  margin-bottom: 10px;\n}\n.vc-ps-previews {\n  width: 60px;\n}\n.vc-ps-previews__swatches {\n  border: 1px solid #B3B3B3;\n  border-bottom: 1px solid #F0F0F0;\n  margin-bottom: 2px;\n  margin-top: 1px;\n}\n.vc-ps-previews__pr-color {\n  height: 34px;\n  box-shadow: inset 1px 0 0 #000, inset -1px 0 0 #000, inset 0 1px 0 #000;\n}\n.vc-ps-previews__label {\n  font-size: 14px;\n  color: #000;\n  text-align: center;\n}\n.vc-ps-fields {\n  padding-top: 5px;\n  padding-bottom: 9px;\n  width: 80px;\n  position: relative;\n}\n.vc-ps-fields .vc-input__input {\n  margin-left: 40%;\n  width: 40%;\n  height: 18px;\n  border: 1px solid #888888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC;\n  margin-bottom: 5px;\n  font-size: 13px;\n  padding-left: 3px;\n  margin-right: 10px;\n}\n.vc-ps-fields .vc-input__label, .vc-ps-fields .vc-input__desc {\n  top: 0;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n  position: absolute;\n}\n.vc-ps-fields .vc-input__label {\n  left: 0;\n  width: 34px;\n}\n.vc-ps-fields .vc-input__desc {\n  right: 0;\n  width: 0;\n}\n.vc-ps-fields__divider {\n  height: 5px;\n}\n.vc-ps-fields__hex .vc-input__input {\n  margin-left: 20%;\n  width: 80%;\n  height: 18px;\n  border: 1px solid #888888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC;\n  margin-bottom: 6px;\n  font-size: 13px;\n  padding-left: 3px;\n}\n.vc-ps-fields__hex .vc-input__label {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 14px;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/Photoshop.vue"],
-        "names": [],
-        "mappings": ";AA2NA;EACA,mBAAA;EACA,kBAAA;EACA,iEAAA;EACA,mBAAA;EACA,YAAA;EACA,mBAAA;AACA;AACA;EACA,YAAA;AACA;AACA;EACA,oEAAA;EACA,gCAAA;EACA,kFAAA;EACA,YAAA;EACA,iBAAA;EACA,0BAAA;EACA,eAAA;EACA,cAAA;EACA,kBAAA;AACA;AACA;EACA,aAAA;EACA,aAAA;AACA;AAEA;EACA,YAAA;EACA,aAAA;EACA,kBAAA;EACA,yBAAA;EACA,gCAAA;EACA,gBAAA;AACA;AACA;EACA,WAAA;EACA,YAAA;AACA;AAEA;EACA,kBAAA;EACA,aAAA;EACA,WAAA;EACA,iBAAA;EACA,yBAAA;EACA,gCAAA;AACA;AACA;EACA,kBAAA;AACA;AACA;;EAEA,kBAAA;EACA,QAAA;EACA,SAAA;EACA,mBAAA;EACA,2BAAA;EACA,sDAAA;AACA;AACA;;EAEA,WAAA;EACA,QAAA;EACA,SAAA;EACA,mBAAA;EACA,2BAAA;EACA,sDAAA;EACA,kBAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;AACA;AACA;EACA,iCAAA;AACA;AACA;EACA,+CAAA;AACA;AAEA;EACA,YAAA;EACA,iBAAA;EACA,aAAA;AACA;AACA;EACA,WAAA;AACA;AAEA;EACA,iBAAA;EACA,OAAA;AACA;AACA;EACA,eAAA;EACA,oEAAA;EACA,yBAAA;EACA,kBAAA;EACA,YAAA;EACA,6BAAA;EACA,eAAA;EACA,WAAA;EACA,iBAAA;EACA,kBAAA;EACA,mBAAA;AACA;AACA;EACA,WAAA;AACA;AACA;EACA,yBAAA;EACA,gCAAA;EACA,kBAAA;EACA,eAAA;AACA;AACA;EACA,YAAA;EACA,uEAAA;AACA;AACA;EACA,eAAA;EACA,WAAA;EACA,kBAAA;AACA;AAEA;EACA,gBAAA;EACA,mBAAA;EACA,WAAA;EACA,kBAAA;AACA;AACA;EACA,gBAAA;EACA,UAAA;EACA,YAAA;EACA,yBAAA;EACA,6DAAA;EACA,kBAAA;EACA,eAAA;EACA,iBAAA;EACA,kBAAA;AACA;AACA;EACA,MAAA;EACA,yBAAA;EACA,eAAA;EACA,YAAA;EACA,iBAAA;EACA,kBAAA;AACA;AACA;EACA,OAAA;EACA,WAAA;AACA;AACA;EACA,QAAA;EACA,QAAA;AACA;AAEA;EACA,WAAA;AACA;AAEA;EACA,gBAAA;EACA,UAAA;EACA,YAAA;EACA,yBAAA;EACA,6DAAA;EACA,kBAAA;EACA,eAAA;EACA,iBAAA;AACA;AACA;EACA,kBAAA;EACA,MAAA;EACA,OAAA;EACA,WAAA;EACA,yBAAA;EACA,eAAA;EACA,YAAA;EACA,iBAAA;AACA",
-        "file": "Photoshop.vue",
-        "sourcesContent": ["<template>\n  <div\n    role=\"PhotoShopColorPicker\"\n    :class=\"['vc-photoshop', disableFields ? 'vc-photoshop__disable-fields' : '']\"\n  >\n    <div class=\"vc-ps-head\">{{ head }}</div>\n    <div class=\"vc-ps-body\">\n      <div class=\"vc-ps-saturation-wrap\">\n        <Saturation\n          :value=\"tc\"\n          @change=\"onColorChange\"\n        />\n      </div>\n      <div class=\"vc-ps-hue-wrap\">\n        <hue\n          :value=\"tc\"\n          direction=\"vertical\"\n          @change=\"onColorChange\"\n        >\n          <div class=\"vc-ps-hue-pointer\">\n            <i class=\"vc-ps-hue-pointer--left\" />\n            <i class=\"vc-ps-hue-pointer--right\" />\n          </div>\n        </hue>\n      </div>\n      <div :class=\"['vc-ps-controls', disableFields ? 'vc-ps-controls__disable-fields' : '']\">\n        <div class=\"vc-ps-previews\">\n          <div class=\"vc-ps-previews__label\">new</div>\n          <div class=\"vc-ps-previews__swatches\">\n            <div\n              class=\"vc-ps-previews__pr-color\"\n              :aria-label=\"'NewColor:' + hex\"\n              :style=\"{background: hex}\"\n            />\n            <div\n              class=\"vc-ps-previews__pr-color\"\n              :aria-label=\"'CurrentColor:' + currentColor\"\n              :style=\"{background: currentColor}\"\n              @click=\"clickCurrentColor\"\n            />\n          </div>\n          <div class=\"vc-ps-previews__label\">current</div>\n        </div>\n        <div\n          v-if=\"!disableFields\"\n          class=\"vc-ps-actions\"\n        >\n          <div\n            class=\"vc-ps-ac-btn\"\n            role=\"button\"\n            aria-label=\"Confirm\"\n            @click=\"handleAccept\"\n          >\n            {{ acceptLabel }}\n          </div>\n          <div\n            class=\"vc-ps-ac-btn\"\n            role=\"button\"\n            aria-label=\"Cancel\"\n            @click=\"handleCancel\"\n          >\n            {{ cancelLabel }}\n          </div>\n\n          <div class=\"vc-ps-fields\">\n            <!-- hsla -->\n            <EditableInput\n              label=\"h\"\n              desc=\"°\"\n              :value=\"hsv.h\"\n              @change=\"inputChange('h', $event)\"\n            />\n            <EditableInput\n              label=\"s\"\n              desc=\"%\"\n              :value=\"hsv.s\"\n              :max=\"100\"\n              @change=\"inputChange('s', $event)\"\n            />\n            <EditableInput\n              label=\"v\"\n              desc=\"%\"\n              :value=\"hsv.v\"\n              :max=\"100\"\n              @change=\"inputChange('v', $event)\"\n            />\n            <div class=\"vc-ps-fields__divider\" />\n            <!-- rgba -->\n            <EditableInput\n              label=\"r\"\n              :value=\"rgba.r\"\n              @change=\"inputChange('r', $event)\"\n            />\n            <EditableInput\n              label=\"g\"\n              :value=\"rgba.g\"\n              @change=\"inputChange('g', $event)\"\n            />\n            <EditableInput\n              label=\"b\"\n              :value=\"rgba.b\"\n              @change=\"inputChange('b', $event)\"\n            />\n            <div class=\"vc-ps-fields__divider\" />\n            <!-- hex -->\n            <EditableInput\n              label=\"#\"\n              class=\"vc-ps-fields__hex\"\n              :value=\"tc.toHex()\"\n              @change=\"inputChange('hex', $event)\"\n            />\n          </div>\n\n          <div\n            v-if=\"hasResetButton\"\n            class=\"vc-ps-ac-btn\"\n            aria-label=\"reset\"\n            @click=\"handleReset\"\n          >\n            {{ resetLabel }}\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport { Component, Prop } from 'vue-property-decorator';\nimport { mixins } from 'vue-class-component';\nimport Color from '../common/ColorMixin';\nimport { isValidHex } from '../utils';\nimport EditableInput from './common/EditableInput.vue'\nimport Saturation from './common/Saturation.vue'\nimport Hue from './common/Hue.vue'\n\n@Component({\n  components: { Saturation, Hue, EditableInput },\n})\nexport default class Photoshop extends mixins(Color) {\n  @Prop({default: 'Color Picker'})\n  head!: string;\n\n  @Prop({default: false})\n  disableFields!: boolean;\n\n  @Prop({default: false})\n  hasResetButton!: boolean;\n\n  @Prop({default: 'OK'})\n  acceptLabel!: string;\n\n  @Prop({default: 'Cancel'})\n  cancelLabel!: string;\n\n  @Prop({default: 'Reset'})\n  resetLabel!: string;\n\n  currentColor: null | string = null;\n\n  get hex() {\n    return this.tc.toHexString();\n  }\n\n  get rgba() {\n    return this.tc.toRgb();\n  }\n\n  get hsv () {\n    const hsv = this.tc.toHsv();\n    return {\n      h: hsv.h.toFixed(),\n      s: (hsv.s * 100).toFixed(),\n      v: (hsv.v * 100).toFixed()\n    }\n  }\n\n  mounted() {\n    this.currentColor = this.tc.toHexString();\n  }\n\n  inputChange(label: 'r' | 'g' | 'b' | 'h' | 's' | 'v' | 'hex', color: string) {\n    if (label === 'hex' && isValidHex(color)) {\n      this.onColorChange(color);\n      return;\n    };\n    if (label === 'r' || label === 'g' || label === 'b') {\n      this.onColorChange({\n        ...this.rgba,\n        [label]: color\n      })\n      return;\n    }\n    if (label === 'h' || label === 's' || label === 'v') {\n      this.onColorChange({\n        ...this.tc.toHsv(),\n        [label]: color\n      });\n      return;\n    }\n  }\n  clickCurrentColor () {\n    if (this.currentColor) {\n      this.onColorChange(this.currentColor);\n    }\n  }\n  handleAccept() {\n    this.$emit('ok');\n  }\n  handleCancel() {\n    this.$emit('cancel');\n  }\n  handleReset() {\n    this.$emit('reset');\n  }\n}\n</script>\n\n<style>\n.vc-photoshop {\n  background: #DCDCDC;\n  border-radius: 4px;\n  box-shadow: 0 0 0 1px rgba(0,0,0,.25), 0 8px 16px rgba(0,0,0,.15);\n  box-sizing: initial;\n  width: 513px;\n  font-family: Roboto;\n}\n.vc-photoshop__disable-fields {\n  width: 390px;\n}\n.vc-ps-head {\n  background-image: linear-gradient(-180deg, #F0F0F0 0%, #D4D4D4 100%);\n  border-bottom: 1px solid #B1B1B1;\n  box-shadow: inset 0 1px 0 0 rgba(255,255,255,.2), inset 0 -1px 0 0 rgba(0,0,0,.02);\n  height: 23px;\n  line-height: 24px;\n  border-radius: 4px 4px 0 0;\n  font-size: 13px;\n  color: #4D4D4D;\n  text-align: center;\n}\n.vc-ps-body {\n  padding: 15px;\n  display: flex;\n}\n\n.vc-ps-saturation-wrap {\n  width: 256px;\n  height: 256px;\n  position: relative;\n  border: 2px solid #B3B3B3;\n  border-bottom: 2px solid #F0F0F0;\n  overflow: hidden;\n}\n.vc-ps-saturation-wrap .vc-saturation-circle {\n  width: 12px;\n  height: 12px;\n}\n\n.vc-ps-hue-wrap {\n  position: relative;\n  height: 256px;\n  width: 19px;\n  margin-left: 10px;\n  border: 2px solid #B3B3B3;\n  border-bottom: 2px solid #F0F0F0;\n}\n.vc-ps-hue-pointer {\n  position: relative;\n}\n.vc-ps-hue-pointer--left,\n.vc-ps-hue-pointer--right {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 5px 0 5px 8px;\n  border-color: transparent transparent transparent #555;\n}\n.vc-ps-hue-pointer--left:after,\n.vc-ps-hue-pointer--right:after {\n  content: \"\";\n  width: 0;\n  height: 0;\n  border-style: solid;\n  border-width: 4px 0 4px 6px;\n  border-color: transparent transparent transparent #fff;\n  position: absolute;\n  top: 1px;\n  left: 1px;\n  transform: translate(-8px, -5px);\n}\n.vc-ps-hue-pointer--left {\n  transform: translate(-13px, -4px);\n}\n.vc-ps-hue-pointer--right {\n  transform: translate(20px, -4px) rotate(180deg);\n}\n\n.vc-ps-controls {\n  width: 180px;\n  margin-left: 10px;\n  display: flex;\n}\n.vc-ps-controls__disable-fields {\n  width: auto;\n}\n\n.vc-ps-actions {\n  margin-left: 20px;\n  flex: 1;\n}\n.vc-ps-ac-btn {\n  cursor: pointer;\n  background-image: linear-gradient(-180deg, #FFFFFF 0%, #E6E6E6 100%);\n  border: 1px solid #878787;\n  border-radius: 2px;\n  height: 20px;\n  box-shadow: 0 1px 0 0 #EAEAEA;\n  font-size: 14px;\n  color: #000;\n  line-height: 20px;\n  text-align: center;\n  margin-bottom: 10px;\n}\n.vc-ps-previews {\n  width: 60px;\n}\n.vc-ps-previews__swatches {\n  border: 1px solid #B3B3B3;\n  border-bottom: 1px solid #F0F0F0;\n  margin-bottom: 2px;\n  margin-top: 1px;\n}\n.vc-ps-previews__pr-color {\n  height: 34px;\n  box-shadow: inset 1px 0 0 #000, inset -1px 0 0 #000, inset 0 1px 0 #000;\n}\n.vc-ps-previews__label {\n  font-size: 14px;\n  color: #000;\n  text-align: center;\n}\n\n.vc-ps-fields {\n  padding-top: 5px;\n  padding-bottom: 9px;\n  width: 80px;\n  position: relative;\n}\n.vc-ps-fields .vc-input__input {\n  margin-left: 40%;\n  width: 40%;\n  height: 18px;\n  border: 1px solid #888888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC;\n  margin-bottom: 5px;\n  font-size: 13px;\n  padding-left: 3px;\n  margin-right: 10px;\n}\n.vc-ps-fields .vc-input__label, .vc-ps-fields .vc-input__desc {\n  top: 0;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n  position: absolute;\n}\n.vc-ps-fields .vc-input__label {\n  left: 0;\n  width: 34px;\n}\n.vc-ps-fields .vc-input__desc {\n  right: 0;\n  width: 0;\n}\n\n.vc-ps-fields__divider {\n  height: 5px;\n}\n\n.vc-ps-fields__hex .vc-input__input {\n  margin-left: 20%;\n  width: 80%;\n  height: 18px;\n  border: 1px solid #888888;\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.1), 0 1px 0 0 #ECECEC;\n  margin-bottom: 6px;\n  font-size: 13px;\n  padding-left: 3px;\n}\n.vc-ps-fields__hex .vc-input__label {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 14px;\n  text-transform: uppercase;\n  font-size: 13px;\n  height: 18px;\n  line-height: 22px;\n}\n</style>\n"]
-      },
+    inject("data-v-55f2423a_0", {
+      source: ".vc-photoshop{background:#dcdcdc;border-radius:4px;box-shadow:0 0 0 1px rgba(0,0,0,.25),0 8px 16px rgba(0,0,0,.15);box-sizing:initial;width:513px;font-family:Roboto}.vc-photoshop__disable-fields{width:390px}.vc-ps-head{background-image:linear-gradient(-180deg,#f0f0f0 0,#d4d4d4 100%);border-bottom:1px solid #b1b1b1;box-shadow:inset 0 1px 0 0 rgba(255,255,255,.2),inset 0 -1px 0 0 rgba(0,0,0,.02);height:23px;line-height:24px;border-radius:4px 4px 0 0;font-size:13px;color:#4d4d4d;text-align:center}.vc-ps-body{padding:15px;display:flex}.vc-ps-saturation-wrap{width:256px;height:256px;position:relative;border:2px solid #b3b3b3;border-bottom:2px solid #f0f0f0;overflow:hidden}.vc-ps-saturation-wrap .vc-saturation-circle{width:12px;height:12px}.vc-ps-hue-wrap{position:relative;height:256px;width:19px;margin-left:10px;border:2px solid #b3b3b3;border-bottom:2px solid #f0f0f0}.vc-ps-hue-pointer{position:relative}.vc-ps-hue-pointer--left,.vc-ps-hue-pointer--right{position:absolute;width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent #555}.vc-ps-hue-pointer--left:after,.vc-ps-hue-pointer--right:after{content:\"\";width:0;height:0;border-style:solid;border-width:4px 0 4px 6px;border-color:transparent transparent transparent #fff;position:absolute;top:1px;left:1px;transform:translate(-8px,-5px)}.vc-ps-hue-pointer--left{transform:translate(-13px,-4px)}.vc-ps-hue-pointer--right{transform:translate(20px,-4px) rotate(180deg)}.vc-ps-controls{width:180px;margin-left:10px;display:flex}.vc-ps-controls__disable-fields{width:auto}.vc-ps-actions{margin-left:20px;flex:1}.vc-ps-ac-btn{cursor:pointer;background-image:linear-gradient(-180deg,#fff 0,#e6e6e6 100%);border:1px solid #878787;border-radius:2px;height:20px;box-shadow:0 1px 0 0 #eaeaea;font-size:14px;color:#000;line-height:20px;text-align:center;margin-bottom:10px}.vc-ps-previews{width:60px}.vc-ps-previews__swatches{border:1px solid #b3b3b3;border-bottom:1px solid #f0f0f0;margin-bottom:2px;margin-top:1px}.vc-ps-previews__pr-color{height:34px;box-shadow:inset 1px 0 0 #000,inset -1px 0 0 #000,inset 0 1px 0 #000}.vc-ps-previews__label{font-size:14px;color:#000;text-align:center}.vc-ps-fields{padding-top:5px;padding-bottom:9px;width:80px;position:relative}.vc-ps-fields .vc-input__input{margin-left:40%;width:40%;height:18px;border:1px solid #888;box-shadow:inset 0 1px 1px rgba(0,0,0,.1),0 1px 0 0 #ececec;margin-bottom:5px;font-size:13px;padding-left:3px;margin-right:10px}.vc-ps-fields .vc-input__desc,.vc-ps-fields .vc-input__label{top:0;text-transform:uppercase;font-size:13px;height:18px;line-height:22px;position:absolute}.vc-ps-fields .vc-input__label{left:0;width:34px}.vc-ps-fields .vc-input__desc{right:0;width:0}.vc-ps-fields__divider{height:5px}.vc-ps-fields__hex .vc-input__input{margin-left:20%;width:80%;height:18px;border:1px solid #888;box-shadow:inset 0 1px 1px rgba(0,0,0,.1),0 1px 0 0 #ececec;margin-bottom:6px;font-size:13px;padding-left:3px}.vc-ps-fields__hex .vc-input__label{position:absolute;top:0;left:0;width:14px;text-transform:uppercase;font-size:13px;height:18px;line-height:22px}",
+      map: undefined,
       media: undefined
     });
   };
@@ -4742,6 +4682,10 @@
   }, __vue_inject_styles__$8, __vue_script__$8, __vue_scope_id__$8, __vue_is_functional_template__$8, __vue_module_identifier__$8, false, createInjector, undefined, undefined);
 
   var _dec$9, _dec2$4, _dec3$3, _class$a, _class2$8, _descriptor$8, _descriptor2$3, _descriptor3$2, _temp$9;
+
+  function _createSuper$a(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$a()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$a() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var _checkboardCache = {};
   var Checkboard = (_dec$9 = Prop({
     "default": 8
@@ -4752,7 +4696,7 @@
   }), Component(_class$a = (_class2$8 = (_temp$9 = /*#__PURE__*/function (_Vue) {
     _inherits(Checkboard, _Vue);
 
-    var _super = _createSuper(Checkboard);
+    var _super = _createSuper$a(Checkboard);
 
     function Checkboard() {
       var _this;
@@ -4873,28 +4817,20 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
+    return _c('div', {
       staticClass: "vc-checkerboard",
       style: _vm.bgStyle
     });
   };
 
   var __vue_staticRenderFns__$9 = [];
-  __vue_render__$9._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$9 = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-f1467a88_0", {
-      source: "\n.vc-checkerboard {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  background-size: contain;\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/common/Checkboard.vue"],
-        "names": [],
-        "mappings": ";AAwFA;EACA,kBAAA;EACA,QAAA;EACA,UAAA;EACA,WAAA;EACA,SAAA;EACA,wBAAA;AACA",
-        "file": "Checkboard.vue",
-        "sourcesContent": ["<template>\n  <div\n    class=\"vc-checkerboard\"\n    :style=\"bgStyle\"\n  />\n</template>\n\n<script lang=\"ts\">\nimport { Vue, Component, Prop } from 'vue-property-decorator';\n\nlet _checkboardCache: {[key: string]: string} = {};\n\n@Component\nexport default class Checkboard extends Vue {\n  @Prop({default: 8})\n  readonly size!: number;\n\n  @Prop({default: '#fff'})\n  readonly white!: string;\n\n  @Prop({default: '#e6e6e6'})\n  readonly grey!: string;\n\n  get bgStyle() {\n    const checkboard = getCheckboard(this.white, this.grey, this.size);\n    if (checkboard === null) {\n      return {};\n    }\n    return {\n      'background-image': `url(${checkboard})`\n    }\n  }\n}\n\n/**\n * get checkboard base data and cache\n *\n * @param {String} c1 hex color\n * @param {String} c2 hex color\n * @param {Number} size\n */\nfunction getCheckboard (c1: string, c2: string, size: number) {\n  const key = c1 + ',' + c2 + ',' + size\n\n  if (_checkboardCache[key]) {\n    return _checkboardCache[key]\n  } else {\n    const checkboard = renderCheckboard(c1, c2, size);\n    if (checkboard === null) {\n      return null;\n    }\n    _checkboardCache[key] = checkboard\n    return checkboard\n  }\n}\n\n/**\n * get base 64 data by canvas\n *\n * @param {String} c1 hex color\n * @param {String} c2 hex color\n * @param {Number} size\n */\n\nfunction renderCheckboard (c1: string, c2: string, size: number) {\n  // Dont Render On Server\n  if (typeof document === 'undefined') {\n    return null\n  }\n  var canvas = document.createElement('canvas')\n  canvas.width = canvas.height = size * 2\n  var ctx = canvas.getContext('2d')\n  // If no context can be found, return early.\n  if (!ctx) {\n    return null\n  }\n  ctx.fillStyle = c1\n  ctx.fillRect(0, 0, canvas.width, canvas.height)\n  ctx.fillStyle = c2\n  ctx.fillRect(0, 0, size, size)\n  ctx.translate(size, size)\n  ctx.fillRect(0, 0, size, size)\n  return canvas.toDataURL()\n}\n\n</script>\n\n<style>\n.vc-checkerboard {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  background-size: contain;\n}\n</style>\n"]
-      },
+    inject("data-v-0130206a_0", {
+      source: ".vc-checkerboard{position:absolute;top:0;right:0;bottom:0;left:0;background-size:contain}",
+      map: undefined,
       media: undefined
     });
   };
@@ -4918,6 +4854,10 @@
   }, __vue_inject_styles__$9, __vue_script__$9, __vue_scope_id__$9, __vue_is_functional_template__$9, __vue_module_identifier__$9, false, createInjector, undefined, undefined);
 
   var _dec$a, _dec2$5, _class$b, _class2$9, _descriptor$9, _temp$a;
+
+  function _createSuper$b(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$b()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$b() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var Alpha = (_dec$a = Component({
     components: {
       Checkboard: __vue_component__$9
@@ -4925,7 +4865,7 @@
   }), _dec2$5 = Ref(), _dec$a(_class$b = (_class2$9 = (_temp$a = /*#__PURE__*/function (_mixins) {
     _inherits(Alpha, _mixins);
 
-    var _super = _createSuper(Alpha);
+    var _super = _createSuper$b(Alpha);
 
     function Alpha() {
       var _this;
@@ -5044,55 +4984,47 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
+    return _c('div', {
       staticClass: "vc-alpha",
       attrs: {
-        role: "HuePanel"
+        "role": "HuePanel"
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-alpha-checkboard-wrap"
-    }, [_c("Checkboard")], 1), _vm._v(" "), _c("div", {
+    }, [_c('Checkboard')], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-alpha-gradient",
       style: {
         background: _vm.gradientColor
       }
-    }), _vm._v(" "), _c("div", {
+    }), _vm._v(" "), _c('div', {
       ref: "container",
       staticClass: "vc-alpha-container",
       on: {
-        mousedown: _vm.handleMouseDown,
-        touchmove: _vm.handlTouchEvents,
-        touchstart: _vm.handlTouchEvents
+        "mousedown": _vm.handleMouseDown,
+        "touchmove": _vm.handlTouchEvents,
+        "touchstart": _vm.handlTouchEvents
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-alpha-pointer",
       style: {
         left: _vm.pointerLeft
       },
       attrs: {
-        role: "CurrentAlphaPointer"
+        "role": "CurrentAlphaPointer"
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-alpha-picker"
     })])])]);
   };
 
   var __vue_staticRenderFns__$a = [];
-  __vue_render__$a._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$a = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-10309338_0", {
-      source: "\n.vc-alpha {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n}\n.vc-alpha-checkboard-wrap {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  overflow: hidden;\n}\n.vc-alpha-gradient {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n}\n.vc-alpha-container {\n  cursor: pointer;\n  position: relative;\n  z-index: 2;\n  height: 100%;\n  margin: 0 3px;\n  -webkit-tap-highlight-color: transparent; /* for removing the highlight */\n}\n.vc-alpha-pointer {\n  z-index: 2;\n  position: absolute;\n}\n.vc-alpha-picker {\n  cursor: pointer;\n  width: 4px;\n  border-radius: 1px;\n  height: 8px;\n  box-shadow: 0 0 2px rgba(0, 0, 0, .6);\n  background: #fff;\n  margin-top: 1px;\n  transform: translateX(-2px);\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/common/Alpha.vue"],
-        "names": [],
-        "mappings": ";AA8GA;EACA,kBAAA;EACA,QAAA;EACA,UAAA;EACA,WAAA;EACA,SAAA;AACA;AACA;EACA,kBAAA;EACA,QAAA;EACA,UAAA;EACA,WAAA;EACA,SAAA;EACA,gBAAA;AACA;AACA;EACA,kBAAA;EACA,QAAA;EACA,UAAA;EACA,WAAA;EACA,SAAA;AACA;AACA;EACA,eAAA;EACA,kBAAA;EACA,UAAA;EACA,YAAA;EACA,aAAA;EACA,wCAAA,EAAA,+BAAA;AACA;AACA;EACA,UAAA;EACA,kBAAA;AACA;AACA;EACA,eAAA;EACA,UAAA;EACA,kBAAA;EACA,WAAA;EACA,qCAAA;EACA,gBAAA;EACA,eAAA;EACA,2BAAA;AACA",
-        "file": "Alpha.vue",
-        "sourcesContent": ["<template>\n  <div\n    role=\"HuePanel\"\n    class=\"vc-alpha\"\n  >\n    <div class=\"vc-alpha-checkboard-wrap\">\n      <Checkboard />\n    </div>\n    <div\n      class=\"vc-alpha-gradient\"\n      :style=\"{background: gradientColor}\"\n    />\n    <div\n      ref=\"container\"\n      class=\"vc-alpha-container\"\n      @mousedown=\"handleMouseDown\"\n      @touchmove=\"handlTouchEvents\"\n      @touchstart=\"handlTouchEvents\"\n    >\n      <div\n        role=\"CurrentAlphaPointer\"\n        class=\"vc-alpha-pointer\"\n        :style=\"{left: pointerLeft}\"\n      >\n        <div class=\"vc-alpha-picker\" />\n      </div>\n    </div>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport Checkboard from './Checkboard.vue';\nimport { Component, Ref, Watch } from 'vue-property-decorator';\nimport { mixins } from 'vue-class-component';\nimport Color from '../../common/ColorMixin';\n\n@Component({\n  components: {\n    Checkboard\n  }\n})\nexport default class Alpha extends mixins(Color) {\n  @Ref()\n  readonly container!: HTMLDivElement;\n\n  containerWidth = 0;\n  xOffset = 0;\n\n  get a() {\n    return this.tc.getAlpha();\n  }\n  get pointerLeft() {\n    return `${this.a * 100}%`;\n  }\n  gradientColor() {\n    const rgba = this.tc.toRgb();\n    const rgbStr = [rgba.r, rgba.g, rgba.b].join(',');\n    return `linear-gradient(to right, rgba(${rgbStr}, 0) 0%, rgba(${rgbStr}, 1) 100%)`;\n  }\n  mounted() {\n    const $container = this.$refs.container as HTMLDivElement;\n    this.containerWidth = $container.clientWidth\n    this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset\n  }\n  handleChange(pageX: number) {\n\n    const { containerWidth, xOffset } = this;\n    const left = pageX - xOffset;\n\n    let a;\n    if (left < 0) {\n      a = 0;\n    } else if (left > containerWidth) {\n      a = 1;\n    } else {\n      a = Math.round(left * 100 / containerWidth) / 100;\n    }\n\n    if (this.a !== a) {\n      if (this.getOutputFormat() === 'hex') {\n        this.setOutputFormat('hex8')\n      }\n      this.onColorChange(this.tc.setAlpha(a));\n    }\n  }\n  handleMouseDown(e: MouseEvent) {\n    e.preventDefault();\n    this.handleChange(e.pageX);\n    window.addEventListener('mousemove', this.handleMouseMove)\n    window.addEventListener('mouseup', this.handleMouseUp)\n  }\n  handleMouseMove(e: MouseEvent) {\n    this.handleChange(e.pageX);\n  }\n  handleMouseUp () {\n    this.unbindEventListeners()\n  }\n  unbindEventListeners () {\n    window.removeEventListener('mousemove', this.handleMouseMove)\n    window.removeEventListener('mouseup', this.handleMouseUp)\n  }\n  handlTouchEvents (e: TouchEvent) {\n    const pageX = e.touches ? e.touches[0].pageX : 0;\n    this.handleChange(pageX);\n  }\n}\n\n</script>\n\n<style>\n.vc-alpha {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n}\n.vc-alpha-checkboard-wrap {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  overflow: hidden;\n}\n.vc-alpha-gradient {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n}\n.vc-alpha-container {\n  cursor: pointer;\n  position: relative;\n  z-index: 2;\n  height: 100%;\n  margin: 0 3px;\n  -webkit-tap-highlight-color: transparent; /* for removing the highlight */\n}\n.vc-alpha-pointer {\n  z-index: 2;\n  position: absolute;\n}\n.vc-alpha-picker {\n  cursor: pointer;\n  width: 4px;\n  border-radius: 1px;\n  height: 8px;\n  box-shadow: 0 0 2px rgba(0, 0, 0, .6);\n  background: #fff;\n  margin-top: 1px;\n  transform: translateX(-2px);\n}\n</style>\n"]
-      },
+    inject("data-v-fd896072_0", {
+      source: ".vc-alpha{position:absolute;top:0;right:0;bottom:0;left:0}.vc-alpha-checkboard-wrap{position:absolute;top:0;right:0;bottom:0;left:0;overflow:hidden}.vc-alpha-gradient{position:absolute;top:0;right:0;bottom:0;left:0}.vc-alpha-container{cursor:pointer;position:relative;z-index:2;height:100%;margin:0 3px;-webkit-tap-highlight-color:transparent}.vc-alpha-pointer{z-index:2;position:absolute}.vc-alpha-picker{cursor:pointer;width:4px;border-radius:1px;height:8px;box-shadow:0 0 2px rgba(0,0,0,.6);background:#fff;margin-top:1px;transform:translateX(-2px)}",
+      map: undefined,
       media: undefined
     });
   };
@@ -5116,6 +5048,14 @@
   }, __vue_inject_styles__$a, __vue_script__$a, __vue_scope_id__$a, __vue_is_functional_template__$a, __vue_module_identifier__$a, false, createInjector, undefined, undefined);
 
   var _dec$b, _dec2$6, _dec3$4, _dec4$2, _class$c, _class2$a, _descriptor$a, _descriptor2$4, _descriptor3$3, _temp$b;
+
+  function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$5(Object(source), true).forEach(function (key) { _defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$5(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+  function _createSuper$c(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$c()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$c() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var presetColors = ['#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF', 'rgba(0,0,0,0)'];
   var Sketch = (_dec$b = Component({
     components: {
@@ -5136,7 +5076,7 @@
   }), _dec$b(_class$c = (_class2$a = (_temp$b = /*#__PURE__*/function (_mixins) {
     _inherits(Sketch, _mixins);
 
-    var _super = _createSuper(Sketch);
+    var _super = _createSuper$c(Sketch);
 
     function Sketch() {
       var _this;
@@ -5171,7 +5111,7 @@
     }, {
       key: "onInputChange",
       value: function onInputChange(label, value) {
-        this.onColorChange(_objectSpread2({}, this.rgba, _defineProperty({}, label, value)));
+        this.onColorChange(_objectSpread$5({}, this.rgba, _defineProperty$1({}, label, value)));
       }
     }, {
       key: "hex",
@@ -5218,45 +5158,45 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
-      "class": ["vc-sketch", _vm.disableAlpha ? "vc-sketch__disable-alpha" : ""],
+    return _c('div', {
+      "class": ['vc-sketch', _vm.disableAlpha ? 'vc-sketch__disable-alpha' : ''],
       attrs: {
-        role: "SketchColorPicker"
+        "role": "SketchColorPicker"
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-sketch-saturation-wrap"
-    }, [_c("Saturation", {
+    }, [_c('Saturation', {
       attrs: {
-        value: _vm.tc
+        "value": _vm.tc
       },
       on: {
-        change: _vm.onColorChange
+        "change": _vm.onColorChange
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-sketch-controls"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-sketch-sliders"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-sketch-hue-wrap"
-    }, [_c("Hue", {
+    }, [_c('Hue', {
       attrs: {
-        value: _vm.tc
+        "value": _vm.tc
       },
       on: {
-        change: _vm.onColorChange
+        "change": _vm.onColorChange
       }
-    })], 1), _vm._v(" "), !_vm.disableAlpha ? _c("div", {
+    })], 1), _vm._v(" "), !_vm.disableAlpha ? _c('div', {
       staticClass: "vc-sketch-alpha-wrap"
-    }, [_c("Alpha", {
+    }, [_c('Alpha', {
       attrs: {
-        value: _vm.tc
+        "value": _vm.tc
       },
       on: {
-        change: _vm.onAlphaChange
+        "change": _vm.onAlphaChange
       }
-    })], 1) : _vm._e()]), _vm._v(" "), _c("div", {
+    })], 1) : _vm._e()]), _vm._v(" "), _c('div', {
       staticClass: "vc-sketch-color-wrap"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-sketch-active-color",
       style: {
         background: _vm.tc.toRgbString()
@@ -5264,118 +5204,110 @@
       attrs: {
         "aria-label": "Currentcolor: " + _vm.tc.toRgbString()
       }
-    }), _vm._v(" "), _c("Checkboard")], 1)]), _vm._v(" "), !_vm.disableFields ? _c("div", {
+    }), _vm._v(" "), _c('Checkboard')], 1)]), _vm._v(" "), !_vm.disableFields ? _c('div', {
       staticClass: "vc-sketch-field"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-sketch-field--double"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "hex",
-        value: _vm.hex
+        "label": "hex",
+        "value": _vm.hex
       },
       on: {
-        change: _vm.onColorChange
+        "change": _vm.onColorChange
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-sketch-field--single"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "r",
-        value: _vm.rgba.r
+        "label": "r",
+        "value": _vm.rgba.r
       },
       on: {
-        change: function change($event) {
-          return _vm.onInputChange("r", $event);
+        "change": function change($event) {
+          return _vm.onInputChange('r', $event);
         }
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-sketch-field--single"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "g",
-        value: _vm.rgba.g
+        "label": "g",
+        "value": _vm.rgba.g
       },
       on: {
-        change: function change($event) {
-          return _vm.onInputChange("r", $event);
+        "change": function change($event) {
+          return _vm.onInputChange('r', $event);
         }
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-sketch-field--single"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "b",
-        value: _vm.rgba.b
+        "label": "b",
+        "value": _vm.rgba.b
       },
       on: {
-        change: function change($event) {
-          return _vm.onInputChange("r", $event);
+        "change": function change($event) {
+          return _vm.onInputChange('r', $event);
         }
       }
-    })], 1), _vm._v(" "), !_vm.disableAlpha ? _c("div", {
+    })], 1), _vm._v(" "), !_vm.disableAlpha ? _c('div', {
       staticClass: "vc-sketch-field--single"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "a",
-        value: _vm.rgba.a,
-        step: 0.01
+        "label": "a",
+        "value": _vm.rgba.a,
+        "step": 0.01
       },
       on: {
-        change: function change($event) {
-          return _vm.onInputChange("r", $event);
+        "change": function change($event) {
+          return _vm.onInputChange('r', $event);
         }
       }
-    })], 1) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("div", {
+    })], 1) : _vm._e()]) : _vm._e(), _vm._v(" "), _c('div', {
       staticClass: "vc-sketch-presets",
       attrs: {
-        role: "group"
+        "role": "group"
       }
     }, [_vm._l(_vm.presetColors, function (c) {
-      return [!_vm.isTransparent(c) ? _c("div", {
+      return [!_vm.isTransparent(c) ? _c('div', {
         key: c,
         staticClass: "vc-sketch-presets-color",
         style: {
           background: c
         },
         attrs: {
-          "aria-label": "Color:" + c
+          "aria-label": 'Color:' + c
         },
         on: {
-          click: function click($event) {
+          "click": function click($event) {
             return _vm.onColorChange(c);
           }
         }
-      }) : _c("div", {
+      }) : _c('div', {
         key: c,
         staticClass: "vc-sketch-presets-color",
         attrs: {
-          "aria-label": "Color:" + c
+          "aria-label": 'Color:' + c
         },
         on: {
-          click: function click($event) {
+          "click": function click($event) {
             return _vm.onColorChange(c);
           }
         }
-      }, [_c("checkboard")], 1)];
+      }, [_c('checkboard')], 1)];
     })], 2)]);
   };
 
   var __vue_staticRenderFns__$b = [];
-  __vue_render__$b._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$b = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-e3367314_0", {
-      source: "\n.vc-sketch {\n  position: relative;\n  width: 200px;\n  padding: 10px 10px 0;\n  box-sizing: initial;\n  background: #fff;\n  border-radius: 4px;\n  box-shadow: 0 0 0 1px rgba(0, 0, 0, .15), 0 8px 16px rgba(0, 0, 0, .15);\n}\n.vc-sketch-saturation-wrap {\n  width: 100%;\n  padding-bottom: 75%;\n  position: relative;\n  overflow: hidden;\n}\n.vc-sketch-controls {\n  display: flex;\n}\n.vc-sketch-sliders {\n  padding: 4px 0;\n  flex: 1;\n}\n.vc-sketch-sliders .vc-hue,\n.vc-sketch-sliders .vc-alpha-gradient {\n  border-radius: 2px;\n}\n.vc-sketch-hue-wrap {\n  position: relative;\n  height: 10px;\n}\n.vc-sketch-alpha-wrap {\n  position: relative;\n  height: 10px;\n  margin-top: 4px;\n  overflow: hidden;\n}\n.vc-sketch-color-wrap {\n  width: 24px;\n  height: 24px;\n  position: relative;\n  margin-top: 4px;\n  margin-left: 4px;\n  border-radius: 3px;\n}\n.vc-sketch-active-color {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  border-radius: 2px;\n  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15), inset 0 0 4px rgba(0, 0, 0, .25);\n  z-index: 2;\n}\n.vc-sketch-color-wrap .vc-checkerboard {\n  background-size: auto;\n}\n.vc-sketch-field {\n  display: flex;\n  padding-top: 4px;\n}\n.vc-sketch-field .vc-input__input {\n  width: 90%;\n  padding: 4px 0 3px 10%;\n  border: none;\n  box-shadow: inset 0 0 0 1px #ccc;\n  font-size: 10px;\n}\n.vc-sketch-field .vc-input__label {\n  display: block;\n  text-align: center;\n  font-size: 11px;\n  color: #222;\n  padding-top: 3px;\n  padding-bottom: 4px;\n  text-transform: capitalize;\n}\n.vc-sketch-field--single {\n  flex: 1;\n  padding-left: 6px;\n}\n.vc-sketch-field--double {\n  flex: 2;\n}\n.vc-sketch-presets {\n  margin-right: -10px;\n  margin-left: -10px;\n  padding-left: 10px;\n  padding-top: 10px;\n  border-top: 1px solid #eee;\n}\n.vc-sketch-presets-color {\n  border-radius: 3px;\n  overflow: hidden;\n  position: relative;\n  display: inline-block;\n  margin: 0 10px 10px 0;\n  vertical-align: top;\n  cursor: pointer;\n  width: 16px;\n  height: 16px;\n  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15);\n}\n.vc-sketch-presets-color .vc-checkerboard {\n  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15);\n  border-radius: 3px;\n}\n.vc-sketch__disable-alpha .vc-sketch-color-wrap {\n  height: 10px;\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/Sketch.vue"],
-        "names": [],
-        "mappings": ";AA6KA;EACA,kBAAA;EACA,YAAA;EACA,oBAAA;EACA,mBAAA;EACA,gBAAA;EACA,kBAAA;EACA,uEAAA;AACA;AAEA;EACA,WAAA;EACA,mBAAA;EACA,kBAAA;EACA,gBAAA;AACA;AAEA;EACA,aAAA;AACA;AAEA;EACA,cAAA;EACA,OAAA;AACA;AAEA;;EAEA,kBAAA;AACA;AAEA;EACA,kBAAA;EACA,YAAA;AACA;AAEA;EACA,kBAAA;EACA,YAAA;EACA,eAAA;EACA,gBAAA;AACA;AAEA;EACA,WAAA;EACA,YAAA;EACA,kBAAA;EACA,eAAA;EACA,gBAAA;EACA,kBAAA;AACA;AAEA;EACA,kBAAA;EACA,MAAA;EACA,OAAA;EACA,QAAA;EACA,SAAA;EACA,kBAAA;EACA,gFAAA;EACA,UAAA;AACA;AAEA;EACA,qBAAA;AACA;AAEA;EACA,aAAA;EACA,gBAAA;AACA;AAEA;EACA,UAAA;EACA,sBAAA;EACA,YAAA;EACA,gCAAA;EACA,eAAA;AACA;AAEA;EACA,cAAA;EACA,kBAAA;EACA,eAAA;EACA,WAAA;EACA,gBAAA;EACA,mBAAA;EACA,0BAAA;AACA;AAEA;EACA,OAAA;EACA,iBAAA;AACA;AAEA;EACA,OAAA;AACA;AAEA;EACA,mBAAA;EACA,kBAAA;EACA,kBAAA;EACA,iBAAA;EACA,0BAAA;AACA;AAEA;EACA,kBAAA;EACA,gBAAA;EACA,kBAAA;EACA,qBAAA;EACA,qBAAA;EACA,mBAAA;EACA,eAAA;EACA,WAAA;EACA,YAAA;EACA,8CAAA;AACA;AAEA;EACA,8CAAA;EACA,kBAAA;AACA;AAEA;EACA,YAAA;AACA",
-        "file": "Sketch.vue",
-        "sourcesContent": ["<template>\n  <div\n    role=\"SketchColorPicker\"\n    :class=\"['vc-sketch', disableAlpha ? 'vc-sketch__disable-alpha' : '']\"\n  >\n    <div class=\"vc-sketch-saturation-wrap\">\n      <Saturation\n        :value=\"tc\"\n        @change=\"onColorChange\"\n      />\n    </div>\n    <div class=\"vc-sketch-controls\">\n      <div class=\"vc-sketch-sliders\">\n        <div class=\"vc-sketch-hue-wrap\">\n          <Hue\n            :value=\"tc\"\n            @change=\"onColorChange\"\n          />\n        </div>\n        <div\n          v-if=\"!disableAlpha\"\n          class=\"vc-sketch-alpha-wrap\"\n        >\n          <Alpha\n            :value=\"tc\"\n            @change=\"onAlphaChange\"\n          />\n        </div>\n      </div>\n      <div class=\"vc-sketch-color-wrap\">\n        <div\n          :aria-label = \"`Currentcolor: ${tc.toRgbString()}`\"\n          class=\"vc-sketch-active-color\"\n          :style=\"{background: tc.toRgbString()}\"\n        />\n        <Checkboard />\n      </div>\n    </div>\n    <div\n      v-if=\"!disableFields\"\n      class=\"vc-sketch-field\"\n    >\n      <!-- rgba -->\n      <div class=\"vc-sketch-field--double\">\n        <EditableInput\n          label=\"hex\"\n          :value=\"hex\"\n          @change=\"onColorChange\"\n        />\n      </div>\n      <div class=\"vc-sketch-field--single\">\n        <EditableInput\n          label=\"r\"\n          :value=\"rgba.r\"\n          @change=\"onInputChange('r', $event)\"\n        />\n      </div>\n      <div class=\"vc-sketch-field--single\">\n        <EditableInput\n          label=\"g\"\n          :value=\"rgba.g\"\n          @change=\"onInputChange('r', $event)\"\n        />\n      </div>\n      <div class=\"vc-sketch-field--single\">\n        <EditableInput\n          label=\"b\"\n          :value=\"rgba.b\"\n          @change=\"onInputChange('r', $event)\"\n        />\n      </div>\n      <div\n        v-if=\"!disableAlpha\"\n        class=\"vc-sketch-field--single\"\n      >\n        <EditableInput\n          label=\"a\"\n          :value=\"rgba.a\"\n          :step=\"0.01\"\n          @change=\"onInputChange('r', $event)\"\n        />\n      </div>\n    </div>\n    <div\n      class=\"vc-sketch-presets\"\n      role=\"group\"\n    >\n      <template v-for=\"c in presetColors\">\n        <div\n          v-if=\"!isTransparent(c)\"\n          :key=\"c\"\n          class=\"vc-sketch-presets-color\"\n          :aria-label=\"'Color:' + c\"\n          :style=\"{background: c}\"\n          @click=\"onColorChange(c)\"\n        />\n        <div\n          v-else\n          :key=\"c\"\n          :aria-label=\"'Color:' + c\"\n          class=\"vc-sketch-presets-color\"\n          @click=\"onColorChange(c)\"\n        >\n          <checkboard />\n        </div>\n      </template>\n    </div>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport { Component, Prop } from 'vue-property-decorator';\nimport { mixins } from 'vue-class-component';\nimport Color from '../common/ColorMixin';\nimport { hasAlpha, isTransparent } from '../utils';\n\nimport EditableInput from './common/EditableInput.vue'\nimport Saturation from './common/Saturation.vue'\nimport Hue from './common/Hue.vue'\nimport Alpha from './common/Alpha.vue'\nimport Checkboard from './common/Checkboard.vue'\n\nconst presetColors = [\n  '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321',\n  '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2',\n  '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF',\n  'rgba(0,0,0,0)'\n];\n\n@Component({\n  components: {EditableInput, Saturation, Hue, Alpha, Checkboard}\n})\nexport default class Sketch extends mixins(Color) {\n  @Prop({default: () => presetColors})\n  presetColors!: string[];\n\n  @Prop({default: false})\n  disableAlpha!: boolean;\n\n  @Prop({default: false})\n  disableFields!: boolean;\n\n  get hex() {\n    if (hasAlpha(this.tc)) {\n      return this.tc.toHex8();\n    } else {\n      return this.tc.toHex();\n    }\n  }\n\n  get rgba() {\n    return this.tc.toRgb();\n  }\n\n  isTransparent = isTransparent;\n\n  onAlphaChange(color: string) {\n    if (hasAlpha(color)  && this.getOutputFormat() === 'hex') {\n      this.setOutputFormat('hex8')\n    }\n    this.onColorChange(color);\n  }\n\n  onInputChange(label: 'r' | 'g' | 'b' | 'a', value: string) {\n    this.onColorChange({\n      ...this.rgba,\n      [label]: value\n    })\n  }\n}\n</script>\n\n<style>\n.vc-sketch {\n  position: relative;\n  width: 200px;\n  padding: 10px 10px 0;\n  box-sizing: initial;\n  background: #fff;\n  border-radius: 4px;\n  box-shadow: 0 0 0 1px rgba(0, 0, 0, .15), 0 8px 16px rgba(0, 0, 0, .15);\n}\n\n.vc-sketch-saturation-wrap {\n  width: 100%;\n  padding-bottom: 75%;\n  position: relative;\n  overflow: hidden;\n}\n\n.vc-sketch-controls {\n  display: flex;\n}\n\n.vc-sketch-sliders {\n  padding: 4px 0;\n  flex: 1;\n}\n\n.vc-sketch-sliders .vc-hue,\n.vc-sketch-sliders .vc-alpha-gradient {\n  border-radius: 2px;\n}\n\n.vc-sketch-hue-wrap {\n  position: relative;\n  height: 10px;\n}\n\n.vc-sketch-alpha-wrap {\n  position: relative;\n  height: 10px;\n  margin-top: 4px;\n  overflow: hidden;\n}\n\n.vc-sketch-color-wrap {\n  width: 24px;\n  height: 24px;\n  position: relative;\n  margin-top: 4px;\n  margin-left: 4px;\n  border-radius: 3px;\n}\n\n.vc-sketch-active-color {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  border-radius: 2px;\n  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15), inset 0 0 4px rgba(0, 0, 0, .25);\n  z-index: 2;\n}\n\n.vc-sketch-color-wrap .vc-checkerboard {\n  background-size: auto;\n}\n\n.vc-sketch-field {\n  display: flex;\n  padding-top: 4px;\n}\n\n.vc-sketch-field .vc-input__input {\n  width: 90%;\n  padding: 4px 0 3px 10%;\n  border: none;\n  box-shadow: inset 0 0 0 1px #ccc;\n  font-size: 10px;\n}\n\n.vc-sketch-field .vc-input__label {\n  display: block;\n  text-align: center;\n  font-size: 11px;\n  color: #222;\n  padding-top: 3px;\n  padding-bottom: 4px;\n  text-transform: capitalize;\n}\n\n.vc-sketch-field--single {\n  flex: 1;\n  padding-left: 6px;\n}\n\n.vc-sketch-field--double {\n  flex: 2;\n}\n\n.vc-sketch-presets {\n  margin-right: -10px;\n  margin-left: -10px;\n  padding-left: 10px;\n  padding-top: 10px;\n  border-top: 1px solid #eee;\n}\n\n.vc-sketch-presets-color {\n  border-radius: 3px;\n  overflow: hidden;\n  position: relative;\n  display: inline-block;\n  margin: 0 10px 10px 0;\n  vertical-align: top;\n  cursor: pointer;\n  width: 16px;\n  height: 16px;\n  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15);\n}\n\n.vc-sketch-presets-color .vc-checkerboard {\n  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15);\n  border-radius: 3px;\n}\n\n.vc-sketch__disable-alpha .vc-sketch-color-wrap {\n  height: 10px;\n}\n</style>\n"]
-      },
+    inject("data-v-4b47afcd_0", {
+      source: ".vc-sketch{position:relative;width:200px;padding:10px 10px 0;box-sizing:initial;background:#fff;border-radius:4px;box-shadow:0 0 0 1px rgba(0,0,0,.15),0 8px 16px rgba(0,0,0,.15)}.vc-sketch-saturation-wrap{width:100%;padding-bottom:75%;position:relative;overflow:hidden}.vc-sketch-controls{display:flex}.vc-sketch-sliders{padding:4px 0;flex:1}.vc-sketch-sliders .vc-alpha-gradient,.vc-sketch-sliders .vc-hue{border-radius:2px}.vc-sketch-hue-wrap{position:relative;height:10px}.vc-sketch-alpha-wrap{position:relative;height:10px;margin-top:4px;overflow:hidden}.vc-sketch-color-wrap{width:24px;height:24px;position:relative;margin-top:4px;margin-left:4px;border-radius:3px}.vc-sketch-active-color{position:absolute;top:0;left:0;right:0;bottom:0;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15),inset 0 0 4px rgba(0,0,0,.25);z-index:2}.vc-sketch-color-wrap .vc-checkerboard{background-size:auto}.vc-sketch-field{display:flex;padding-top:4px}.vc-sketch-field .vc-input__input{width:90%;padding:4px 0 3px 10%;border:none;box-shadow:inset 0 0 0 1px #ccc;font-size:10px}.vc-sketch-field .vc-input__label{display:block;text-align:center;font-size:11px;color:#222;padding-top:3px;padding-bottom:4px;text-transform:capitalize}.vc-sketch-field--single{flex:1;padding-left:6px}.vc-sketch-field--double{flex:2}.vc-sketch-presets{margin-right:-10px;margin-left:-10px;padding-left:10px;padding-top:10px;border-top:1px solid #eee}.vc-sketch-presets-color{border-radius:3px;overflow:hidden;position:relative;display:inline-block;margin:0 10px 10px 0;vertical-align:top;cursor:pointer;width:16px;height:16px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}.vc-sketch-presets-color .vc-checkerboard{box-shadow:inset 0 0 0 1px rgba(0,0,0,.15);border-radius:3px}.vc-sketch__disable-alpha .vc-sketch-color-wrap{height:10px}",
+      map: undefined,
       media: undefined
     });
   };
@@ -5399,6 +5331,14 @@
   }, __vue_inject_styles__$b, __vue_script__$b, __vue_scope_id__$b, __vue_is_functional_template__$b, __vue_module_identifier__$b, false, createInjector, undefined, undefined);
 
   var _dec$c, _dec2$7, _dec3$5, _class$d, _class2$b, _descriptor$b, _descriptor2$5, _temp$c;
+
+  function ownKeys$6(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$6(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$6(Object(source), true).forEach(function (key) { _defineProperty$1(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$6(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+  function _createSuper$d(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$d()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+  function _isNativeReflectConstruct$d() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
   var Chrome = (_dec$c = Component({
     components: {
       EditableInput: __vue_component__$2,
@@ -5414,7 +5354,7 @@
   }), _dec$c(_class$d = (_class2$b = (_temp$c = /*#__PURE__*/function (_mixins) {
     _inherits(Chrome, _mixins);
 
-    var _super = _createSuper(Chrome);
+    var _super = _createSuper$d(Chrome);
 
     function Chrome() {
       var _this;
@@ -5470,11 +5410,11 @@
       key: "inputChange",
       value: function inputChange(label, value) {
         if (label === 'r' || label === 'g' || label === 'b') {
-          this.onColorChange(_objectSpread2({}, this.rgba, _defineProperty({}, label, value)));
+          this.onColorChange(_objectSpread$6({}, this.rgba, _defineProperty$1({}, label, value)));
         }
 
         if (label === 'h' || label === 's' || label === 'l') {
-          this.onColorChange(_objectSpread2({}, this.hsl, _defineProperty({}, label, value)));
+          this.onColorChange(_objectSpread$6({}, this.hsl, _defineProperty$1({}, label, value)));
         }
 
         if (label = 'a') {
@@ -5522,54 +5462,54 @@
 
     var _c = _vm._self._c || _h;
 
-    return _c("div", {
-      "class": ["vc-chrome", _vm.disableAlpha ? "vc-chrome__disable-alpha" : ""],
+    return _c('div', {
+      "class": ['vc-chrome', _vm.disableAlpha ? 'vc-chrome__disable-alpha' : ''],
       attrs: {
-        role: "ChromeColorPicker"
+        "role": "ChromeColorPicker"
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-chrome-saturation-wrap"
-    }, [_c("Saturation", {
+    }, [_c('Saturation', {
       attrs: {
-        value: _vm.tc
+        "value": _vm.tc
       },
       on: {
-        change: _vm.onColorChange
+        "change": _vm.onColorChange
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-chrome-body"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-chrome-controls"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-chrome-color-wrap"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-chrome-active-color",
       style: {
         background: _vm.tc.toRgbString()
       }
-    }), _vm._v(" "), !_vm.disableAlpha ? _c("Checkboard") : _vm._e()], 1), _vm._v(" "), _c("div", {
+    }), _vm._v(" "), !_vm.disableAlpha ? _c('Checkboard') : _vm._e()], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-chrome-sliders"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-chrome-hue-wrap"
-    }, [_c("Hue", {
+    }, [_c('Hue', {
       attrs: {
-        value: _vm.tc
+        "value": _vm.tc
       },
       on: {
-        change: _vm.onColorChange
+        "change": _vm.onColorChange
       }
-    })], 1), _vm._v(" "), !_vm.disableAlpha ? _c("div", {
+    })], 1), _vm._v(" "), !_vm.disableAlpha ? _c('div', {
       staticClass: "vc-chrome-alpha-wrap"
-    }, [_c("Alpha", {
+    }, [_c('Alpha', {
       attrs: {
-        value: _vm.tc
+        "value": _vm.tc
       },
       on: {
-        change: _vm.onAlphaChange
+        "change": _vm.onAlphaChange
       }
-    })], 1) : _vm._e()])]), _vm._v(" "), !_vm.disableFields ? _c("div", {
+    })], 1) : _vm._e()])]), _vm._v(" "), !_vm.disableFields ? _c('div', {
       staticClass: "vc-chrome-fields-wrap"
-    }, [_c("div", {
+    }, [_c('div', {
       directives: [{
         name: "show",
         rawName: "v-show",
@@ -5577,25 +5517,25 @@
         expression: "fieldsIndex === 0"
       }],
       staticClass: "vc-chrome-fields"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-chrome-field"
-    }, [!_vm.hasAlpha ? _c("EditableInput", {
+    }, [!_vm.hasAlpha ? _c('EditableInput', {
       attrs: {
-        label: "hex",
-        value: _vm.tc.toHexString()
+        "label": "hex",
+        "value": _vm.tc.toHexString()
       },
       on: {
-        change: _vm.onColorChange
+        "change": _vm.onColorChange
       }
-    }) : _vm._e(), _vm._v(" "), _vm.hasAlpha ? _c("EditableInput", {
+    }) : _vm._e(), _vm._v(" "), _vm.hasAlpha ? _c('EditableInput', {
       attrs: {
-        label: "hex",
-        value: _vm.tc.toHex8String()
+        "label": "hex",
+        "value": _vm.tc.toHex8String()
       },
       on: {
-        change: _vm.onColorChange
+        "change": _vm.onColorChange
       }
-    }) : _vm._e()], 1)]), _vm._v(" "), _c("div", {
+    }) : _vm._e()], 1)]), _vm._v(" "), _c('div', {
       directives: [{
         name: "show",
         rawName: "v-show",
@@ -5603,56 +5543,56 @@
         expression: "fieldsIndex === 1"
       }],
       staticClass: "vc-chrome-fields"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-chrome-field"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "r",
-        value: _vm.rgba.r
+        "label": "r",
+        "value": _vm.rgba.r
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("r", $event);
+        "change": function change($event) {
+          return _vm.inputChange('r', $event);
         }
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-chrome-field"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "g",
-        value: _vm.rgba.g
+        "label": "g",
+        "value": _vm.rgba.g
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("g", $event);
+        "change": function change($event) {
+          return _vm.inputChange('g', $event);
         }
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-chrome-field"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "b",
-        value: _vm.rgba.b
+        "label": "b",
+        "value": _vm.rgba.b
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("b", $event);
+        "change": function change($event) {
+          return _vm.inputChange('b', $event);
         }
       }
-    })], 1), _vm._v(" "), !_vm.disableAlpha ? _c("div", {
+    })], 1), _vm._v(" "), !_vm.disableAlpha ? _c('div', {
       staticClass: "vc-chrome-field"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "a",
-        value: _vm.rgba.a,
-        step: 0.01
+        "label": "a",
+        "value": _vm.rgba.a,
+        "step": 0.01
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("a", $event);
+        "change": function change($event) {
+          return _vm.inputChange('a', $event);
         }
       }
-    })], 1) : _vm._e()]), _vm._v(" "), _c("div", {
+    })], 1) : _vm._e()]), _vm._v(" "), _c('div', {
       directives: [{
         name: "show",
         rawName: "v-show",
@@ -5660,85 +5600,85 @@
         expression: "fieldsIndex === 2"
       }],
       staticClass: "vc-chrome-fields"
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-chrome-field"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "h",
-        value: _vm.hsl.h
+        "label": "h",
+        "value": _vm.hsl.h
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("h", $event);
+        "change": function change($event) {
+          return _vm.inputChange('h', $event);
         }
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-chrome-field"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "s",
-        value: (_vm.hsl.s * 100).toFixed() + "%"
+        "label": "s",
+        "value": (_vm.hsl.s * 100).toFixed() + "%"
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("s", $event);
+        "change": function change($event) {
+          return _vm.inputChange('s', $event);
         }
       }
-    })], 1), _vm._v(" "), _c("div", {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "vc-chrome-field"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "l",
-        value: (_vm.hsl.l * 100).toFixed() + "%"
+        "label": "l",
+        "value": (_vm.hsl.l * 100).toFixed() + "%"
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("l", $event);
+        "change": function change($event) {
+          return _vm.inputChange('l', $event);
         }
       }
-    })], 1), _vm._v(" "), !_vm.disableAlpha ? _c("div", {
+    })], 1), _vm._v(" "), !_vm.disableAlpha ? _c('div', {
       staticClass: "vc-chrome-field"
-    }, [_c("EditableInput", {
+    }, [_c('EditableInput', {
       attrs: {
-        label: "a",
-        value: _vm.hsl.a,
-        step: 0.01
+        "label": "a",
+        "value": _vm.hsl.a,
+        "step": 0.01
       },
       on: {
-        change: function change($event) {
-          return _vm.inputChange("a", $event);
+        "change": function change($event) {
+          return _vm.inputChange('a', $event);
         }
       }
-    })], 1) : _vm._e()]), _vm._v(" "), _c("div", {
+    })], 1) : _vm._e()]), _vm._v(" "), _c('div', {
       staticClass: "vc-chrome-toggle-btn",
       attrs: {
-        role: "button",
+        "role": "button",
         "aria-label": "Change another color definition"
       },
       on: {
-        click: _vm.toggleViews
+        "click": _vm.toggleViews
       }
-    }, [_c("div", {
+    }, [_c('div', {
       staticClass: "vc-chrome-toggle-icon"
-    }, [_c("svg", {
+    }, [_c('svg', {
       staticStyle: {
-        width: "24px",
-        height: "24px"
+        "width": "24px",
+        "height": "24px"
       },
       attrs: {
-        viewBox: "0 0 24 24"
+        "viewBox": "0 0 24 24"
       },
       on: {
-        mouseover: _vm.showHighlight,
-        mouseenter: _vm.showHighlight,
-        mouseout: _vm.hideHighlight
+        "mouseover": _vm.showHighlight,
+        "mouseenter": _vm.showHighlight,
+        "mouseout": _vm.hideHighlight
       }
-    }, [_c("path", {
+    }, [_c('path', {
       attrs: {
-        fill: "#333",
-        d: "M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z"
+        "fill": "#333",
+        "d": "M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z"
       }
-    })])]), _vm._v(" "), _c("div", {
+    })])]), _vm._v(" "), _c('div', {
       directives: [{
         name: "show",
         rawName: "v-show",
@@ -5750,21 +5690,13 @@
   };
 
   var __vue_staticRenderFns__$c = [];
-  __vue_render__$c._withStripped = true;
   /* style */
 
   var __vue_inject_styles__$c = function __vue_inject_styles__(inject) {
     if (!inject) return;
-    inject("data-v-6b37dafd_0", {
-      source: "\n.vc-chrome {\n  background: #fff;\n  border-radius: 2px;\n  box-shadow: 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3);\n  box-sizing: initial;\n  width: 225px;\n  font-family: Menlo;\n  background-color: #fff;\n}\n.vc-chrome-controls {\n  display: flex;\n}\n.vc-chrome-color-wrap {\n  position: relative;\n  width: 36px;\n}\n.vc-chrome-active-color {\n  position: relative;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  overflow: hidden;\n  z-index: 1;\n}\n.vc-chrome-color-wrap .vc-checkerboard {\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  background-size: auto;\n}\n.vc-chrome-sliders {\n  flex: 1;\n}\n.vc-chrome-fields-wrap {\n  display: flex;\n  padding-top: 16px;\n}\n.vc-chrome-fields {\n  display: flex;\n  margin-left: -6px;\n  flex: 1;\n}\n.vc-chrome-field {\n  padding-left: 6px;\n  width: 100%;\n}\n.vc-chrome-toggle-btn {\n  width: 32px;\n  text-align: right;\n  position: relative;\n}\n.vc-chrome-toggle-icon {\n  margin-right: -4px;\n  margin-top: 12px;\n  cursor: pointer;\n  position: relative;\n  z-index: 2;\n}\n.vc-chrome-toggle-icon-highlight {\n  position: absolute;\n  width: 24px;\n  height: 28px;\n  background: #eee;\n  border-radius: 4px;\n  top: 10px;\n  left: 12px;\n}\n.vc-chrome-hue-wrap {\n  position: relative;\n  height: 10px;\n  margin-bottom: 8px;\n}\n.vc-chrome-alpha-wrap {\n  position: relative;\n  height: 10px;\n}\n.vc-chrome-hue-wrap .vc-hue {\n  border-radius: 2px;\n}\n.vc-chrome-alpha-wrap .vc-alpha-gradient {\n  border-radius: 2px;\n}\n.vc-chrome-hue-wrap .vc-hue-picker, .vc-chrome-alpha-wrap .vc-alpha-picker {\n  width: 12px;\n  height: 12px;\n  border-radius: 6px;\n  transform: translate(-6px, -2px);\n  background-color: rgb(248, 248, 248);\n  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);\n}\n.vc-chrome-body {\n  padding: 16px 16px 12px;\n  background-color: #fff;\n}\n.vc-chrome-saturation-wrap {\n  width: 100%;\n  padding-bottom: 55%;\n  position: relative;\n  border-radius: 2px 2px 0 0;\n  overflow: hidden;\n}\n.vc-chrome-saturation-wrap .vc-saturation-circle {\n  width: 12px;\n  height: 12px;\n}\n.vc-chrome-fields .vc-input__input {\n  font-size: 11px;\n  color: #333;\n  width: 100%;\n  border-radius: 2px;\n  border: none;\n  box-shadow: inset 0 0 0 1px #dadada;\n  height: 21px;\n  text-align: center;\n}\n.vc-chrome-fields .vc-input__label {\n  text-transform: uppercase;\n  font-size: 11px;\n  line-height: 11px;\n  color: #969696;\n  text-align: center;\n  display: block;\n  margin-top: 12px;\n}\n.vc-chrome__disable-alpha .vc-chrome-active-color {\n  width: 18px;\n  height: 18px;\n}\n.vc-chrome__disable-alpha .vc-chrome-color-wrap {\n  width: 30px;\n}\n.vc-chrome__disable-alpha .vc-chrome-hue-wrap {\n  margin-top: 4px;\n  margin-bottom: 4px;\n}\n",
-      map: {
-        "version": 3,
-        "sources": ["/Users/linx4200/Documents/MYFILE/code/vue-color/src/components/Chrome.vue"],
-        "names": [],
-        "mappings": ";AAmPA;EACA,gBAAA;EACA,kBAAA;EACA,4DAAA;EACA,mBAAA;EACA,YAAA;EACA,kBAAA;EACA,sBAAA;AACA;AACA;EACA,aAAA;AACA;AACA;EACA,kBAAA;EACA,WAAA;AACA;AACA;EACA,kBAAA;EACA,WAAA;EACA,YAAA;EACA,mBAAA;EACA,gBAAA;EACA,UAAA;AACA;AACA;EACA,WAAA;EACA,YAAA;EACA,mBAAA;EACA,qBAAA;AACA;AACA;EACA,OAAA;AACA;AACA;EACA,aAAA;EACA,iBAAA;AACA;AACA;EACA,aAAA;EACA,iBAAA;EACA,OAAA;AACA;AACA;EACA,iBAAA;EACA,WAAA;AACA;AACA;EACA,WAAA;EACA,iBAAA;EACA,kBAAA;AACA;AACA;EACA,kBAAA;EACA,gBAAA;EACA,eAAA;EACA,kBAAA;EACA,UAAA;AACA;AACA;EACA,kBAAA;EACA,WAAA;EACA,YAAA;EACA,gBAAA;EACA,kBAAA;EACA,SAAA;EACA,UAAA;AACA;AACA;EACA,kBAAA;EACA,YAAA;EACA,kBAAA;AACA;AACA;EACA,kBAAA;EACA,YAAA;AACA;AACA;EACA,kBAAA;AACA;AACA;EACA,kBAAA;AACA;AACA;EACA,WAAA;EACA,YAAA;EACA,kBAAA;EACA,gCAAA;EACA,oCAAA;EACA,2CAAA;AACA;AACA;EACA,uBAAA;EACA,sBAAA;AACA;AACA;EACA,WAAA;EACA,mBAAA;EACA,kBAAA;EACA,0BAAA;EACA,gBAAA;AACA;AACA;EACA,WAAA;EACA,YAAA;AACA;AAEA;EACA,eAAA;EACA,WAAA;EACA,WAAA;EACA,kBAAA;EACA,YAAA;EACA,mCAAA;EACA,YAAA;EACA,kBAAA;AACA;AACA;EACA,yBAAA;EACA,eAAA;EACA,iBAAA;EACA,cAAA;EACA,kBAAA;EACA,cAAA;EACA,gBAAA;AACA;AAEA;EACA,WAAA;EACA,YAAA;AACA;AACA;EACA,WAAA;AACA;AACA;EACA,eAAA;EACA,kBAAA;AACA",
-        "file": "Chrome.vue",
-        "sourcesContent": ["<template>\n  <div\n    role=\"ChromeColorPicker\"\n    :class=\"['vc-chrome', disableAlpha ? 'vc-chrome__disable-alpha' : '']\"\n  >\n    <div class=\"vc-chrome-saturation-wrap\">\n      <Saturation :value=\"tc\" @change=\"onColorChange\" />\n    </div>\n    <div class=\"vc-chrome-body\">\n      <div class=\"vc-chrome-controls\">\n        <div class=\"vc-chrome-color-wrap\">\n          <div\n            class=\"vc-chrome-active-color\"\n            :style=\"{background: tc.toRgbString()}\"\n          />\n          <Checkboard v-if=\"!disableAlpha\" />\n        </div>\n\n        <div class=\"vc-chrome-sliders\">\n          <div class=\"vc-chrome-hue-wrap\">\n            <Hue :value=\"tc\" @change=\"onColorChange\" />\n          </div>\n          <div\n            v-if=\"!disableAlpha\"\n            class=\"vc-chrome-alpha-wrap\"\n          >\n            <Alpha :value=\"tc\" @change=\"onAlphaChange\" />\n          </div>\n        </div>\n      </div>\n\n      <div\n        v-if=\"!disableFields\"\n        class=\"vc-chrome-fields-wrap\"\n      >\n        <div\n          v-show=\"fieldsIndex === 0\"\n          class=\"vc-chrome-fields\"\n        >\n          <!-- hex -->\n          <div class=\"vc-chrome-field\">\n            <EditableInput\n              v-if=\"!hasAlpha\"\n              label=\"hex\"\n              :value=\"tc.toHexString()\"\n              @change=\"onColorChange\"\n            />\n            <EditableInput\n              v-if=\"hasAlpha\"\n              label=\"hex\"\n              :value=\"tc.toHex8String()\"\n              @change=\"onColorChange\"\n            />\n          </div>\n        </div>\n        <div\n          v-show=\"fieldsIndex === 1\"\n          class=\"vc-chrome-fields\"\n        >\n          <!-- rgba -->\n          <div class=\"vc-chrome-field\">\n            <EditableInput\n              label=\"r\"\n              :value=\"rgba.r\"\n              @change=\"inputChange('r', $event)\"\n            />\n          </div>\n          <div class=\"vc-chrome-field\">\n            <EditableInput\n              label=\"g\"\n              :value=\"rgba.g\"\n              @change=\"inputChange('g', $event)\"\n            />\n          </div>\n          <div class=\"vc-chrome-field\">\n            <EditableInput\n              label=\"b\"\n              :value=\"rgba.b\"\n              @change=\"inputChange('b', $event)\"\n            />\n          </div>\n          <div\n            v-if=\"!disableAlpha\"\n            class=\"vc-chrome-field\"\n          >\n            <EditableInput\n              label=\"a\"\n              :value=\"rgba.a\"\n              :step=\"0.01\"\n              @change=\"inputChange('a', $event)\"\n            />\n          </div>\n        </div>\n        <div\n          v-show=\"fieldsIndex === 2\"\n          class=\"vc-chrome-fields\"\n        >\n          <!-- hsla -->\n          <div class=\"vc-chrome-field\">\n            <EditableInput\n              label=\"h\"\n              :value=\"hsl.h\"\n              @change=\"inputChange('h', $event)\"\n            />\n          </div>\n          <div class=\"vc-chrome-field\">\n            <EditableInput\n              label=\"s\"\n              :value=\"`${(hsl.s * 100).toFixed()}%`\"\n              @change=\"inputChange('s', $event)\"\n            />\n          </div>\n          <div class=\"vc-chrome-field\">\n            <EditableInput\n              label=\"l\"\n              :value=\"`${(hsl.l * 100).toFixed()}%`\"\n              @change=\"inputChange('l', $event)\"\n            />\n          </div>\n          <div\n            v-if=\"!disableAlpha\"\n            class=\"vc-chrome-field\"\n          >\n            <EditableInput\n              label=\"a\"\n              :value=\"hsl.a\"\n              :step=\"0.01\"\n              @change=\"inputChange('a', $event)\"\n            />\n          </div>\n        </div>\n        <!-- btn -->\n        <div\n          class=\"vc-chrome-toggle-btn\"\n          role=\"button\"\n          aria-label=\"Change another color definition\"\n          @click=\"toggleViews\"\n        >\n          <div class=\"vc-chrome-toggle-icon\">\n            <svg\n              style=\"width:24px; height:24px\"\n              viewBox=\"0 0 24 24\"\n              @mouseover=\"showHighlight\"\n              @mouseenter=\"showHighlight\"\n              @mouseout=\"hideHighlight\"\n            >\n              <path\n                fill=\"#333\"\n                d=\"M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z\"\n              />\n            </svg>\n          </div>\n          <div\n            v-show=\"highlight\"\n            class=\"vc-chrome-toggle-icon-highlight\"\n          />\n        </div>\n        <!-- btn -->\n      </div>\n    </div>\n  </div>\n</template>\n\n<script lang=\"ts\">\nimport { Vue, Component, Prop } from 'vue-property-decorator';\nimport { mixins } from 'vue-class-component';\nimport Color from '../common/ColorMixin';\nimport { hasAlpha } from '../utils';\n\nimport EditableInput from './common/EditableInput.vue'\nimport Saturation from './common/Saturation.vue'\nimport Hue from './common/Hue.vue'\nimport Alpha from './common/Alpha.vue'\nimport Checkboard from './common/Checkboard.vue'\n\n@Component({\n  components: { EditableInput, Saturation, Hue, Alpha, Checkboard }\n})\nexport default class Chrome extends mixins(Color) {\n  @Prop({default: false})\n  disableAlpha !: boolean;\n\n  @Prop({default: false})\n  disableFields !: boolean;\n\n  fieldsIndex = 0;\n  highlight = false;\n\n  get rgba() {\n    return this.tc.toRgb();\n  }\n\n  get hsl() {\n    return this.tc.toHsl();\n  }\n\n  get hasAlpha() {\n    return this.tc.getAlpha() < 1;\n  }\n\n  toggleViews () {\n    if (this.fieldsIndex >= 2) {\n      this.fieldsIndex = 0;\n      return;\n    }\n    this.fieldsIndex ++;\n  }\n  // TODO: use css instead ?\n  showHighlight () {\n    this.highlight = true;\n  }\n  hideHighlight () {\n    this.highlight = false;\n  }\n\n  onAlphaChange(color: string) {\n    if (hasAlpha(color)  && this.getOutputFormat() === 'hex') {\n      this.setOutputFormat('hex8')\n    }\n    this.onColorChange(color);\n  }\n\n  inputChange(label: 'r' | 'g' | 'b' | 'a' | 'h' | 's' | 'l', value: string | number) {\n    if (label === 'r' || label === 'g' || label === 'b') {\n      this.onColorChange({\n        ...this.rgba,\n        [label]: value\n      })\n    }\n    if (label === 'h' || label === 's' || label === 'l') {\n      this.onColorChange({\n        ...this.hsl,\n        [label]: value\n      })\n    }\n    if (label = 'a') {\n      this.onColorChange(this.tc.setAlpha(+value));\n    }\n  }\n}\n</script>\n\n<style>\n.vc-chrome {\n  background: #fff;\n  border-radius: 2px;\n  box-shadow: 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3);\n  box-sizing: initial;\n  width: 225px;\n  font-family: Menlo;\n  background-color: #fff;\n}\n.vc-chrome-controls {\n  display: flex;\n}\n.vc-chrome-color-wrap {\n  position: relative;\n  width: 36px;\n}\n.vc-chrome-active-color {\n  position: relative;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  overflow: hidden;\n  z-index: 1;\n}\n.vc-chrome-color-wrap .vc-checkerboard {\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  background-size: auto;\n}\n.vc-chrome-sliders {\n  flex: 1;\n}\n.vc-chrome-fields-wrap {\n  display: flex;\n  padding-top: 16px;\n}\n.vc-chrome-fields {\n  display: flex;\n  margin-left: -6px;\n  flex: 1;\n}\n.vc-chrome-field {\n  padding-left: 6px;\n  width: 100%;\n}\n.vc-chrome-toggle-btn {\n  width: 32px;\n  text-align: right;\n  position: relative;\n}\n.vc-chrome-toggle-icon {\n  margin-right: -4px;\n  margin-top: 12px;\n  cursor: pointer;\n  position: relative;\n  z-index: 2;\n}\n.vc-chrome-toggle-icon-highlight {\n  position: absolute;\n  width: 24px;\n  height: 28px;\n  background: #eee;\n  border-radius: 4px;\n  top: 10px;\n  left: 12px;\n}\n.vc-chrome-hue-wrap {\n  position: relative;\n  height: 10px;\n  margin-bottom: 8px;\n}\n.vc-chrome-alpha-wrap {\n  position: relative;\n  height: 10px;\n}\n.vc-chrome-hue-wrap .vc-hue {\n  border-radius: 2px;\n}\n.vc-chrome-alpha-wrap .vc-alpha-gradient {\n  border-radius: 2px;\n}\n.vc-chrome-hue-wrap .vc-hue-picker, .vc-chrome-alpha-wrap .vc-alpha-picker {\n  width: 12px;\n  height: 12px;\n  border-radius: 6px;\n  transform: translate(-6px, -2px);\n  background-color: rgb(248, 248, 248);\n  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);\n}\n.vc-chrome-body {\n  padding: 16px 16px 12px;\n  background-color: #fff;\n}\n.vc-chrome-saturation-wrap {\n  width: 100%;\n  padding-bottom: 55%;\n  position: relative;\n  border-radius: 2px 2px 0 0;\n  overflow: hidden;\n}\n.vc-chrome-saturation-wrap .vc-saturation-circle {\n  width: 12px;\n  height: 12px;\n}\n\n.vc-chrome-fields .vc-input__input {\n  font-size: 11px;\n  color: #333;\n  width: 100%;\n  border-radius: 2px;\n  border: none;\n  box-shadow: inset 0 0 0 1px #dadada;\n  height: 21px;\n  text-align: center;\n}\n.vc-chrome-fields .vc-input__label {\n  text-transform: uppercase;\n  font-size: 11px;\n  line-height: 11px;\n  color: #969696;\n  text-align: center;\n  display: block;\n  margin-top: 12px;\n}\n\n.vc-chrome__disable-alpha .vc-chrome-active-color {\n  width: 18px;\n  height: 18px;\n}\n.vc-chrome__disable-alpha .vc-chrome-color-wrap {\n  width: 30px;\n}\n.vc-chrome__disable-alpha .vc-chrome-hue-wrap {\n  margin-top: 4px;\n  margin-bottom: 4px;\n}\n</style>\n"]
-      },
+    inject("data-v-d9a37274_0", {
+      source: ".vc-chrome{background:#fff;border-radius:2px;box-shadow:0 0 2px rgba(0,0,0,.3),0 4px 8px rgba(0,0,0,.3);box-sizing:initial;width:225px;font-family:Menlo;background-color:#fff}.vc-chrome-controls{display:flex}.vc-chrome-color-wrap{position:relative;width:36px}.vc-chrome-active-color{position:relative;width:30px;height:30px;border-radius:15px;overflow:hidden;z-index:1}.vc-chrome-color-wrap .vc-checkerboard{width:30px;height:30px;border-radius:15px;background-size:auto}.vc-chrome-sliders{flex:1}.vc-chrome-fields-wrap{display:flex;padding-top:16px}.vc-chrome-fields{display:flex;margin-left:-6px;flex:1}.vc-chrome-field{padding-left:6px;width:100%}.vc-chrome-toggle-btn{width:32px;text-align:right;position:relative}.vc-chrome-toggle-icon{margin-right:-4px;margin-top:12px;cursor:pointer;position:relative;z-index:2}.vc-chrome-toggle-icon-highlight{position:absolute;width:24px;height:28px;background:#eee;border-radius:4px;top:10px;left:12px}.vc-chrome-hue-wrap{position:relative;height:10px;margin-bottom:8px}.vc-chrome-alpha-wrap{position:relative;height:10px}.vc-chrome-hue-wrap .vc-hue{border-radius:2px}.vc-chrome-alpha-wrap .vc-alpha-gradient{border-radius:2px}.vc-chrome-alpha-wrap .vc-alpha-picker,.vc-chrome-hue-wrap .vc-hue-picker{width:12px;height:12px;border-radius:6px;transform:translate(-6px,-2px);background-color:#f8f8f8;box-shadow:0 1px 4px 0 rgba(0,0,0,.37)}.vc-chrome-body{padding:16px 16px 12px;background-color:#fff}.vc-chrome-saturation-wrap{width:100%;padding-bottom:55%;position:relative;border-radius:2px 2px 0 0;overflow:hidden}.vc-chrome-saturation-wrap .vc-saturation-circle{width:12px;height:12px}.vc-chrome-fields .vc-input__input{font-size:11px;color:#333;width:100%;border-radius:2px;border:none;box-shadow:inset 0 0 0 1px #dadada;height:21px;text-align:center}.vc-chrome-fields .vc-input__label{text-transform:uppercase;font-size:11px;line-height:11px;color:#969696;text-align:center;display:block;margin-top:12px}.vc-chrome__disable-alpha .vc-chrome-active-color{width:18px;height:18px}.vc-chrome__disable-alpha .vc-chrome-color-wrap{width:30px}.vc-chrome__disable-alpha .vc-chrome-hue-wrap{margin-top:4px;margin-bottom:4px}",
+      map: undefined,
       media: undefined
     });
   };
