@@ -7,8 +7,8 @@
     "vuejs",
     "color-picker"
   ],
-  "main": "dist/vue-color.min.js",
-  "module": "dist/vue-color.min.mjs",
+  "main": "dist/vue-color.umd.js",
+  "module": "dist/vue-color.es6.js",
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook",

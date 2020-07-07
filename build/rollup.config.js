@@ -1,8 +1,8 @@
-import babel from '@rollup/plugin-babel';
-import vue from 'rollup-plugin-vue';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import pkg from '../package.json';
+import babel from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
+import pkg from '../package.json'
+import resolve from '@rollup/plugin-node-resolve'
+import vue from 'rollup-plugin-vue'
 
 // TODO: visualizer - Bundle and dependency visualizer.
 
@@ -13,29 +13,29 @@ const base = {
       defaultLang: { script: 'ts' },
       needMap: false,
       template: {
-        isProduction: true,
+        isProduction: true
       }
     }),
     babel({
       exclude: 'node_modules/**',
       extensions: ['.js', '.ts', '.vue'],
-      babelHelpers: 'runtime',
+      babelHelpers: 'runtime'
     }),
     resolve({
       extensions: ['.mjs', '.ts', '.js', '.json', '.node']
     }),
     commonjs()
   ]
-};
+}
 
-const external = ['vue',  ...Object.keys(pkg.dependencies)]
+const external = ['vue', ...Object.keys(pkg.dependencies)]
 
 const esModuleBuild = {
   output: {
-    file: 'dist/vue-color.min.mjs',
-    format: 'esm',
+    file: 'dist/vue-color.es6.js',
+    format: 'esm'
   },
-  external: (id) => {
+  external: id => {
     if (external.includes(id)) {
       return true
     }
@@ -44,18 +44,18 @@ const esModuleBuild = {
     }
     return false
   }
-};
+}
 
 const umdBuild = {
   output: {
-    file: 'dist/vue-color.min.js',
+    file: 'dist/vue-color.umd.js',
     format: 'umd',
     name: 'vueColor',
     globals: {
-      'vue': 'Vue'
+      vue: 'Vue'
     }
   },
-  external: ['vue'],
+  external: ['vue']
 }
 
-export default [esModuleBuild, umdBuild].map((output) => ({ ...base, ...output }));
+export default [esModuleBuild, umdBuild].map(output => ({ ...base, ...output }))
