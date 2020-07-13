@@ -1,6 +1,7 @@
 {
   "presets": ["@babel/preset-typescript", "@babel/preset-env"],
   "plugins": [
+    ["@babel/plugin-transform-runtime", { "useESModules": true }],
     ["@babel/proposal-decorators", { "legacy": true }],
     ["@babel/proposal-class-properties", { "loose": true }]
   ]
