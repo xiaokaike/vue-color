@@ -24,7 +24,7 @@
         <div class="vc-iconscout-c-fields" v-show="fieldsIndex === 0">
           <!-- hex -->
           <div class="vc-iconscout-c-field">
-            <ed-in label="hex" :value="colors.hex" @change="inputChange"></ed-in>
+            <ed-in :value="colors.hex" @change="inputChange"></ed-in>
           </div>
         </div>
         <div class="vc-iconscout-c-fields" v-show="fieldsIndex === 1">
@@ -58,7 +58,7 @@
           </div>
         </div>
         <!-- btn -->
-        <div class="vc-iconscout-c-toggle-btn" @click="toggleViews">
+        <div v-if="!disableToggle" class="vc-iconscout-c-toggle-btn" @click="toggleViews">
           <div class="vc-iconscout-c-toggle-icon">
             <svg style="width:24px; height:24px" viewBox="0 0 24 24"
               @mouseover="showHighlight"
@@ -105,6 +105,10 @@ export default {
       default: false
     },
     disableFields: {
+      type: Boolean,
+      default: false
+    },
+    disableToggle: {
       type: Boolean,
       default: false
     },
@@ -239,7 +243,7 @@ export default {
 }
 .vc-iconscout-c-fields-wrap {
   display: flex;
-  padding-top: 16px;
+  padding-top: 15px;
 }
 .vc-iconscout-c-fields {
   display: flex;
@@ -280,44 +284,48 @@ export default {
   position: relative;
   height: 10px;
 }
-.vc-iconscout-c-hue-wrap .vc-hue {
+/* .vc-iconscout-c-hue-wrap .vc-hue {
   border-radius: 2px;
-}
+} */
 .vc-iconscout-c-alpha-wrap .vc-alpha-gradient {
   border-radius: 2px;
 }
 .vc-iconscout-c-hue-wrap .vc-hue-picker, .vc-iconscout-c-alpha-wrap .vc-alpha-picker {
-  width: 8px;
-  height: 8px;
-  border-radius: 6px;
+  width: 7px;
+  height: 7px;
   transform: translate(-6px, -2px);
-  background-color: rgb(248, 248, 248);
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+  background-color: transparent;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .vc-iconscout-c-body {
-  padding: 16px 16px 12px;
+  padding: 15px 0;
   background-color: #fff;
 }
 .vc-iconscout-c-saturation-wrap {
   width: 100%;
   padding-bottom: 55%;
   position: relative;
-  border-radius: 2px 2px 0 0;
+  border-radius: 5px;
   overflow: hidden;
 }
 .vc-iconscout-c-saturation-wrap .vc-saturation-circle {
-  width: 12px;
-  height: 12px;
+  width: 7px;
+  height: 7px;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .vc-iconscout-c-fields .vc-input__input {
-  font-size: 11px;
-  color: #333;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 160%;
+  color: #000;
   width: 100%;
-  border-radius: 2px;
   border: none;
-  box-shadow: inset 0 0 0 1px #dadada;
-  height: 21px;
+  box-shadow: inset 0 0 0 1px #EBEDF5;
+  background: #FAFAFC;
+  border-radius: 5px;
+  height: 34px;
   text-align: center;
 }
 .vc-iconscout-c-fields .vc-input__label {
