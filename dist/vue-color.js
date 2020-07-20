@@ -936,6 +936,10 @@ exports.default = {
       type: Boolean,
       default: false
     },
+    disableToggle: {
+      type: Boolean,
+      default: false
+    },
     defaultPalette: {
       type: Array,
       default: function _default() {
@@ -1772,7 +1776,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.vc-iconscout-c {\n  background: #fff;\n  border-radius: 3px;\n  box-sizing: initial;\n  width: 225px;\n  background-color: #fff;\n}\n.vc-iconscout-c-controls {\n  display: flex;\n}\n.vc-iconscout-c-color-wrap {\n  position: relative;\n  width: 36px;\n}\n.vc-iconscout-c-active-color {\n  position: relative;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  overflow: hidden;\n  z-index: 1;\n}\n.vc-iconscout-c-color-wrap .vc-checkerboard {\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  background-size: auto;\n}\n.vc-iconscout-c-sliders {\n  flex: 1;\n}\n.vc-iconscout-c-fields-wrap {\n  display: flex;\n  padding-top: 16px;\n}\n.vc-iconscout-c-fields {\n  display: flex;\n  margin-left: -6px;\n  flex: 1;\n}\n.vc-iconscout-c-field {\n  padding-left: 6px;\n  width: 100%;\n}\n.vc-iconscout-c-toggle-btn {\n  width: 32px;\n  text-align: right;\n  position: relative;\n}\n.vc-iconscout-c-toggle-icon {\n  margin-right: -4px;\n  margin-top: 12px;\n  cursor: pointer;\n  position: relative;\n  z-index: 2;\n}\n.vc-iconscout-c-toggle-icon-highlight {\n  position: absolute;\n  width: 24px;\n  height: 28px;\n  background: #eee;\n  border-radius: 4px;\n  top: 10px;\n  left: 12px;\n}\n.vc-iconscout-c-hue-wrap {\n  position: relative;\n  height: 10px;\n  margin-bottom: 8px;\n}\n.vc-iconscout-c-alpha-wrap {\n  position: relative;\n  height: 10px;\n}\n.vc-iconscout-c-hue-wrap .vc-hue {\n  border-radius: 2px;\n}\n.vc-iconscout-c-alpha-wrap .vc-alpha-gradient {\n  border-radius: 2px;\n}\n.vc-iconscout-c-hue-wrap .vc-hue-picker, .vc-iconscout-c-alpha-wrap .vc-alpha-picker {\n  width: 8px;\n  height: 8px;\n  border-radius: 6px;\n  transform: translate(-6px, -2px);\n  background-color: rgb(248, 248, 248);\n  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);\n}\n.vc-iconscout-c-body {\n  padding: 16px 16px 12px;\n  background-color: #fff;\n}\n.vc-iconscout-c-saturation-wrap {\n  width: 100%;\n  padding-bottom: 55%;\n  position: relative;\n  border-radius: 2px 2px 0 0;\n  overflow: hidden;\n}\n.vc-iconscout-c-saturation-wrap .vc-saturation-circle {\n  width: 12px;\n  height: 12px;\n}\n.vc-iconscout-c-fields .vc-input__input {\n  font-size: 11px;\n  color: #333;\n  width: 100%;\n  border-radius: 2px;\n  border: none;\n  box-shadow: inset 0 0 0 1px #dadada;\n  height: 21px;\n  text-align: center;\n}\n.vc-iconscout-c-fields .vc-input__label {\n  text-transform: uppercase;\n  font-size: 11px;\n  line-height: 11px;\n  color: #969696;\n  text-align: center;\n  display: block;\n  margin-top: 12px;\n}\n.vc-iconscout-c__disable-alpha .vc-iconscout-c-active-color {\n  width: 18px;\n  height: 18px;\n}\n.vc-iconscout-c__disable-alpha .vc-iconscout-c-color-wrap {\n  width: 30px;\n}\n.vc-iconscout-c__disable-alpha .vc-iconscout-c-hue-wrap {\n  margin-top: 4px;\n  margin-bottom: 4px;\n}\n.vc-iconscout-c-defaults {\n  border: 2px solid white;\n  background-color: #F8FAFF;\n  padding: 10px;\n  display: flex;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  border-bottom-left-radius: 3px;\n  border-bottom-right-radius: 3px;\n}\n.vc-iconscout-c-button {\n  height: 22px;\n  width: 22px;\n  border: 1px solid transparent;\n  padding: 0;\n  border-radius: 22px;\n  margin: 5px;\n  outline: none !important;\n  cursor: pointer;\n}\n.vc-iconscout-c-color-white {\n  border-color: #DBDBDB;\n}\n.vc-iconscout-c-color-transparent {\n  border-color: rgba(0, 0, 0, 0.5);\n  background-color: #fff;\n  background-image:\n    -webkit-linear-gradient(45deg,#E4E9F2 25%,transparent 25%,transparent 75%,#E4E9F2 75%,#E4E9F2),\n    -webkit-linear-gradient(45deg,#E4E9F2 25%,transparent 25%,transparent 75%,#E4E9F2 75%,#E4E9F2) !important;\n  background-position: 0 0,5px 5px;\n  background-size: 10px 10px;\n}\n", ""]);
+exports.push([module.i, "\n.vc-iconscout-c {\n  background: #fff;\n  border-radius: 3px;\n  box-sizing: initial;\n  width: 225px;\n  background-color: #fff;\n}\n.vc-iconscout-c-controls {\n  display: flex;\n}\n.vc-iconscout-c-color-wrap {\n  position: relative;\n  width: 36px;\n}\n.vc-iconscout-c-active-color {\n  position: relative;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  overflow: hidden;\n  z-index: 1;\n}\n.vc-iconscout-c-color-wrap .vc-checkerboard {\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  background-size: auto;\n}\n.vc-iconscout-c-sliders {\n  flex: 1;\n}\n.vc-iconscout-c-fields-wrap {\n  display: flex;\n  padding-top: 15px;\n}\n.vc-iconscout-c-fields {\n  display: flex;\n  margin-left: -6px;\n  flex: 1;\n}\n.vc-iconscout-c-field {\n  padding-left: 6px;\n  width: 100%;\n}\n.vc-iconscout-c-toggle-btn {\n  width: 32px;\n  text-align: right;\n  position: relative;\n}\n.vc-iconscout-c-toggle-icon {\n  margin-right: -4px;\n  margin-top: 12px;\n  cursor: pointer;\n  position: relative;\n  z-index: 2;\n}\n.vc-iconscout-c-toggle-icon-highlight {\n  position: absolute;\n  width: 24px;\n  height: 28px;\n  background: #eee;\n  border-radius: 4px;\n  top: 10px;\n  left: 12px;\n}\n.vc-iconscout-c-hue-wrap {\n  position: relative;\n  height: 10px;\n  margin-bottom: 8px;\n}\n.vc-iconscout-c-alpha-wrap {\n  position: relative;\n  height: 10px;\n}\n/* .vc-iconscout-c-hue-wrap .vc-hue {\n  border-radius: 2px;\n} */\n.vc-iconscout-c-alpha-wrap .vc-alpha-gradient {\n  border-radius: 2px;\n}\n.vc-iconscout-c-hue-wrap .vc-hue-picker, .vc-iconscout-c-alpha-wrap .vc-alpha-picker {\n  width: 7px;\n  height: 7px;\n  transform: translate(-6px, -2px);\n  background-color: transparent;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);\n}\n.vc-iconscout-c-body {\n  padding: 15px 0;\n  background-color: #fff;\n}\n.vc-iconscout-c-saturation-wrap {\n  width: 100%;\n  padding-bottom: 55%;\n  position: relative;\n  border-radius: 5px;\n  overflow: hidden;\n}\n.vc-iconscout-c-saturation-wrap .vc-saturation-circle {\n  width: 7px;\n  height: 7px;\n  border: 2px solid #FFFFFF;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);\n}\n.vc-iconscout-c-fields .vc-input__input {\n  font-weight: normal;\n  font-size: 14px;\n  line-height: 160%;\n  color: #000;\n  width: 100%;\n  border: none;\n  box-shadow: inset 0 0 0 1px #EBEDF5;\n  background: #FAFAFC;\n  border-radius: 5px;\n  height: 34px;\n  text-align: center;\n}\n.vc-iconscout-c-fields .vc-input__label {\n  text-transform: uppercase;\n  font-size: 11px;\n  line-height: 11px;\n  color: #969696;\n  text-align: center;\n  display: block;\n  margin-top: 12px;\n}\n.vc-iconscout-c__disable-alpha .vc-iconscout-c-active-color {\n  width: 18px;\n  height: 18px;\n}\n.vc-iconscout-c__disable-alpha .vc-iconscout-c-color-wrap {\n  width: 30px;\n}\n.vc-iconscout-c__disable-alpha .vc-iconscout-c-hue-wrap {\n  margin-top: 4px;\n  margin-bottom: 4px;\n}\n.vc-iconscout-c-defaults {\n  border: 2px solid white;\n  background-color: #F8FAFF;\n  padding: 10px;\n  display: flex;\n  justify-content: space-between;\n  flex-wrap: wrap;\n  border-bottom-left-radius: 3px;\n  border-bottom-right-radius: 3px;\n}\n.vc-iconscout-c-button {\n  height: 22px;\n  width: 22px;\n  border: 1px solid transparent;\n  padding: 0;\n  border-radius: 22px;\n  margin: 5px;\n  outline: none !important;\n  cursor: pointer;\n}\n.vc-iconscout-c-color-white {\n  border-color: #DBDBDB;\n}\n.vc-iconscout-c-color-transparent {\n  border-color: rgba(0, 0, 0, 0.5);\n  background-color: #fff;\n  background-image:\n    -webkit-linear-gradient(45deg,#E4E9F2 25%,transparent 25%,transparent 75%,#E4E9F2 75%,#E4E9F2),\n    -webkit-linear-gradient(45deg,#E4E9F2 25%,transparent 25%,transparent 75%,#E4E9F2 75%,#E4E9F2) !important;\n  background-position: 0 0,5px 5px;\n  background-size: 10px 10px;\n}\n", ""]);
 
 // exports
 
@@ -3700,7 +3704,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.vc-hue {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  border-radius: 8px;\n}\n.vc-hue--horizontal {\n  background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n}\n.vc-hue--vertical {\n  background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n}\n.vc-hue-container {\n  cursor: pointer;\n  position: relative;\n  height: 100%;\n}\n.vc-hue-pointer {\n  z-index: 2;\n  position: absolute;\n}\n.vc-hue-picker {\n  cursor: pointer;\n  width: 10px;\n  height: 10px;\n  border: 4px solid #FFFFFF;\n  border-radius: 50%;\n  transform: translate(-2px, -50%);\n}\n", ""]);
+exports.push([module.i, "\n.vc-hue {\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  border-radius: 10px;\n}\n.vc-hue--horizontal {\n  background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n}\n.vc-hue--vertical {\n  background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);\n}\n.vc-hue-container {\n  cursor: pointer;\n  position: relative;\n  height: 100%;\n}\n.vc-hue-pointer {\n  z-index: 2;\n  position: absolute;\n}\n.vc-hue-picker {\n  cursor: pointer;\n  width: 10px;\n  height: 10px;\n  border: 4px solid #FFFFFF;\n  border-radius: 50%;\n  transform: translate(-2px, -50%);\n}\n", ""]);
 
 // exports
 
@@ -4032,7 +4036,7 @@ var render = function() {
                     { staticClass: "vc-iconscout-c-field" },
                     [
                       _c("ed-in", {
-                        attrs: { label: "hex", value: _vm.colors.hex },
+                        attrs: { value: _vm.colors.hex },
                         on: { change: _vm.inputChange }
                       })
                     ],
@@ -4183,50 +4187,52 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "vc-iconscout-c-toggle-btn",
-                  on: { click: _vm.toggleViews }
-                },
-                [
-                  _c("div", { staticClass: "vc-iconscout-c-toggle-icon" }, [
-                    _c(
-                      "svg",
-                      {
-                        staticStyle: { width: "24px", height: "24px" },
-                        attrs: { viewBox: "0 0 24 24" },
-                        on: {
-                          mouseover: _vm.showHighlight,
-                          mouseenter: _vm.showHighlight,
-                          mouseout: _vm.hideHighlight
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            fill: "#333",
-                            d:
-                              "M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z"
+              !_vm.disableToggle
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "vc-iconscout-c-toggle-btn",
+                      on: { click: _vm.toggleViews }
+                    },
+                    [
+                      _c("div", { staticClass: "vc-iconscout-c-toggle-icon" }, [
+                        _c(
+                          "svg",
+                          {
+                            staticStyle: { width: "24px", height: "24px" },
+                            attrs: { viewBox: "0 0 24 24" },
+                            on: {
+                              mouseover: _vm.showHighlight,
+                              mouseenter: _vm.showHighlight,
+                              mouseout: _vm.hideHighlight
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                fill: "#333",
+                                d:
+                                  "M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z"
+                              }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.highlight,
+                            expression: "highlight"
                           }
-                        })
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.highlight,
-                        expression: "highlight"
-                      }
-                    ],
-                    staticClass: "vc-iconscout-c-toggle-icon-highlight"
-                  })
-                ]
-              )
+                        ],
+                        staticClass: "vc-iconscout-c-toggle-icon-highlight"
+                      })
+                    ]
+                  )
+                : _vm._e()
             ])
           : _vm._e()
       ]),
