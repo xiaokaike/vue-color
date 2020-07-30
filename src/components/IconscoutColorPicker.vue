@@ -291,14 +291,15 @@ export default {
   border-radius: 2px;
 }
 .vc-iconscout-c-hue-wrap .vc-hue-picker, .vc-iconscout-c-alpha-wrap .vc-alpha-picker {
-  width: 7px;
-  height: 7px;
+  width: 14px;
+  height: 14px;
   transform: translate(-6px, -2px);
+  border: 2px solid #fff;
   background-color: transparent;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .vc-iconscout-c-body {
-  padding: 15px 0;
+  padding: 15px 0 0 0;
   background-color: #fff;
 }
 .vc-iconscout-c-saturation-wrap {
@@ -309,8 +310,8 @@ export default {
   overflow: hidden;
 }
 .vc-iconscout-c-saturation-wrap .vc-saturation-circle {
-  width: 7px;
-  height: 7px;
+  width: 14px;
+  height: 14px;
   border: 2px solid #FFFFFF;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -335,7 +336,7 @@ export default {
   color: #969696;
   text-align: center;
   display: block;
-  margin-top: 12px;
+  /* margin-top: 12px; */
 }
 
 .vc-iconscout-c__disable-alpha .vc-iconscout-c-active-color {
@@ -351,7 +352,8 @@ export default {
 }
 .vc-iconscout-c-defaults {
   border: 2px solid white;
-  background-color: #F8FAFF;
+  background-color: transparent;
+  margin-top: 15px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
