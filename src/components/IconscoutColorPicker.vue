@@ -24,7 +24,6 @@
         <div class="vc-iconscout-c-fields" v-show="fieldsIndex === 0">
           <!-- hex -->
           <div class="vc-iconscout-c-field">
-            <!-- <ed-in :value="colors.hex" @change="inputChange"></ed-in> -->
              <ed-in label="hex" :value="colors.hex" @change="inputChange"></ed-in>
           </div>
         </div>
@@ -338,7 +337,6 @@ export default {
   text-align: center;
   display: block;
   display: none;
-  /* margin-top: 12px; */
 }
 
 .vc-iconscout-c__disable-alpha .vc-iconscout-c-active-color {
