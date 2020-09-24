@@ -10,7 +10,7 @@
         @click="handleSwClick(index, offset)">
         <div
           class="vc-slider-swatch-picker"
-          :class="{'vc-slider-swatch-picker--active': isActiveOffset(offset), 'vc-slider-swatch-picker--white': offset === 1}"
+          :class="{'vc-slider-swatch-picker--active': isActiveOffset(offset), 'vc-slider-swatch-picker--white': offset.l === 1}"
           :style="{background: 'hsl(' + colors.hsl.h + ', ' + offset.s * 100 + '%, ' + offset.l * 100 + '%)'}"
         ></div>
       </div>
