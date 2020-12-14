@@ -1,20 +1,20 @@
 <template>
-    <div class="vc-card twitter-picker"
+    <div class="vc-twitter"
       :class="{
-        'vc-hide-triangle ': triangle === 'hide',
-        'vc-top-left-triangle ': triangle === 'top-left',
-        'vc-top-right-triangle ': triangle === 'top-right',
+        'vc-twitter-hide-triangle ': triangle === 'hide',
+        'vc-twitter-top-left-triangle ': triangle === 'top-left',
+        'vc-twitter-top-right-triangle ': triangle === 'top-right',
       }"
       :style="{
         width: typeof width === 'number' ? `${width}px` : width
       }"
     >
-      <div class="vc-triangle-shadow"></div>
-      <div class="vc-triangle"></div>
+      <div class="vc-twitter-triangle-shadow"></div>
+      <div class="vc-twitter-triangle"></div>
 
-      <div class="vc-body">
+      <div class="vc-twitter-body">
         <span
-          class="vc-swatch"
+          class="vc-twitter-swatch"
           :style="{
             background: color,
             boxShadow: `0 0 4px ${ equal(color) ? color : 'transparent' }`,
@@ -24,9 +24,9 @@
           @click="handlerClick(color)"
         >
         </span>
-        <div class="vc-hash">#</div>
+        <div class="vc-twitter-hash">#</div>
         <editable-input label="#" :value="hex" @change="inputChange"></editable-input>
-        <div class="vc-clear"></div>
+        <div class="vc-twitter-clear"></div>
       </div>
     </div>
 </template>
@@ -45,11 +45,6 @@ export default {
   mixins: [colorMixin],
   components: {
     editableInput
-  },
-  data () {
-    return {
-      currentColor: '#fff'
-    }
   },
   props: {
     width: {
@@ -124,14 +119,14 @@ export default {
 </script>
 
 <style>
-.vc-card {
+.vc-twitter {
   background: #fff;
   border: 0 solid rgba(0,0,0,0.25);
   box-shadow: 0 1px 4px rgba(0,0,0,0.25);
   border-radius: 4px;
   position: relative;
 }
-.vc-triangle {
+.vc-twitter-triangle {
   width: 0px;
   height: 0px;
   border-style: solid;
@@ -139,7 +134,7 @@ export default {
   border-color: transparent transparent #fff transparent;
   position: absolute;
 }
-.vc-triangle-shadow {
+.vc-twitter-triangle-shadow {
   width: 0px;
   height: 0px;
   border-style: solid;
@@ -147,13 +142,13 @@ export default {
   border-color: transparent transparent rgba(0, 0, 0, .1) transparent;
   position: absolute;
 }
-.vc-body {
+.vc-twitter-body {
   padding: 15px 9px 9px 15px;
 }
-.vc-editable-input {
+.vc-twitter .vc-editable-input {
   position: relative;
 }
-.vc-editable-input input {
+.vc-twitter .vc-editable-input input {
   width: 100px;
   font-size: 14px;
   color: #666;
@@ -167,10 +162,10 @@ export default {
   padding: 1px;
   padding-left: 8px;
 }
-.vc-editable-input span {
+.vc-twitter .vc-editable-input span {
   display: none;
 }
-.vc-hash {
+.vc-twitter-hash {
   background: #F0F0F0;
   height: 30px;
   width: 30px;
@@ -181,7 +176,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.vc-swatch {
+.vc-twitter-swatch {
   width: 30px;
   height: 30px;
   float: left;
@@ -191,28 +186,28 @@ export default {
   position: relative;
   outline: none;
 }
-.vc-clear {
+.vc-twitter-clear {
   clear: both;
 }
-.vc-hide-triangle .vc-triangle {
+.vc-twitter-hide-triangle .vc-twitter-triangle {
   display: none;
 }
-.vc-hide-triangle .vc-triangle-shadow {
+.vc-twitter-hide-triangle .vc-twitter-triangle-shadow {
   display: none;
 }
-.vc-top-left-triangle .vc-triangle{
+.vc-twitter-top-left-triangle .vc-twitter-triangle{
   top: -10px;
   left: 12px;
 }
-.vc-top-left-triangle .vc-triangle-shadow{
+.vc-twitter-top-left-triangle .vc-twitter-triangle-shadow{
   top: -11px;
   left: 12px;
 }
-.vc-top-right-triangle .vc-triangle{
+.vc-twitter-top-right-triangle .vc-twitter-triangle{
   top: -10px;
   right: 12px;
 }
-.vc-top-right-triangle .vc-triangle-shadow{
+.vc-twitter-top-right-triangle .vc-twitter-triangle-shadow{
   top: -11px;
   right: 12px;
 }
