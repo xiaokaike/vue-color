@@ -10,8 +10,8 @@
         @click="handleSwClick(index, offset)">
         <div
           class="vc-slider-swatch-picker"
-          :class="{'vc-slider-swatch-picker--active': offset == activeOffset, 'vc-slider-swatch-picker--white': offset === '1'}"
-          :style="{background: 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
+          :class="{'vc-slider-swatch-picker--active': isActiveOffset(offset), 'vc-slider-swatch-picker--white': offset.l === 1}"
+          :style="{background: 'hsl(' + colors.hsl.h + ', ' + offset.s * 100 + '%, ' + offset.l * 100 + '%)'}"
         ></div>
       </div>
     </div>
@@ -29,38 +29,34 @@ export default {
     swatches: {
       type: Array,
       default () {
-        return ['.80', '.65', '.50', '.35', '.20']
+        return [
+          { s: 0.5, l: 0.8 },
+          { s: 0.5, l: 0.65 },
+          { s: 0.5, l: 0.5 },
+          { s: 0.5, l: 0.35 },
+          { s: 0.5, l: 0.2 }
+        ]
       }
     }
   },
   components: {
     hue
   },
-  computed: {
-    activeOffset () {
-      const hasBlack = this.swatches.includes('0')
-      const hasWhite = this.swatches.includes('1')
-      const hsl = this.colors.hsl
-
-      if (Math.round(hsl.s * 100) / 100 === 0.50) {
-        return Math.round(hsl.l * 100) / 100
-      } else if (hasBlack && hsl.l === 0) {
-        return 0
-      } else if (hasWhite && hsl.l === 1) {
-        return 1
-      }
-      return -1
-    }
-  },
   methods: {
+    isActiveOffset (offset) {
+      const hsl = this.colors.hsl
+      return (
+        Math.abs(hsl.l - offset.l) < 0.01 && Math.abs(hsl.s - offset.s) < 0.01
+      )
+    },
     hueChange (data) {
       this.colorChange(data)
     },
     handleSwClick (index, offset) {
       this.colorChange({
         h: this.colors.hsl.h,
-        s: 0.5,
-        l: offset,
+        s: offset.s,
+        l: offset.l,
         source: 'hsl'
       })
     }
