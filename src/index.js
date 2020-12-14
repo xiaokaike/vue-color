@@ -6,6 +6,7 @@ import Swatches from './components/Swatches.vue'
 import Photoshop from './components/Photoshop.vue'
 import Sketch from './components/Sketch.vue'
 import Chrome from './components/Chrome.vue'
+import Twitter from './components/Twitter.vue'
 import Alpha from './components/common/Alpha.vue'
 import Checkboard from './components/common/Checkboard.vue'
 import EditableInput from './components/common/EditableInput.vue'
@@ -17,6 +18,7 @@ const VueColor = {
   version: '2.7.1',
   Compact,
   Grayscale,
+  Twitter,
   Material,
   Slider,
   Swatches,
