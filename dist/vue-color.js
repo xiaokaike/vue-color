@@ -2057,12 +2057,6 @@ exports.default = {
   components: {
     editableInput: _EditableInput2.default
   },
-  data: function data() {
-    return {
-      currentColor: '#fff'
-    };
-  },
-
   props: {
     width: {
       type: [String, Number],
@@ -6539,7 +6533,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.vc-card {\n  background: #fff;\n  border: 0 solid rgba(0,0,0,0.25);\n  box-shadow: 0 1px 4px rgba(0,0,0,0.25);\n  border-radius: 4px;\n  position: relative;\n}\n.vc-triangle {\n  width: 0px;\n  height: 0px;\n  border-style: solid;\n  border-width: 0 9px 10px 9px;\n  border-color: transparent transparent #fff transparent;\n  position: absolute;\n}\n.vc-triangle-shadow {\n  width: 0px;\n  height: 0px;\n  border-style: solid;\n  border-width: 0 9px 10px 9px;\n  border-color: transparent transparent rgba(0, 0, 0, .1) transparent;\n  position: absolute;\n}\n.vc-body {\n  padding: 15px 9px 9px 15px;\n}\n.vc-editable-input {\n  position: relative;\n}\n.vc-editable-input input {\n  width: 100px;\n  font-size: 14px;\n  color: #666;\n  border: 0px;\n  outline: none;\n  height: 28px;\n  box-shadow: inset 0 0 0 1px #F0F0F0;\n  box-sizing: content-box;\n  border-radius: 0 4px 4px 0;\n  float: left;\n  padding: 1px;\n  padding-left: 8px;\n}\n.vc-editable-input span {\n  display: none;\n}\n.vc-hash {\n  background: #F0F0F0;\n  height: 30px;\n  width: 30px;\n  border-radius: 4px 0 0 4px;\n  float: left;\n  color: #98A1A4;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.vc-swatch {\n  width: 30px;\n  height: 30px;\n  float: left;\n  border-radius: 4px;\n  margin: 0 6px 6px 0;\n  cursor: pointer;\n  position: relative;\n  outline: none;\n}\n.vc-clear {\n  clear: both;\n}\n.vc-hide-triangle .vc-triangle {\n  display: none;\n}\n.vc-hide-triangle .vc-triangle-shadow {\n  display: none;\n}\n.vc-top-left-triangle .vc-triangle{\n  top: -10px;\n  left: 12px;\n}\n.vc-top-left-triangle .vc-triangle-shadow{\n  top: -11px;\n  left: 12px;\n}\n.vc-top-right-triangle .vc-triangle{\n  top: -10px;\n  right: 12px;\n}\n.vc-top-right-triangle .vc-triangle-shadow{\n  top: -11px;\n  right: 12px;\n}\n", ""]);
+exports.push([module.i, "\n.vc-twitter {\n  background: #fff;\n  border: 0 solid rgba(0,0,0,0.25);\n  box-shadow: 0 1px 4px rgba(0,0,0,0.25);\n  border-radius: 4px;\n  position: relative;\n}\n.vc-twitter-triangle {\n  width: 0px;\n  height: 0px;\n  border-style: solid;\n  border-width: 0 9px 10px 9px;\n  border-color: transparent transparent #fff transparent;\n  position: absolute;\n}\n.vc-twitter-triangle-shadow {\n  width: 0px;\n  height: 0px;\n  border-style: solid;\n  border-width: 0 9px 10px 9px;\n  border-color: transparent transparent rgba(0, 0, 0, .1) transparent;\n  position: absolute;\n}\n.vc-twitter-body {\n  padding: 15px 9px 9px 15px;\n}\n.vc-twitter .vc-editable-input {\n  position: relative;\n}\n.vc-twitter .vc-editable-input input {\n  width: 100px;\n  font-size: 14px;\n  color: #666;\n  border: 0px;\n  outline: none;\n  height: 28px;\n  box-shadow: inset 0 0 0 1px #F0F0F0;\n  box-sizing: content-box;\n  border-radius: 0 4px 4px 0;\n  float: left;\n  padding: 1px;\n  padding-left: 8px;\n}\n.vc-twitter .vc-editable-input span {\n  display: none;\n}\n.vc-twitter-hash {\n  background: #F0F0F0;\n  height: 30px;\n  width: 30px;\n  border-radius: 4px 0 0 4px;\n  float: left;\n  color: #98A1A4;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.vc-twitter-swatch {\n  width: 30px;\n  height: 30px;\n  float: left;\n  border-radius: 4px;\n  margin: 0 6px 6px 0;\n  cursor: pointer;\n  position: relative;\n  outline: none;\n}\n.vc-twitter-clear {\n  clear: both;\n}\n.vc-twitter-hide-triangle .vc-twitter-triangle {\n  display: none;\n}\n.vc-twitter-hide-triangle .vc-twitter-triangle-shadow {\n  display: none;\n}\n.vc-twitter-top-left-triangle .vc-twitter-triangle{\n  top: -10px;\n  left: 12px;\n}\n.vc-twitter-top-left-triangle .vc-twitter-triangle-shadow{\n  top: -11px;\n  left: 12px;\n}\n.vc-twitter-top-right-triangle .vc-twitter-triangle{\n  top: -10px;\n  right: 12px;\n}\n.vc-twitter-top-right-triangle .vc-twitter-triangle-shadow{\n  top: -11px;\n  right: 12px;\n}\n", ""]);
 
 // exports
 
@@ -6556,29 +6550,29 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "vc-card twitter-picker",
+      staticClass: "vc-twitter",
       class: {
-        "vc-hide-triangle ": _vm.triangle === "hide",
-        "vc-top-left-triangle ": _vm.triangle === "top-left",
-        "vc-top-right-triangle ": _vm.triangle === "top-right"
+        "vc-twitter-hide-triangle ": _vm.triangle === "hide",
+        "vc-twitter-top-left-triangle ": _vm.triangle === "top-left",
+        "vc-twitter-top-right-triangle ": _vm.triangle === "top-right"
       },
       style: {
         width: typeof _vm.width === "number" ? _vm.width + "px" : _vm.width
       }
     },
     [
-      _c("div", { staticClass: "vc-triangle-shadow" }),
+      _c("div", { staticClass: "vc-twitter-triangle-shadow" }),
       _vm._v(" "),
-      _c("div", { staticClass: "vc-triangle" }),
+      _c("div", { staticClass: "vc-twitter-triangle" }),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "vc-body" },
+        { staticClass: "vc-twitter-body" },
         [
           _vm._l(_vm.defaultColors, function(color, index) {
             return _c("span", {
               key: index,
-              staticClass: "vc-swatch",
+              staticClass: "vc-twitter-swatch",
               style: {
                 background: color,
                 boxShadow:
@@ -6592,14 +6586,14 @@ var render = function() {
             })
           }),
           _vm._v(" "),
-          _c("div", { staticClass: "vc-hash" }, [_vm._v("#")]),
+          _c("div", { staticClass: "vc-twitter-hash" }, [_vm._v("#")]),
           _vm._v(" "),
           _c("editable-input", {
             attrs: { label: "#", value: _vm.hex },
             on: { change: _vm.inputChange }
           }),
           _vm._v(" "),
-          _c("div", { staticClass: "vc-clear" })
+          _c("div", { staticClass: "vc-twitter-clear" })
         ],
         2
       )
