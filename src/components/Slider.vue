@@ -22,7 +22,7 @@
 import colorMixin from '../mixin/color'
 import hue from './common/Hue.vue'
 
-const DEFAULT_SATURATION = 0.1
+const DEFAULT_SATURATION = 0.5
 
 export default {
   name: 'Slider',
