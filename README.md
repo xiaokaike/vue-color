@@ -61,6 +61,7 @@ npm run dev
 
 var colors = {
   hex: '#194d33',
+  hex8: '#194D33A8',
   hsl: { h: 150, s: 0.5, l: 0.2, a: 1 },
   hsv: { h: 150, s: 0.66, v: 0.30, a: 1 },
   rgba: { r: 25, g: 77, b: 51, a: 1 },
@@ -68,6 +69,8 @@ var colors = {
 }
 // or
 var colors = '#194d33'
+// or
+var colors = '#194D33A8'
 // or 
 var colors = { h: 150, s: 0.66, v: 0.30 }
 // or 
