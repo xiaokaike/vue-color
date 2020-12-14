@@ -4,14 +4,14 @@
       <hue v-model="colors" @change="hueChange"></hue>
     </div>
     <div class="vc-slider-swatches" role="group">
-      <div class="vc-slider-swatch" v-for="(offset, index) in swatches" :key="index" :data-index="index"
+      <div class="vc-slider-swatch" v-for="(swatch, index) in normalizedSwatches" :key="index" :data-index="index"
         :aria-label="'color:' + colors.hex"
         role="button"
-        @click="handleSwClick(index, offset)">
+        @click="handleSwClick(index, swatch)">
         <div
           class="vc-slider-swatch-picker"
-          :class="{'vc-slider-swatch-picker--active': offset == activeOffset, 'vc-slider-swatch-picker--white': offset === '1'}"
-          :style="{background: 'hsl(' + colors.hsl.h + ', 50%, ' + (offset * 100) + '%)'}"
+          :class="{'vc-slider-swatch-picker--active': isActive(swatch, index), 'vc-slider-swatch-picker--white': swatch.l === 1}"
+          :style="{background: 'hsl(' + colors.hsl.h + ', ' + swatch.s * 100 + '%, ' + swatch.l * 100 + '%)'}"
         ></div>
       </div>
     </div>
@@ -22,6 +22,8 @@
 import colorMixin from '../mixin/color'
 import hue from './common/Hue.vue'
 
+const DEFAULT_SATURATION = 0.1
+
 export default {
   name: 'Slider',
   mixins: [colorMixin],
@@ -29,7 +31,14 @@ export default {
     swatches: {
       type: Array,
       default () {
-        return ['.80', '.65', '.50', '.35', '.20']
+        // also accepts: ['.80', '.65', '.50', '.35', '.20']
+        return [
+          { s: DEFAULT_SATURATION, l: 0.8 },
+          { s: DEFAULT_SATURATION, l: 0.65 },
+          { s: DEFAULT_SATURATION, l: 0.5 },
+          { s: DEFAULT_SATURATION, l: 0.35 },
+          { s: DEFAULT_SATURATION, l: 0.2 }
+        ]
       }
     }
   },
@@ -37,30 +46,41 @@ export default {
     hue
   },
   computed: {
-    activeOffset () {
-      const hasBlack = this.swatches.includes('0')
-      const hasWhite = this.swatches.includes('1')
-      const hsl = this.colors.hsl
-
-      if (Math.round(hsl.s * 100) / 100 === 0.50) {
-        return Math.round(hsl.l * 100) / 100
-      } else if (hasBlack && hsl.l === 0) {
-        return 0
-      } else if (hasWhite && hsl.l === 1) {
-        return 1
-      }
-      return -1
+    normalizedSwatches () {
+      const swatches = this.swatches
+      return swatches.map(swatch => {
+        // to be compatible with another data format ['.80', '.65', '.50', '.35', '.20']
+        if (typeof swatch !== 'object') {
+          return {
+            s: DEFAULT_SATURATION,
+            l: swatch
+          }
+        }
+        return swatch
+      })
     }
   },
   methods: {
+    isActive (swatch, index) {
+      const hsl = this.colors.hsl
+      if (hsl.l === 1 && swatch.l === 1) {
+        return true
+      }
+      if (hsl.l === 0 && swatch.l === 0) {
+        return true
+      }
+      return (
+        Math.abs(hsl.l - swatch.l) < 0.01 && Math.abs(hsl.s - swatch.s) < 0.01
+      )
+    },
     hueChange (data) {
       this.colorChange(data)
     },
-    handleSwClick (index, offset) {
+    handleSwClick (index, swatch) {
       this.colorChange({
         h: this.colors.hsl.h,
-        s: 0.5,
-        l: offset,
+        s: swatch.s,
+        l: swatch.l,
         source: 'hsl'
       })
     }
