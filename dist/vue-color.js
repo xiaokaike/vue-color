@@ -3581,7 +3581,7 @@ var render = function() {
               },
               on: {
                 click: function($event) {
-                  _vm.handlerClick(c)
+                  return _vm.handlerClick(c)
                 }
               }
             },
@@ -3599,7 +3599,8 @@ var render = function() {
               })
             ]
           )
-        })
+        }),
+        0
       )
     ]
   )
@@ -3747,7 +3748,7 @@ var render = function() {
               },
               on: {
                 click: function($event) {
-                  _vm.handlerClick(c)
+                  return _vm.handlerClick(c)
                 }
               }
             },
@@ -3765,7 +3766,8 @@ var render = function() {
               })
             ]
           )
-        })
+        }),
+        0
       )
     ]
   )
@@ -4222,7 +4224,7 @@ var render = function() {
               },
               on: {
                 click: function($event) {
-                  _vm.handleSwClick(index, offset)
+                  return _vm.handleSwClick(index, offset)
                 }
               }
             },
@@ -4240,7 +4242,8 @@ var render = function() {
               })
             ]
           )
-        })
+        }),
+        0
       )
     ]
   )
@@ -4485,7 +4488,7 @@ var render = function() {
                   },
                   on: {
                     click: function($event) {
-                      _vm.handlerClick(c)
+                      return _vm.handlerClick(c)
                     }
                   }
                 },
@@ -4523,9 +4526,11 @@ var render = function() {
                   )
                 ]
               )
-            })
+            }),
+            0
           )
-        })
+        }),
+        0
       )
     ]
   )
@@ -5839,7 +5844,7 @@ var render = function() {
                     attrs: { "aria-label": "Color:" + c },
                     on: {
                       click: function($event) {
-                        _vm.handlePreset(c)
+                        return _vm.handlePreset(c)
                       }
                     }
                   })
@@ -5851,7 +5856,7 @@ var render = function() {
                       attrs: { "aria-label": "Color:" + c },
                       on: {
                         click: function($event) {
-                          _vm.handlePreset(c)
+                          return _vm.handlePreset(c)
                         }
                       }
                     },

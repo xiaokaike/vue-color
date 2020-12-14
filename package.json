@@ -12,7 +12,7 @@
     "dev": "node build/dev-server.js",
     "gh": "npm run example && node build/deploy",
     "lint": "eslint --ext .js,.vue src",
-    "release": "npm run lint && webpack --progress --hide-modules --config  ./build/webpack.release.js && webpack --progress --hide-modules --config  ./build/webpack.release.min.js"
+    "release": "npm run lint && webpack --progress --hide-modules --config  ./build/webpack.release.js && env NODE_ENV=production webpack --progress --hide-modules --config  ./build/webpack.release.min.js"
   },
   "repository": {
     "type": "git",
