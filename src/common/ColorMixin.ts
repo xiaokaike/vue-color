@@ -1,5 +1,5 @@
 import Vue, { PropOptions } from 'vue';
-import tinycolor from 'tinycolor2';
+import Tinycolor from 'tinycolor2';
 import Component from 'vue-class-component';
 import debounce from 'lodash.debounce';
 import { DEFAULT_COLOR } from '../config';
@@ -14,7 +14,7 @@ const Props = Vue.extend({
     value: {
       // default: '#fff',
       // required: true,
-      validator (value) { return tinycolor(value).isValid(); }
+      validator (value) { return Tinycolor(value).isValid(); }
     } as PropOptions<tinycolor.ColorInput>,
     outputFormat: {
       type: String,
@@ -52,9 +52,9 @@ export default class Color extends Props {
   // `tc` stands for tinycolor
   get tc () {
     if (this.value === null) {
-      return new tinycolor(DEFAULT_COLOR);
+      return new Tinycolor(DEFAULT_COLOR);
     }
-    const tc = new tinycolor(this.value);
+    const tc = new Tinycolor(this.value);
     return tc;
   }
 
@@ -63,7 +63,7 @@ export default class Color extends Props {
       // TODO: warning, if `value` is `null`, outputFormat need to be undefined
       this._outputFormat = this.outputFormat;
     }
-    this._outputFormat = new tinycolor(this.value).getFormat();
+    this._outputFormat = new Tinycolor(this.value).getFormat();
   }
 
   getOutputFormat () {
@@ -75,7 +75,7 @@ export default class Color extends Props {
   }
 
   onColorChange (value: tinycolor.ColorInput) {
-    const tc = new tinycolor(value);
+    const tc = new Tinycolor(value);
     // to support v-model
     this.$emit('input', tc);
     this.$emit('change', tc);
@@ -94,6 +94,6 @@ export default class Color extends Props {
     if (this.isInputEmpty) {
       return false;
     }
-    return tinycolor.equals(this.tc, color);
+    return Tinycolor.equals(this.tc, color);
   }
 };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { shallowMount } from '@vue/test-utils';
 import randomInt from 'random-int';
 

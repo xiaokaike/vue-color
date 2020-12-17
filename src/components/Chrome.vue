@@ -162,7 +162,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import Color from '../common/ColorMixin';
 import { hasAlpha } from '../utils';
@@ -235,7 +235,7 @@ export default class Chrome extends mixins(Color) {
         [label]: value
       });
     }
-    if (label = 'a') {
+    if (label === 'a') {
       this.onColorChange(this.tc.setAlpha(+value));
     }
   }

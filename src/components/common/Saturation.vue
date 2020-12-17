@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Ref } from 'vue-property-decorator';
+import { Component, Ref } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import Color from '../../common/ColorMixin';
 import clamp from 'clamp';

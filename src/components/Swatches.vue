@@ -41,7 +41,7 @@
 
 <script lang="ts">
 import material from 'material-colors';
-import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import Color from '../common/ColorMixin';
 

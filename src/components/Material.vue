@@ -40,7 +40,7 @@
 <script lang="ts">
 import EditableInput from './common/EditableInput.vue';
 import { mixins } from 'vue-class-component';
-import { Vue, Component, Prop, Watch, Ref } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import Color from '../common/ColorMixin';
 import { isValidHex } from '../utils';
 

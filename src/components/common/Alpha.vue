@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import Checkboard from './Checkboard.vue';
-import { Component, Ref, Watch } from 'vue-property-decorator';
+import { Component, Ref } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import Color from '../../common/ColorMixin';
 

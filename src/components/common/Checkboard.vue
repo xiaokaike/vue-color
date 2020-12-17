@@ -10,50 +10,6 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 
 const _checkboardCache: {[key: string]: string} = {};
 
-@Component
-export default class Checkboard extends Vue {
-  @Prop({ default: 8 })
-  readonly size!: number;
-
-  @Prop({ default: '#fff' })
-  readonly white!: string;
-
-  @Prop({ default: '#e6e6e6' })
-  readonly grey!: string;
-
-  get bgStyle () {
-    const checkboard = getCheckboard(this.white, this.grey, this.size);
-    if (checkboard === null) {
-      return {};
-    }
-    return {
-      'background-image': `url(${checkboard})`
-    };
-  }
-}
-
-/**
- * get checkboard base data and cache
- *
- * @param {String} c1 hex color
- * @param {String} c2 hex color
- * @param {Number} size
- */
-function getCheckboard (c1: string, c2: string, size: number) {
-  const key = c1 + ',' + c2 + ',' + size;
-
-  if (_checkboardCache[key]) {
-    return _checkboardCache[key];
-  } else {
-    const checkboard = renderCheckboard(c1, c2, size);
-    if (checkboard === null) {
-      return null;
-    }
-    _checkboardCache[key] = checkboard;
-    return checkboard;
-  }
-}
-
 /**
  * get base 64 data by canvas
  *
@@ -81,6 +37,50 @@ function renderCheckboard (c1: string, c2: string, size: number) {
   ctx.translate(size, size);
   ctx.fillRect(0, 0, size, size);
   return canvas.toDataURL();
+}
+
+/**
+ * get checkboard base data and cache
+ *
+ * @param {String} c1 hex color
+ * @param {String} c2 hex color
+ * @param {Number} size
+ */
+function getCheckboard (c1: string, c2: string, size: number) {
+  const key = c1 + ',' + c2 + ',' + size;
+
+  if (_checkboardCache[key]) {
+    return _checkboardCache[key];
+  } else {
+    const checkboard = renderCheckboard(c1, c2, size);
+    if (checkboard === null) {
+      return null;
+    }
+    _checkboardCache[key] = checkboard;
+    return checkboard;
+  }
+}
+
+@Component
+export default class Checkboard extends Vue {
+  @Prop({ default: 8 })
+  readonly size!: number;
+
+  @Prop({ default: '#fff' })
+  readonly white!: string;
+
+  @Prop({ default: '#e6e6e6' })
+  readonly grey!: string;
+
+  get bgStyle () {
+    const checkboard = getCheckboard(this.white, this.grey, this.size);
+    if (checkboard === null) {
+      return {};
+    }
+    return {
+      'background-image': `url(${checkboard})`
+    };
+  }
 }
 
 </script>
