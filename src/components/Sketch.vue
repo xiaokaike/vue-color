@@ -114,11 +114,11 @@ import { mixins } from 'vue-class-component';
 import Color from '../common/ColorMixin';
 import { hasAlpha, isTransparent } from '../utils';
 
-import EditableInput from './common/EditableInput.vue'
-import Saturation from './common/Saturation.vue'
-import Hue from './common/Hue.vue'
-import Alpha from './common/Alpha.vue'
-import Checkboard from './common/Checkboard.vue'
+import EditableInput from './common/EditableInput.vue';
+import Saturation from './common/Saturation.vue';
+import Hue from './common/Hue.vue';
+import Alpha from './common/Alpha.vue';
+import Checkboard from './common/Checkboard.vue';
 
 const presetColors = [
   '#D0021B', '#F5A623', '#F8E71C', '#8B572A', '#7ED321',
@@ -128,19 +128,19 @@ const presetColors = [
 ];
 
 @Component({
-  components: {EditableInput, Saturation, Hue, Alpha, Checkboard}
+  components: { EditableInput, Saturation, Hue, Alpha, Checkboard }
 })
 export default class Sketch extends mixins(Color) {
-  @Prop({default: () => presetColors})
+  @Prop({ default: () => presetColors })
   presetColors!: string[];
 
-  @Prop({default: false})
+  @Prop({ default: false })
   disableAlpha!: boolean;
 
-  @Prop({default: false})
+  @Prop({ default: false })
   disableFields!: boolean;
 
-  get hex() {
+  get hex () {
     if (hasAlpha(this.tc)) {
       return this.tc.toHex8();
     } else {
@@ -148,24 +148,24 @@ export default class Sketch extends mixins(Color) {
     }
   }
 
-  get rgba() {
+  get rgba () {
     return this.tc.toRgb();
   }
 
   isTransparent = isTransparent;
 
-  onAlphaChange(color: string) {
-    if (hasAlpha(color)  && this.getOutputFormat() === 'hex') {
-      this.setOutputFormat('hex8')
+  onAlphaChange (color: string) {
+    if (hasAlpha(color) && this.getOutputFormat() === 'hex') {
+      this.setOutputFormat('hex8');
     }
     this.onColorChange(color);
   }
 
-  onInputChange(label: 'r' | 'g' | 'b' | 'a', value: string) {
+  onInputChange (label: 'r' | 'g' | 'b' | 'a', value: string) {
     this.onColorChange({
       ...this.rgba,
       [label]: value
-    })
+    });
   }
 }
 </script>

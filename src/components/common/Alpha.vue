@@ -46,24 +46,27 @@ export default class Alpha extends mixins(Color) {
   containerWidth = 0;
   xOffset = 0;
 
-  get a() {
+  get a () {
     return this.tc.getAlpha();
   }
-  get pointerLeft() {
+
+  get pointerLeft () {
     return `${this.a * 100}%`;
   }
-  gradientColor() {
+
+  gradientColor () {
     const rgba = this.tc.toRgb();
     const rgbStr = [rgba.r, rgba.g, rgba.b].join(',');
     return `linear-gradient(to right, rgba(${rgbStr}, 0) 0%, rgba(${rgbStr}, 1) 100%)`;
   }
-  mounted() {
-    const $container = this.$refs.container as HTMLDivElement;
-    this.containerWidth = $container.clientWidth
-    this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset
-  }
-  handleChange(pageX: number) {
 
+  mounted () {
+    const $container = this.$refs.container as HTMLDivElement;
+    this.containerWidth = $container.clientWidth;
+    this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset;
+  }
+
+  handleChange (pageX: number) {
     const { containerWidth, xOffset } = this;
     const left = pageX - xOffset;
 
@@ -78,27 +81,32 @@ export default class Alpha extends mixins(Color) {
 
     if (this.a !== a) {
       if (this.getOutputFormat() === 'hex') {
-        this.setOutputFormat('hex8')
+        this.setOutputFormat('hex8');
       }
       this.onColorChange(this.tc.setAlpha(a));
     }
   }
-  handleMouseDown(e: MouseEvent) {
+
+  handleMouseDown (e: MouseEvent) {
     e.preventDefault();
     this.handleChange(e.pageX);
-    window.addEventListener('mousemove', this.handleMouseMove)
-    window.addEventListener('mouseup', this.handleMouseUp)
+    window.addEventListener('mousemove', this.handleMouseMove);
+    window.addEventListener('mouseup', this.handleMouseUp);
   }
-  handleMouseMove(e: MouseEvent) {
+
+  handleMouseMove (e: MouseEvent) {
     this.handleChange(e.pageX);
   }
+
   handleMouseUp () {
-    this.unbindEventListeners()
+    this.unbindEventListeners();
   }
+
   unbindEventListeners () {
-    window.removeEventListener('mousemove', this.handleMouseMove)
-    window.removeEventListener('mouseup', this.handleMouseUp)
+    window.removeEventListener('mousemove', this.handleMouseMove);
+    window.removeEventListener('mouseup', this.handleMouseUp);
   }
+
   handlTouchEvents (e: TouchEvent) {
     const pageX = e.touches ? e.touches[0].pageX : 0;
     this.handleChange(pageX);

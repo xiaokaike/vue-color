@@ -1,24 +1,41 @@
 {
   "compilerOptions": {
-    // this aligns with Vue's browser support
-    "target": "es5",
-    // Process & infer types from .js files.
-    "allowJs": true,
-    // this enables stricter inference for data properties on `this`
+    "target": "esnext",
+    "module": "esnext",
     "strict": true,
-    // if using webpack 2+ or rollup, to leverage tree shaking:
-    "module": "es2015",
+    "jsx": "preserve",
+    "importHelpers": true,
     "moduleResolution": "node",
-    // Import non-ES modules as default imports.
-    "esModuleInterop": true,
     "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "types": ["lodash.debounce", "lodash.throttle"]
+    "baseUrl": ".",
+    "types": [
+      "webpack-env",
+      "jest"
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
   },
   "include": [
-    "./src/**/*"
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
   ],
   "exclude": [
-    "./src/**/__tests__"
-  ],
+    "node_modules"
+  ]
 }

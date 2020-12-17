@@ -48,28 +48,31 @@ import { isValidHex } from '../utils';
   components: { EditableInput }
 })
 export default class Material extends mixins(Color) {
-  get hex() {
+  get hex () {
     if (this.isInputEmpty) {
       return null;
     }
     return this.tc.toHexString();
   }
-  get rgba() {
+
+  get rgba () {
     if (this.isInputEmpty) {
       return null;
     }
     return this.tc.toRgb();
   }
-  onChangeHex(hex: string) {
+
+  onChangeHex (hex: string) {
     if (isValidHex(hex) && hex.length === 7) {
       this.onColorChange(hex);
     }
   }
-  onChange(label: 'r' | 'g' | 'b', data: number) {
+
+  onChange (label: 'r' | 'g' | 'b', data: number) {
     if (this.rgba === null) {
-      return
+      return;
     }
-    this.onColorChange({...this.rgba, ...{[label]: data }});
+    this.onColorChange({ ...this.rgba, ...{ [label]: data } });
   }
 }
 </script>

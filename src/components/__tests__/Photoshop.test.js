@@ -1,26 +1,25 @@
-import { shallowMount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils';
 
 import Photoshop from '@/components/Photoshop';
 import Saturation from '@/components/common/Saturation.vue';
 import Hue from '@/components/common/Hue.vue';
 import EditableInput from '@/components/common/EditableInput.vue';
 
-
 describe('Photoshop', () => {
-  let wrapper
+  let wrapper;
   beforeEach(() => {
     wrapper = shallowMount(Photoshop, {
       propsData: {
         color: 'red'
-      },
-    })
-  })
+      }
+    });
+  });
 
   test('display picker name vie props `head`', () => {
     const head = 'I am a header';
-    wrapper.setProps({ head })
+    wrapper.setProps({ head });
     expect(wrapper.find('.vc-ps-head').text()).toBe(head);
-  })
+  });
 
   test('disable fields via props `disableFields`', () => {
     const root = wrapper.find('.vc-photoshop');
@@ -35,7 +34,7 @@ describe('Photoshop', () => {
     expect(root.classes()).toContain('vc-photoshop__disable-fields');
     expect(controls.classes()).toContain('vc-ps-controls__disable-fields');
     expect(wrapper.findAll('.vc-ps-actions')).toHaveLength(0);
-  })
+  });
 
   test('show reset button via props `hasResetButton`', () => {
     expect(wrapper.findAll('.vc-ps-ac-btn[aria-label="reset"]')).toHaveLength(0);
@@ -46,7 +45,7 @@ describe('Photoshop', () => {
     btns.at(0).trigger('click');
     expect(wrapper.emitted().reset).toBeTruthy();
     expect(btns.at(0).text()).toBe('reset reset');
-  })
+  });
 
   test('modify text of buttons via props `acceptLabel` and `cancelLabel`', () => {
     const acceptLabel = 'accept label';
@@ -55,35 +54,35 @@ describe('Photoshop', () => {
     wrapper.setProps({ acceptLabel, cancelLabel });
     expect(wrapper.find('.vc-ps-ac-btn[aria-label="Confirm"]').text()).toBe(acceptLabel);
     expect(wrapper.find('.vc-ps-ac-btn[aria-label="Cancel"]').text()).toBe(cancelLabel);
-  })
+  });
 
   test('computed value `hsv`', (done) => {
     wrapper = shallowMount(Photoshop, {
       propsData: {
         color: '#5D520B'
       },
-      sync: false  // FIXME: https://github.com/vuejs/vue-test-utils/issues/829
-    })
+      sync: false // FIXME: https://github.com/vuejs/vue-test-utils/issues/829
+    });
 
     setTimeout(() => {
-      expect(wrapper.vm.hsv).toEqual({"h": "52", "s": "88", "v": "36"});
+      expect(wrapper.vm.hsv).toEqual({ h: '52', s: '88', v: '36' });
       done();
-    })
-  })
+    });
+  });
 
   test('computed value `hex`', (done) => {
     wrapper = shallowMount(Photoshop, {
       propsData: {
         color: '#5D520B'
       },
-      sync: false  // FIXME: https://github.com/vuejs/vue-test-utils/issues/829
-    })
+      sync: false // FIXME: https://github.com/vuejs/vue-test-utils/issues/829
+    });
 
     setTimeout(() => {
       expect(wrapper.vm.hex).toBe('5D520B');
       done();
-    })
-  })
+    });
+  });
 
   test('trigger `colorChange` event when child components change the color', () => {
     const colorChange = jest.fn();
@@ -94,21 +93,21 @@ describe('Photoshop', () => {
 
     wrapper.find(Hue).vm.$emit('change', 'red');
     expect(colorChange).toBeCalledWith('red');
-  })
+  });
 
   test('trigger `colorChange` event when inputs change', () => {
     const colorChange = jest.fn();
     wrapper.setMethods({ colorChange });
 
     const inputs = wrapper.findAll(EditableInput);
-    for(let i = 0, l = inputs.length; i < l; i++) {
+    for (let i = 0, l = inputs.length; i < l; i++) {
       inputs.at(i).vm.$emit('change', { '#': '#fff' });
-      expect(colorChange).toHaveBeenNthCalledWith(i+1, {
+      expect(colorChange).toHaveBeenNthCalledWith(i + 1, {
         hex: '#fff',
         source: 'hex'
-      })
+      });
     }
-  })
+  });
 
   test('click current color panel and call `colorChange` method', () => {
     const colorChange = jest.fn();
@@ -120,7 +119,7 @@ describe('Photoshop', () => {
       hex: currentColor,
       source: 'hex'
     });
-  })
+  });
 
   test('`inputChange` method handles data correctly', () => {
     const colorChange = jest.fn();
@@ -135,11 +134,11 @@ describe('Photoshop', () => {
     expect(colorChange).not.toBeCalled();
 
     // handle invalid hex
-    wrapper.vm.inputChange({'#': '#ooo'});
+    wrapper.vm.inputChange({ '#': '#ooo' });
     expect(colorChange).not.toBeCalled();
 
     // handle hex
-    wrapper.vm.inputChange({'#': '#333'});
+    wrapper.vm.inputChange({ '#': '#333' });
     expect(colorChange).toBeCalledWith({ hex: '#333', source: 'hex' });
 
     // handle rgba
@@ -149,20 +148,20 @@ describe('Photoshop', () => {
       const data = { ...rgba, ...val };
       wrapper.vm.inputChange(val);
       expect(colorChange).toBeCalledWith({ ...data, source: 'rgba' });
-    })
+    });
 
     // handle hsv
     const hsv = wrapper.vm.tc.hsv;
     delete hsv.a;
     [{ key: 'h', processor: (val) => val },
-    { key: 's', processor: (val) => (val / 100) },
-    { key: 'v', processor: (val) => (val / 100) }].forEach(({key, processor}) => {
+      { key: 's', processor: (val) => (val / 100) },
+      { key: 'v', processor: (val) => (val / 100) }].forEach(({ key, processor }) => {
       const val = { [key]: 100 };
       wrapper.vm.inputChange(val);
 
       val[key] = processor(100);
       const data = { ...hsv, ...val };
       expect(colorChange).toBeCalledWith({ ...data, source: 'hsv' });
-    })
-  })
-})
+    });
+  });
+});

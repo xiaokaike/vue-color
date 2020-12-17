@@ -36,20 +36,20 @@ import { Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import Color from '../common/ColorMixin';
 
-import Hue from './common/Hue.vue'
+import Hue from './common/Hue.vue';
 
 @Component({
   components: { Hue }
 })
 export default class Slider extends mixins(Color) {
-  @Prop({default: () => ['.80', '.65', '.50', '.35', '.20']})
+  @Prop({ default: () => ['.80', '.65', '.50', '.35', '.20'] })
   swatches!: string[];
 
-  get hsl() {
+  get hsl () {
     return this.tc.toHsl();
   }
 
-  get activeOffset() {
+  get activeOffset () {
     const hasBlack = this.swatches.includes('0');
     const hasWhite = this.swatches.includes('1');
     const hsl = this.hsl;
@@ -64,12 +64,12 @@ export default class Slider extends mixins(Color) {
     return -1;
   }
 
-  handleSwClick(offset) {
+  handleSwClick (offset) {
     this.onColorChange({
       ...this.hsl,
       s: 0.5,
       l: offset
-    })
+    });
   }
 }
 </script>

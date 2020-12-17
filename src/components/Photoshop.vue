@@ -130,39 +130,39 @@ import { Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import Color from '../common/ColorMixin';
 import { isValidHex } from '../utils';
-import EditableInput from './common/EditableInput.vue'
-import Saturation from './common/Saturation.vue'
-import Hue from './common/Hue.vue'
+import EditableInput from './common/EditableInput.vue';
+import Saturation from './common/Saturation.vue';
+import Hue from './common/Hue.vue';
 
 @Component({
-  components: { Saturation, Hue, EditableInput },
+  components: { Saturation, Hue, EditableInput }
 })
 export default class Photoshop extends mixins(Color) {
-  @Prop({default: 'Color Picker'})
+  @Prop({ default: 'Color Picker' })
   head!: string;
 
-  @Prop({default: false})
+  @Prop({ default: false })
   disableFields!: boolean;
 
-  @Prop({default: false})
+  @Prop({ default: false })
   hasResetButton!: boolean;
 
-  @Prop({default: 'OK'})
+  @Prop({ default: 'OK' })
   acceptLabel!: string;
 
-  @Prop({default: 'Cancel'})
+  @Prop({ default: 'Cancel' })
   cancelLabel!: string;
 
-  @Prop({default: 'Reset'})
+  @Prop({ default: 'Reset' })
   resetLabel!: string;
 
   currentColor: null | string = null;
 
-  get hex() {
+  get hex () {
     return this.tc.toHexString();
   }
 
-  get rgba() {
+  get rgba () {
     return this.tc.toRgb();
   }
 
@@ -172,14 +172,14 @@ export default class Photoshop extends mixins(Color) {
       h: hsv.h.toFixed(),
       s: (hsv.s * 100).toFixed(),
       v: (hsv.v * 100).toFixed()
-    }
+    };
   }
 
-  mounted() {
+  mounted () {
     this.currentColor = this.tc.toHexString();
   }
 
-  inputChange(label: 'r' | 'g' | 'b' | 'h' | 's' | 'v' | 'hex', color: string) {
+  inputChange (label: 'r' | 'g' | 'b' | 'h' | 's' | 'v' | 'hex', color: string) {
     if (label === 'hex' && isValidHex(color)) {
       this.onColorChange(color);
       return;
@@ -188,7 +188,7 @@ export default class Photoshop extends mixins(Color) {
       this.onColorChange({
         ...this.rgba,
         [label]: color
-      })
+      });
       return;
     }
     if (label === 'h' || label === 's' || label === 'v') {
@@ -196,21 +196,24 @@ export default class Photoshop extends mixins(Color) {
         ...this.tc.toHsv(),
         [label]: color
       });
-      return;
     }
   }
+
   clickCurrentColor () {
     if (this.currentColor) {
       this.onColorChange(this.currentColor);
     }
   }
-  handleAccept() {
+
+  handleAccept () {
     this.$emit('ok');
   }
-  handleCancel() {
+
+  handleCancel () {
     this.$emit('cancel');
   }
-  handleReset() {
+
+  handleReset () {
     this.$emit('reset');
   }
 }

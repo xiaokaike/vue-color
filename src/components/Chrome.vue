@@ -167,34 +167,34 @@ import { mixins } from 'vue-class-component';
 import Color from '../common/ColorMixin';
 import { hasAlpha } from '../utils';
 
-import EditableInput from './common/EditableInput.vue'
-import Saturation from './common/Saturation.vue'
-import Hue from './common/Hue.vue'
-import Alpha from './common/Alpha.vue'
-import Checkboard from './common/Checkboard.vue'
+import EditableInput from './common/EditableInput.vue';
+import Saturation from './common/Saturation.vue';
+import Hue from './common/Hue.vue';
+import Alpha from './common/Alpha.vue';
+import Checkboard from './common/Checkboard.vue';
 
 @Component({
   components: { EditableInput, Saturation, Hue, Alpha, Checkboard }
 })
 export default class Chrome extends mixins(Color) {
-  @Prop({default: false})
+  @Prop({ default: false })
   disableAlpha !: boolean;
 
-  @Prop({default: false})
+  @Prop({ default: false })
   disableFields !: boolean;
 
   fieldsIndex = 0;
   highlight = false;
 
-  get rgba() {
+  get rgba () {
     return this.tc.toRgb();
   }
 
-  get hsl() {
+  get hsl () {
     return this.tc.toHsl();
   }
 
-  get hasAlpha() {
+  get hasAlpha () {
     return this.tc.getAlpha() < 1;
   }
 
@@ -203,35 +203,37 @@ export default class Chrome extends mixins(Color) {
       this.fieldsIndex = 0;
       return;
     }
-    this.fieldsIndex ++;
+    this.fieldsIndex++;
   }
+
   // TODO: use css instead ?
   showHighlight () {
     this.highlight = true;
   }
+
   hideHighlight () {
     this.highlight = false;
   }
 
-  onAlphaChange(color: string) {
-    if (hasAlpha(color)  && this.getOutputFormat() === 'hex') {
-      this.setOutputFormat('hex8')
+  onAlphaChange (color: string) {
+    if (hasAlpha(color) && this.getOutputFormat() === 'hex') {
+      this.setOutputFormat('hex8');
     }
     this.onColorChange(color);
   }
 
-  inputChange(label: 'r' | 'g' | 'b' | 'a' | 'h' | 's' | 'l', value: string | number) {
+  inputChange (label: 'r' | 'g' | 'b' | 'a' | 'h' | 's' | 'l', value: string | number) {
     if (label === 'r' || label === 'g' || label === 'b') {
       this.onColorChange({
         ...this.rgba,
         [label]: value
-      })
+      });
     }
     if (label === 'h' || label === 's' || label === 'l') {
       this.onColorChange({
         ...this.hsl,
         [label]: value
-      })
+      });
     }
     if (label = 'a') {
       this.onColorChange(this.tc.setAlpha(+value));

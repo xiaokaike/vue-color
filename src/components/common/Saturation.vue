@@ -37,72 +37,82 @@ export default class Saturation extends mixins(Color) {
   lastMouseEvent = '';
 
   throttle = throttle((fn, data) => {
-    fn(data)
+    fn(data);
   }, 20,
   {
-    'leading': true,
-    'trailing': false
+    leading: true,
+    trailing: false
   })
 
   @Ref('container')
   readonly container!: HTMLDivElement
 
-  get hsv() {
+  get hsv () {
     return this.tc.toHsv();
   }
-  get bgColor() {
-    return `hsl(${this.hsv.h}, 100%, 50%)`
-  }
-  get pointerTop () {
-    return (-(this.hsv.v * 100) + 1) + 100 + '%'
-  }
-  get pointerLeft () {
-    return this.hsv.s * 100 + '%'
-  }
-  mounted() {
-    const $container = this.$refs.container as HTMLDivElement;
-    this.containerWidth = $container.clientWidth
-    this.containerHeight = $container.clientHeight
 
-    this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset
-    this.yOffset = $container.getBoundingClientRect().top + window.pageYOffset
+  get bgColor () {
+    return `hsl(${this.hsv.h}, 100%, 50%)`;
   }
+
+  get pointerTop () {
+    return (-(this.hsv.v * 100) + 1) + 100 + '%';
+  }
+
+  get pointerLeft () {
+    return this.hsv.s * 100 + '%';
+  }
+
+  mounted () {
+    const $container = this.$refs.container as HTMLDivElement;
+    this.containerWidth = $container.clientWidth;
+    this.containerHeight = $container.clientHeight;
+
+    this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset;
+    this.yOffset = $container.getBoundingClientRect().top + window.pageYOffset;
+  }
+
   handleChange (pageX: number, pageY: number) {
     // !skip && e.preventDefault()
     const { containerWidth, containerHeight, xOffset, yOffset } = this;
-    const left = clamp(pageX - xOffset, 0, containerWidth)
-    const top = clamp(pageY - yOffset, 0, containerHeight)
-    const saturation = left / containerWidth
-    const bright = clamp(-(top / containerHeight) + 1, 0, 1)
+    const left = clamp(pageX - xOffset, 0, containerWidth);
+    const top = clamp(pageY - yOffset, 0, containerHeight);
+    const saturation = left / containerWidth;
+    const bright = clamp(-(top / containerHeight) + 1, 0, 1);
 
     this.throttle(this.onColorChange, {
       ...this.hsv,
-      ... {
+      ...{
         s: saturation,
-        v: bright,
+        v: bright
       }
-    })
+    });
   }
+
   handleMouseDown (/* e: MouseEvent */) {
-    window.addEventListener('mousemove', this.handleMouseMove)
-    window.addEventListener('mouseup', this.handleMouseUp)
+    window.addEventListener('mousemove', this.handleMouseMove);
+    window.addEventListener('mouseup', this.handleMouseUp);
   }
-  handleMouseMove(e: MouseEvent) {
+
+  handleMouseMove (e: MouseEvent) {
     this.lastMouseEvent = e.type;
     this.handleChange(e.pageX, e.pageY);
   }
+
   handleMouseUp (e: MouseEvent) {
     if (this.lastMouseEvent !== 'mousemove') {
       this.handleChange(e.pageX, e.pageY);
     }
     this.lastMouseEvent = '';
-    this.unbindEventListeners()
+    this.unbindEventListeners();
   }
+
   unbindEventListeners () {
-    window.removeEventListener('mousemove', this.handleMouseMove)
-    window.removeEventListener('mouseup', this.handleMouseUp)
+    window.removeEventListener('mousemove', this.handleMouseMove);
+    window.removeEventListener('mouseup', this.handleMouseUp);
   }
-  handleTouchEvents(e: TouchEvent) {
+
+  handleTouchEvents (e: TouchEvent) {
     console.log(e.type);
     const pageX = e.touches ? e.touches[0].pageX : 0;
     const pageY = e.touches ? e.touches[0].pageY : 0;

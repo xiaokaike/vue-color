@@ -58,31 +58,31 @@ const defaultPalatte = () => {
   colorMap.forEach((color) => {
     let typeColor: string[] = [];
     if (color.toLowerCase() === 'black' || color.toLowerCase() === 'white') {
-      typeColor = typeColor.concat(['#000000', '#FFFFFF'])
+      typeColor = typeColor.concat(['#000000', '#FFFFFF']);
     } else {
       colorLevel.forEach((level) => {
-        const c = material[color][level]
-        typeColor.push(c.toUpperCase())
-      })
+        const c = material[color][level];
+        typeColor.push(c.toUpperCase());
+      });
     }
-    colors.push(typeColor)
-  })
-  return colors
-}
+    colors.push(typeColor);
+  });
+  return colors;
+};
 
 @Component
 export default class Swatches extends mixins(Color) {
-  @Prop({default: defaultPalatte})
+  @Prop({ default: defaultPalatte })
   readonly palette!: string[][];
 
-  get pick() {
+  get pick () {
     if (this.tc === null) {
       return '';
     }
     return this.tc.toHexString();
   }
 
-  handlerClick(value: string) {
+  handlerClick (value: string) {
     this.onColorChange(value);
   }
 }

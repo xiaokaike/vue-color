@@ -1,22 +1,30 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  plugins: [
-    '@typescript-eslint',
-  ],
-  extends: [
-    // add more generic rulesets here, such as:
-    // 'eslint:recommended',
-    'plugin:vue/recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-  ],
-  rules: {
-    // override/add rules settings here, such as:
-    // 'vue/no-unused-vars': 'error'
+  root: true,
+  env: {
+    node: true
   },
-  // parserOptions: {
-  //   ecmaFeatures: {
-  //     ex: true
-  //   }
-  // }
-}
+  extends: [
+    'plugin:vue/essential',
+    '@vue/standard',
+    '@vue/typescript/recommended'
+  ],
+  parserOptions: {
+    ecmaVersion: 2020
+  },
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    semi: ['error', 'always']
+  },
+  overrides: [
+    {
+      files: [
+        '**/__tests__/*.{j,t}s?(x)',
+        '**/tests/unit/**/*.spec.{j,t}s?(x)'
+      ],
+      env: {
+        jest: true
+      }
+    }
+  ]
+};

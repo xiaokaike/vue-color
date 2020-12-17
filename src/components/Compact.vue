@@ -41,7 +41,7 @@ const defaultColors = [
 
 @Component
 export default class Compact extends mixins(Color) {
-  @Prop({default: () => defaultColors})
+  @Prop({ default: () => defaultColors })
   palette !: string[];
 }
 

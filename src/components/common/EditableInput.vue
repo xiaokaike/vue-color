@@ -28,8 +28,8 @@ const clamps = {
   h: (v: number) => clamp(v, 360, 0),
   s: (v: number) => clamp(v, 100, 0),
   l: (v: number) => clamp(v, 100, 0),
-  v: (v: number) => clamp(v, 100, 0),
-}
+  v: (v: number) => clamp(v, 100, 0)
+};
 
 type LabelsWithClamp = 'r' | 'g' | 'b' | 'a' | 'h' | 's' | 'l' | 'v';
 
@@ -37,10 +37,13 @@ type LabelsWithClamp = 'r' | 'g' | 'b' | 'a' | 'h' | 's' | 'l' | 'v';
 export default class EditableInput extends Vue {
   @Prop()
   value !: string | number;
+
   @Prop()
   label?: LabelsWithClamp | string;
+
   @Prop()
-  desc ?: string;
+  desc?: string;
+
   @Prop({ default: 1 })
   step?: number;
 
@@ -50,9 +53,9 @@ export default class EditableInput extends Vue {
   handleChange (value: string | number) {
     const { label } = this;
     let v = value;
-    let numberedValue = +value;
+    const numberedValue = +value;
     if (!isNaN(numberedValue)) {
-      if (label === 'r' ||  label === 'g' ||  label === 'b' ||  label === 'a' ||  label === 'h' ||  label === 's' ||  label === 'l' ||  label === 'v') {
+      if (label === 'r' || label === 'g' || label === 'b' || label === 'a' || label === 'h' || label === 's' || label === 'l' || label === 'v') {
         const clamp = clamps[label];
         v = clamp(numberedValue);
       }
@@ -63,32 +66,32 @@ export default class EditableInput extends Vue {
     $input.value = v.toString();
   }
 
-  handleInput(e: Event) {
+  handleInput (e: Event) {
     const target = e.target as HTMLInputElement;
     e.target && this.handleChange(target.value);
   }
 
-  handleKeyDown(e: KeyboardEvent) {
+  handleKeyDown (e: KeyboardEvent) {
     const target = e.target as HTMLInputElement;
-    let val = target.value;
+    const val = target.value;
 
-    let number = Number(val)
+    const number = Number(val);
 
     if (!isNaN(number)) {
-      let amount = this.step || 1;
+      const amount = this.step || 1;
 
       // Up
       if (e.keyCode === 38) {
         // TODO: 精度问题
-        this.handleChange(number + amount)
-        e.preventDefault()
+        this.handleChange(number + amount);
+        e.preventDefault();
       }
 
       // Down
       if (e.keyCode === 40) {
         // TODO: 精度问题
-        this.handleChange(number - amount)
-        e.preventDefault()
+        this.handleChange(number - amount);
+        e.preventDefault();
       }
     }
   }
