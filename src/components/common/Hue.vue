@@ -70,6 +70,10 @@ export default {
       !skip && e.preventDefault()
 
       var container = this.$refs.container
+      if (!container) {
+        // for some edge cases, container may not exist. see #220
+        return;
+      }
       var containerWidth = container.clientWidth
       var containerHeight = container.clientHeight
 

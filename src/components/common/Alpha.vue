@@ -41,6 +41,10 @@ export default {
     handleChange (e, skip) {
       !skip && e.preventDefault()
       var container = this.$refs.container
+      if (!container) {
+        // for some edge cases, container may not exist. see #220
+        return;
+      }
       var containerWidth = container.clientWidth
 
       var xOffset = container.getBoundingClientRect().left + window.pageXOffset
