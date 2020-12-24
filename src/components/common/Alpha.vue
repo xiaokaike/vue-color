@@ -43,7 +43,7 @@ export default {
       var container = this.$refs.container
       if (!container) {
         // for some edge cases, container may not exist. see #220
-        return;
+        return
       }
       var containerWidth = container.clientWidth
 
