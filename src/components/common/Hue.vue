@@ -84,6 +84,10 @@ export default class Hue extends mixins(Color) {
 
   mounted () {
     const $container = this.container;
+    if (!$container) {
+      // for some edge cases, container may not exist. see #220
+      return;
+    }
     this.containerWidth = $container.clientWidth;
     this.containerHeight = $container.clientHeight;
 

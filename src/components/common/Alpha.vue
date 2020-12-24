@@ -62,6 +62,10 @@ export default class Alpha extends mixins(Color) {
 
   mounted () {
     const $container = this.$refs.container as HTMLDivElement;
+    if (!$container) {
+      // for some edge cases, container may not exist. see #220
+      return;
+    }
     this.containerWidth = $container.clientWidth;
     this.xOffset = $container.getBoundingClientRect().left + window.pageXOffset;
   }
