@@ -32,6 +32,7 @@
 </template>
 
 <script lang="ts">
+// TODO: add new feature
 import { Component, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import Color from '../common/ColorMixin';

@@ -4,46 +4,70 @@ import Component from 'vue-class-component';
 import debounce from 'lodash.debounce';
 import { DEFAULT_COLOR } from '../config';
 
-// TODO: 枚举 & fallback
-const supportFormat = ['hex', 'hex8'];
+interface FormatMethodMap {
+  [key: string]: keyof Tinycolor.Instance;
+}
+const formatMethodMap: FormatMethodMap = {
+  hex: 'toHex',
+  hex8: 'toHex8',
+  hexString: 'toHexString',
+  hex8String: 'toHex8String',
+  rgb: 'toRgb',
+  rgbString: 'toRgbString',
+  hsv: 'toHsv',
+  hsvString: 'toHsvString',
+  hsl: 'toHsl',
+  hslString: 'toHslString',
+  name: 'toName'
+};
+
+export const supportFormat = Object.keys(formatMethodMap);
+
+function getAccurateFormat (format: string, value: tinycolor.ColorInput) {
+  if (format === 'hex' && typeof value === 'string' && value.indexOf('#') >= 0) {
+    return 'hexString';
+  }
+  if (format === 'hex8' && typeof value === 'string' && value.indexOf('#') >= 0) {
+    return 'hex8String';
+  }
+  if (format === 'rgb' && typeof value === 'string') {
+    return 'rgbString';
+  }
+  if (format === 'hsv' && typeof value === 'string') {
+    return 'hsvString';
+  }
+  if (format === 'hsl' && typeof value === 'string') {
+    return 'hslString';
+  }
+  return format;
+}
 
 // We declare the props separately
 // to make props types inferable.
 const Props = Vue.extend({
   props: {
     value: {
-      // default: '#fff',
-      // required: true,
       validator (value) { return Tinycolor(value).isValid(); }
     } as PropOptions<tinycolor.ColorInput>,
     outputFormat: {
       type: String,
       validator (value) { return supportFormat.indexOf(value) >= 0; }
-    },
-    consistent: {
-      type: Boolean,
-      default: true
     }
   }
 });
 
-// TODO: 枚举 & fallback
-interface FormatMethodMap {
-  [key: string]: 'toHexString' | 'toHex8String';
-}
-const formatMethodMap: FormatMethodMap = {
-  hex: 'toHexString',
-  hex8: 'toHex8String'
-};
-
 @Component
 export default class Color extends Props {
-  debounced = debounce((fn) => {
-    fn();
-  }, 100);
+  private debouncedChangeEvent = debounce((tc) => {
+    this.$emit('change-complete', tc);
+  }, 100); // TODO: debounce delay 可配置
+
+  private debouncedConsistentChangeEvent = debounce((tc) => {
+    this.$emit('consistent-change-complete', tc);
+  }, 100); // TODO: debounce delay 可配置
 
   // because default value is `#000`
-  private _outputFormat = 'hex';
+  private _outputFormat: string | undefined;
 
   get isInputEmpty () {
     return this.value === null;
@@ -59,18 +83,18 @@ export default class Color extends Props {
   }
 
   created () {
-    if (this.value === null) {
-      // TODO: warning, if `value` is `null`, outputFormat need to be undefined
+    if (typeof this.outputFormat === 'undefined') {
+      this._outputFormat = getAccurateFormat(new Tinycolor(this.value).getFormat(), this.value);
+    } else {
       this._outputFormat = this.outputFormat;
     }
-    this._outputFormat = new Tinycolor(this.value).getFormat();
   }
 
   getOutputFormat () {
     return this._outputFormat;
   }
 
-  setOutputFormat (/* TODO: enum this type */format: string) {
+  setOutputFormat (format: string) {
     this._outputFormat = format;
   }
 
@@ -79,14 +103,19 @@ export default class Color extends Props {
     // to support v-model
     this.$emit('input', tc);
     this.$emit('change', tc);
-    this.debounced(() => { this.$emit('change-complete', tc); });
+    this.debouncedChangeEvent(tc);
 
+    if (typeof this._outputFormat === 'undefined') {
+      return;
+    }
     // to avoid precision lose, need to separate another method to provide identical output
     const formatMethod = formatMethodMap[this._outputFormat];
-    if (formatMethod) {
+    if (formatMethod && tc[formatMethod]) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       const formatted = tc[formatMethod]();
       this.$emit('consistent-change', formatted);
-      this.debounced(() => this.$emit('consistent-change-complete', formatted));
+      this.debouncedConsistentChangeEvent(formatted);
     }
   }
 
