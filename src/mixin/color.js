@@ -51,9 +51,9 @@ function _colorChange (data, oldHue) {
     hex8: color.toHex8String().toUpperCase(),
     rgba: color.toRgb(),
     hsv: hsv,
-    oldHue: data.h || oldHue || hsl.h,
-    source: data.source,
-    a: data.a || color.getAlpha()
+    oldHue: data && data.h || oldHue || hsl.h,
+    source: data && data.source,
+    a: data && data.a || color.getAlpha()
   }
 }
 
