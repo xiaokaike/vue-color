@@ -80,13 +80,13 @@ var colors = { r: 255, g: 0, b: 0 }
 new Vue({
   el: '#app',
   components: {
-    'material-picker': material,
-    'compact-picker': compact,
-    'swatches-picker': swatches,
-    'slider-picker': slider,
-    'sketch-picker': sketch,
-    'chrome-picker': chrome,
-    'photoshop-picker': photoshop
+    'material-picker': Material,
+    'compact-picker': Compact,
+    'swatches-picker': Swatches,
+    'slider-picker': Slider,
+    'sketch-picker': Sketch,
+    'chrome-picker': Chrome,
+    'photoshop-picker': Photoshop
   },
   data () {
     return {
