@@ -36,7 +36,7 @@ export default {
       return this.colors.hsv.s * 100 + '%'
     }
   },
-  beforeUnmount() {
+  beforeUnmount () {
     this.unbindEventListeners()
   },
   methods: {
