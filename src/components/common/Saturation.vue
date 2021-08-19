@@ -36,6 +36,9 @@ export default {
       return this.colors.hsv.s * 100 + '%'
     }
   },
+  beforeDestroy () {
+    this.unbindEventListeners()
+  },
   methods: {
     throttle: throttle((fn, data) => {
       fn(data)
