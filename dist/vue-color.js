@@ -2184,7 +2184,7 @@ exports.default = {
       return this.colors.hsv.s * 100 + '%';
     }
   },
-  beforeUnmount: function beforeUnmount() {
+  beforeDestroy: function beforeDestroy() {
     this.unbindEventListeners();
   },
 
