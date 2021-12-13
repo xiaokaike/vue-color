@@ -5,10 +5,6 @@
     </div>
     <div class="vc-iconscout-c-body">
       <div class="vc-iconscout-c-controls">
-        <div class="vc-iconscout-c-color-wrap">
-          <div class="vc-iconscout-c-active-color" :style="{background: activeColor}"></div>
-          <checkboard v-if="!disableAlpha"></checkboard>
-        </div>
 
         <div class="vc-iconscout-c-sliders">
           <div class="vc-iconscout-c-hue-wrap">
@@ -70,6 +66,12 @@
           <div class="vc-iconscout-c-toggle-icon-highlight" v-show="highlight"></div>
         </div>
         <!-- btn -->
+        <!-- active color preview -->
+        <div class="vc-iconscout-c-color-wrap">
+          <div class="vc-iconscout-c-active-color" :style="{background: activeColor}"></div>
+          <checkboard v-if="!disableAlpha"></checkboard>
+        </div>
+        <!-- active color preview -->
       </div>
     </div>
     <div
@@ -222,20 +224,22 @@ export default {
 }
 .vc-iconscout-c-color-wrap {
   position: relative;
-  width: 36px;
+  width: 34px;
+  height: 34px;
+  margin-left: 12px;
 }
 .vc-iconscout-c-active-color {
   position: relative;
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
   overflow: hidden;
   z-index: 1;
 }
 .vc-iconscout-c-color-wrap .vc-checkerboard {
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
   background-size: auto;
 }
 .vc-iconscout-c-sliders {
@@ -243,6 +247,7 @@ export default {
 }
 .vc-iconscout-c-fields-wrap {
   display: flex;
+  align-items: center;
   padding-top: 15px;
 }
 .vc-iconscout-c-fields {
@@ -261,7 +266,6 @@ export default {
 }
 .vc-iconscout-c-toggle-icon {
   margin-right: -4px;
-  margin-top: 12px;
   cursor: pointer;
   position: relative;
   z-index: 2;
@@ -272,7 +276,7 @@ export default {
   height: 28px;
   background: #eee;
   border-radius: 4px;
-  top: 10px;
+  top: -2px;
   left: 12px;
 }
 .vc-iconscout-c-hue-wrap {
