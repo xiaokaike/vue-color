@@ -184,7 +184,7 @@ export default {
   box-shadow: 0 0 2px rgba(0,0,0,.3), 0 4px 8px rgba(0,0,0,.3);
   box-sizing: initial;
   width: 225px;
-  font-family: Menlo;
+  font-family: Menlo, monospace;
   background-color: #fff;
 }
 .vc-chrome-controls {
