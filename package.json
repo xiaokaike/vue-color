@@ -47,7 +47,7 @@
     "file-loader": "^0.11.1",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "gh-pages": "^1.1.0",
-    "html-webpack-plugin": "^2.28.x",
+    "html-webpack-plugin": "^5.5.x",
     "http-proxy-middleware": "^0.17.0",
     "ora": "^1.4.0",
     "shelljs": "^0.7.0",
