@@ -239,6 +239,7 @@ onUnmounted(() => {
 .picker-wrap {
   cursor: pointer;
   position: absolute;
+  outline: none;
 }
 
 .picker {
