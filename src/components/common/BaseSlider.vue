@@ -222,6 +222,7 @@ onUnmounted(() => {
 .picker-wrap {
   position: absolute;
   z-index: 2;
+  outline: none;
 }
 .picker {
   width: 4px;
