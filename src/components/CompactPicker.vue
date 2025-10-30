@@ -36,7 +36,7 @@ import tinycolor from 'tinycolor2';
 import { computed } from 'vue';
 import { defineColorModel, EmitEventNames } from '../composable/colorModel.ts';
 
-interface Props {
+type Props = {
   /**
    * The list of colors displayed in the compact color palette.
    * Defaults to a 40-color swatch commonly used in design tools.
