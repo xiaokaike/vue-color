@@ -20,7 +20,7 @@
     <div class="field" v-if="!disableFields">
       <!-- rgba -->
       <div class="field_double">
-        <EdIn label="hex" :value="hex" @change="inputChangeHex" :a11y="{label: 'Hex'}"></EdIn>
+        <HexInput label="hex" :value="hex" @change="inputChangeHex" :type="alpha < 1 ? 'hex8' : 'hex'"></HexInput>
       </div>
       <div class="field_single">
         <EdIn label="r" :value="rgb.r" @change="(v) => inputChangeRGBA('r', v)" :a11y="{label: 'Red'}"></EdIn>
@@ -86,11 +86,12 @@ import Saturation from './common/SaturationSlider.vue';
 import Hue from './common/HueSlider.vue';
 import Alpha from './common/AlphaSlider.vue';
 import Checkerboard from './common/CheckerboardBG.vue';
+import HexInput from './common/HexInput.vue';
 
 import { defineColorModel, EmitEventNames } from '../composable/colorModel.ts';
 import { useHueRef } from '../composable/hue.ts';
 
-import { isValid, isTransparent } from '../utils/color';
+import { isTransparent } from '../utils/color';
 
 type Props = {
   /**
@@ -147,13 +148,8 @@ const hex = computed(() => {
 });
 const rgb = computed(() => tinyColorRef.value.toRgb());
 
-const inputChangeHex = (data?: string) => {
-  if (!data) {
-    return;
-  }
-  if (isValid(data)) {
-    tinyColorRef.value = data;
-  }
+const inputChangeHex = (data: string) => {
+  tinyColorRef.value = data;
 };
 
 const inputChangeRGBA = (key: 'r' | 'g' | 'b', data?: number) => {

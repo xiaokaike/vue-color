@@ -45,7 +45,7 @@
             <EdIn label="b" :value="rgb.b" @change="(v) => inputChangeRGBA('b', v)" :a11y="{label: 'Blue'}"></EdIn>
             <div class="fields-divider"></div>
             <!-- hex -->
-            <EdIn label="#" class="hex" :value="hex" @change="inputChangeHex" :a11y="{label: 'Hex'}"></EdIn>
+            <HexInput label="#" class="hex" :value="hex" @change="inputChangeHex"></HexInput>
           </div>
 
           <div
@@ -69,11 +69,10 @@ import { ref, computed } from 'vue';
 import EdIn from './common/EditableInput.vue';
 import Saturation from './common/SaturationSlider.vue';
 import Hue from './common/HueSlider.vue';
+import HexInput from './common/HexInput.vue';
 
 import { defineColorModel, EmitEventNames } from '../composable/colorModel.ts';
 import { useHueRef } from '../composable/hue.ts';
-
-import { isValid } from '../utils/color';
 
 type Props = {
   /**
@@ -161,13 +160,8 @@ const clickCurrentColor = () => {
   tinyColorRef.value = currentColorRef.value;
 }
 
-const inputChangeHex = (data?: string) => {
-  if (!data) {
-    return;
-  }
-  if (isValid(data)) {
-    tinyColorRef.value = data;
-  }
+const inputChangeHex = (data: string) => {
+  tinyColorRef.value = data;
 };
 
 const inputChangeRGBA = (key: 'r' | 'g' | 'b', data?: number) => {

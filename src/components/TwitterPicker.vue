@@ -33,7 +33,7 @@
       >
       </span>
       <div class="hash" aria-hidden="true">#</div>
-      <EdIn :value="hex.replace('#', '')" @change="inputChange" :a11y="{label: 'Hex'}"></EdIn>
+      <HexInput :value="hex" @change="inputChange"></HexInput>
       <div class="clear"></div>
     </div>
   </div>
@@ -49,9 +49,8 @@ const defaultColors = [
 <script setup lang="ts">
 import tinycolor from 'tinycolor2';
 import { computed } from 'vue';
-import EdIn from './common/EditableInput.vue';
+import HexInput from './common/HexInput.vue';
 import { defineColorModel, EmitEventNames } from '../composable/colorModel';
-import { isValid } from '../utils/color';
 
 type Props = {
   /**
@@ -108,9 +107,7 @@ const handlerClick = (color: string) => {
 }
 
 const inputChange = (hex: string) => {
-  if (isValid(hex)) {
-    tinyColorRef.value = hex;
-  }
+  tinyColorRef.value = hex;
 }
 </script>
 

@@ -46,8 +46,7 @@
         <div class="fields" v-show="fieldsIndex === getFormatIndex('hex')" v-if="isSupportedFormat('hex')">
           <!-- hex -->
           <div class="field">
-            <EdIn v-if="alpha === 1" label="hex" :value="tinyColorRef.toHexString()" @change="inputChangeHex" :a11y="{label: 'Hex'}"></EdIn>
-            <EdIn v-if="alpha !== 1" label="hex" :value="tinyColorRef.toHex8String()" @change="inputChangeHex" :a11y="{label: 'Hex with transparency'}"></EdIn>
+            <HexInput :type="alpha === 1 ? 'hex' : 'hex8'" label="hex" :value="tinyColorRef.toHex8String()" @change="inputChangeHex" :with-hash="true"></HexInput>
           </div>
         </div>
 
@@ -107,12 +106,11 @@ import Saturation from './common/SaturationSlider.vue';
 import Hue from './common/HueSlider.vue';
 import Alpha from './common/AlphaSlider.vue';
 import EdIn from './common/EditableInput.vue';
+import HexInput from './common/HexInput.vue';
 import Checkerboard from './common/CheckerboardBG.vue';
 
 import { defineColorModel, EmitEventNames } from '../composable/colorModel.ts';
 import { useHueRef } from '../composable/hue.ts';
-
-import { isValid } from '../utils/color';
 
 type Format = 'hex' | 'rgb' | 'hsl';
 type Props = {
@@ -225,13 +223,8 @@ const getFormatIndex = (format: Format) => {
   return normalizedFormats.value.indexOf(format);
 }
 
-const inputChangeHex = (data?: string) => {
-  if (!data) {
-    return;
-  }
-  if (isValid(data)) {
-    tinyColorRef.value = data;
-  }
+const inputChangeHex = (data: string) => {
+  tinyColorRef.value = data;
 };
 
 const inputChangeRGBA = (key: 'r' | 'g' | 'b' | 'a', data?: number) => {
