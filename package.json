@@ -1,6 +1,6 @@
 {
   "name": "vue-color",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "type": "module",
   "files": [
     "dist"
