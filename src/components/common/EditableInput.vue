@@ -5,6 +5,7 @@
       :value="props.value"
       @keydown="handleKeyDown"
       @input="handleInput"
+      @blur="handleBlur"
       :aria-label="ariaLabel"
       :id="labelId"
     >
@@ -34,7 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
   step: 1
 });
 
-const emit = defineEmits(['change']);
+const emit = defineEmits(['change', 'blur']);
 
 const ariaLabel = props.a11y?.label ?? props.label;
 
@@ -55,6 +56,10 @@ function update (newVal: number | string) {
 
 function handleInput (e: Event) {
   update((e.target as HTMLInputElement)?.value);
+}
+
+function handleBlur (e: Event) {
+  emit('blur', e);
 }
 
 function handleKeyDown (e: KeyboardEvent) {

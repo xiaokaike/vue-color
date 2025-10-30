@@ -33,7 +33,7 @@ import tinycolor from 'tinycolor2';
 import { computed } from 'vue';
 import { defineColorModel, EmitEventNames } from '../composable/colorModel.ts';
 
-interface Props {
+type Props = {
   /**
    * The list of grayscale colors displayed in the picker.
    * Defaults to a 20-step grayscale palette from white to black.

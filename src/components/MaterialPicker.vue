@@ -1,7 +1,7 @@
 <template>
   <div role="application" aria-label="Material color inputs" class="vc-material-picker">
-    <EdIn class="hex" label="hex" :value="tinyColorRef.toHexString()"
-      :style="{ borderColor: tinyColorRef.toHexString() }" @change="onHexChange" :a11y="{label: 'Hex'}"></EdIn>
+    <HexInput class="hex" label="hex" :value="tinyColorRef.toHexString()"
+      :style="{ borderColor: tinyColorRef.toHexString() }" @change="onHexChange" :with-hash="true"></HexInput>
 
     <div class="rgb">
       <div class="color">
@@ -21,8 +21,8 @@
 import tinycolor from 'tinycolor2';
 import { computed } from 'vue';
 import EdIn from './common/EditableInput.vue';
+import HexInput from './common/HexInput.vue';
 import { defineColorModel, EmitEventNames } from '../composable/colorModel.ts';
-import { isValid } from '../utils/color';
 
 type Props = {
   /**
@@ -47,9 +47,7 @@ const tinyColorRef = defineColorModel(props, emit);
 const rgb = computed(() => tinyColorRef.value.toRgb());
 
 function onHexChange(hex: string) {
-  if (isValid(hex)) {
-    tinyColorRef.value = hex;
-  }
+  tinyColorRef.value = hex;
 }
 
 function onChange(key: 'r' | 'g' | 'b', value: number) {
