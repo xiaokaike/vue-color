@@ -4,6 +4,9 @@
       <Saturation :hue="hueRef" v-model:tinyColor="tinyColorRef"></Saturation>
     </div>
     <div class="controls">
+      <div class="eyedropper">
+        <EyeDropperButton @pick="handleEyeDropperPick" />
+      </div>
       <div class="sliders">
         <div class="hue">
           <Hue :modelValue="hueRef" @update:modelValue="updateHueRef" />
@@ -87,6 +90,7 @@ import Hue from './common/HueSlider.vue';
 import Alpha from './common/AlphaSlider.vue';
 import Checkerboard from './common/CheckerboardBG.vue';
 import HexInput from './common/HexInput.vue';
+import EyeDropperButton from './common/EyeDropperButton.vue';
 
 import { defineColorModel, EmitEventNames } from '../composable/colorModel.ts';
 import { useHueRef } from '../composable/hue.ts';
@@ -173,9 +177,20 @@ const inputChangeAlpha = (data?: number) => {
 const handlePreset = (color: string) => {
   tinyColorRef.value = color;
 }
+
+const handleEyeDropperPick = (hex: string) => {
+  tinyColorRef.value = hex;
+}
 </script>
 
 <style scoped>
+.eyedropper {
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  margin-right: 6px;
+}
+
 .vc-sketch-picker {
   position: relative;
   width: 200px;
